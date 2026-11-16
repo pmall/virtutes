@@ -12,7 +12,7 @@ description: Build the exhaustive list of every edition and translation of one h
 1. **Settle the scope with the user** before starting: the scope decisions of section 3 of the method, written down for this work.
 2. **One researcher per work.** For several works, run one sub-agent per work in parallel, each with the brief below and its own output file. Order of magnitude from the pilot: 15 to 20 minutes and 200,000 to 300,000 tokens per work.
 3. **Research only.** No scan or book is downloaded. An open-access bibliography read as a source goes to a temporary folder outside the repository.
-4. **Check and merge**: `python3 tools/merge_edition_maps.py <folder with the per-work CSVs> <output.csv>`.
+4. **Check and merge**: `uv run tools/merge_edition_maps.py <folder with the per-work CSVs> <output.csv>`.
 5. **Check by hand** that every version the project already uses or has listed appears in the map.
 6. **Report** as one table, one line per work: number of versions by type, span of years, how many are `checked = yes`; then the gaps and doubts. Add the gaps to the "Known limits" section of the method document.
 

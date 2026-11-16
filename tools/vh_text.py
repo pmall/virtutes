@@ -6,12 +6,13 @@ source (typed text, scan of a printed book, scan of a manuscript), must produce 
 that pass this check.
 
 Usage, from the workspace folder:
-    python3 tools/vh_text.py check <version folder> [<version folder> ...]
-    python3 tools/vh_text.py check --all
-    python3 tools/vh_text.py view  <file.jsonl> [--kinds text,head] [--from REF] [--to REF]
+    uv run tools/vh_text.py check <version folder> [<version folder> ...] [--raw]
+    uv run tools/vh_text.py check --all
+    uv run tools/vh_text.py view  <file.jsonl> [--kinds text,head] [--from REF] [--to REF]
 
     check   verifies data/<version folder>/text/ : pages.csv, every <lang>.jsonl and its
             <lang>.info.json. Prints one line per file, then the problems found.
+            With --raw, verifies work/raw/ (the output of extract.py) instead of text/.
     view    prints a text for reading: page changes on their own line, one passage per
             paragraph. By default only the work itself (kinds head, text, commentary).
 """
@@ -176,13 +177,13 @@ def check_text(path, pages, err):
     return len(order), chars, kinds
 
 
-def check(folder):
-    """Check one version folder. Returns the list of problems."""
+def check(folder, sub="text"):
+    """Check one version folder (its text/, or its work/raw/). Returns the list of problems."""
     problems = []
-    vdir = Path(folder) if (Path(folder) / "text").is_dir() else DATA / Path(folder).name
-    folder, tdir = vdir.resolve().name, vdir / "text"
+    vdir = Path(folder) if (Path(folder) / sub).is_dir() else DATA / Path(folder).name
+    folder, tdir = vdir.resolve().name, vdir / sub
     if not tdir.is_dir():
-        return [f"no text/ folder in data/{folder}"]
+        return [f"no {sub}/ folder in data/{folder}"]
     pages = check_pages(tdir / "pages.csv", problems.append)
     texts = sorted(tdir.glob("*.jsonl"))
     if not texts:
@@ -194,7 +195,7 @@ def check(folder):
         check_info(tdir / f"{lang}.info.json", lang, folder, problems.append)
         n, chars, kinds = check_text(path, pages, problems.append)
         detail = ", ".join(f"{k} {v}" for k, v in sorted(kinds.items(), key=lambda x: str(x[0])))
-        print(f"{folder}/text/{path.name}: {n} passages, {chars} characters ({detail})")
+        print(f"{folder}/{sub}/{path.name}: {n} passages, {chars} characters ({detail})")
     return problems
 
 
@@ -228,14 +229,15 @@ def main(argv):
     if len(argv) < 2 or argv[0] not in ("check", "view"):
         sys.exit(__doc__)
     if argv[0] == "check":
-        folders = argv[1:]
+        folders = [a for a in argv[1:] if a != "--raw"]
+        sub = "work/raw" if "--raw" in argv else "text"
         if folders == ["--all"]:
             folders = sorted(d.parent.name for d in DATA.glob("*/text") if d.is_dir())
             if not folders:
                 sys.exit("no version folder has a text/ folder yet")
         bad = 0
         for folder in folders:
-            problems = check(folder)
+            problems = check(folder, sub)
             bad += len(problems)
             for line in problems[:50]:
                 print(f"  PROBLEM {line}")

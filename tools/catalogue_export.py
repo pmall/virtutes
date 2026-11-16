@@ -2,8 +2,8 @@
 """Flatten the five catalogue spreadsheets into one CSV (standard library only).
 
 Usage, from the workspace folder:
-    python3 tools/catalogue_export.py            # writes catalogue/catalogue_rows.csv
-    python3 tools/catalogue_export.py --notes    # also prints the 'Notes' sheets
+    uv run tools/catalogue_export.py            # writes catalogue/catalogue_rows.csv
+    uv run tools/catalogue_export.py --notes    # also prints the 'Notes' sheets
 
 Reads the spreadsheets in catalogue/ (copies, 12 Nov 2026, of the project's
 catalogue in the original project folder, which remains the source of truth).

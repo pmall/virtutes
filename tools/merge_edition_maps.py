@@ -1,7 +1,7 @@
 """Check and merge per-work edition maps into one CSV.
 
 Method: docs/Edition_mapping_method.md
-Usage (from the workspace folder):  python3 tools/merge_edition_maps.py <folder with N_work.csv files> <output.csv>
+Usage (from the workspace folder):  uv run tools/merge_edition_maps.py <folder with N_work.csv files> <output.csv>
 """
 import collections
 import csv

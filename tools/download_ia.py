@@ -6,13 +6,13 @@ page-image archive <id>_jp2.zip, kept exactly as delivered and checked against t
 published by Internet Archive. One row per file is appended to data/Downloads_report.csv.
 
 Usage, from the workspace folder:
-    python3 tools/download_ia.py <version folder> <item id> [<item id> ...] [--file NAME]
+    uv run tools/download_ia.py <version folder> <item id> [<item id> ...] [--file NAME]
 
     --file NAME   download this file instead of <id>_jp2.zip (e.g. a PDF when no image
                   archive exists); use {id} for the item id, e.g. --file "{id}.pdf"
 
 Example:
-    python3 tools/download_ia.py 2_Dioscorides_french_Mathee_1553 lessixlivresdepe00dios
+    uv run tools/download_ia.py 2_Dioscorides_french_Mathee_1553 lessixlivresdepe00dios
 
 Rules (AGENTS.md, docs/Folder_structure.md): nothing is downloaded without the user's go-ahead;
 files are never modified; one request at a time with a pause; generic client name.

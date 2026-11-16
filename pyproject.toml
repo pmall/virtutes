@@ -1,0 +1,13 @@
+# The Python version and packages the scripts need, managed with uv (README.md, "Setting up").
+# uv.lock, written by uv, records the exact version and checksum of every package.
+[project]
+name = "virtutes-herbarum"
+version = "0"
+description = "Scripts of the Virtutes Herbarum project"
+requires-python = "==3.14.*"
+dependencies = [
+    "pillow==12.1.1",  # tools/page_image.py: opens the JPEG 2000 page images of the scans
+]
+
+[tool.uv]
+package = false

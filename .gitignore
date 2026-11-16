@@ -4,11 +4,16 @@ data/*/source/*
 !data/*/source/*.json
 !data/*/source/*_pages.csv
 
-# Intermediate files of the conversions: can be made again
+# Intermediate files and results of the conversions: made again by convert/extract.py
+# and convert/repair.py of each version
 data/*/work/
+data/*/text/
 
 # Article PDFs: publishers' copyright (listed in references/README.md)
 references/*.pdf
+
+# The Python environment, made by "uv sync" (README.md, "Setting up")
+.venv/
 
 # Unfinished downloads, Python and editor leftovers
 *.part

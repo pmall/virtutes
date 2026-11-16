@@ -2,8 +2,7 @@
 
 In order; the first item is next. Done items are removed (history is in `git log`).
 
-1. **Convert Dioscorides** — `2_Dioscorides_original_Wellmann_1906-1914` (grc), skill `convert-version`. First real use of the text format (v0.1) and of `tools/vh_text.py`, both untested: expect to amend them, with the user's agreement.
-   - First look, to verify: nested `div type="textpart"` (book, chapter, section); pages as `<pb n="228"/>` without volume; `<lb/>`, `<note>`, `<add>`, `<del>`, `<gap>`; one page marker out of order in volume 1.
+1. **Repair Dioscorides** — `2_Dioscorides_original_Wellmann_1906-1914` (grc), skill `convert-version` from step 4. `extract.py` is written; `repair.py` has no rule yet, so `text/` is still the raw text. The mistakes to repair are listed at the end of `extract.py`.
 2. **Convert Theophrastus** — `1_Theophrastus_original-english_Hort_1916`, Greek only (the English pages are a scan).
    - Same XML layout as Dioscorides; only even page numbers appear (Greek pages of a facing-page edition).
 3. **Convert Pliny, Latin** — `3_Pliny_original_Mayhoff`.

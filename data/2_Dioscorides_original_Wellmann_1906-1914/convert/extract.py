@@ -1,0 +1,296 @@
+#!/usr/bin/env python3
+"""Extract Wellmann's Dioscorides (First1KGreek typed text) as it is: the raw text.
+
+Run:  uv run convert/extract.py   (no arguments; writes work/raw/grc.jsonl,
+      work/raw/grc.info.json and work/raw/pages.csv in this version folder)
+
+First of two steps. This one copies the typed file into the unified text format without
+correcting anything: what is wrong in the typed file is wrong here in the same way.
+convert/repair.py then makes text/ from work/raw/.
+
+THE SOURCE
+source/tlg0656.tlg001.1st1K-grc1.xml, TEI (EpiDoc), Wellmann's Greek text of the five books,
+typed by First1KGreek. Layout of the body:
+- div type=edition > div subtype=book (n=1..5) > div subtype=chapter > div subtype=section,
+  each with its number in @n ("preface" for the chapter before chapter 1 of each book).
+- All words are inside <head> (one per book), <p> and <note type="footnote"> (one note,
+  inside a note, has type "footnte"). No text lies directly in a div.
+- <pb n="…"/>: Wellmann's printed page, without volume; the numbering starts again at 1
+  for each of the three volumes (books 1-2, 3-4, 5).
+- <lb n="…"/>: printed line numbers, every fifth line. No word is cut at a line break.
+- Footnotes are typed where the typists put them, mostly in a block at the end of each
+  printed page, in the middle of a <p>. They mix three things the book prints apart:
+  lists of plant names ("164 RV: …"), parallel passages ("8 SIM. …", "8 EXC. …") and
+  variant readings ("2 καὶ om. NE …").
+- <add>, <del> (some with status="error"), <gap/>, <sic>.
+
+WHAT THIS SCRIPT DOES: plain extraction, no judgement on the content
+- One passage per <head> (kind head), per <p> (kind text) and per <note> (kind note).
+  A note is written right after the passage it sits in, with an anchor at the place it
+  sits; a note inside a note is anchored to the outer note.
+- ref = the @n of the enclosing book, chapter and section divs, joined with dots, exactly
+  as the typed file has them, mistakes included (a few chapters are nested in others,
+  numbered twice, missing, or labelled as sections). Notes get the ref of where they sit.
+- page: each <pb> gives the page "v<volume>p<n>"; the volume goes up by one each time
+  n is "1" again. A page number met a second time in the same volume gets "-2" added to
+  its id (volume 1 has page 89 twice); "printed" keeps the number as typed.
+- Words: all characters of <head>, <p> and <note>, chapter and section numbers included,
+  as typed. Line breaks and runs of white space become one space; each piece of text is
+  put in Unicode NFC form (the file is not NFC). <lb> is dropped. Invisible control
+  characters are dropped (four U+008D in footnotes, apparently typing residue).
+- Marks: <add> -> add, <del> -> del (whatever its status), <gap/> -> the character "…"
+  marked gap. <sic> has no equivalent mark: its words are kept, unmarked.
+- pages.csv: the page images are not matched to page numbers (mapping none).
+"""
+import csv, hashlib, json, re, sys, unicodedata
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+VDIR = Path(__file__).resolve().parents[1]            # this version folder
+ROOT = VDIR.parents[1]                                 # the workspace folder
+SOURCE = VDIR / "source" / "tlg0656.tlg001.1st1K-grc1.xml"
+RAW = VDIR / "work" / "raw"
+LANG = "grc"
+NS = "{http://www.tei-c.org/ns/1.0}"
+CONTROL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]")  # invisible; white space aside
+
+
+def md5(path):
+    h = hashlib.md5()
+    with open(path, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def expected_md5():
+    with open(ROOT / "data" / "Downloads_report.csv", newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            if row["folder"] == VDIR.name and row["file"] == SOURCE.name:
+                return row["md5"]
+    sys.exit(f"{SOURCE.name} not found in data/Downloads_report.csv")
+
+
+class Passage:
+    """Collects the raw text of one passage, with breaks, marks and notes at raw positions."""
+
+    def __init__(self, kind, ref, page):
+        self.kind, self.ref, self.page = kind, ref, page
+        self.raw = []          # pieces of text
+        self.len = 0
+        self.breaks, self.marks, self.notes = [], [], []
+
+    def add(self, s):
+        if s:
+            s = CONTROL.sub("", unicodedata.normalize("NFC", s))
+            self.raw.append(s)
+            self.len += len(s)
+
+    def finish(self):
+        """Collapse white space; return text and a function mapping raw positions to it."""
+        raw = "".join(self.raw)
+        pos, out, space = [], [], False
+        for c in raw:
+            pos.append(len(out))
+            if c.isspace():
+                if out and not space:
+                    out.append(" ")
+                space = True
+            else:
+                out.append(c)
+                space = False
+        pos.append(len(out))
+        if out and out[-1] == " ":
+            out.pop()
+        text = "".join(out)
+        return text, lambda i: min(pos[i], len(text))
+
+
+class Converter:
+    def __init__(self):
+        self.pages = []        # rows of pages.csv
+        self.seen = set()
+        self.volume = 0
+        self.page = None
+        self.lines = []        # output passages, in order
+        self.last_main = None  # last passage written that is not a note
+
+    # pages -----------------------------------------------------------------
+    def new_page(self, n):
+        if n == "1" or self.volume == 0:
+            self.volume += 1
+        pid, k = f"v{self.volume}p{n}", 1
+        while pid in self.seen:
+            k += 1
+            pid = f"v{self.volume}p{n}-{k}"
+        self.seen.add(pid)
+        self.pages.append([pid, str(self.volume), n, "", "", "none"])
+        self.page = pid
+
+    # walking ---------------------------------------------------------------
+    def walk(self, el, refs):
+        """Walk divs; refs maps book/chapter/section to the @n of the nearest div."""
+        for c in el:
+            tag = c.tag[len(NS):]
+            if tag == "div":
+                walk_refs = dict(refs)
+                if c.get("subtype") in ("book", "chapter", "section"):
+                    walk_refs[c.get("subtype")] = c.get("n")
+                    if c.get("subtype") == "book":
+                        walk_refs.pop("chapter", None)
+                        walk_refs.pop("section", None)
+                    if c.get("subtype") == "chapter":
+                        walk_refs.pop("section", None)
+                self.walk(c, walk_refs)
+            elif tag == "pb":
+                self.new_page(c.get("n"))
+            elif tag in ("p", "head"):
+                p = Passage("text" if tag == "p" else "head", self.ref(refs), self.page)
+                self.fill(c, p, refs)
+                self.emit(p)
+            elif tag == "note":
+                # a note lying directly in a div: anchored at the end of the last passage
+                self.emit_note(c, refs, self.last_main, None)
+            elif tag == "lb":
+                pass
+            else:
+                sys.exit(f"unexpected element <{tag}> in a div")
+
+    @staticmethod
+    def ref(refs):
+        return ".".join(refs[k] for k in ("book", "chapter", "section") if k in refs)
+
+    def fill(self, el, p, refs):
+        """Add the content of el to passage p (el's own tail is handled by the caller)."""
+        p.add(el.text)
+        for c in el:
+            tag = c.tag[len(NS):]
+            if tag == "lb":
+                pass
+            elif tag == "pb":
+                self.new_page(c.get("n"))
+                p.breaks.append((p.len, self.page))
+            elif tag == "note":
+                p.notes.append((c, p.len, self.page))
+            elif tag == "gap":
+                start = p.len
+                p.add("…")
+                p.marks.append((start, start + 1, "gap"))
+            elif tag in ("add", "del"):
+                start = p.len
+                self.fill(c, p, refs)
+                p.marks.append((start, p.len, tag))
+            elif tag == "sic":
+                self.fill(c, p, refs)
+            else:
+                sys.exit(f"unexpected element <{tag}> inside <{el.tag[len(NS):]}>")
+            p.add(c.tail)
+
+    def emit(self, p, anchor=None):
+        text, at = p.finish()
+        line = {"id": None, "kind": p.kind}
+        if p.ref:
+            line["ref"] = p.ref
+        page = p.page
+        breaks = []
+        for raw, pg in p.breaks:
+            off = at(raw)
+            if off == 0:
+                page = pg                       # the passage really begins on that page
+                breaks = []
+            elif off < len(text):
+                if breaks and breaks[-1][0] == off:
+                    breaks[-1][1] = pg
+                else:
+                    breaks.append([off, pg])
+            # a break at the very end belongs to the next passage
+        marks = []
+        for s, e, t in p.marks:
+            s, e = at(s), at(e)
+            if s < e:
+                marks.append([s, e, t])
+        line.update({"page": page, "text": text})
+        if breaks:
+            line["breaks"] = breaks
+        if marks:
+            line["marks"] = marks
+        if anchor:
+            line["anchor"] = anchor
+        if not text:
+            sys.exit(f"empty passage on page {page}")
+        line["id"] = f"{len(self.lines) + 1:06d}"
+        self.lines.append(line)
+        if p.kind != "note":
+            self.last_main = line
+        for note, raw, page_at in p.notes:
+            self.emit_note(note, None, line, (at(raw), page_at, p.ref))
+
+    def emit_note(self, note, refs, host, where):
+        if host is None:
+            sys.exit("a note comes before any passage")
+        if where is None:                       # note directly in a div
+            offset, page, ref = len(host["text"]), self.page, self.ref(refs)
+        else:
+            offset, page, ref = where
+        p = Passage("note", ref, page)
+        self.fill(note, p, refs)
+        self.emit(p, anchor=[host["id"], offset])
+
+
+def main():
+    if md5(SOURCE) != expected_md5():
+        sys.exit(f"{SOURCE.name}: checksum differs from data/Downloads_report.csv")
+    root = ET.parse(SOURCE).getroot()
+    edition = root.find(f"{NS}text/{NS}body/{NS}div")
+    conv = Converter()
+    conv.walk(edition, {})
+
+    RAW.mkdir(parents=True, exist_ok=True)
+    with open(RAW / f"{LANG}.jsonl", "w", encoding="utf-8", newline="\n") as f:
+        for line in conv.lines:
+            f.write(json.dumps(line, ensure_ascii=False, separators=(",", ":")) + "\n")
+    with open(RAW / "pages.csv", "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow(["page", "volume", "printed", "source_file", "image", "mapping"])
+        w.writerows(conv.pages)
+    info = {
+        "format": "vh-text/0.1",
+        "version": VDIR.name,
+        "work_no": 2,
+        "work": "Dioscorides, De materia medica",
+        "lang": LANG,
+        "origin": "typed",
+        "sources": [{"file": SOURCE.name, "md5": md5(SOURCE)}],
+        "converter": str((VDIR / "convert" / "extract.py").relative_to(ROOT)),
+        "ref_scheme": ["book", "chapter", "section"],
+        "rights": "Text public domain (Wellmann died 1933); typed text by First1KGreek, "
+                  "CC BY-SA 4.0.",
+        "status": "complete",
+        "review": "none",
+        "notes": NOTES,
+    }
+    with open(RAW / f"{LANG}.info.json", "w", encoding="utf-8", newline="\n") as f:
+        f.write(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
+    print(f"{len(conv.lines)} passages, {len(conv.pages)} pages")
+
+
+NOTES = (
+    "Plain extraction of the typed text: words, numbers and labels as First1KGreek typed "
+    "them, errors included. "
+    "Chapter and section numbers printed by Wellmann are part of the text, as typed. "
+    "Four invisible control characters (U+008D) in footnotes were dropped. "
+    "The ref copies the typed file's chapter and section labels, which do not always match "
+    "the book: some chapters are nested in others or labelled as sections (3.87), some "
+    "numbers appear twice (1.2, 1.90, 2.2, 4.147, 5.2-5.4) or are missing (2.66, 2.145, "
+    "2.149, 3.87, 4.151, 5.132; their text is inside the chapter before). "
+    "All footnotes are kind 'note': the typed file does not separate the lists of plant "
+    "names (RV), the parallel passages (SIM., EXC.) and the variant readings, and they are "
+    "not separated here. A note is anchored where the typists put it, usually the end of "
+    "its printed page, not the word it comments. "
+    "Volume 1 has page 89 twice in the typed file (82, 89, 84 ... 89); the first is "
+    "probably page 83; the second has the id v1p89-2. "
+    "Page images not matched to page numbers. No passage compared with the scan."
+)
+
+if __name__ == "__main__":
+    main()

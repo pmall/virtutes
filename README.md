@@ -2,7 +2,17 @@
 
 Research project of UCLy (research unit CONFLUENCE: Sciences et Humanités). From historical herbals, extract every statement "plant X, prepared this way, is good for Y", tied to its page and comparable across texts, places and centuries. The pilot covers six European works, from Theophrastus to a 17th-century French herbal.
 
-This repository holds the methods, the tables of versions, the tools and the texts of the works in one common format. It does not hold the scans: they are listed, with source and checksum, in [`data/Downloads_report.csv`](data/Downloads_report.csv).
+This repository holds the methods, the tables of versions, the tools and the scripts that bring each work to one common text format. It does not hold the scans and typed texts the libraries delivered, nor the texts made from them: the first are listed, with exact address and checksum, in [`data/Downloads_report.csv`](data/Downloads_report.csv); the second are made again by the scripts ([`docs/Folder_structure.md`](docs/Folder_structure.md#what-is-in-git-and-what-is-not)).
+
+## Setting up
+
+Python and the packages the scripts need are managed with [uv](https://docs.astral.sh/uv/), the only program to install by hand. [`pyproject.toml`](pyproject.toml) names the Python version and the packages; [`uv.lock`](uv.lock) records the exact version and checksum of each. From the repository folder:
+
+```bash
+uv sync
+```
+
+This fetches the right Python if the computer does not have it and installs the packages in `.venv/`, inside the folder. Every script is then run with `uv run`, for example `uv run tools/vh_text.py check --all`.
 
 ## The documents
 

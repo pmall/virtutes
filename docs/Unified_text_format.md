@@ -16,7 +16,7 @@ What the format must guarantee:
 
 ## The files
 
-In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds:
+In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds the files below. The raw text in `work/raw/` ([`Conversion_method.md`](Conversion_method.md#two-scripts-per-version)) has the same files in the same format; the difference is that its labels still carry the mistakes of the source.
 
 | File | Content |
 |---|---|

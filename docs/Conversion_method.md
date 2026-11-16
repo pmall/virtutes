@@ -12,13 +12,20 @@ Every chosen version ends as text in the unified format ([`Unified_text_format.m
 
 When a version has both a typed text and a scan, the typed text is what we work from; the scan is there to look at a page when in doubt ([`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2).
 
-## One script per version
+## Two scripts per version
 
-Each book is laid out its own way: where the chapter numbers are, how notes are attached, how two languages share a page, how pages are numbered. A general converter would be either wrong for most books or as complicated as all of them together. So each version gets its own short script, `convert/convert.py` in its folder.
+Each book is laid out its own way: where the chapter numbers are, how notes are attached, how two languages share a page, how pages are numbered. A general converter would be either wrong for most books or as complicated as all of them together. So each version gets its own short scripts, in the folder `convert/` of the version.
 
-Writing such a script by hand takes a person hours per book, which is why projects usually avoid it. An AI assistant writes one in minutes, so the project can afford one per version. The division of work:
+A source also has mistakes of its own: a typed text with a chapter under the wrong number, a page number typed twice. Copying and correcting are kept apart, in two scripts run one after the other:
 
-- **The assistant writes the script; the script produces the text.** The assistant never retypes or rewrites the text itself. The result is therefore the same at every run, and anyone can read in the script what was done to the source.
+1. **`extract.py` copies.** It brings the source to the unified format without correcting anything: what is wrong in the source is wrong in the same way in its output, the raw text (`work/raw/`).
+2. **`repair.py` corrects.** It makes the final text (`text/`) from the raw text, by rules written in the script, and lists every change it makes (`work/repairs.csv`). A rule may change the labels around the words (place in the work, kind of passage, page) and where a passage is cut. The words themselves change only through a correction a person asked for (`convert/corrections.csv`).
+
+So a doubt about the final text can always be settled: the raw text shows what the source had, the list shows what was changed and by which rule.
+
+Writing such scripts by hand takes a person hours per book, which is why projects usually avoid it. An AI assistant writes them in minutes, so the project can afford them for each version. The division of work:
+
+- **The assistant writes the scripts; the scripts produce the text.** The assistant never retypes or rewrites the text itself. The result is therefore the same at every run, and anyone can read in the scripts what was done to the source. This is why the texts are not kept in git: the scripts and the exact sources are enough to make them again ([`Folder_structure.md`](Folder_structure.md#what-is-in-git-and-what-is-not)).
 - **The shared checker verifies the shape of the result**, the same for all versions.
 - **People verify the words**, on samples compared with the page images. Their corrections are stored beside the script and applied at each run.
 
@@ -36,4 +43,4 @@ Whatever was not verified is written in the `notes` of the text's info file.
 
 - The reading engine for scans and the transcription rules ([`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)).
 - Who checks the samples for each language, and how much time they have.
-- Whether the typed texts, which their projects keep correcting, should be fetched again later; the checksum in [`data/Downloads_report.csv`](../data/Downloads_report.csv) tells whether a file has changed.
+- Whether to move later to a newer state of the typed texts, which their projects keep correcting. Each is recorded at one exact commit in [`data/Downloads_report.csv`](../data/Downloads_report.csv); moving to a newer one is a decision, followed by a new conversion.

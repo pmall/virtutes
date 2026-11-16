@@ -8,12 +8,12 @@ page label, source URL, size, md5). Every image in the zip is checked against it
 One row is appended to data/Downloads_report.csv.
 
 Usage, from the workspace folder:
-    python3 tools/download_iiif_pages.py <version folder> <identifier> <manifest URL> [--first N] [--last M]
+    uv run tools/download_iiif_pages.py <version folder> <identifier> <manifest URL> [--first N] [--last M]
 
     --first/--last   positions in the library's page list (1 = first image), inclusive
 
 Example (Bayerische Staatsbibliothek):
-    python3 tools/download_iiif_pages.py 6_Petit-Bauhin_original_1671 bsb10300968 \\
+    uv run tools/download_iiif_pages.py 6_Petit-Bauhin_original_1671 bsb10300968 \\
         https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10300968/manifest
 
 Rules (AGENTS.md, docs/Folder_structure.md): nothing is downloaded without the user's go-ahead;
