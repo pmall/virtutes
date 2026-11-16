@@ -10,7 +10,7 @@ Rewritten at each session; not a history (see `git log`). Rules for this file: `
 
 ## Next
 
-Convert the four typed texts, one per session, following `instructions/convert_version.md`. Suggested order, simplest first:
+Convert the four typed texts, one per session, with the skill `convert-version`. Suggested order, simplest first:
 
 1. `2_Dioscorides_original_Wellmann_1906-1914` (grc)
 2. `1_Theophrastus_original-english_Hort_1916` (grc only; the English pages are a scan)

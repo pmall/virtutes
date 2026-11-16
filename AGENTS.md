@@ -2,32 +2,34 @@
 
 What the project is: `README.md`, then the documents it lists. This file says how to work here.
 
+## Why this file is strict
+
+Projects die when their context piles up: notes on notes, the same fact in three files, history mixed with rules. Here every piece of information has one place, and what is no longer needed is deleted, not kept "just in case".
+
 ## At the start and the end of a session
 
 1. Read `WIP.md`: it says where the work stands and what to do next.
-2. Read the instruction file for the task at hand, and the documents it names. Nothing else is needed up front.
-3. Before stopping: commit, then **rewrite** `WIP.md` (replace its content, do not append) and commit it.
+2. Use the skill for the task at hand; it names the documents to read. Read nothing else up front.
+3. Before stopping: **rewrite** `WIP.md` so that it describes the state the commit will contain (replace its content, do not append; delete what is done or no longer useful), then commit it together with the work, in one commit.
 
-## Instruction files (read only the one you need)
+## Skills (one per task)
 
-| Task | File |
-|---|---|
-| Convert one version to the unified text format | `instructions/convert_version.md` |
-| Map every version of a new work | `instructions/map_editions.md` |
-| Choose the versions of a work, download them, write their note | `instructions/select_and_download.md` |
+Each task has its procedure in `skills/<name>/SKILL.md`; the first lines of that file say when to use it. `.claude/skills/` holds one link per skill. Current skills: `convert-version`, `map-editions`, `select-and-download`.
+
+A new skill is a new folder in `skills/` plus its link: `ln -s ../../skills/<name> .claude/skills/<name>`.
 
 ## Where each kind of information goes (one place only)
 
 | Information | Place |
 |---|---|
 | What the project is, a definition, a method, an open question | `docs/` (one topic, one file) |
-| How an assistant must act | This file, or `instructions/` for a task |
+| How an assistant must act | This file for rules that always apply; a skill for the procedure of one task |
 | Where the work stands, what is next, hints for the next session | `WIP.md`, rewritten each session, kept under one page |
 | What a script does and why | The comment at the top of the script |
 | What was done and when | The git commit message |
 | What a version's files are and why it was chosen | Its `metadata/note.txt` |
 
-Never state the same thing in two places: link to it. Do not write dates, progress or history in `docs/` or `instructions/`. If a task changes a definition, change the document in the same commit.
+Never state the same thing in two places: link to it. Do not write dates, progress or history in `docs/` or `skills/`. If a task changes a definition, change the document in the same commit.
 
 ## Rules
 

@@ -1,6 +1,6 @@
 # From any source to one text format
 
-Every chosen version ends as text in the unified format (`Unified_text_format.md`), whatever it started as. How an assistant carries out a conversion: `instructions/convert_version.md`.
+Every chosen version ends as text in the unified format (`Unified_text_format.md`), whatever it started as. How an assistant carries out a conversion: `skills/convert-version/SKILL.md`.
 
 ## Three kinds of source
 

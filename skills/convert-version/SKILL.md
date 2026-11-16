@@ -1,3 +1,8 @@
+---
+name: convert-version
+description: Convert one version of a work (data/<version>/) to the project's unified text format by writing its convert/convert.py. Use when asked to convert, reconvert or fix the text of a version.
+---
+
 # Task: convert one version to the unified text format
 
 **Goal.** For one version folder `data/<version>/`, write `convert/convert.py` so that running it produces `text/` in the unified format, complete, passing the checker, with its limits stated.
@@ -34,8 +39,7 @@
    - ten passages spread over the work, read with `tools/vh_text.py view`, compared with the source file character by character;
    - if page images can be viewed, three of those passages compared with the image of their page.
 7. **Set the info file truthfully.** `status` = `complete` only if the whole version is there. `review` = `none` unless a person compared samples with page images. Everything not verified goes in `notes`, in plain words.
-8. **Commit** `convert/` and `text/` together, with a message stating the counts and what was not verified.
-9. **Update `WIP.md`** (see `AGENTS.md`).
+8. **Commit** `convert/`, `text/` and the rewritten `WIP.md` together (see `AGENTS.md`), with a message stating the counts and what was not verified.
 
 ## Done means
 

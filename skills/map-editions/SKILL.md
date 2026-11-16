@@ -1,3 +1,8 @@
+---
+name: map-editions
+description: Build the exhaustive list of every edition and translation of one historical work (the edition map). Use when a new work enters the project or its map must be completed.
+---
+
 # Task: map every version of a work
 
 **Goal.** One CSV listing every known edition and translation of one work, following `docs/Edition_mapping_method.md` (read it first: the rule, the columns, the scope decisions, the sources).

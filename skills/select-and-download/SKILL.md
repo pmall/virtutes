@@ -1,3 +1,8 @@
+---
+name: select-and-download
+description: Choose which versions of a work to use (original, English, French), download them after the user's go-ahead and write their note.txt. Use after a work's edition map exists.
+---
+
 # Task: choose the versions of a work, download them, write their note
 
 **Read first:** `docs/Version_selection_method.md` (the rules; apply them in order, do not reinterpret them) and `docs/Folder_structure.md` (folder names, what goes in `source/`, the sections of `note.txt`).

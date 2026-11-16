@@ -8,7 +8,8 @@ One self-contained folder for all works, pilot and later. It is a git repository
 <workspace>/
     README.md                        what this is, and the index of the documents
     docs/                            the project explained: methods, structure, text format
-    AGENTS.md, instructions/         how AI assistants must work here
+    AGENTS.md, skills/               how AI assistants must work here: the rules, and one skill per task
+    .claude/skills/                  links to skills/, so that Claude finds the skills
     WIP.md                           where the work stands; rewritten at each session
     tools/                           scripts shared by all works
     catalogue/                       the 5 catalogue spreadsheets (copies) + catalogue_rows.csv
@@ -65,7 +66,7 @@ Rules:
 
 | In git | Not in git |
 |---|---|
-| Documents, instructions, tools, catalogue, the three CSV files of `data/` | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
+| Documents, skills, tools, catalogue, the three CSV files of `data/` | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
 | `metadata/note.txt` of every version | The typed texts as delivered (`*.xml`, 1 to 13 MB each) |
 | The libraries' small records in `source/` (`*.json`, `*_pages.csv`) | `work/` |
 | `convert/` and `text/` of every version | The article PDFs in `references/` (publishers' copyright) |
