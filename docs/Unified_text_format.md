@@ -11,12 +11,12 @@ What the format must guarantee:
 1. **The wording is exactly that of the source.** A use will be accepted only if its quotation is found letter for letter in the text.
 2. **Every passage is tied to its page**, and through the page to the image of the scan.
 3. **The voices are kept apart**: the work itself, a commentator, the modern editor's notes, the list of variant readings.
-4. **No interpretation.** No plant identification, no modern disease name, no translation. Those are separate layers built on top (see `Staub_2015_classification_summary.md`).
+4. **No interpretation.** No plant identification, no modern disease name, no translation. Those are separate layers built on top (see [`Staub_2015_classification_summary.md`](Staub_2015_classification_summary.md)).
 5. **Plain files** that a short script can read, that git can compare line by line, and that a person can open.
 
 ## The files
 
-In each version folder (`Folder_structure.md`), the folder `text/` holds:
+In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds:
 
 | File | Content |
 |---|---|
@@ -125,7 +125,7 @@ page,volume,printed,source_file,image,mapping
 
 ## The checker
 
-Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. `tools/vh_text.py` is the common gate: it reads a finished `text/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup). It does not look at the source and does not judge whether the words are right; that is done by comparing samples with the page images (`Conversion_method.md`). A text that fails the check is not accepted.
+Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a finished `text/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup). It does not look at the source and does not judge whether the words are right; that is done by comparing samples with the page images ([`Conversion_method.md`](Conversion_method.md)). A text that fails the check is not accepted.
 
 ## Choices made, and why
 

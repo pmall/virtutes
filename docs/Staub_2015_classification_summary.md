@@ -2,7 +2,7 @@
 
 From a full reading of the accepted manuscript (`references/Staub_2015_JEthnopharmacol.pdf`).
 
-**Reference.** Staub P.O., Geck M.S., Weckerle C.S., Casu L., Leonti M. (2015). Classifying diseases and remedies in ethnomedicine and ethnopharmacology. *Journal of Ethnopharmacology*. doi:10.1016/j.jep.2015.08.051.
+**Reference.** Staub P.O., Geck M.S., Weckerle C.S., Casu L., Leonti M. (2015). Classifying diseases and remedies in ethnomedicine and ethnopharmacology. *Journal of Ethnopharmacology*. [doi:10.1016/j.jep.2015.08.051](https://doi.org/10.1016/j.jep.2015.08.051).
 
 **What kind of article.** A short position paper, without new data. It compares three existing ways of sorting illnesses into categories and proposes a fourth. It is the methodological companion of the Mattioli study by the same group (Staub, Casu, Leonti 2016, `references/Staub_2016_Phytomedicine.pdf`), which the project uses as its benchmark: the 2016 study says it filed its 5,314 uses under 21 categories "largely following" the fourth scheme below.
 
@@ -52,7 +52,7 @@ Proposals for discussion with the pharmacology, history and anthropology colleag
 
 | Idea in the article | Transposed to Virtutes Herbarum |
 |---|---|
-| The text's own words and the modern reading are two different things | Three separate layers. (1) The **text** of each version, word for word, in the unified text format (`Unified_text_format.md`): it contains no interpretation at all. (2) The **use records**, each proven by a literal quotation from layer 1. (3) The **classifications**, attached to the records, never written into them. A classification can then be redone or replaced without touching the text or the records |
+| The text's own words and the modern reading are two different things | Three separate layers. (1) The **text** of each version, word for word, in the unified text format ([`Unified_text_format.md`](Unified_text_format.md)): it contains no interpretation at all. (2) The **use records**, each proven by a literal quotation from layer 1. (3) The **classifications**, attached to the records, never written into them. A classification can then be redone or replaced without touching the text or the records |
 | No single scheme fits all questions | A record can carry several classifications side by side, one column per scheme. The project's five aims map onto the article's three: recording and tracing transmission → the texts' own categories; comparing across places and centuries → ICPC; confronting with science and exploring the untested → the therapy-based categories |
 | Keep the tradition's own categories | Record the category the book itself uses, when it has one. Candidates in the pilot: the head-to-toe index in book six of Mattioli; the PROPR(iétés) heading of the Petit Bauhin; the qualities and degrees (hot, dry, in the second degree…) of *Circa instans* |
 | Do not split what the source joins | When a text names several complaints in one breath for one preparation, keep one quotation and attach several codes to it, and keep the fact that they were named together |

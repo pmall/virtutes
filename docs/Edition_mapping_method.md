@@ -1,6 +1,6 @@
 # Mapping every version of a work — method
 
-Applies to every work of the catalogue. Result for the six pilot works: `data/Pilot_works_all_versions.csv`. How an assistant runs the research: `skills/map-editions/SKILL.md`.
+Applies to every work of the catalogue. Result for the six pilot works: [`data/Pilot_works_all_versions.csv`](../data/Pilot_works_all_versions.csv). How an assistant runs the research: [`skills/map-editions/SKILL.md`](../skills/map-editions/SKILL.md).
 
 **Aim:** for each work, an exhaustive view of every version that exists, whether or not we have it and whether or not it is online. Choosing which version to work from comes after, from this map.
 
@@ -51,8 +51,8 @@ Write them down for each work; they change the size of the result a lot.
 
 | Period / kind | Sources | Remarks from the pilot run |
 |---|---|---|
-| Printed before 1501 | ISTC (data.cerl.org/istc), GW (Gesamtkatalog der Wiegendrucke) | ISTC blocks automated access; USTC and library records cite ISTC numbers |
-| Printed 1450–1650 | **USTC** (ustc.ac.uk) — the main source; it includes EDIT16 (Italy), VD16 (Germany), BP16 (Paris) | Search many title variants (Latin, vernacular, author forms); ~20 variants were needed for Dioscorides |
+| Printed before 1501 | ISTC ([data.cerl.org/istc](https://data.cerl.org/istc/)), GW (Gesamtkatalog der Wiegendrucke) | ISTC blocks automated access; USTC and library records cite ISTC numbers |
+| Printed 1450–1650 | **USTC** ([ustc.ac.uk](https://www.ustc.ac.uk/)) — the main source; it includes EDIT16 (Italy), VD16 (Germany), BP16 (Paris) | Search many title variants (Latin, vernacular, author forms); ~20 variants were needed for Dioscorides |
 | 17th c. | VD17, STCN (Netherlands), SBN (Italy), USTC | USTC thins out after 1650; VD17, STCN, SBN were not reached in the pilot — a known gap |
 | 18th–21st c. | SUDOC, BnF catalogue, WorldCat, K10plus (Germany), NDL (Japan), national catalogues, publishers' pages | WorldCat, Gallica and HathiTrust often block automated access |
 | Digitised copies | Internet Archive (archive.org/metadata/<id>, advancedsearch), Wellcome (api.wellcomecollection.org/catalogue/v2/works?query=…), Biodiversity Heritage Library, Google Books, Gallica, BIU Santé | Record identifiers only |
@@ -67,5 +67,5 @@ Wikipedia and booksellers' listings are leads only: a version seen only there ge
 - Mattioli: EDIT16 not searched directly; post-1650 coverage thin; Ferri, Fausti and Raphael bibliographies not consulted.
 - Dioscorides: Greek and Arabic manuscript counts not confirmed (Diels, Touwaide, Sezgin to check).
 - *Circa instans*: about 8 possible duplicate 16th-century rows; Jonas unavailable for Old French manuscripts.
-- Petit Bauhin: 1670 is the first edition (not 1683); authorship and the claimed derivation from Mattioli/Du Pinet (Magnin 1889, Persée doi:10.3406/linly.1889.4851) not read directly.
+- Petit Bauhin: 1670 is the first edition (not 1683); authorship and the claimed derivation from Mattioli/Du Pinet (Magnin 1889, Persée [doi:10.3406/linly.1889.4851](https://doi.org/10.3406/linly.1889.4851)) not read directly.
 - Theophrastus: two doubtful Heinsius records kept; reprints of modern editions not exhaustive.

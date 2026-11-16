@@ -2,14 +2,14 @@
 
 Applies to every work of the catalogue.
 
-**Starting point:** the map of all known versions of the work (see `Edition_mapping_method.md`).
+**Starting point:** the map of all known versions of the work (see [`Edition_mapping_method.md`](Edition_mapping_method.md)).
 **Result:** for each work, the versions to download, each of which will end as a typed text.
 
 ## The rules
 
 1. **For each work, choose up to 3 versions:** original language, English, French.
 
-2. **Everything ends as a typed text.** If a reliable typed text of the version exists, take it; if a scan of that same edition also exists, take it too (any complete copy; its sharpness does not matter), but the typed text is what we work from. Otherwise, take the scan and type it ourselves, keeping for each passage the page of the scan it comes from. All typed texts are brought to one format (`Unified_text_format.md`).
+2. **Everything ends as a typed text.** If a reliable typed text of the version exists, take it; if a scan of that same edition also exists, take it too (any complete copy; its sharpness does not matter), but the typed text is what we work from. Otherwise, take the scan and type it ourselves, keeping for each passage the page of the scan it comes from. All typed texts are brought to one format ([`Unified_text_format.md`](Unified_text_format.md)).
 
 3. **A typed text is reliable** if it comes from a scholarly or institutional source, states its licence and the edition it was made from, and has been corrected: marked as checked or proofread, or made by a scholarly project that corrects its texts (Perseus, First1KGreek).
 
@@ -56,4 +56,4 @@ For each chosen version, also record: the copy chosen and its link, the image si
 ## Reference points from the pilot
 
 - "Sharp enough" (rules 5.1 and 5.6): the benchmark copy of Mattioli 1568, a folio scanned at 1899 × 3000 px per page, was judged sufficient; 225 pixels per inch of page height was set from it.
-- Pilot result: `data/Pilot_selected_versions.csv`.
+- Pilot result: [`data/Pilot_selected_versions.csv`](../data/Pilot_selected_versions.csv).

@@ -26,7 +26,7 @@ One self-contained folder for all works, pilot and later. It is a git repository
 Name: `<work number>_<Work>_<slot>_<editor or place>_<year>`
 
 - slot is `original`, `english` or `french`; a book filling two slots joins them: `original-english`.
-- Examples: `2_Dioscorides_original_Wellmann_1906-1914`, `1_Theophrastus_original-english_Hort_1916`.
+- Examples: [`2_Dioscorides_original_Wellmann_1906-1914`](../data/2_Dioscorides_original_Wellmann_1906-1914/), [`1_Theophrastus_original-english_Hort_1916`](../data/1_Theophrastus_original-english_Hort_1916/).
 
 Each version folder is a small workshop of its own, with the same five parts:
 
@@ -60,18 +60,18 @@ Rules:
 - **`source/` is never modified.** A file delivered by a library is kept exactly as delivered: never converted, resized, renamed, unpacked in place or repacked, so its published checksum still applies. Files keep the library's own identifiers as names. Only when a library serves single page images do we pack them ourselves, unchanged, with a checksum for each page.
 - **`text/` is never edited by hand.** It is always the output of `convert.py`. A correction goes into the script or into `corrections.csv`, so that running the script again keeps it.
 - **`work/` can be deleted at any time** without losing anything.
-- Code needed by several versions moves to `tools/`; a version's `convert.py` keeps only what is specific to that book.
+- Code needed by several versions moves to [`tools/`](../tools/); a version's `convert.py` keeps only what is specific to that book.
 
 ## What is in git and what is not
 
 | In git | Not in git |
 |---|---|
-| Documents, skills, tools, catalogue, the three CSV files of `data/` | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
+| Documents, skills, tools, catalogue, the three CSV files of [`data/`](../data/) | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
 | `metadata/note.txt` of every version | The typed texts as delivered (`*.xml`, 1 to 13 MB each) |
 | The libraries' small records in `source/` (`*.json`, `*_pages.csv`) | `work/` |
-| `convert/` and `text/` of every version | The article PDFs in `references/` (publishers' copyright) |
+| `convert/` and `text/` of every version | The article PDFs in [`references/`](../references/) (publishers' copyright) |
 
-The rule behind the table: git holds everything we write and everything needed to understand it; it does not hold what a library delivered in bulk and can deliver again. `data/Downloads_report.csv` gives, for each such file, where it came from, its size and its checksum, so a missing file can be fetched again and verified. The list is enforced by `.gitignore`.
+The rule behind the table: git holds everything we write and everything needed to understand it; it does not hold what a library delivered in bulk and can deliver again. [`data/Downloads_report.csv`](../data/Downloads_report.csv) gives, for each such file, where it came from, its size and its checksum, so a missing file can be fetched again and verified. The list is enforced by [`.gitignore`](../.gitignore).
 
 A copy of the repository alone is therefore enough to read and analyse the texts; the bulky sources are needed only to rebuild a text or to look at a page.
 

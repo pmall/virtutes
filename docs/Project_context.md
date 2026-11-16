@@ -14,7 +14,7 @@ Hardware: a laptop with an Intel Core Ultra 5 and no dedicated graphics card, fo
 
 ## The catalogue
 
-Five spreadsheets, one per continent, in `catalogue/` (copies; the originals stay in the project's shared folder). Three rows per work: original, English translation, French translation. `catalogue/catalogue_rows.csv` is the same content as one table.
+Five spreadsheets, one per continent, in [`catalogue/`](../catalogue/) (copies; the originals stay in the project's shared folder). Three rows per work: original, English translation, French translation. [`catalogue/catalogue_rows.csv`](../catalogue/catalogue_rows.csv) is the same content as one table.
 
 | Continent | Works | With at least one open link |
 |---|---|---|
@@ -39,18 +39,18 @@ For each work, up to three versions are used: original language, English, French
 
 | Step | Method | Result |
 |---|---|---|
-| Map every known version of a work | `Edition_mapping_method.md` | `data/Pilot_works_all_versions.csv` |
-| Choose the versions to use | `Version_selection_method.md` | `data/Pilot_selected_versions.csv` |
-| Download them | `Folder_structure.md` | `data/Downloads_report.csv`, one folder per version |
-| Bring every version to one text format | `Conversion_method.md`, `Unified_text_format.md`; for scans, `OCR_Kraken_approach.md` | `text/` in each version folder |
-| Cut into plant entries, translate, extract the uses, identify the plants, classify the virtues, publish | Not yet defined; positions below, and `Staub_2015_classification_summary.md` for the classification | |
+| Map every known version of a work | [`Edition_mapping_method.md`](Edition_mapping_method.md) | [`data/Pilot_works_all_versions.csv`](../data/Pilot_works_all_versions.csv) |
+| Choose the versions to use | [`Version_selection_method.md`](Version_selection_method.md) | [`data/Pilot_selected_versions.csv`](../data/Pilot_selected_versions.csv) |
+| Download them | [`Folder_structure.md`](Folder_structure.md) | [`data/Downloads_report.csv`](../data/Downloads_report.csv), one folder per version |
+| Bring every version to one text format | [`Conversion_method.md`](Conversion_method.md), [`Unified_text_format.md`](Unified_text_format.md); for scans, [`OCR_Kraken_approach.md`](OCR_Kraken_approach.md) | `text/` in each version folder |
+| Cut into plant entries, translate, extract the uses, identify the plants, classify the virtues, publish | Not yet defined; positions below, and [`Staub_2015_classification_summary.md`](Staub_2015_classification_summary.md) for the classification | |
 
 ## The presentation deck and the reference articles
 
 - Deck: five aims (record, compare, trace transmission, confront with science, explore the untested). Rule: one record per use, proven by a literal quotation. Fields of a record: source; plant as written; use (part, preparation, vehicle, route, dose, indication, precautions); quotation and translation; origin of the knowledge; traceability; a separate science layer (cell, animal, clinical; validated, contradicted, discordant, not studied). Ethics: Nagoya Protocol, CARE principles, copyright. Estimate: 15,000 to 25,000 records for the pilot.
 - Staub, Casu, Leonti 2016: 5,314 uses, 536 plant taxa, 924 drugs recorded by hand from Mattioli's 1568 Dioscorides; full data in its supplementary tables. Keeps the text's wording apart from the modern reading. The benchmark for the pilot.
-- Staub et al. 2015: how to classify illnesses and remedies depending on the question asked. Summary and what the project takes from it: `Staub_2015_classification_summary.md`.
-- Connelly et al. 2020: a 15th-century English medical text turned into a database, analysed as a network, then tested in the laboratory. (Not in `references/`.)
+- Staub et al. 2015: how to classify illnesses and remedies depending on the question asked. Summary and what the project takes from it: [`Staub_2015_classification_summary.md`](Staub_2015_classification_summary.md).
+- Connelly et al. 2020: a 15th-century English medical text turned into a database, analysed as a network, then tested in the laboratory. (Not in [`references/`](../references/).)
 
 ## Positions taken in the preliminary study
 

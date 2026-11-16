@@ -1,16 +1,16 @@
 # From any source to one text format
 
-Every chosen version ends as text in the unified format (`Unified_text_format.md`), whatever it started as. How an assistant carries out a conversion: `skills/convert-version/SKILL.md`.
+Every chosen version ends as text in the unified format ([`Unified_text_format.md`](Unified_text_format.md)), whatever it started as. How an assistant carries out a conversion: [`skills/convert-version/SKILL.md`](../skills/convert-version/SKILL.md).
 
 ## Three kinds of source
 
 | Kind of source | What has to be done | In the pilot |
 |---|---|---|
 | **Typed text** made by a scholarly project | Convert its structure; nothing to read | 4 texts: Theophrastus (Greek), Dioscorides (Greek), Pliny (Latin), Pliny (English) |
-| **Scan of a printed book** | Read the pages by machine, correct, then structure | 8 books, 1497 to 1916 (list in `OCR_Kraken_approach.md`) |
+| **Scan of a printed book** | Read the pages by machine, correct, then structure | 8 books, 1497 to 1916 (list in [`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)) |
 | **Scan of a manuscript** | Read handwriting by machine, correct, then structure | None in the pilot selection; expected for later works |
 
-When a version has both a typed text and a scan, the typed text is what we work from; the scan is there to look at a page when in doubt (`Version_selection_method.md`, rule 2).
+When a version has both a typed text and a scan, the typed text is what we work from; the scan is there to look at a page when in doubt ([`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2).
 
 ## One script per version
 
@@ -34,6 +34,6 @@ Whatever was not verified is written in the `notes` of the text's info file.
 
 ## Open points
 
-- The reading engine for scans and the transcription rules (`OCR_Kraken_approach.md`).
+- The reading engine for scans and the transcription rules ([`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)).
 - Who checks the samples for each language, and how much time they have.
-- Whether the typed texts, which their projects keep correcting, should be fetched again later; the checksum in `data/Downloads_report.csv` tells whether a file has changed.
+- Whether the typed texts, which their projects keep correcting, should be fetched again later; the checksum in [`data/Downloads_report.csv`](../data/Downloads_report.csv) tells whether a file has changed.
