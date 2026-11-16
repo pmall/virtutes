@@ -1,6 +1,6 @@
 # Selecting the versions of a work
 
-Virtutes Herbarum. Rules agreed on 12 November 2026, to be applied to every work after the pilot.
+Applies to every work of the catalogue.
 
 **Starting point:** the map of all known versions of the work (see `Edition_mapping_method.md`).
 **Result:** for each work, the versions to download, each of which will end as a typed text.
@@ -27,8 +27,6 @@ Virtutes Herbarum. Rules agreed on 12 November 2026, to be applied to every work
    - **5.6** among versions still equal, the earliest edition whose downloadable scan is sharp enough: at least about 225 pixels per inch of the printed page's height (so a small book needs fewer pixels than a folio).
 
 6. **If no version is eligible,** leave the slot empty and say why.
-
-7. **Download nothing** without the user's go-ahead on the list, the total size and the expected duration.
 
 ## Applying the rules in order
 
@@ -57,5 +55,5 @@ For each chosen version, also record: the copy chosen and its link, the image si
 
 ## Reference points from the pilot
 
-- "Sharp enough" (rules 5.1 and 5.6): the benchmark copy of Mattioli 1568, a folio scanned at 1899 × 3000 px per page, was judged sufficient; 225 pixels per inch of page height was set from it on 12 November 2026.
+- "Sharp enough" (rules 5.1 and 5.6): the benchmark copy of Mattioli 1568, a folio scanned at 1899 × 3000 px per page, was judged sufficient; 225 pixels per inch of page height was set from it.
 - Pilot result: `data/Pilot_selected_versions.csv`.

@@ -1,6 +1,6 @@
 # Typing the scans with Kraken — approach under discussion
 
-Virtutes Herbarum. Written 13 November 2026 from a discussion with the project's data lead. **A proposal, not a decision.** Nothing has been installed or tested yet.
+**A proposal, not a decision.**
 
 ## The task
 
@@ -48,10 +48,10 @@ Probably one fine-tuned model per book, or per family of similar typefaces.
 
 ## Open points
 
-- **Transcription rules**, to be fixed before any reference page is typed: keep abbreviations, long s and ligatures as printed, or expand and modernise them. Keeping them close to the guidelines the existing models were trained on lets us reuse those models; expansion can be a later, separate step. Listed as undecided in `Project_context.md`.
+- **Transcription rules**, to be fixed before any reference page is typed: keep abbreviations, long s and ligatures as printed, or expand and modernise them. Keeping them close to the guidelines the existing models were trained on lets us reuse those models; expansion can be a later, separate step.
 - **Specialists**: the books span Latin, Middle French, Italian, Old French and English; more than one person may be needed, and their available time is not known.
-- **Installation**: Kraken is not installed; it brings PyTorch (several GB). To be asked before installing. Its supported Python versions must be checked against this machine.
-- **Hardware**: the laptop (no GPU) can run line finding, reading and small tests; fine-tuning belongs on the RTX 6000 server, to which the assistant has no access yet.
+- **Installation**: Kraken brings PyTorch (several GB); its supported Python versions must be checked against the machine used.
+- **Hardware**: the laptop (no GPU) can run line finding, reading and small tests; fine-tuning belongs on the RTX 6000 server.
 
 ## Not verified
 
@@ -60,3 +60,4 @@ Stated from the assistant's memory, to be checked before use:
 - the current Kraken version;
 - how many corrected pages a fine-tune typically needs;
 - whether the Hort 1916 PDF already carries a usable text layer.
+- the alternatives to compare Kraken with. Candidates named so far: for reading print, Tesseract, olmOCR, PaddleOCR-VL, dots.ocr, LightOnOCR, DeepSeek-OCR, MinerU, Chandra; for page layout, DocLayout-YOLO, YALTAi; for handwriting, TrOCR.

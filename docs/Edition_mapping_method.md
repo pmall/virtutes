@@ -1,6 +1,6 @@
 # Mapping every version of a work — method
 
-Virtutes Herbarum. Written 12 November 2026, after the first run on the six pilot works (result: `data/Pilot_works_all_versions.csv`, 529 versions). To be reused for any work of the catalogue.
+Applies to every work of the catalogue. Result for the six pilot works: `data/Pilot_works_all_versions.csv`. How an assistant runs the research: `instructions/map_editions.md`.
 
 **Aim:** for each work, an exhaustive view of every version that exists, whether or not we have it and whether or not it is online. Choosing which version to work from comes after, from this map.
 
@@ -55,57 +55,13 @@ Write them down for each work; they change the size of the result a lot.
 | Printed 1450–1650 | **USTC** (ustc.ac.uk) — the main source; it includes EDIT16 (Italy), VD16 (Germany), BP16 (Paris) | Search many title variants (Latin, vernacular, author forms); ~20 variants were needed for Dioscorides |
 | 17th c. | VD17, STCN (Netherlands), SBN (Italy), USTC | USTC thins out after 1650; VD17, STCN, SBN were not reached in the pilot — a known gap |
 | 18th–21st c. | SUDOC, BnF catalogue, WorldCat, K10plus (Germany), NDL (Japan), national catalogues, publishers' pages | WorldCat, Gallica and HathiTrust often block automated access |
-| Digitised copies | Internet Archive (archive.org/metadata/<id>, advancedsearch), Wellcome (api.wellcomecollection.org/catalogue/v2/works?query=…), Biodiversity Heritage Library, Google Books, Gallica, BIU Santé | Record identifiers only; never download |
+| Digitised copies | Internet Archive (archive.org/metadata/<id>, advancedsearch), Wellcome (api.wellcomecollection.org/catalogue/v2/works?query=…), Biodiversity Heritage Library, Google Books, Gallica, BIU Santé | Record identifiers only |
 | Manuscripts | Pinakes (Greek), Jonas (Old French, IRHT), Handschriftencensus (German), Mirabile, library catalogues | Jonas was down during the pilot |
 | Scholarly bibliographies | *Catalogus Translationum et Commentariorum* (e.g. Riddle on Dioscorides, vol. IV), prefaces of critical editions (Hort, Wellmann, Mayhoff, Wölfel…), Pritzel's *Thesaurus literaturae botanicae*, specialist studies | Old bibliographies contain ghosts (e.g. Pritzel's "1683" Petit Bauhin) — confirm in a library record |
 
 Wikipedia and booksellers' listings are leads only: a version seen only there gets `checked = no`.
 
-## 5. How the research is run
-
-1. **One researcher per work, in parallel** (AI sub-agents in the pilot run). Each gets the same brief (section 7), filled in for its work, and writes one CSV.
-2. **Research only. Nothing is downloaded** — no scans, no books. Exception tolerated: an open-access bibliography read as a source, kept in a temporary folder, never in the project folder.
-3. **Etiquette towards libraries:** low request rate, no bulk scraping, generic client name, no personal or project details in requests.
-4. **Each researcher reports:** number of rows by type, how many `checked = yes / no`, and its main gaps or doubts.
-5. **Check and merge** with `tools/merge_edition_maps.py` (section 6).
-6. **Present the result as one table**, one line per work: versions, span of years, number confirmed. Then the gaps.
-
-Cost of the pilot run, for planning: 6 researchers, 14–20 minutes each, in parallel; about 190,000–290,000 tokens each, 1.3 million in total.
-
-## 6. Checking and merging
-
-```
-python3 tools/merge_edition_maps.py <folder with the per-work CSVs> <output.csv>
-```
-
-The script checks that every file has the exact header and 12 fields per row, normalises the `type` values, sorts by work, then manuscripts first, then year, writes one UTF-8 CSV that opens in Excel or LibreOffice, and prints the one-line-per-work summary.
-
-After merging, check by hand that every version the project already uses or has listed appears in the map (pilot: all 14 versions known before the mapping were found).
-
-## 7. Brief given to each researcher (template)
-
-Replace the parts in `<…>`.
-
-> You are building an exhaustive bibliographic map of ONE historical work, for a research team. Research only: look things up in library catalogues and bibliographies. Do NOT download scans or books.
->
-> WORK: `<author, title in original language and usual translations, date of composition>`. Scope: every printed edition of the original text and every printed translation, in any language, from the first printing `<known first printing, if any>` to today. `<Scope decisions from section 3: commentaries, partial editions, adaptations, works mapped separately.>`
->
-> RULE (must be applied strictly): one row = one version = one edition (a distinct printing: year + place + printer/publisher), whatever languages it contains. A bilingual book is ONE row. A multi-volume set published over several years is ONE row (give the year range). A reprint/reissue with a new date counts as its own row, flagged "reprint of …" or "reissue" in the note. Manuscripts: do NOT list individually — add one summary row of type "manuscripts" per language tradition with approximate counts and the key manuscripts, with a source. `<Manuscripts used by the project get their own row of type "manuscript": list them.>`
->
-> COLUMNS — write a UTF-8 CSV with exactly this header:
-> `work_no,work,type,year,place,publisher_printer,editor_translator,language,contents,note,source_url,checked`
-> - work_no: `<n>` ; work: `<short name>`
-> - type: one of: manuscripts | manuscript | edition | translation | edition+translation | facsimile | derivative
-> - source_url: URL of a catalogue record or bibliography where you saw it `<suggested sources from section 4, plus specialist bibliographies for this work>`.
-> - checked: yes = seen in a catalogue record or a bibliography during this task; no = known but not confirmed.
->
-> `<Specific questions, if any: e.g. identify the edition of a given digitised copy.>`
->
-> Etiquette: low request rate, no bulk scraping, no personal or project details in requests.
->
-> OUTPUT: write the CSV to `<path>/<n>_<work>.csv` (quote fields containing commas), sorted by year. Then reply with: number of rows by type, checked = yes vs no, and the main gaps or doubts (3–6 lines). Be exhaustive within scope; better to include a row with checked = no than to omit a known edition.
-
-## 8. Known limits of the pilot map (to revisit)
+## 5. Known limits of the pilot map
 
 - Pliny: 17th-century Latin reprints probably incomplete (VD17, STCN, SBN not reached); several modern translations unconfirmed.
 - Mattioli: EDIT16 not searched directly; post-1650 coverage thin; Ferri, Fausti and Raphael bibliographies not consulted.

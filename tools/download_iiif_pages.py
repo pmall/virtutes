@@ -16,7 +16,7 @@ Example (Bayerische Staatsbibliothek):
     python3 tools/download_iiif_pages.py 6_Petit-Bauhin_original_1671 bsb10300968 \\
         https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10300968/manifest
 
-Rules (docs/Folder_structure.md): nothing is downloaded without the user's go-ahead;
+Rules (AGENTS.md, docs/Folder_structure.md): nothing is downloaded without the user's go-ahead;
 one request per second; generic client name.
 """
 import csv, hashlib, json, os, shutil, sys, time, urllib.request, zipfile

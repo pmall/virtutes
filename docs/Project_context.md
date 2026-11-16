@@ -1,8 +1,6 @@
 # Virtutes Herbarum — project context
 
-Background for everything else in this folder. Rewritten 16 November 2026 from the handoff note of 10 November and the work done since. Where this file and the data files disagree, the data files are right (`data/Pilot_works_all_versions.csv`, `data/Pilot_selected_versions.csv`).
-
-Trust labels used below: **[files]** checked in the files of this folder; **[memory]** stated from an AI model's general knowledge, never checked.
+Where this file and the data files disagree, the data files are right.
 
 ## The project
 
@@ -12,9 +10,9 @@ Team of four: data, AI and statistics (also partly biology); pharmacology; lingu
 
 Pilot: six European works, worked on during 2027. Timeline of the presentation deck: launch October 2026, funding application (ANR) autumn 2027, other traditions from 2028.
 
-Hardware: a laptop with an Intel Core Ultra 5 and no dedicated graphics card, for tests on samples; a server with an Nvidia RTX 6000 (96 GB) for bulk work, not yet used.
+Hardware: a laptop with an Intel Core Ultra 5 and no dedicated graphics card, for tests on samples; a server with an Nvidia RTX 6000 (96 GB) for bulk work.
 
-## The catalogue [files]
+## The catalogue
 
 Five spreadsheets, one per continent, in `catalogue/` (copies; the originals stay in the project's shared folder). Three rows per work: original, English translation, French translation. `catalogue/catalogue_rows.csv` is the same content as one table.
 
@@ -35,15 +33,17 @@ Five spreadsheets, one per continent, in `catalogue/` (copies; the originals sta
 
 Six works forming one lineage: Theophrastus, Dioscorides, Pliny → *Circa instans* → Mattioli → the "Petit Bauhin". They differ in form (Greek, Latin, Italian, Old and modern French; critical editions and old printings) but belong to a single tradition.
 
-| Step | State on 16 November 2026 | Where |
-|---|---|---|
-| Map every known version of each work | Done: 529 versions | `Edition_mapping_method.md`, `data/Pilot_works_all_versions.csv` |
-| Choose up to three versions per work (original, English, French) | Done: 11 versions giving 12 texts; 5 of the 18 slots left empty, with the reason | `Version_selection_method.md`, `data/Pilot_selected_versions.csv` |
-| Download the chosen versions | Done and checked: 9.4 GB | `Folder_structure.md`, `data/Downloads_report.csv` |
-| Bring every version to one text format | Format and method defined; nothing converted yet | `Unified_text_format.md`, `Conversion_method.md` |
-| Read the scans by machine | Approach under discussion; nothing installed or tested | `OCR_Kraken_approach.md` |
+For each work, up to three versions are used: original language, English, French. The pilot has 11 versions giving 12 texts; 5 of the 18 slots are empty. Of the 12 texts, 4 exist as typed texts made by scholarly projects and 8 are scans of printed books to be read by machine. No handwritten manuscript is among them.
 
-Of the 12 texts, 4 exist as typed texts made by scholarly projects and 8 are scans of printed books to be read. No handwritten manuscript is among the chosen versions.
+## The steps
+
+| Step | Method | Result |
+|---|---|---|
+| Map every known version of a work | `Edition_mapping_method.md` | `data/Pilot_works_all_versions.csv` |
+| Choose the versions to use | `Version_selection_method.md` | `data/Pilot_selected_versions.csv` |
+| Download them | `Folder_structure.md` | `data/Downloads_report.csv`, one folder per version |
+| Bring every version to one text format | `Conversion_method.md`, `Unified_text_format.md`; for scans, `OCR_Kraken_approach.md` | `text/` in each version folder |
+| Cut into plant entries, translate, extract the uses, identify the plants, classify the virtues, publish | Not yet defined; positions below, and `Staub_2015_classification_summary.md` for the classification | |
 
 ## The presentation deck and the reference articles
 
@@ -57,31 +57,20 @@ Of the 12 texts, 4 exist as typed texts made by scholarly projects and 8 are sca
 Proposals, read only in part by the team; not decisions.
 
 1. Central entity: the **use record**. Plants on three levels (name as written → plant concept → modern species, with a confidence); virtues on two (historical concept → modern category). Interpretation is stored apart from what the text says.
-2. Steps: acquire → bring to one text format → cut into plant entries → translate → extract uses → identify plants → classify virtues → publish.
-3. Source files are kept untouched.
-4. Extract from the original language; the translation is a control.
-5. A record is rejected if its quotation is not found letter for letter in the text. Extraction is done twice independently; people see only the disagreements.
-6. Record who copies whom, so that copies are not counted as independent agreement; weigh agreement by how specific the virtue is.
-7. A record has several places and dates (composition, copy, habitat of the plant, cited source); keep them apart.
-8. AI is central for reading, structuring, translating and extracting; it assists for plant identity and virtue classification. Expert time, not computer time, is the limit.
-9. Small hand-made reference sets for each book, to measure quality.
-
-Candidate models **[memory, mid-2026; to be looked up again and measured before any choice]**: page layout — DocLayout-YOLO, YALTAi, Kraken; reading print — olmOCR, PaddleOCR-VL, dots.ocr, LightOnOCR, DeepSeek-OCR, MinerU, Chandra; reading handwriting — Kraken/eScriptorium with CATMuS Medieval, TrOCR; language models — Qwen, Mistral, Gemma, Llama; text similarity — BGE-M3, multilingual-E5, PhilBERTa; plant name references — World Flora Online, POWO, GBIF, Global Names.
+2. Extract from the original language; the translation is a control.
+3. A record is rejected if its quotation is not found letter for letter in the text. Extraction is done twice independently; people see only the disagreements.
+4. Record who copies whom, so that copies are not counted as independent agreement; weigh agreement by how specific the virtue is.
+5. A record has several places and dates (composition, copy, habitat of the plant, cited source); keep them apart.
+6. AI is central for reading, structuring, translating and extracting; it assists for plant identity and virtue classification. Expert time, not computer time, is the limit.
+7. Small hand-made reference sets for each book, to measure quality.
 
 ## Undecided
 
 - The exact fields of a use record. Suggestion: work one plant (wormwood) through all six works by hand first.
-- Transcription rules for the scans.
 - Pivot language for comparison: English, French or both.
 - Reference lists for species and for virtues (see the Staub 2015 summary for the virtues).
 - What place and date mean on the map.
 - How much validation time the specialists have.
-
-## Practical facts learnt so far
-
-- Wellcome's image server blocked full-size page images after 64 pages at one page per second (12 November 2026). Internet Archive delivers whole volumes as one archive without such a limit.
-- WorldCat, Gallica, HathiTrust and ISTC often refuse automated access (details in `Edition_mapping_method.md`).
-- On the laptop: Python 3 (standard library only), poppler tools (`pdftotext`, `pdftoppm`, `pdfimages`), curl, git. Not installed: Kraken, Tesseract, PyTorch, pandas, openpyxl, ImageMagick.
 
 ## Terms
 

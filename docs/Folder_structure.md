@@ -1,16 +1,15 @@
 # Folder structure
 
-Virtutes Herbarum. Structure in use since 16 November 2026 (it extends the one set for the downloads on 12 November). To be followed for every later work.
-
 ## The workspace
 
 One self-contained folder for all works, pilot and later. It is a git repository. Every path in the documents, notes and tools is relative to it, so it can be moved or cloned anywhere.
 
 ```
 <workspace>/
-    README.md                        what this is, for a person
-    AGENTS.md                        entry point and rules for AI assistants
-    docs/                            the project, the methods, the text format
+    README.md                        what this is, and the index of the documents
+    docs/                            the project explained: methods, structure, text format
+    AGENTS.md, instructions/         how AI assistants must work here
+    WIP.md                           where the work stands; rewritten at each session
     tools/                           scripts shared by all works
     catalogue/                       the 5 catalogue spreadsheets (copies) + catalogue_rows.csv
     references/                      articles the project relies on (README.md lists them)
@@ -44,9 +43,8 @@ Each version folder is a small workshop of its own, with the same five parts:
         <identifier>_pages.csv        with it: one row per page image, with its checksum
         <identifier>_metadata.json    the library's own record of each scanned item, unchanged
     convert/              this version's own scripts and notes
-        NOTES.md          what was learnt about this version: how the book is laid out, how pages
-                          and chapters are marked, the traps, the decisions taken
-        convert.py        makes text/ from source/ (and from work/ when the text is read from a scan)
+        convert.py        makes text/ from source/ (and from work/ when the text is read from a scan);
+                          its opening comment describes how the book is laid out and the choices made
         corrections.csv   corrections found by people, applied by convert.py at each run
         reference/        hand-corrected pages used to train and to measure the reading of a scan
     work/                 intermediate files that can be made again: unpacked page images,
@@ -54,7 +52,7 @@ Each version folder is a small workshop of its own, with the same five parts:
     text/                 the result, in the unified text format (Unified_text_format.md)
 ```
 
-`convert/`, `work/` and `text/` are created when the conversion of the version starts; on 16 November 2026 no version has them yet.
+`convert/`, `work/` and `text/` are created when the conversion of the version starts.
 
 Rules:
 
@@ -67,12 +65,12 @@ Rules:
 
 | In git | Not in git |
 |---|---|
-| Documents, tools, catalogue, the three CSV files of `data/` | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
+| Documents, instructions, tools, catalogue, the three CSV files of `data/` | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
 | `metadata/note.txt` of every version | The typed texts as delivered (`*.xml`, 1 to 13 MB each) |
 | The libraries' small records in `source/` (`*.json`, `*_pages.csv`) | `work/` |
 | `convert/` and `text/` of every version | The article PDFs in `references/` (publishers' copyright) |
 
-The rule behind the table: git holds everything we write and everything needed to understand it; it does not hold what a library delivered in bulk and can deliver again. `data/Downloads_report.csv` gives, for each such file, where it came from, its size and its checksum, so a missing file can be fetched again and verified (after the usual go-ahead). The list is enforced by `.gitignore`.
+The rule behind the table: git holds everything we write and everything needed to understand it; it does not hold what a library delivered in bulk and can deliver again. `data/Downloads_report.csv` gives, for each such file, where it came from, its size and its checksum, so a missing file can be fetched again and verified. The list is enforced by `.gitignore`.
 
 A copy of the repository alone is therefore enough to read and analyse the texts; the bulky sources are needed only to rebuild a text or to look at a page.
 

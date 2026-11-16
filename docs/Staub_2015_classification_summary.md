@@ -1,6 +1,6 @@
 # Staub et al. 2015, classifying diseases and remedies — summary and what the project takes from it
 
-Virtutes Herbarum. Written 16 November 2026 from a full reading of the article (the 11 pages of the accepted manuscript, `references/Staub_2015_JEthnopharmacol.pdf`).
+From a full reading of the accepted manuscript (`references/Staub_2015_JEthnopharmacol.pdf`).
 
 **Reference.** Staub P.O., Geck M.S., Weckerle C.S., Casu L., Leonti M. (2015). Classifying diseases and remedies in ethnomedicine and ethnopharmacology. *Journal of Ethnopharmacology*. doi:10.1016/j.jep.2015.08.051.
 

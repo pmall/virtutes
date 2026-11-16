@@ -1,6 +1,6 @@
 # The unified text format
 
-Virtutes Herbarum. Version 0.1, written 16 November 2026. **A first definition, not yet tried on a full work**: it was drawn up from the structure of the four typed texts already downloaded and from sample pages of the scans. Expect adjustments when the first versions are converted; each change raises the version number.
+Version 0.1. Any change to the format raises this number.
 
 ## Purpose
 
@@ -123,14 +123,9 @@ page,volume,printed,source_file,image,mapping
 | `review` | How much a person has checked: `none`, `sampled` (with the result in `notes`), `full` |
 | `notes` | Known limits, in plain words: what is missing, what was not verified, measured error rate |
 
-## Checking and reading
+## The checker
 
-```
-python3 tools/vh_text.py check <version folder>      # or --all
-python3 tools/vh_text.py view  data/<version folder>/text/<lang>.jsonl --from 3.48 --to 3.50
-```
-
-`check` verifies everything above that a machine can verify; a text that does not pass is not committed. `view` prints the text for reading, with the page changes.
+Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. `tools/vh_text.py` is the common gate: it reads a finished `text/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup). It does not look at the source and does not judge whether the words are right; that is done by comparing samples with the page images (`Conversion_method.md`). A text that fails the check is not accepted.
 
 ## Choices made, and why
 

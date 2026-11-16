@@ -14,7 +14,7 @@ Usage, from the workspace folder:
 Example:
     python3 tools/download_ia.py 2_Dioscorides_french_Mathee_1553 lessixlivresdepe00dios
 
-Rules (docs/Folder_structure.md): nothing is downloaded without the user's go-ahead;
+Rules (AGENTS.md, docs/Folder_structure.md): nothing is downloaded without the user's go-ahead;
 files are never modified; one request at a time with a pause; generic client name.
 """
 import csv, hashlib, json, os, sys, time, urllib.request
