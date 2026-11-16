@@ -1,0 +1,148 @@
+# The unified text format
+
+Virtutes Herbarum. Version 0.1, written 16 November 2026. **A first definition, not yet tried on a full work**: it was drawn up from the structure of the four typed texts already downloaded and from sample pages of the scans. Expect adjustments when the first versions are converted; each change raises the version number.
+
+## Purpose
+
+Every version of every work ends as text in **one and the same format**, whether it started as a typed text from a scholarly project, a scan of a printed book or a scan of a manuscript. All later steps (cutting into plant entries, translating, extracting uses, comparing) read this format and nothing else. They never need to know where a text came from.
+
+What the format must guarantee:
+
+1. **The wording is exactly that of the source.** A use will be accepted only if its quotation is found letter for letter in the text.
+2. **Every passage is tied to its page**, and through the page to the image of the scan.
+3. **The voices are kept apart**: the work itself, a commentator, the modern editor's notes, the list of variant readings.
+4. **No interpretation.** No plant identification, no modern disease name, no translation. Those are separate layers built on top (see `Staub_2015_classification_summary.md`).
+5. **Plain files** that a short script can read, that git can compare line by line, and that a person can open.
+
+## The files
+
+In each version folder (`Folder_structure.md`), the folder `text/` holds:
+
+| File | Content |
+|---|---|
+| `<lang>.jsonl` | The text in one language, one passage per line |
+| `<lang>.info.json` | What this text is, where it comes from, how far it has been checked |
+| `pages.csv` | The pages of the version and the scan image of each |
+
+`<lang>` is the three-letter ISO 639-3 code of the language: `grc` ancient Greek, `lat` Latin, `eng` English, `fra` French, `ita` Italian, `frm` Middle French (about 1400–1600), `fro` Old French. A bilingual book gives two text files in the same folder, sharing `pages.csv`.
+
+Files are UTF-8 without byte-order mark, lines end with a line feed.
+
+## A passage
+
+One line of `<lang>.jsonl` is one passage: a paragraph of the work, a heading, a note. Each line is a JSON object.
+
+```
+{"id":"004217","kind":"text","ref":"3.48.1","page":"v2p228","text":"λίθους θρύπτει καὶ ἐξουρεῖν ποιεῖ καὶ σπλῆνα ἐσκιρρωμένον τήκει …","breaks":[[412,"v2p229"]]}
+```
+
+| Field | Required | Content |
+|---|---|---|
+| `id` | yes | Identifier of the passage, unique in the file. By convention a six-digit number in reading order |
+| `kind` | yes | Which voice or part of the book (list below) |
+| `page` | yes | The page on which the passage begins: a value of the column `page` of `pages.csv` |
+| `text` | yes | The words, as one continuous string (rules below) |
+| `ref` | when the work has one | The place in the work in its usual citation system, with dots: `3.48.1` = book 3, chapter 48, section 1. What each number means is stated in the info file. A translation carries the same `ref` as its original, which is how the two are lined up |
+| `breaks` | no | Page changes inside the passage: a list of `[position, page]`. The text from that position on is on that page |
+| `marks` | no | Stretches of the text with a special status: a list of `[start, end, type]` (list below) |
+| `anchor` | no | For a note, a variant or a marginal note: `[id, position]`, the point of the main text it is attached to |
+| `lang` | no | Language of this passage when it differs from the language of the file |
+| `conf` | no | For machine-read text: the reading engine's own confidence, from 0 to 1 |
+| `checked` | no | `true` when a person has compared this passage with the page image |
+
+Positions count characters (Unicode code points) from 0. `start` is included, `end` excluded.
+
+A converter may add fields of its own for one version; their names begin with `x_`. Later steps ignore them.
+
+### Kinds
+
+| `kind` | What |
+|---|---|
+| `text` | The work itself |
+| `head` | A heading: book, chapter, name of the plant at the head of its entry |
+| `commentary` | A commentator's text printed with the work as part of the same book (Mattioli's *discorsi* after each chapter of Dioscorides) |
+| `note` | A note of the editor or translator (footnote, endnote) |
+| `apparatus` | The list of variant readings in a critical edition |
+| `margin` | A printed marginal note or summary |
+| `caption` | The caption of an illustration |
+| `paratext` | Everything around the work: title page, dedication, preface, index, table of contents |
+
+Running heads, page numbers, catchwords and signatures are not text: they are dropped (the page number goes into `pages.csv`).
+
+### Rules for `text`
+
+- Exactly the characters of the source: no modernised spelling, no correction, no expansion of abbreviations beyond what the transcription rules allow. **The transcription rules for scans (long s, ligatures, abbreviations, u/v, i/j) are not yet decided**; they will be added here before the first scan is typed.
+- Unicode form NFC. Words separated by one plain space; no space at either end; no line breaks, tabs or other control characters.
+- The line breaks of the printed page are not kept. A word cut by a hyphen at the end of a line is joined again.
+- No markup inside the text. Anything that needs marking goes into `marks`.
+
+### Marks
+
+| Type | Meaning |
+|---|---|
+| `add` | Words supplied by the editor, absent from the manuscripts (angle brackets in a critical edition) |
+| `del` | Words the editor judges not to belong to the work (square brackets in a critical edition). They stay in `text`, marked |
+| `gap` | Something lost or unreadable. The text holds the single character `…` at that place |
+| `unclear` | A doubtful reading |
+| `hi` | Typographic emphasis in the source: italics, small capitals, spaced letters |
+| `foreign` | Words in another language than the passage |
+
+## The pages file
+
+`pages.csv`, one row per page of the version, in reading order, with this header:
+
+```
+page,volume,printed,source_file,image,mapping
+```
+
+| Column | Content |
+|---|---|
+| `page` | Identifier of the page, unique in the file. Convention: `v<volume>p<printed number>` when the source is a typed text that gives printed page numbers (`v2p228`); `v<volume>i<position of the image>` when the text was read from the scan (`v1i0134`) |
+| `volume` | Volume number (1 for a single volume) |
+| `printed` | The page or folio number as printed or written; empty if none |
+| `source_file` | The scan this page is in: name of the file in `source/` |
+| `image` | The image inside that file: its name in the archive, or the page number for a PDF |
+| `mapping` | How the page was matched to its image: `checked` (compared by eye), `computed` (by rule, e.g. a constant shift, verified on a few pages), `none` (not yet matched; `source_file` and `image` empty) |
+
+## The info file
+
+`<lang>.info.json`, one JSON object:
+
+| Key | Content |
+|---|---|
+| `format` | `vh-text/0.1` |
+| `version` | Name of the version folder |
+| `work_no`, `work` | As in the selection file |
+| `lang` | Same as the file name |
+| `origin` | `typed` (converted from a typed text), `ocr` (read by machine from a printed scan), `htr` (read by machine from handwriting) |
+| `sources` | The files of `source/` the text was made from, each `{"file": …, "md5": …}` |
+| `converter` | Path of the script that produced the text |
+| `ref_scheme` | Meaning of the parts of `ref`, e.g. `["book","chapter","section"]`; empty list if the work has no citation system |
+| `rights` | Rights of this text, as stated by its source |
+| `status` | `draft` or `complete` (the whole version is there) |
+| `review` | How much a person has checked: `none`, `sampled` (with the result in `notes`), `full` |
+| `notes` | Known limits, in plain words: what is missing, what was not verified, measured error rate |
+
+## Checking and reading
+
+```
+python3 tools/vh_text.py check <version folder>      # or --all
+python3 tools/vh_text.py view  data/<version folder>/text/<lang>.jsonl --from 3.48 --to 3.50
+```
+
+`check` verifies everything above that a machine can verify; a text that does not pass is not committed. `view` prints the text for reading, with the page changes.
+
+## Choices made, and why
+
+- **One line per passage (JSON Lines) rather than TEI XML or plain text.** TEI can express all of this, but every project uses it differently (the four typed texts we hold use three different layouts), so each later step would again need per-source code. Plain text cannot carry pages and voices without inventing a markup. JSON Lines is read by a few lines of code in any language and compares cleanly in git.
+- **Marks beside the text, not in it**, so that a quotation can be searched letter for letter.
+- **The paragraph as unit**, with page changes recorded inside it, rather than cutting at each page: a sentence that runs over two pages stays whole.
+- **Editorial notes and variants are kept**, as their own kinds, because they are the cheapest to keep now and impossible to recover later; a step that does not need them filters on `kind`.
+
+## Open points
+
+- Transcription rules for scans (above).
+- How to mark the language of Old and Middle French texts consistently (`fro`, `frm`), to be confirmed with the linguist.
+- A regularised spelling for searching (long s → s, u/v) would be a second, derived text, not a change to this one. Not defined yet.
+- Tables and recipes laid out in columns: no special treatment yet.
+- Identifiers are stable for a given state of a text. If a converter is improved and passages are cut differently, the numbers change; a record that quotes the text should therefore keep `ref`, the quotation and the git revision, not the `id` alone.

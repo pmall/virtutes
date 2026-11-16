@@ -1,0 +1,37 @@
+MATTIOLI, commentary on Dioscorides - French translation
+SELECTED: Antoine Du Pinet (translator), Les commentaires de M. Pierre André Matthioli,
+Lyon, 1561 (first edition of this translation).
+SLOT: FRENCH.
+
+FILES (all in the source/ folder next to this note, exactly as the libraries delivered them)
+- FOL_S82_1INV121RES_jp2.zip (+ FOL_S82_1INV121RES_metadata.json)
+  What: scan via Internet Archive, 662 images, about 5300-5700 x 8100-8260 px.
+  Why here: the French text will be typed from this scan (rule 2).
+
+WHY THIS VERSION
+- 20 French versions in the edition map (Du Pinet's and Des Moulins' translations), all
+  complete and free of copyright.
+- No reliable typed text: Bibliothèques Virtuelles Humanistes and French Wikisource have
+  none; the Gallica copies have only automatic OCR (0%).
+- All are old printings, none bilingual, so the earliest edition with a sharp-enough
+  downloadable scan wins (rule 5.6): Du Pinet 1561.
+
+RIGHTS: domaine public (Internet Archive record).
+
+FILE TYPES
+- *_jp2.zip : one volume's page images (JPEG 2000), exactly as Internet Archive provides them.
+- *_jpg.zip : one volume's page images (JPEG), as the library serves them page by page,
+  packed without recompression.
+- *_metadata.json / *_manifest.json : the library's own record of the item, unchanged.
+- *_pages.csv : one row per page image with its checksum (for *_jpg.zip).
+- *.xml : a typed text made by a scholarly project (TEI format).
+- *.pdf : a scan delivered as a PDF.
+
+SOURCES OF THIS NOTE (paths relative to the workspace folder)
+Everything above was checked on 12 November 2026 against the files, the library records,
+the edition map and the sources named. Anything not checked is under NOT VERIFIED.
+- Selection rules: docs/Version_selection_method.md
+- The selection, with the justification for every slot:
+  data/Pilot_selected_versions.csv
+- All known versions (the edition map): data/Pilot_works_all_versions.csv
+- Download checksums: data/Downloads_report.csv

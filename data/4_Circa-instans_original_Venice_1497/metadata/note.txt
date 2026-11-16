@@ -1,0 +1,49 @@
+CIRCA INSTANS (Liber de simplici medicina, Salerno school, 12th century)
+SELECTED: the Venice edition of 16 December 1497, printed by Bonetus Locatellus for
+Octavianus Scotus, in a volume with Serapion's works (Practica, Liber de simplici medicina),
+Galen and Johannes Platearius' Practica; folio, 211 leaves.
+SLOT: ORIGINAL (Latin).
+
+FILES (all in the source/ folder next to this note, exactly as the libraries delivered them)
+- bsb00061068_jpg.zip
+  What: the Circa instans leaves only, 186r to 211v (52 page images, about 3410 x 5077 px),
+  from the Bayerische Staatsbibliothek copy, call number 2 Inc.c.a. 3538. Leaf 186r begins
+  "Incipit liber de simplici medicina secundum Platearium dictus Circa instans"; leaf 211v
+  ends "Explicit liber de simplicibus medicinis" followed by the printer's colophon.
+- bsb00061068_manifest.json: the library's page list (leaf numbers for every image).
+- bsb00061068_pages.csv: each image with its leaf number and checksum.
+  Why here: the Latin text will be typed from these scans, each passage keeping its leaf
+  number (rule 2).
+
+WHY THIS VERSION
+- 25 Latin versions in the edition map (including the Wellcome manuscript MS.624):
+  4 incomplete, 3 under copyright.
+- No reliable typed text (Gallica's Paris 1564 copy has only automatic OCR, 23%; Corpus
+  Corporum has Platearius' Practica only).
+- First on paper, Wölfel's scholarly edition (1939, rule 5.4) cannot be downloaded anywhere.
+- Printed books come before the manuscript (rule 5.3). The Lyon printings with Michael de
+  Capella's additions count as old printings (decided 12 November 2026).
+- Among the old printings, Venice 1497 is the earliest with a sharp-enough downloadable scan
+  (rule 5.6).
+- It replaces the Paris 1582 printing downloaded earlier on 12 November 2026; that folder
+  was deleted.
+
+RIGHTS: Public Domain Mark (Bayerische Staatsbibliothek).
+
+FILE TYPES
+- *_jp2.zip : one volume's page images (JPEG 2000), exactly as Internet Archive provides them.
+- *_jpg.zip : one volume's page images (JPEG), as the library serves them page by page,
+  packed without recompression.
+- *_metadata.json / *_manifest.json : the library's own record of the item, unchanged.
+- *_pages.csv : one row per page image with its checksum (for *_jpg.zip).
+- *.xml : a typed text made by a scholarly project (TEI format).
+- *.pdf : a scan delivered as a PDF.
+
+SOURCES OF THIS NOTE (paths relative to the workspace folder)
+Everything above was checked on 12 November 2026 against the files, the library records,
+the edition map and the sources named. Anything not checked is under NOT VERIFIED.
+- Selection rules: docs/Version_selection_method.md
+- The selection, with the justification for every slot:
+  data/Pilot_selected_versions.csv
+- All known versions (the edition map): data/Pilot_works_all_versions.csv
+- Download checksums: data/Downloads_report.csv

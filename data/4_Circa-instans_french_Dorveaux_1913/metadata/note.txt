@@ -1,0 +1,38 @@
+CIRCA INSTANS - medieval French version
+SELECTED: Paul Dorveaux (ed.), Le livre des simples médecines, Paris, 1913: a French
+translation of the Circa instans taken from a 13th-century manuscript (Bibliothèque
+Sainte-Geneviève, Paris, Ms. 3113), according to the library record of this copy.
+SLOT: FRENCH. ENGLISH: empty.
+
+FILES (all in the source/ folder next to this note, exactly as the libraries delivered them)
+- b31364317_jp2.zip (+ b31364317_metadata.json)
+  What: Wellcome Collection copy, via Internet Archive, 288 images, about 2340 x 4120 px.
+  Why here: the French text will be typed from this scan (rule 2).
+
+WHY THIS VERSION
+- 3 French versions in the edition map: Camus 1886 is partial, Malandin 1986 is under
+  copyright; Dorveaux is the only one eligible, a scholarly edition (rule 5.4).
+- No reliable typed text: Gallica's copy (bpt6k1269988j) has only uncorrected automatic OCR
+  (83%).
+- English: empty (rule 6). The 3 English versions are all modern and under copyright, or
+  partial.
+
+RIGHTS: text public domain (Dorveaux died 1938); Public Domain Mark (Wellcome Collection).
+
+FILE TYPES
+- *_jp2.zip : one volume's page images (JPEG 2000), exactly as Internet Archive provides them.
+- *_jpg.zip : one volume's page images (JPEG), as the library serves them page by page,
+  packed without recompression.
+- *_metadata.json / *_manifest.json : the library's own record of the item, unchanged.
+- *_pages.csv : one row per page image with its checksum (for *_jpg.zip).
+- *.xml : a typed text made by a scholarly project (TEI format).
+- *.pdf : a scan delivered as a PDF.
+
+SOURCES OF THIS NOTE (paths relative to the workspace folder)
+Everything above was checked on 12 November 2026 against the files, the library records,
+the edition map and the sources named. Anything not checked is under NOT VERIFIED.
+- Selection rules: docs/Version_selection_method.md
+- The selection, with the justification for every slot:
+  data/Pilot_selected_versions.csv
+- All known versions (the edition map): data/Pilot_works_all_versions.csv
+- Download checksums: data/Downloads_report.csv

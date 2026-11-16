@@ -1,0 +1,503 @@
+position,label,source_url,bytes,md5
+1,(0001),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00001/full/full/0/default.jpg,192141,155183363e40a7f8737ee90c42c500fb
+2,(0002),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00002/full/full/0/default.jpg,214146,3a9f64c77016d921e90dea04ab17cea5
+3,(0003),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00003/full/full/0/default.jpg,190583,96a3013bf2a14b43fa63574d7f199c2a
+4,(0004),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00004/full/full/0/default.jpg,189998,a9639f8343c36963b9314c7b6595a8f3
+5,(0005),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00005/full/full/0/default.jpg,167694,c749f50c5b1ec13dce8bb3562bfa560e
+6,(0006),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00006/full/full/0/default.jpg,181430,204940ca8b61d2c18388d228ec73e7ca
+7,(0007),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00007/full/full/0/default.jpg,160899,82239bd98b694fce8e4ecb59fc1dd521
+8,(0008),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00008/full/full/0/default.jpg,210016,5707bf7fa631ec5ded37d63791fc78d1
+9,1 (0009),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00009/full/full/0/default.jpg,157739,8462c887646fa58db4eda1dce2cc32c9
+10,2 (0010),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00010/full/full/0/default.jpg,194494,186285ea1de7b34307a64af6f9b56e3f
+11,3 (0011),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00011/full/full/0/default.jpg,258130,7e73d1216d95b09afcadba5cf16f936a
+12,4 (0012),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00012/full/full/0/default.jpg,201900,a04a1f2ba61580fd24b5a5ec38faac61
+13,5 (0013),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00013/full/full/0/default.jpg,269474,1876ccf762acba45d6027b7a3bc6c5ec
+14,6 (0014),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00014/full/full/0/default.jpg,310456,c67e9d67a698f0977120096b85802bf7
+15,7 (0015),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00015/full/full/0/default.jpg,297339,f645c573571026f92c3c8e2f29a7fdae
+16,8 (0016),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00016/full/full/0/default.jpg,225146,df164ef0097fb4f805507fb18285658a
+17,9 (0017),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00017/full/full/0/default.jpg,316831,ff9b5e4699df741b46c0983a340ef1dc
+18,10 (0018),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00018/full/full/0/default.jpg,343899,825ea8f078a8f00010ec33576d8e27a8
+19,11 (0019),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00019/full/full/0/default.jpg,325638,8cc9854ea180317bf1290bc8c78187e5
+20,(0020),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00020/full/full/0/default.jpg,344163,b8ceca47cd4bb48ee1f5221eaf22ba19
+21,(0021),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00021/full/full/0/default.jpg,324092,18df9adc7637bc24c15e81978fdef5ea
+22,(0022),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00022/full/full/0/default.jpg,308431,a78b6aefc4891ef5492b7aa8485dc4a9
+23,(0023),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00023/full/full/0/default.jpg,326677,7c587c95db6b52d773ad7486d7f586a9
+24,(0024),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00024/full/full/0/default.jpg,362539,8f377f6d3dcd43dbbc686561a315c236
+25,(0025),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00025/full/full/0/default.jpg,342851,d829a20f5ae0d35e33886f6329e24b07
+26,(0026),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00026/full/full/0/default.jpg,362076,9c0d94c14321410aea6b202d723af934
+27,(0027),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00027/full/full/0/default.jpg,348702,40b4aef56f68d58da23e98e75a6b4c36
+28,(0028),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00028/full/full/0/default.jpg,312665,1c692a529f4534152acb3d9bd2dc0d2e
+29,(0029),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00029/full/full/0/default.jpg,307833,1a1f0b4366e6f1f607f2bfac7948fd56
+30,(0030),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00030/full/full/0/default.jpg,324402,ba6d83514107da447df3f525f59825bc
+31,(0031),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00031/full/full/0/default.jpg,304883,56c28e519638e4d750e363ebd9691f2a
+32,(0032),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00032/full/full/0/default.jpg,321314,7c7133be29d42542e80ab2733443d6a2
+33,(0033),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00033/full/full/0/default.jpg,311186,1ceb2abab97a38d561b59ed0444d836e
+34,(0034),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00034/full/full/0/default.jpg,333468,86c97744c92070949e201f6b77a0ce39
+35,(0035),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00035/full/full/0/default.jpg,293803,157e288d3fa0d5b355adbb079fc42490
+36,(0036),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00036/full/full/0/default.jpg,315505,a9fb19abc83884aff5fd7dfd50c3ccef
+37,(0037),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00037/full/full/0/default.jpg,281899,ff7e728256e90847ae2f18d1340179e2
+38,(0038),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00038/full/full/0/default.jpg,323587,337bf41d0dee42911146e1f07574be81
+39,(0039),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00039/full/full/0/default.jpg,265882,e75d79fad22f1399626c6c141e1dd2af
+40,(0040),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00040/full/full/0/default.jpg,307252,c66faa0b6127fd88f6b825c2e1c7277f
+41,(0041),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00041/full/full/0/default.jpg,299935,6200cb1f7372f258816bab427d490191
+42,(0042),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00042/full/full/0/default.jpg,330896,9864ff7a2cd1083e52d607d93606ef2d
+43,(0043),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00043/full/full/0/default.jpg,271804,780481e10b7e7d715adf4da77ba54dee
+44,(0044),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00044/full/full/0/default.jpg,313364,5200c74bcdbf42b7c4800e768765e688
+45,(0045),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00045/full/full/0/default.jpg,302510,552a2ef717a4e11054c882f3b0c961cf
+46,(0046),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00046/full/full/0/default.jpg,307378,62c8f4b490c8c3fea1e1b4cc3ebf9f54
+47,(0047),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00047/full/full/0/default.jpg,275449,0cdf5146000a365bab72906f8b7706b6
+48,(0048),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00048/full/full/0/default.jpg,329408,6374e49bd079cae777f92ee845fcae0e
+49,(0049),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00049/full/full/0/default.jpg,295973,0b9c27a0e2dcf190883b9527a493a58a
+50,(0050),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00050/full/full/0/default.jpg,325036,a7616617ef78cc0add0077b79ca45fb4
+51,(0051),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00051/full/full/0/default.jpg,306188,baae32b2cae59ef966da703400c76a79
+52,(0052),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00052/full/full/0/default.jpg,261873,9cb2f6d5f60f78cc215941f29128cea7
+53,(0053),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00053/full/full/0/default.jpg,287444,a3e0d89c70780f6e244e678f0521a12e
+54,(0054),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00054/full/full/0/default.jpg,272148,0ebc4a90676508cc3e6b3d8536107249
+55,(0055),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00055/full/full/0/default.jpg,293566,cb3c7032001332200ea859e41cee1d8d
+56,(0056),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00056/full/full/0/default.jpg,308846,8418639a361dc5ea5239a7fa0de707bc
+57,(0057),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00057/full/full/0/default.jpg,313101,7838a558fd244cb2048a71de0694abf6
+58,(0058),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00058/full/full/0/default.jpg,342005,71ad058a363607ce5b1c2ed8a448f0d5
+59,(0059),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00059/full/full/0/default.jpg,279175,bde2bba8bdb4261049681796bfc62652
+60,(0060),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00060/full/full/0/default.jpg,294388,e89049e51b235e4194fcfca92ef7acf4
+61,(0061),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00061/full/full/0/default.jpg,302513,b9c6f3b57add1c5bb32421aa969db50c
+62,(0062),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00062/full/full/0/default.jpg,316229,534dc8be00e2ff5615288065b1c7dd2f
+63,(0063),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00063/full/full/0/default.jpg,314699,44986370efc920595a148418503cd392
+64,12 (0064),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00064/full/full/0/default.jpg,329981,ff0a126558965f88ac9b3ad6b13a1d2b
+65,13 (0065),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00065/full/full/0/default.jpg,301167,a6d64c747753edcdab77d05452f0c0ec
+66,14 (0066),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00066/full/full/0/default.jpg,337950,98ff7be3ab66203a8c1c6c3c2837fb8c
+67,15 (0067),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00067/full/full/0/default.jpg,322517,8b7ded96338eabd5a443a987720531f4
+68,16 (0068),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00068/full/full/0/default.jpg,269281,b20dc17b9b77a33190cc603edcba1e0c
+69,17 (0069),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00069/full/full/0/default.jpg,312219,cc2734937ee7419923e2e19e7fcf8f32
+70,18 (0070),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00070/full/full/0/default.jpg,331608,a5b9edafaf4bb7a7fc9eb1157ad51b7a
+71,19 (0071),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00071/full/full/0/default.jpg,306386,1065bc5d75fbe13d2dad72d892cb4904
+72,20 (0072),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00072/full/full/0/default.jpg,288941,457688014740fb8e0d53a4a505b2ea2f
+73,21 (0073),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00073/full/full/0/default.jpg,311725,acf0ff7625e54dc88bc75d37646c38ea
+74,22 (0074),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00074/full/full/0/default.jpg,328586,d1be70e19d544e1bcf34154a0daa7b24
+75,23 (0075),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00075/full/full/0/default.jpg,318114,4a9a92959136df0e65296022f7ded811
+76,24 (0076),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00076/full/full/0/default.jpg,269648,2515e36eba803ee5168e3766e446ac7d
+77,25 (0077),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00077/full/full/0/default.jpg,295651,c27cb6c32761dca7014896a05a912b6d
+78,26 (0078),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00078/full/full/0/default.jpg,299907,335cb04609330a876ee249d858f43160
+79,27 (0079),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00079/full/full/0/default.jpg,313572,44a7195e0c85e96f748813479f7eea0c
+80,28 (0080),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00080/full/full/0/default.jpg,296060,dcdac0f9f09bc5d1e381d59ad7823118
+81,29 (0081),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00081/full/full/0/default.jpg,312387,0dbb5b5f1234a7843fe518c0d71587ed
+82,30 (0082),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00082/full/full/0/default.jpg,319180,05abb005b605ca4c18f5ac181b5d9aaf
+83,31 (0083),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00083/full/full/0/default.jpg,321907,1caae06b12b1284d78a4f6030dcd5b13
+84,32 (0084),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00084/full/full/0/default.jpg,338754,af7679f5aa350c3f246dfb625fd8dc91
+85,33 (0085),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00085/full/full/0/default.jpg,322654,c5f4843ae72f903130de230064cc63d6
+86,34 (0086),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00086/full/full/0/default.jpg,337361,42a185afe7f1548868b8c92c69216125
+87,35 (0087),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00087/full/full/0/default.jpg,294976,f86f0e6b64c6e524fa077b38c24b4589
+88,36 (0088),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00088/full/full/0/default.jpg,323875,73b86de2890497737a735d855bd31d39
+89,37 (0089),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00089/full/full/0/default.jpg,299703,c5f86330fc7691906dcf9d830f99cfb5
+90,38 (0090),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00090/full/full/0/default.jpg,320033,6f3ffecbacc7c5be11077343e6251649
+91,39 (0091),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00091/full/full/0/default.jpg,304181,c7ed637f81e51c5493efda650c572bc7
+92,40 (0092),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00092/full/full/0/default.jpg,304321,9df15a99416821bda94243f1748bff60
+93,41 (0093),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00093/full/full/0/default.jpg,329263,1c9623e01cea63b97da00a5704ff99a8
+94,42 (0094),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00094/full/full/0/default.jpg,324837,6e43364c295758607c51836472c23dd4
+95,43 (0095),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00095/full/full/0/default.jpg,276335,5e191224b3d95b53b6e7e302ee84f0ff
+96,44 (0096),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00096/full/full/0/default.jpg,255359,8637b229122568f96e868da38b2238d3
+97,45 (0097),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00097/full/full/0/default.jpg,333897,4672b959d599ea37cee4af0a39ef79e1
+98,46 (0098),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00098/full/full/0/default.jpg,302761,c61639d84ff4845545bf112bd84444f1
+99,47 (0099),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00099/full/full/0/default.jpg,281243,b6e82ec94b07f310b7a29a691501e623
+100,48 (0100),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00100/full/full/0/default.jpg,300825,a991f0d88f70aef7649e79098a4f59b0
+101,49 (0101),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00101/full/full/0/default.jpg,259131,f7c923b5a7252ea4ef53d5e06563bc13
+102,50 (0102),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00102/full/full/0/default.jpg,329121,b516fa2730ae50a760e1c1479d480b49
+103,51 (0103),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00103/full/full/0/default.jpg,283000,b5379acab6569c4cb5de5356bd16331f
+104,52 (0104),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00104/full/full/0/default.jpg,299593,cf899a2ead597915c7edcc06af3db81a
+105,53 (0105),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00105/full/full/0/default.jpg,246025,dd392afa2dae31c50ba66643133c7960
+106,54 (0106),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00106/full/full/0/default.jpg,292683,4c60acd354c21b936ff17268ab6976df
+107,55 (0107),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00107/full/full/0/default.jpg,319918,c24c0738794fc762167b3076608b5e58
+108,56 (0108),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00108/full/full/0/default.jpg,314824,164e18fa26cb43d16113d5ec506b4454
+109,57 (0109),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00109/full/full/0/default.jpg,261321,31271a2d24b9d6bdf211669ff79d8b34
+110,58 (0110),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00110/full/full/0/default.jpg,272594,63deee1a2f9ee579105c3927ccca3811
+111,59 (0111),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00111/full/full/0/default.jpg,242000,c273f7a6d43ced6acd46658d244eeb19
+112,60 (0112),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00112/full/full/0/default.jpg,222903,54751d419bcad5d772c87615fd977d46
+113,61 (0113),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00113/full/full/0/default.jpg,224512,eefce0b7fbea501213b4d685e63d7720
+114,62 (0114),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00114/full/full/0/default.jpg,251168,0460537eb47035b023329327e1e7ae08
+115,63 (0115),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00115/full/full/0/default.jpg,263289,73ea1ff716c81ce464ff319335718b11
+116,64 (0116),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00116/full/full/0/default.jpg,286231,a508e59a974e08c1989d4d40e4debc30
+117,65 (0117),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00117/full/full/0/default.jpg,325333,13821aeb4d1308006d21a3bdebd75618
+118,66 (0118),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00118/full/full/0/default.jpg,291939,ea53f47da703e2799d4650fee15dd5a1
+119,67 (0119),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00119/full/full/0/default.jpg,301940,7cddef0d132c31be7ad662624d4d4592
+120,68 (0120),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00120/full/full/0/default.jpg,277394,79d1712683e313f8319998329863f67a
+121,69 (0121),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00121/full/full/0/default.jpg,288942,cb8d6e173fee8588e6cce2d4d89e6f96
+122,70 (0122),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00122/full/full/0/default.jpg,302464,49f459bf5ad351b9c3f1140e7b17da08
+123,71 (0123),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00123/full/full/0/default.jpg,316365,2280892e094ff47d6569ad755830f822
+124,72 (0124),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00124/full/full/0/default.jpg,306747,f312a7c12052dd9f8ba55cbf4be83ee9
+125,73 (0125),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00125/full/full/0/default.jpg,339251,68a7a93afc94eec48698980e815eda45
+126,74 (0126),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00126/full/full/0/default.jpg,305404,def5e0f485a473e66a407de6fd84308f
+127,75 (0127),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00127/full/full/0/default.jpg,330175,6bb9243e0c60528ff2d0525a981116d6
+128,76 (0128),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00128/full/full/0/default.jpg,290776,1e5a8e7649bf8d5db293bf88883eee29
+129,77 (0129),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00129/full/full/0/default.jpg,287817,987b765570e79afcb1790591dd70101b
+130,78 (0130),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00130/full/full/0/default.jpg,312671,cb176c1ed4c13f5dcbbabd7c13c4900e
+131,79 (0131),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00131/full/full/0/default.jpg,284904,a6be2ef7254d935e8a32a1b6469678a1
+132,80 (0132),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00132/full/full/0/default.jpg,311374,b220d201186e9667c5a41d406da2febc
+133,81 (0133),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00133/full/full/0/default.jpg,253100,ee8a066ef8964d7498fd0651beba5c11
+134,82 (0134),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00134/full/full/0/default.jpg,293702,df426487a84e8a54ebcd8ca24d70a0e9
+135,83 (0135),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00135/full/full/0/default.jpg,330643,ad20ab5910014f13d4b11cfb7b6237ea
+136,84 (0136),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00136/full/full/0/default.jpg,297464,d59d0006d8f2327bed22b81e03ac0419
+137,85 (0137),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00137/full/full/0/default.jpg,252271,511f6cd6a8a3b36e3fd460802994f983
+138,86 (0138),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00138/full/full/0/default.jpg,276396,01138aab6690868eba79b7c623e7481a
+139,87 (0139),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00139/full/full/0/default.jpg,337207,0e2bf0ae83cca84f89ae24ddce13d977
+140,88 (0140),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00140/full/full/0/default.jpg,292141,c28f2d79f65462939c41a41761d60b06
+141,89 (0141),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00141/full/full/0/default.jpg,327797,0102de0298c933f8996ff85b5778894d
+142,90 (0142),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00142/full/full/0/default.jpg,323067,9ba260c6382346582e56bdb6c45ea31a
+143,91 (0143),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00143/full/full/0/default.jpg,327159,44fe567d57b7a4aa05a5699232dbe13d
+144,92 (0144),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00144/full/full/0/default.jpg,256202,335ac75f55467d5dce807b7d9bef37f5
+145,93 (0145),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00145/full/full/0/default.jpg,305815,920d40e31ee8264ff1e5111f226d1041
+146,94 (0146),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00146/full/full/0/default.jpg,341202,ebf82eb3cad33fbd1ebeab61c7e88d4a
+147,95 (0147),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00147/full/full/0/default.jpg,340600,ce737a4483298670127e68a8723dec15
+148,96 (0148),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00148/full/full/0/default.jpg,323236,f5f6bdfb52805d947ab605bacb30499f
+149,97 (0149),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00149/full/full/0/default.jpg,321752,1d2ad94633cc9bceb054e14a123a351e
+150,98 (0150),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00150/full/full/0/default.jpg,347124,8fe35288e92811f143c9f77dc6fde7d1
+151,99 (0151),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00151/full/full/0/default.jpg,296611,f04a9e7eb7c87dbf85b30e6924e47ab7
+152,100 (0152),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00152/full/full/0/default.jpg,322856,b3cebf969dd1833ea236b6362755c2c1
+153,101 (0153),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00153/full/full/0/default.jpg,343109,52cbe0ffd1f58685fdd2ff06ac453da8
+154,102 (0154),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00154/full/full/0/default.jpg,329077,96938f507505de205f5a0f7299ebfd03
+155,103 (0155),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00155/full/full/0/default.jpg,326192,c7fff65bb5e2f489e16e55336fcd3820
+156,104 (0156),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00156/full/full/0/default.jpg,339967,5038fdb5fab41712a2c1b266c3507991
+157,105 (0157),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00157/full/full/0/default.jpg,323305,594c75eb7fc2ddd45201f8fe57aa86e0
+158,106 (0158),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00158/full/full/0/default.jpg,307141,4f2ed561585208e363cbb02ad5685060
+159,107 (0159),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00159/full/full/0/default.jpg,350006,d2bcbe9aea1ad836c5f82b46fc8ae334
+160,108 (0160),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00160/full/full/0/default.jpg,329647,d7867230a353f34b06cde14b4a665aa4
+161,109 (0161),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00161/full/full/0/default.jpg,350008,8a0717b015959b9c3fa5f298064ec0de
+162,110 (0162),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00162/full/full/0/default.jpg,357474,c7bd662fdc8b749cef801ba6d65917ed
+163,111 (0163),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00163/full/full/0/default.jpg,318031,7baae19416e5af264b9b6bd2ae8193ca
+164,112 (0164),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00164/full/full/0/default.jpg,337972,666d5e6b5a132a808688c6b373bd1cf8
+165,113 (0165),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00165/full/full/0/default.jpg,300014,835acc4b402d6f63f9552e25667e6b4a
+166,114 (0166),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00166/full/full/0/default.jpg,314165,74754d6e8be0a4d2dc7e0db5d48a73de
+167,115 (0167),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00167/full/full/0/default.jpg,352165,2edca36e7157d0ac5040864e77f36848
+168,116 (0168),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00168/full/full/0/default.jpg,339031,f3a3dfea3eff5e8efcecb4729208a632
+169,117 (0169),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00169/full/full/0/default.jpg,330854,dabb340c18a59e800550c76440ddd730
+170,118 (0170),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00170/full/full/0/default.jpg,299027,cbc4a0a280ec0ecf966295a81b27dcaa
+171,119 (0171),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00171/full/full/0/default.jpg,318958,229a8b830476b99fe8eade93d5b6f1b2
+172,120 (0172),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00172/full/full/0/default.jpg,324926,a9dc9201841e20b9715cd13bce3693fc
+173,121 (0173),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00173/full/full/0/default.jpg,324565,b1d9d40ffee4292c567193b3d000d91d
+174,122 (0174),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00174/full/full/0/default.jpg,306477,60200f16a633e15772b6b50b9a644f06
+175,123 (0175),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00175/full/full/0/default.jpg,341838,b041afc067041603a06d2d76621fa679
+176,124 (0176),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00176/full/full/0/default.jpg,292946,903fb6ce0abd5c813c20b2b211abefed
+177,125 (0177),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00177/full/full/0/default.jpg,329266,20be7bc04e069166195f3eecf9fe1d9d
+178,126 (0178),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00178/full/full/0/default.jpg,278090,3c38d64b38833269393fc8d7015ac29b
+179,127 (0179),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00179/full/full/0/default.jpg,303107,cbd7c97fea6bbb7180af60ac69f06916
+180,128 (0180),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00180/full/full/0/default.jpg,342192,2286a20176fa7dee824711e442beaad1
+181,129 (0181),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00181/full/full/0/default.jpg,336953,a49e0d8f257722e997d98e955984f447
+182,130 (0182),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00182/full/full/0/default.jpg,306385,7d2d8edf55f0afe70578f305b9435729
+183,131 (0183),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00183/full/full/0/default.jpg,347615,358139c43b9f3248d1989932ce1d0846
+184,132 (0184),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00184/full/full/0/default.jpg,341474,eb4348b96a6feb6b327423b42c3cb9db
+185,133 (0185),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00185/full/full/0/default.jpg,314753,ee3426ff4fb937644b7ca776dade01e4
+186,134 (0186),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00186/full/full/0/default.jpg,319432,86d76a63380fe053ba8e9e1ad9c06628
+187,135 (0187),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00187/full/full/0/default.jpg,325437,3725a76e961b36432ad4c5166ab97142
+188,136 (0188),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00188/full/full/0/default.jpg,345303,aa7f333f6420edca3ef9ebc86911c614
+189,137 (0189),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00189/full/full/0/default.jpg,332487,e9d9d781beb5f8687a52155fdbaea907
+190,138 (0190),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00190/full/full/0/default.jpg,323497,8fd7e705688d96b8ffc9a421e9f4233b
+191,139 (0191),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00191/full/full/0/default.jpg,347429,ed5defddcc45b54291230f263167ce8e
+192,140 (0192),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00192/full/full/0/default.jpg,356902,7d77cb03edaca5e73944c732854293dc
+193,141 (0193),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00193/full/full/0/default.jpg,338463,553b019b082e6a83fcf17d21280a4cea
+194,142 (0194),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00194/full/full/0/default.jpg,303728,b9ed2f3e53600e1428fb7778c600ecb6
+195,143 (0195),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00195/full/full/0/default.jpg,339183,4c27697ba91a646e93e8a4c985caaf38
+196,144 (0196),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00196/full/full/0/default.jpg,295547,dce3c7b7b428cb990b7f3ea0fb9522c2
+197,145 (0197),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00197/full/full/0/default.jpg,309020,88ddf4e7ce024b86706387407b943ba8
+198,146 (0198),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00198/full/full/0/default.jpg,302493,3abc41b648adac95b0f6757dd29f5a7b
+199,147 (0199),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00199/full/full/0/default.jpg,334286,c39a5b9125f9547c960cc9ece783eb6b
+200,148 (0200),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00200/full/full/0/default.jpg,325718,2ca0ab561b91a62c2ffa0bcfce0a20ff
+201,149 (0201),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00201/full/full/0/default.jpg,333588,6e6ae798f6f6c35192712e7148a7c749
+202,150 (0202),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00202/full/full/0/default.jpg,318158,8aa57eb5d293349ade6ed179773ff332
+203,151 (0203),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00203/full/full/0/default.jpg,304406,0cd9e83df25993d12df4a41049f6594f
+204,152 (0204),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00204/full/full/0/default.jpg,319997,f06888349640bb97e213d4166dbe51ad
+205,153 (0205),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00205/full/full/0/default.jpg,312085,d5a1c070f1ca74b7bad8609a5d125e5a
+206,154 (0206),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00206/full/full/0/default.jpg,310381,6b011197916264dc2732ea5033207f99
+207,155 (0207),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00207/full/full/0/default.jpg,323438,cae0edd4c53b5e4c86ce5d75fd7213ec
+208,156 (0208),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00208/full/full/0/default.jpg,328947,b16e8353705729fe4f82a38c3284553f
+209,157 (0209),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00209/full/full/0/default.jpg,341039,8d77186dfed017dd268ffc5e187e91fb
+210,158 (0210),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00210/full/full/0/default.jpg,330265,3b6342b1e75739ca815a89eacf606e73
+211,159 (0211),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00211/full/full/0/default.jpg,305209,ba836dc6d6daae49c9fec693a70e7c7e
+212,160 (0212),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00212/full/full/0/default.jpg,342298,5e7c6bb901d77b18983efc7c84569a93
+213,161 (0213),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00213/full/full/0/default.jpg,317466,cd1b05d53a95696c749aca1c23d78081
+214,162 (0214),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00214/full/full/0/default.jpg,328120,962d07353c39d4dcbadb448b50200ffe
+215,163 (0215),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00215/full/full/0/default.jpg,355405,7a9cf0e398612f8c03d282908f35f93c
+216,164 (0216),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00216/full/full/0/default.jpg,341042,015189e6386948f52d4541369faaca60
+217,165 (0217),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00217/full/full/0/default.jpg,337698,ca70fe2f0111dab3526153fc9d145d2a
+218,166 (0218),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00218/full/full/0/default.jpg,305793,f788f43cde667d9c553603e8c75257e4
+219,167 (0219),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00219/full/full/0/default.jpg,331158,be7fc681546d1a250f88ceab56bc6dbf
+220,168 (0220),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00220/full/full/0/default.jpg,310661,9ecc0f86b6ea9ff73859d186df1e9d77
+221,169 (0221),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00221/full/full/0/default.jpg,300007,92bd1b7b6a372a43a8cb55749b1e46a8
+222,170 (0222),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00222/full/full/0/default.jpg,350450,6a3122d165cf4a68f13c56b19a968792
+223,171 (0223),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00223/full/full/0/default.jpg,299389,9179a6155b55405e096bde5728490950
+224,172 (0224),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00224/full/full/0/default.jpg,364530,207ef8c34e969493341d254b3c84fa06
+225,173 (0225),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00225/full/full/0/default.jpg,323371,316178c28be51037ad648bf4d54b8c1a
+226,174 (0226),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00226/full/full/0/default.jpg,310235,9d1d153763624f07f5a596468ae6aad8
+227,175 (0227),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00227/full/full/0/default.jpg,344513,c56d56b9e527949f90ec72e0d90c0385
+228,176 (0228),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00228/full/full/0/default.jpg,313434,ae489d5201def16b1cac7ed91b45c197
+229,177 (0229),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00229/full/full/0/default.jpg,373321,2803f6623895a06624093d0db8f7d38e
+230,178 (0230),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00230/full/full/0/default.jpg,342254,10ca0595170cf8a85da5ce5bf720cd53
+231,179 (0231),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00231/full/full/0/default.jpg,369607,bd5fc26848e19a7e3557f215e2ac4873
+232,180 (0232),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00232/full/full/0/default.jpg,379222,ebd1070460e0d6c6ba8158650f880e80
+233,181 (0233),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00233/full/full/0/default.jpg,349840,afc65dc67bdfc278ffde09fda78c9379
+234,182 (0234),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00234/full/full/0/default.jpg,296230,cc24e51217156f238e412232cb0b3567
+235,183 (0235),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00235/full/full/0/default.jpg,345194,9bfbf0153649657dc1252a8c42a6291d
+236,184 (0236),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00236/full/full/0/default.jpg,343530,a4a3745650d3b419f0d72473c64a4d62
+237,185 (0237),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00237/full/full/0/default.jpg,363290,d84512af83efa40c068136960f4157cc
+238,186 (0238),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00238/full/full/0/default.jpg,332262,598d511c16495fc8beefa85fc5a3a05e
+239,187 (0239),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00239/full/full/0/default.jpg,366506,7b0ab141f6971fd0ac5151307fbfc870
+240,188 (0240),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00240/full/full/0/default.jpg,331962,385278a8bdbd2cf4aac57929dfc54343
+241,189 (0241),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00241/full/full/0/default.jpg,371860,67cfe530f4063820f815ae44e3a9974d
+242,190 (0242),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00242/full/full/0/default.jpg,339234,3bcb65a14efac9d2702c9dea4508bef9
+243,191 (0243),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00243/full/full/0/default.jpg,371457,f4242be865e3f74f4122e685edf8de8a
+244,192 (0244),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00244/full/full/0/default.jpg,336873,5f5a4d91cec14f28707fd232c918bc0d
+245,(0245),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00245/full/full/0/default.jpg,343734,2c32665a116def3b1e709b03cff19978
+246,(0246),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00246/full/full/0/default.jpg,327413,91eb6fd9aaa559b282ee0d8f8ca23d62
+247,193 (0247),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00247/full/full/0/default.jpg,328754,bbe0567cf09feff252bf8e2930574c5b
+248,194 (0248),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00248/full/full/0/default.jpg,309370,c8569c751725b139a9a3166a4c12757d
+249,195 (0249),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00249/full/full/0/default.jpg,328623,730a2f99ea38af79721502374ec2a088
+250,196 (0250),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00250/full/full/0/default.jpg,325106,8228522796b741be762712f8809d5d82
+251,197 (0251),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00251/full/full/0/default.jpg,334715,36eb47c930a693039605664fe44caf53
+252,198 (0252),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00252/full/full/0/default.jpg,336012,1c470dde8f7045a7dceb8bba02d4f834
+253,199 (0253),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00253/full/full/0/default.jpg,370221,286453b0266917e397c8659b9c82c298
+254,200 (0254),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00254/full/full/0/default.jpg,344495,52dfb21a45609fd0f8faaf7746b728c7
+255,201 (0255),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00255/full/full/0/default.jpg,315131,0a2e3d81410328957426206fcca3b185
+256,202 (0256),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00256/full/full/0/default.jpg,353438,6a86b0c3a095732b8ddd11bfd1e1febd
+257,203 (0257),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00257/full/full/0/default.jpg,341142,0db51feccc8b29f3cfb87dfbaf3cd644
+258,204 (0258),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00258/full/full/0/default.jpg,322291,1aa4357af2a68ec1b2e72c2bd679f1b7
+259,205 (0259),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00259/full/full/0/default.jpg,325857,f0fe7524456f5eef49f9f2846f76ab71
+260,206 (0260),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00260/full/full/0/default.jpg,306377,52731a53802e8274a917ca2555e14fc7
+261,207 (0261),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00261/full/full/0/default.jpg,330193,0093db7fabc83bb6225e8f7defdbd387
+262,208 (0262),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00262/full/full/0/default.jpg,333463,06e5ed9cd5c72381a447e09f75c10c9b
+263,209 (0263),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00263/full/full/0/default.jpg,330295,f43e7c38cff7f213edc391958a5523ee
+264,210 (0264),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00264/full/full/0/default.jpg,355672,851da3eab10d12b3218ca212e6544f0c
+265,211 (0265),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00265/full/full/0/default.jpg,346924,f22b26e927899885449201d42a444732
+266,212 (0266),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00266/full/full/0/default.jpg,331986,d42d0b5ed8a104fd8476224057da9168
+267,213 (0267),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00267/full/full/0/default.jpg,314102,27903349b2a0504dfa2bb23017814ca0
+268,214 (0268),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00268/full/full/0/default.jpg,358489,287fc871caa2ee209b1c847b75f4d632
+269,217 (0269),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00269/full/full/0/default.jpg,344321,89691f844cc87a47a8a1179e8ecdf8d3
+270,218 (0270),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00270/full/full/0/default.jpg,361525,f9e69d62b5d0fa8fe6bc4284f9705b11
+271,219 (0271),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00271/full/full/0/default.jpg,339520,887964bb9704e2c2c58e14c9d793113c
+272,220 (0272),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00272/full/full/0/default.jpg,339506,a8a9aa876daa20cdabe079eec94ee03e
+273,221 (0273),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00273/full/full/0/default.jpg,301630,f01bf86ab26f17edadf85397a6917f24
+274,222 (0274),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00274/full/full/0/default.jpg,337574,f664f1dc41d61d7b80f75f973bf0340d
+275,223 (0275),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00275/full/full/0/default.jpg,315672,4ab3f8703463313f50febe763c2c8b1c
+276,224 (0276),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00276/full/full/0/default.jpg,333146,2f805f7b9f705f682b321e65b2475e74
+277,225 (0277),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00277/full/full/0/default.jpg,356456,8b7c16db14150df1a8b0005e10254357
+278,226 (0278),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00278/full/full/0/default.jpg,331838,58dc5f9160310c1b5f839f52bc62a36c
+279,227 (0279),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00279/full/full/0/default.jpg,353086,7bad74f56c51b5c7a5fb4a41e5b35190
+280,228 (0280),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00280/full/full/0/default.jpg,355313,b19b1dd695639dc42b206b89fd21153f
+281,229 (0281),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00281/full/full/0/default.jpg,343250,038b1003a7c3a9b480198c91a8c133c0
+282,230 (0282),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00282/full/full/0/default.jpg,362492,b7795c975c65b67bc216c22f2070ee18
+283,231 (0283),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00283/full/full/0/default.jpg,351713,dcbc571228ee59df5de36e10e2d16f7f
+284,232 (0284),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00284/full/full/0/default.jpg,316977,637b186fef91f7e85edfc783752780c4
+285,233 (0285),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00285/full/full/0/default.jpg,338956,79d56a80146bef65dfdce93709114711
+286,234 (0286),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00286/full/full/0/default.jpg,335410,d2d6de57d4cb29616552cbfe186e53d3
+287,235 (0287),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00287/full/full/0/default.jpg,333233,49ea068d7a8d27090fc0830dd626fba4
+288,236 (0288),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00288/full/full/0/default.jpg,349585,3e31a2cd4e4e4049a66f444c0d1d0a64
+289,237 (0289),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00289/full/full/0/default.jpg,350112,defdc05993ed8d53cbabe50227c066f0
+290,238 (0290),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00290/full/full/0/default.jpg,337826,d2aeba6ce64f4683b0701d4ac9ae292c
+291,239 (0291),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00291/full/full/0/default.jpg,324019,2797ba2fcce275cc7f446822f4cb6ca4
+292,240 (0292),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00292/full/full/0/default.jpg,323358,1de25824f724df8d7edd324a21df984f
+293,241 (0293),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00293/full/full/0/default.jpg,345299,ad664c35003429823d042802e00072f4
+294,242 (0294),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00294/full/full/0/default.jpg,331395,e86664ec169f2ca227b003521db951df
+295,243 (0295),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00295/full/full/0/default.jpg,343855,0f14ccf02d7de4c71fc8c00d666373a1
+296,244 (0296),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00296/full/full/0/default.jpg,332884,844719c1886d8621dbbdb0c9690afb9b
+297,245 (0297),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00297/full/full/0/default.jpg,355768,91265068617557c305d90d479b0f2f7b
+298,246 (0298),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00298/full/full/0/default.jpg,342848,223bbb5cb9e40f3c3d4fa86bc3d03471
+299,247 (0299),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00299/full/full/0/default.jpg,311994,4fd282f08cbaf6f13aa37971e126bda0
+300,248 (0300),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00300/full/full/0/default.jpg,332631,39ffc4eb312dabbd8296261dd5ff6af5
+301,249 (0301),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00301/full/full/0/default.jpg,338210,b28573aaa3e278c6352d02f98cd7cdca
+302,250 (0302),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00302/full/full/0/default.jpg,319621,606bd3da80fa0c512ba226fe549a7227
+303,251 (0303),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00303/full/full/0/default.jpg,335177,a565d54d6c2a039409fc4e512e41d80c
+304,252 (0304),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00304/full/full/0/default.jpg,360484,6b1899f4e2595c6026175e44c06bb6bc
+305,253 (0305),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00305/full/full/0/default.jpg,345135,c0e2729a10f8c7eefc37272b6c74c772
+306,254 (0306),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00306/full/full/0/default.jpg,333718,115a82e2af26192fac0a393ab0b7b0e5
+307,255 (0307),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00307/full/full/0/default.jpg,362278,75595ae2fec2332665681ac389ba44c7
+308,256 (0308),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00308/full/full/0/default.jpg,342296,0b9232fcf546f9b00385fe1c3c572e2c
+309,257 (0309),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00309/full/full/0/default.jpg,346273,93f68124bf9dc2c530761c348e64a23f
+310,258 (0310),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00310/full/full/0/default.jpg,335099,4dd153b742bfdb564fae5c695b83400d
+311,259 (0311),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00311/full/full/0/default.jpg,347123,a318c2c0900477cab0ccf44b66849bd3
+312,260 (0312),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00312/full/full/0/default.jpg,334721,351636f84508e22a5bcce29bec071c2b
+313,261 (0313),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00313/full/full/0/default.jpg,321012,6aa5225fd7d6508a3f36e9cc618a4d67
+314,262 (0314),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00314/full/full/0/default.jpg,310306,5f9238026413ba2f1330a76d4f82bcc8
+315,263 (0315),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00315/full/full/0/default.jpg,316222,9726394fe54a629bff498e16e98c30f7
+316,264 (0316),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00316/full/full/0/default.jpg,290877,53d5321613b824ac5c97b3d572f1d07b
+317,265 (0317),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00317/full/full/0/default.jpg,346815,7f2360fe93396f47d85ec1ef34d517d0
+318,266 (0318),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00318/full/full/0/default.jpg,343190,ae4008e2588a7539a0190d9e65b09e42
+319,267 (0319),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00319/full/full/0/default.jpg,330885,d487ff7bfb36f1536ee69d8df48cb669
+320,268 (0320),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00320/full/full/0/default.jpg,276859,836e19c712ace19eb9aa8399203c56cb
+321,269 (0321),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00321/full/full/0/default.jpg,337754,4540c3949025f574b19cba13557ea8fd
+322,270 (0322),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00322/full/full/0/default.jpg,323554,1194f413350815e43ac6f7e940e7ea2f
+323,271 (0323),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00323/full/full/0/default.jpg,335229,efeec5e72975af73a16f09d774ef9743
+324,272 (0324),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00324/full/full/0/default.jpg,342341,8980be25396f4dd79cb7272c09324d9e
+325,273 (0325),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00325/full/full/0/default.jpg,301230,cd6ac59c80b9c4c4aebb7d6a0dbff79f
+326,274 (0326),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00326/full/full/0/default.jpg,313928,51e17a82a0798b62235ade60a9bfd955
+327,275 (0327),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00327/full/full/0/default.jpg,358685,00da2ec78aca5900a3c11aa18add193a
+328,276 (0328),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00328/full/full/0/default.jpg,345810,5fea891a5e7f49126e5ef839e4769f70
+329,277 (0329),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00329/full/full/0/default.jpg,337318,9c20a1286630ebf99578fa7186fb3929
+330,278 (0330),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00330/full/full/0/default.jpg,349964,1396c2d2f36ce2da87aee5d6b71e397c
+331,279 (0331),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00331/full/full/0/default.jpg,345992,ec1e4b10f34f1ffca8f10314601f49f9
+332,280 (0332),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00332/full/full/0/default.jpg,343032,62327aa964e16e27547edd5a7d992dd1
+333,281 (0333),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00333/full/full/0/default.jpg,378652,dccc6f89ef152f02bfff768e71a1aca0
+334,282 (0334),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00334/full/full/0/default.jpg,353326,d7ffe57202e4a12a1067f73ab0d2f686
+335,283 (0335),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00335/full/full/0/default.jpg,347275,907b3575eb57f61d3ae662574c3dc915
+336,284 (0336),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00336/full/full/0/default.jpg,278375,62f322dae846e1c77f8e435757ca985c
+337,285 (0337),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00337/full/full/0/default.jpg,337034,6577484e98438324091f943822d47c98
+338,286 (0338),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00338/full/full/0/default.jpg,337933,6c0e939e7874d52abc0aacbbaa8505e3
+339,287 (0339),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00339/full/full/0/default.jpg,316131,ccd8d9c94e343b3019b6e89198a5af6f
+340,288 (0340),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00340/full/full/0/default.jpg,302751,fe8ec5eef09a1b956d32ef7fb30a28c2
+341,289 (0341),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00341/full/full/0/default.jpg,317839,97b9fbaf6e899616353b23392430b375
+342,290 (0342),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00342/full/full/0/default.jpg,310570,6c37c9191fcd45f945d4fbeaf446cdb2
+343,291 (0343),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00343/full/full/0/default.jpg,312790,ddbe137bc3643bb29a2242efffcc1494
+344,292 (0344),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00344/full/full/0/default.jpg,293085,c2eabb4a5f62a3171c3639fd55101eee
+345,293 (0345),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00345/full/full/0/default.jpg,329215,7fb727957ec3b1445e1e80e6dfe094a7
+346,294 (0346),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00346/full/full/0/default.jpg,276206,12d45b3ac79bbe9ecdd0bc10a88faf47
+347,295 (0347),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00347/full/full/0/default.jpg,251045,8f3d4acf1d752a23bba25c853b91351d
+348,296 (0348),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00348/full/full/0/default.jpg,256100,d92fe5e46070d6872db506403c37b409
+349,297 (0349),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00349/full/full/0/default.jpg,266198,5cf9846e9013dd757be890f5d1857a41
+350,298 (0350),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00350/full/full/0/default.jpg,266235,3da3f5944aa3c557b361189353c0f870
+351,299 (0351),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00351/full/full/0/default.jpg,322466,58320eb831b3b3fcb91bb06c79ea0c0c
+352,300 (0352),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00352/full/full/0/default.jpg,244685,2af40f601789fcf22bbe43826e924770
+353,301 (0353),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00353/full/full/0/default.jpg,264308,5922a1ef528928472c20e25f05bc3762
+354,302 (0354),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00354/full/full/0/default.jpg,239849,9c06a63ad832344e53f19aee11e84d79
+355,303 (0355),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00355/full/full/0/default.jpg,259634,3ba12bf481e77dc4542735e51dc14151
+356,304 (0356),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00356/full/full/0/default.jpg,299541,a5b69121ef983a4b0614ef1a056a3dd4
+357,305 (0357),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00357/full/full/0/default.jpg,273659,c0daf5f7a9839494e151da1baef953c2
+358,306 (0358),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00358/full/full/0/default.jpg,296001,1be1f97bee3ffadc68597a0ee3f59d96
+359,307 (0359),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00359/full/full/0/default.jpg,317879,47bd994463829f2c8a44d3478d0c2ddb
+360,308 (0360),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00360/full/full/0/default.jpg,307190,9376a25fec5093cfab4b051e15db81d8
+361,309 (0361),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00361/full/full/0/default.jpg,301852,5b2546eb064d984d016ae589a6ab9c46
+362,310 (0362),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00362/full/full/0/default.jpg,266785,fbae7cb627e119c60ea2e16fa3e4b980
+363,311 (0363),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00363/full/full/0/default.jpg,327102,19900f63361af2cce006e9bf1960ca5e
+364,312 (0364),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00364/full/full/0/default.jpg,268455,2727af2126f9e88caacbdb54417ce39f
+365,313 (0365),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00365/full/full/0/default.jpg,330414,7c789eed7ca4976909a40f6f066b86d3
+366,314 (0366),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00366/full/full/0/default.jpg,318640,5adf6c9a47c1a8e950f25bd21c4af4cc
+367,315 (0367),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00367/full/full/0/default.jpg,320773,5197112641f0281086e13141747218dc
+368,316 (0368),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00368/full/full/0/default.jpg,322297,b51dd3da852c6419abcfa24e1661e8e2
+369,317 (0369),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00369/full/full/0/default.jpg,334292,3504378cd193ef33905a0167d0d31c1d
+370,318 (0370),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00370/full/full/0/default.jpg,322512,06b5cb8a624549f12615227198f7e6a6
+371,319 (0371),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00371/full/full/0/default.jpg,322597,36e36b2c05b9873f793f017a9e0ffe41
+372,320 (0372),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00372/full/full/0/default.jpg,321520,48455db7f0a7800d39a6a16f131967e9
+373,321 (0373),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00373/full/full/0/default.jpg,326660,e0b5b0a925737869a861dffcbfb9e73d
+374,322 (0374),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00374/full/full/0/default.jpg,307048,6a337ac49ceba65d5148f862d07656fb
+375,323 (0375),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00375/full/full/0/default.jpg,318636,49d790df5ae56280fb7d98161c61008e
+376,324 (0376),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00376/full/full/0/default.jpg,322090,18e2e0143f2f089e3fed2f3ffb39f832
+377,325 (0377),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00377/full/full/0/default.jpg,335782,70a1ccff34b42cea6e57c9dc78ddb785
+378,326 (0378),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00378/full/full/0/default.jpg,305659,bd334631500357ea256fad184b8116ea
+379,327 (0379),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00379/full/full/0/default.jpg,303061,321a77505e6635fbb5f6fc73cb43b46c
+380,328 (0380),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00380/full/full/0/default.jpg,316678,e474547cb17dc59d57f8be7919ef9f34
+381,329 (0381),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00381/full/full/0/default.jpg,277898,39ba9d55370ad116e1ad922483a736df
+382,330 (0382),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00382/full/full/0/default.jpg,301754,7a680685a0e04f089c0306fdfe6f956c
+383,331 (0383),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00383/full/full/0/default.jpg,322480,62e0a8ec372805976820f700970149bb
+384,332 (0384),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00384/full/full/0/default.jpg,335278,4e8220b3d3f89711421fa92ae6bfd60e
+385,333 (0385),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00385/full/full/0/default.jpg,294602,28c570def2b7a795b61572543c2d8fed
+386,334 (0386),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00386/full/full/0/default.jpg,300762,753c3b14f7da5f1aceaabe3389f28aea
+387,335 (0387),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00387/full/full/0/default.jpg,325528,c680333211ddcf10fb62976f655205d9
+388,336 (0388),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00388/full/full/0/default.jpg,285898,85e8c6ac6c96985c8db528f3ef76aead
+389,337 (0389),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00389/full/full/0/default.jpg,282933,e1ab7ab1858ec94f6d5639549332003d
+390,338 (0390),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00390/full/full/0/default.jpg,296681,66fae69120ea99995fc8f5cbee3509ce
+391,339 (0391),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00391/full/full/0/default.jpg,298049,b3f8fc4f8048bb9e360d9848349ebb10
+392,340 (0392),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00392/full/full/0/default.jpg,248834,52cdd7eae2c48b9b473624de0b23ab4c
+393,341 (0393),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00393/full/full/0/default.jpg,335770,88e86f7d1fe90095a1ac5cb0dd5b5b6f
+394,342 (0394),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00394/full/full/0/default.jpg,296282,81972f6114338dec7d77538e8a4874e2
+395,343 (0395),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00395/full/full/0/default.jpg,356689,d4acf14e8c9ea7d0a94edb8541f2c47e
+396,344 (0396),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00396/full/full/0/default.jpg,315943,744be59f966a94a61671d612db6898eb
+397,345 (0397),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00397/full/full/0/default.jpg,363058,efb19e3476851cab7ab996364bf4c31e
+398,346 (0398),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00398/full/full/0/default.jpg,263562,8b1a73da651b9c16eb7a26abc53a9fb3
+399,347 (0399),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00399/full/full/0/default.jpg,307683,85c110bc25c70a80ea5d829e502db841
+400,348 (0400),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00400/full/full/0/default.jpg,285725,6a7ed2f96ef0321a4e1c9e114c64285f
+401,349 (0401),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00401/full/full/0/default.jpg,286057,9d64869efdfbadabfd345648ae8b97f8
+402,350 (0402),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00402/full/full/0/default.jpg,298976,f9b052f356cbb6082b2ff34534f7cecc
+403,351 (0403),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00403/full/full/0/default.jpg,308831,4a19e08358f5c6dfb0794ff630f64c15
+404,352 (0404),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00404/full/full/0/default.jpg,260183,9999afa8b054ff17b0dc2db170d8bb80
+405,353 (0405),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00405/full/full/0/default.jpg,351574,e8b2b370a7046618f1e3223ad050c76b
+406,354 (0406),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00406/full/full/0/default.jpg,287146,756da18c6c401c552157f862a88b046d
+407,355 (0407),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00407/full/full/0/default.jpg,326370,957ad1f45f584ff668dd0c01e4c0e1ca
+408,356 (0408),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00408/full/full/0/default.jpg,271156,1860dbaf458f05deb782ccffd1a5751e
+409,357 (0409),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00409/full/full/0/default.jpg,337029,023ed3cf69fc1cfa07588e74db474894
+410,358 (0410),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00410/full/full/0/default.jpg,308373,30559f2a67d8d43be03db359e0d83f5a
+411,359 (0411),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00411/full/full/0/default.jpg,338865,594ab62a6d02c74b390f97555d9340bc
+412,360 (0412),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00412/full/full/0/default.jpg,281218,18c96b7284c6a370c74820cb197e1ff1
+413,361 (0413),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00413/full/full/0/default.jpg,290481,13e9821b1e2f3ba768e3a43de113aef7
+414,362 (0414),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00414/full/full/0/default.jpg,270280,43e5514128ec3e344866d18f5a671d66
+415,363 (0415),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00415/full/full/0/default.jpg,312887,3cfe6f9c1f25f4d11b305b6ea337a1bc
+416,364 (0416),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00416/full/full/0/default.jpg,294399,92a3f81569a9c2b65676bfdeeac8a6c2
+417,365 (0417),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00417/full/full/0/default.jpg,345326,d46607af20d611e3ec417c894432e46b
+418,366 (0418),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00418/full/full/0/default.jpg,326573,136ea97cd2df1950ff3e590331bebfbf
+419,367 (0419),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00419/full/full/0/default.jpg,333509,de9231d0eefd22e359d8c712d026a4d8
+420,368 (0420),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00420/full/full/0/default.jpg,317386,5d76219056541c19760a2e976eefdec9
+421,369 (0421),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00421/full/full/0/default.jpg,341682,d65d138683d9ad6d6ea3d678b89445c9
+422,370 (0422),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00422/full/full/0/default.jpg,336038,cddd67f2a9f2bdc807796db095ecb453
+423,371 (0423),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00423/full/full/0/default.jpg,346459,583c73f2503dbce9bfc1300603ab9c00
+424,372 (0424),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00424/full/full/0/default.jpg,310965,c404ebe869ca8e2bfca8c21b4300fbe3
+425,373 (0425),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00425/full/full/0/default.jpg,346589,61578b96538c260ebc05e51db5b6615f
+426,374 (0426),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00426/full/full/0/default.jpg,329655,d10b1b1211bd272b671097a2a9ad1436
+427,375 (0427),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00427/full/full/0/default.jpg,325726,aadb052d47fcf61282373b96613020c3
+428,376 (0428),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00428/full/full/0/default.jpg,298099,62b5e220fc1d66c27499d9dc6ad256e5
+429,377 (0429),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00429/full/full/0/default.jpg,321194,17aeaebfb806e5a75a34f97bb1cb1555
+430,378 (0430),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00430/full/full/0/default.jpg,312122,8f1bac4450c427626ba38d76864f1596
+431,379 (0431),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00431/full/full/0/default.jpg,370031,7cf12399e2a1173ff7b72161cf780941
+432,380 (0432),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00432/full/full/0/default.jpg,325310,9d4dba3cdec4233c02c26dc61a43ec59
+433,381 (0433),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00433/full/full/0/default.jpg,356581,4a69a39993890435da80b5aa991e9f1e
+434,382 (0434),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00434/full/full/0/default.jpg,300607,0bde42c60a24eefaf3e7a4e065107c6a
+435,383 (0435),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00435/full/full/0/default.jpg,286102,293a81f985e00057c5b24845f5db4d3b
+436,384 (0436),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00436/full/full/0/default.jpg,309467,81397aa0e6f822049b3c427059f9f061
+437,385 (0437),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00437/full/full/0/default.jpg,365593,5bec3b07639e3705367b7b86bef4c47c
+438,386 (0438),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00438/full/full/0/default.jpg,296678,662583b52303390ee8d25865bed04450
+439,387 (0439),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00439/full/full/0/default.jpg,328623,9d61ce7154e662781c200fba59230fed
+440,388 (0440),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00440/full/full/0/default.jpg,307469,0cb83f137eb9be5c5a42d74313182dd8
+441,389 (0441),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00441/full/full/0/default.jpg,338096,5bd737d85241bf1b21b3a9584d4e1147
+442,390 (0442),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00442/full/full/0/default.jpg,284585,6087657c9f9035978c705d976fab0f5c
+443,391 (0443),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00443/full/full/0/default.jpg,355053,4fb56d4cc641854aedecea798d3c2474
+444,392 (0444),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00444/full/full/0/default.jpg,279532,983aa162194547a971c35f3704eeb29e
+445,393 (0445),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00445/full/full/0/default.jpg,345588,6b89d4bdb846e97a188b27950f6c0a5a
+446,394 (0446),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00446/full/full/0/default.jpg,308870,1a87362dfad6bd8ce8f138bacfd0027f
+447,395 (0447),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00447/full/full/0/default.jpg,323658,75e8abbb5a6fd40c7bafe5611b543335
+448,396 (0448),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00448/full/full/0/default.jpg,297342,24ad483787dcb09ef761f0c51b09c708
+449,397 (0449),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00449/full/full/0/default.jpg,346496,8f57dd0bb64bc79c939d262cb88be632
+450,398 (0450),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00450/full/full/0/default.jpg,303443,1671911661f1a114646e05878a37b29b
+451,399 (0451),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00451/full/full/0/default.jpg,342821,4022e12da97716e47367075368ef26b0
+452,400 (0452),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00452/full/full/0/default.jpg,290367,457cfa0ed33041e2662ed888473c8b29
+453,401 (0453),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00453/full/full/0/default.jpg,309471,f51b6bae30d66e4a7d6d449dcdff089c
+454,402 (0454),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00454/full/full/0/default.jpg,253659,d2877eeeb99d2b1e9ca80d53cf844da1
+455,403 (0455),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00455/full/full/0/default.jpg,324391,ea36928c5bb07bae920a4ab59b5755b3
+456,404 (0456),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00456/full/full/0/default.jpg,288377,1f36121ca2a4b85dea7c6e8ce27d889e
+457,405 (0457),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00457/full/full/0/default.jpg,298382,4f0ce1ff8b7c340c792e03a297f83f76
+458,406 (0458),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00458/full/full/0/default.jpg,294943,3ac2c4bb12edfee3d76b7c2c0f14b9f0
+459,407 (0459),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00459/full/full/0/default.jpg,295302,f29706ffca48ab785336b130eb28e8dd
+460,408 (0460),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00460/full/full/0/default.jpg,308249,01aeb87bf6d5c9a293ec2800b7c9dd40
+461,409 (0461),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00461/full/full/0/default.jpg,304580,da56471be798013c4d69314212de7157
+462,410 (0462),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00462/full/full/0/default.jpg,336784,d9b49d14007f24835e3b10b4d6dbf867
+463,411 (0463),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00463/full/full/0/default.jpg,332527,4aeba01c13233b33f5f537badce11e77
+464,412 (0464),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00464/full/full/0/default.jpg,337175,68a5d0ded08c5389f28fff53ae8af515
+465,413 (0465),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00465/full/full/0/default.jpg,374363,cd69f147cc0cef005679cd4b04989db3
+466,414 (0466),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00466/full/full/0/default.jpg,296473,62eb1ed46fa7e813f05f262af3df8724
+467,415 (0467),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00467/full/full/0/default.jpg,340734,3de93d27d0ba77e4d1377333c73b611c
+468,416 (0468),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00468/full/full/0/default.jpg,310799,d1e1ee7d4be4cdff9518cd552f4fc60b
+469,417 (0469),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00469/full/full/0/default.jpg,329078,cb5a091999be107b641aa9196a7ae461
+470,418 (0470),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00470/full/full/0/default.jpg,306890,e3563cae7dadff73e41c9ff21c6706c2
+471,419 (0471),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00471/full/full/0/default.jpg,335853,49817acbbfecf8b8285c82a9a7e03586
+472,420 (0472),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00472/full/full/0/default.jpg,329297,21ade4a16bc921ea541a84c392504a04
+473,421 (0473),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00473/full/full/0/default.jpg,357158,5d991d56f30462bdd863c54f763cfcaf
+474,422 (0474),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00474/full/full/0/default.jpg,311544,608ab708d00414d867ad4f11a1ea9898
+475,423 (0475),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00475/full/full/0/default.jpg,328348,0dfadf18ecda16db77889add9c32f14e
+476,424 (0476),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00476/full/full/0/default.jpg,232264,aca27b306d1591546ba78def0af18f24
+477,425 (0477),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00477/full/full/0/default.jpg,363685,ea4269abcdfe5a7fb0b151cba15b2bf7
+478,426 (0478),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00478/full/full/0/default.jpg,290955,929c14771e5fa71e0e5c5b58a53fdc1e
+479,427 (0479),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00479/full/full/0/default.jpg,354947,266cd27fadadfb6a77aa7e5230e01c3c
+480,428 (0480),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00480/full/full/0/default.jpg,325112,e120c23006d2588b827afcda902eb884
+481,429 (0481),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00481/full/full/0/default.jpg,376233,a00082e07d2e0225cd88ceb041712b17
+482,430 (0482),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00482/full/full/0/default.jpg,318922,50ccaf87d60f5fb7cfbcd2b07edb218b
+483,431 (0483),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00483/full/full/0/default.jpg,315796,0c11b9b6b7ddd5d815a686e42950560c
+484,432 (0484),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00484/full/full/0/default.jpg,309992,651406e55450b1ecb554cc7ed43eb9ec
+485,433 (0485),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00485/full/full/0/default.jpg,325941,159a8ccf8f8529b21288de58d506d0a5
+486,434 (0486),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00486/full/full/0/default.jpg,298197,052747b7593568820c25eda743f2ad43
+487,435 (0487),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00487/full/full/0/default.jpg,331680,0b1b565c9194d1a068dbd0f0f7143b49
+488,436 (0488),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00488/full/full/0/default.jpg,288882,712576712055342827a4bbc76f8c6604
+489,437 (0489),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00489/full/full/0/default.jpg,343746,b1e3fc09d04a376f475716c0522495ab
+490,438 (0490),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00490/full/full/0/default.jpg,319457,c399601614ff296dfcc0466d590136e1
+491,439 (0491),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00491/full/full/0/default.jpg,286312,3a050464647b1ea60d8f06ac64d16e6a
+492,440 (0492),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00492/full/full/0/default.jpg,264274,3552d0f1641b4401fd14a5af83afec31
+493,441 (0493),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00493/full/full/0/default.jpg,356425,0650e2fbc3fbc1bd8ce12662bca9d85d
+494,442 (0494),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00494/full/full/0/default.jpg,278950,def9a29357e1663a2d402ea75dea99af
+495,(0495),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00495/full/full/0/default.jpg,192098,a5df283f375c2d9ba7dd8ddac7171434
+496,(0496),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00496/full/full/0/default.jpg,170895,230b31192aa8ca338ef7a9cd047b2a37
+497,(0497),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00497/full/full/0/default.jpg,202843,20c04281b9fea452e9ceb30eaa66998f
+498,(0498),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00498/full/full/0/default.jpg,169951,f4bb163e2bf270d450115354ae41153b
+499,(0499),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00499/full/full/0/default.jpg,199353,d7ec86fadf37e82ddb0798d36772d300
+500,(0500),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00500/full/full/0/default.jpg,182253,d15b527160eec9c5f27e57532d79fad9
+501,(0501),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00501/full/full/0/default.jpg,240764,95e18a7d34eccbd4675a48fe03a285c5
+502,(0502),https://api.digitale-sammlungen.de/iiif/image/v2/bsb10300968_00502/full/full/0/default.jpg,181254,c935fa555beb81288d933f339d1a41d7

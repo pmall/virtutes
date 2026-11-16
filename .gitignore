@@ -1,0 +1,19 @@
+# What the libraries delivered in bulk: not in git, can be fetched again
+# (sources and checksums in data/Downloads_report.csv). Their small records are kept.
+data/*/source/*
+!data/*/source/*.json
+!data/*/source/*_pages.csv
+
+# Intermediate files of the conversions: can be made again
+data/*/work/
+
+# Article PDFs: publishers' copyright (listed in references/README.md)
+references/*.pdf
+
+# Unfinished downloads, Python and editor leftovers
+*.part
+*.parts/
+__pycache__/
+*.pyc
+.~lock.*
+.DS_Store

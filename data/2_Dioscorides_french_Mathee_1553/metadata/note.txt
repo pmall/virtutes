@@ -1,0 +1,40 @@
+DIOSCORIDES, De materia medica - French translation
+SELECTED: Martin Mathée, Les six livres de Pedacion Dioscoride d'Anazarbe de la matière
+médicinale, translatez de latin en françois, with his annotations; Lyon, Balthazar
+Arnoullet, 1553 (first edition of this translation).
+SLOT: FRENCH.
+
+FILES (all in the source/ folder next to this note, exactly as the libraries delivered them)
+- lessixlivresdepe00dios_jp2.zip (+ lessixlivresdepe00dios_metadata.json)
+  What: University of Toronto (Fisher Library) copy, via Internet Archive, 438 images,
+  about 2115 x 3155 px.
+  Why here: the French text will be typed from this scan (rule 2: no reliable typed text).
+
+WHY THIS VERSION
+- 5 French versions in the edition map: 2 are extracts (1566, 1569), so incomplete. The
+  3 others are Mathée's translation, printed 1553, 1559 and 1580: all free of copyright,
+  none with a reliable typed text, all old printings with annotations, none bilingual.
+- So the earliest edition with a sharp-enough downloadable scan wins (rule 5.6): 1553.
+  It passes rule 4 (complete, free, downloadable in full) and is sharp enough.
+- It replaces the 1580 printing downloaded earlier on 12 November 2026, chosen when the
+  last rule was "sharpest scan" instead of "earliest edition"; that folder was deleted.
+
+RIGHTS: text public domain; Internet Archive states no licence for the scan.
+
+FILE TYPES
+- *_jp2.zip : one volume's page images (JPEG 2000), exactly as Internet Archive provides them.
+- *_jpg.zip : one volume's page images (JPEG), as the library serves them page by page,
+  packed without recompression.
+- *_metadata.json / *_manifest.json : the library's own record of the item, unchanged.
+- *_pages.csv : one row per page image with its checksum (for *_jpg.zip).
+- *.xml : a typed text made by a scholarly project (TEI format).
+- *.pdf : a scan delivered as a PDF.
+
+SOURCES OF THIS NOTE (paths relative to the workspace folder)
+Everything above was checked on 12 November 2026 against the files, the library records,
+the edition map and the sources named. Anything not checked is under NOT VERIFIED.
+- Selection rules: docs/Version_selection_method.md
+- The selection, with the justification for every slot:
+  data/Pilot_selected_versions.csv
+- All known versions (the edition map): data/Pilot_works_all_versions.csv
+- Download checksums: data/Downloads_report.csv

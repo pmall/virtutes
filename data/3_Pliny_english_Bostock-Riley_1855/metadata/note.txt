@@ -1,0 +1,44 @@
+PLINY THE ELDER, Natural History - English translation
+SELECTED: John Bostock and H. T. Riley, London, H. G. Bohn, 1855-1857, 6 volumes.
+SLOT: ENGLISH.
+
+FILES (all in the source/ folder next to this note, exactly as the libraries delivered them)
+- phi0978.phi001.perseus-eng1.xml
+  What: the whole translation, typed by the Perseus Digital Library (CC BY-SA 4.0).
+  Why here: it is the text we work from (rule 2).
+- Scans of the six volumes (+ *_metadata.json), MBLWHOI Library copy, via Internet Archive,
+  kept with the typed text (rule 2): naturalhistoryof1855plin (vol. 1, 582 images),
+  naturalhistoryof00plin (vol. 2, 586), naturalhistoryof03plin (vol. 3, 618),
+  naturalhistoryof04plin (vol. 4, 562), naturalhistoryof05plin (vol. 5, 562),
+  naturalhistoryof06plin (vol. 6, 564). The typed text numbers pages as volume x 1000 + page;
+  checked: 3125 = vol. 3, p. 125.
+
+WHY THIS VERSION
+- 12 English versions in the edition map: 8 incomplete (abridgements, selections),
+  1 under copyright (Loeb). Two complete free versions have a reliable typed text:
+  Bostock & Riley (Perseus) and Holland's 1634 printing (EEBO-TCP, proofread). They tie at
+  rule 5.2; Bostock & Riley is a scholarly edition and Holland's an old printing, so
+  Bostock & Riley wins at rule 5.4.
+
+NOT VERIFIED
+- The page numbers of volumes 1, 2, 4, 5 and 6 against their scans.
+
+RIGHTS: text public domain; typed text CC BY-SA 4.0; scans not in copyright.
+
+FILE TYPES
+- *_jp2.zip : one volume's page images (JPEG 2000), exactly as Internet Archive provides them.
+- *_jpg.zip : one volume's page images (JPEG), as the library serves them page by page,
+  packed without recompression.
+- *_metadata.json / *_manifest.json : the library's own record of the item, unchanged.
+- *_pages.csv : one row per page image with its checksum (for *_jpg.zip).
+- *.xml : a typed text made by a scholarly project (TEI format).
+- *.pdf : a scan delivered as a PDF.
+
+SOURCES OF THIS NOTE (paths relative to the workspace folder)
+Everything above was checked on 12 November 2026 against the files, the library records,
+the edition map and the sources named. Anything not checked is under NOT VERIFIED.
+- Selection rules: docs/Version_selection_method.md
+- The selection, with the justification for every slot:
+  data/Pilot_selected_versions.csv
+- All known versions (the edition map): data/Pilot_works_all_versions.csv
+- Download checksums: data/Downloads_report.csv
