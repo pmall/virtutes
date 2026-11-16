@@ -6,11 +6,9 @@ What the project is: `README.md`, then the documents it lists. This file says ho
 
 Projects die when their context piles up: notes on notes, the same fact in three files, history mixed with rules. Here every piece of information has one place, and what is no longer needed is deleted, not kept "just in case".
 
-## At the start and the end of a session
+## WIP.md
 
-1. Read `WIP.md`: it says where the work stands and what to do next.
-2. Use the skill for the task at hand; it names the documents to read. Read nothing else up front.
-3. Before stopping: **rewrite** `WIP.md` so that it describes the state the commit will contain (replace its content, do not append; delete what is done or no longer useful), then commit it together with the work, in one commit.
+`WIP.md` is the list of what remains to do, in order; the first item is what to do next. Read it first. Every commit leaves it true: remove what is done, add what was discovered.
 
 ## Skills (one per task)
 
@@ -24,7 +22,7 @@ A new skill is a new folder in `skills/` plus its link: `ln -s ../../skills/<nam
 |---|---|
 | What the project is, a definition, a method, an open question | `docs/` (one topic, one file) |
 | How an assistant must act | This file for rules that always apply; a skill for the procedure of one task |
-| Where the work stands, what is next, hints for the next session | `WIP.md`, rewritten each session, kept under one page |
+| What remains to do | `WIP.md` |
 | What a script does and why | The comment at the top of the script |
 | What was done and when | The git commit message |
 | What a version's files are and why it was chosen | Its `metadata/note.txt` |

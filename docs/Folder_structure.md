@@ -10,7 +10,7 @@ One self-contained folder for all works, pilot and later. It is a git repository
     docs/                            the project explained: methods, structure, text format
     AGENTS.md, skills/               how AI assistants must work here: the rules, and one skill per task
     .claude/skills/                  links to skills/, so that Claude finds the skills
-    WIP.md                           where the work stands; rewritten at each session
+    WIP.md                           what remains to do, in order
     tools/                           scripts shared by all works
     catalogue/                       the 5 catalogue spreadsheets (copies) + catalogue_rows.csv
     references/                      articles the project relies on (README.md lists them)

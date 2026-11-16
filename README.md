@@ -24,6 +24,6 @@ Each chosen version has its own folder under `data/`, with a plain-language `met
 
 - **Documentation** (`README.md`, `docs/`, the `note.txt` files): what the project is and how it is defined. No dates, no progress.
 - **Instructions** (`AGENTS.md`, `skills/`): how AI assistants must work here.
-- **Work in progress** (`WIP.md`): where the work stands and what comes next; rewritten at each session.
+- **Work in progress** (`WIP.md`): what remains to do, in order.
 
 History is in git. Each script is described in its own opening comment.

@@ -1,31 +1,21 @@
-# Work in progress
+# What remains to do
 
-Rewritten at each session; not a history (see `git log`). Rules for this file: `AGENTS.md`.
+In order; the first item is next. Done items are removed (history is in `git log`).
 
-## Where the work stands
+On a fresh clone, `source/` holds only the libraries' small records: the typed texts and scans must be fetched again from `data/Downloads_report.csv` before a version can be converted (ask the user first).
 
-- Six pilot works: versions mapped, chosen, downloaded and checked (11 version folders).
-- Unified text format v0.1 and its checker are written but **not yet tried on a real text**. The checker was tested only on a four-line sample.
-- No version converted. No `convert/`, `work/` or `text/` folder exists yet.
+1. **Convert Dioscorides** — `2_Dioscorides_original_Wellmann_1906-1914` (grc), skill `convert-version`. First real use of the text format (v0.1) and of `tools/vh_text.py`, both untested: expect to amend them, with the user's agreement.
+   - First look, to verify: nested `div type="textpart"` (book, chapter, section); pages as `<pb n="228"/>` without volume; `<lb/>`, `<note>`, `<add>`, `<del>`, `<gap>`; one page marker out of order in volume 1.
+2. **Convert Theophrastus** — `1_Theophrastus_original-english_Hort_1916`, Greek only (the English pages are a scan).
+   - Same XML layout as Dioscorides; only even page numbers appear (Greek pages of a facing-page edition).
+3. **Convert Pliny, Latin** — `3_Pliny_original_Mayhoff`.
+   - Sections and paragraphs as `<milestone unit=…>`, two competing numberings; pages as `<pb xml:id="v.1.p.1"/>`; about 69,000 `<note>` holding variant readings (`apparatus`, not `note`).
+4. **Convert Pliny, English** — `3_Pliny_english_Bostock-Riley_1855`.
+   - `div1` book / `div2` chapter; pages as `<pb n="1001"/>` (probably volume 1, page 1); footnotes; named entities such as `&mdash;`.
+5. **Decide how to read the eight scans** — engine and transcription rules; `docs/OCR_Kraken_approach.md` is a proposal, nothing is installed. Needs the user and the specialists.
+6. **Convert the eight scans**, once 5 is decided.
+7. **Define the steps after the text**: plant entries, translation, use records, classification (`docs/Project_context.md`, "The steps").
 
-## Next
+## Waiting for the user
 
-Convert the four typed texts, one per session, with the skill `convert-version`. Suggested order, simplest first:
-
-1. `2_Dioscorides_original_Wellmann_1906-1914` (grc)
-2. `1_Theophrastus_original-english_Hort_1916` (grc only; the English pages are a scan)
-3. `3_Pliny_original_Mayhoff` (lat)
-4. `3_Pliny_english_Bostock-Riley_1855` (eng)
-
-The first conversion is also the test of the format and of the checker: expect to amend both, with the user's agreement.
-
-## Hints from a first look at the four XML files (to verify; they belong in each `convert.py` once written)
-
-- Dioscorides and Theophrastus (First1KGreek): nested `div type="textpart"` for book, chapter, section; pages as `<pb n="228"/>` with the printed number and no volume; `<lb/>`, `<note>`, `<add>`, `<del>`, `<gap>`. Theophrastus shows only even page numbers (the Greek pages of a facing-page edition). Dioscorides volume 1 has a page marker out of order (84 after 89, per its note.txt).
-- Pliny Latin (Perseus): `div type="textpart"`; sections and paragraphs as `<milestone unit="section|paragraph" n=…/>`, two competing numberings; pages as `<pb xml:id="v.1.p.1"/>`; about 69,000 `<note>` holding the variant readings (so `apparatus`, not `note`); about 228,000 `<hi>`.
-- Pliny English (Perseus): older layout, `div1 type="book"` / `div2 type="chapter"`; pages as `<pb n="1001"/>` (probably volume 1, page 1); footnotes as `<note anchored="yes" place="foot">`; named entities such as `&mdash;`.
-
-## Open questions for the user
-
-- Should the typed XML sources (27 MB in all) be in git, so that a clone can rebuild the texts without downloading?
-- Reading engine and transcription rules for the eight scans: `docs/OCR_Kraken_approach.md` is still a proposal; nothing is installed.
+- Put the typed XML sources (27 MB) in git, so that a clone can do items 1–4 without downloading?

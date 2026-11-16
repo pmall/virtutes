@@ -39,7 +39,7 @@ description: Convert one version of a work (data/<version>/) to the project's un
    - ten passages spread over the work, read with `tools/vh_text.py view`, compared with the source file character by character;
    - if page images can be viewed, three of those passages compared with the image of their page.
 7. **Set the info file truthfully.** `status` = `complete` only if the whole version is there. `review` = `none` unless a person compared samples with page images. Everything not verified goes in `notes`, in plain words.
-8. **Commit** `convert/`, `text/` and the rewritten `WIP.md` together (see `AGENTS.md`), with a message stating the counts and what was not verified.
+8. **Commit** `convert/`, `text/` and the updated `WIP.md` together, with a message stating the counts and what was not verified.
 
 ## Done means
 
