@@ -29,14 +29,17 @@ Five spreadsheets, one per continent, in [`catalogue/`](../catalogue/) (copies; 
 - 240 rows carry a link. The catalogue's own notes say every link remains to be verified; this has not been done.
 - Ibn al-Baytar appears in three of the files.
 
-## Two layers, and the goal of the first
+## Three stages, and what AI brings to each
 
-The work is in two layers.
+The work is in three stages. The table in [The steps](#the-steps) gives the method and the result of each step inside them.
 
-1. **From the libraries' files to the texts.** Every chosen version is brought to one common text format. This is the layer being built now.
-2. **From the texts to plants and virtues.** Finding the plant entries, the uses, the plants' identities and the classes of virtues. Not started.
+1. **Finding and obtaining the versions.** For each work, list every known edition and translation, choose the ones to use by the project's criteria, and download them.
+2. **From the libraries' files to the texts.** Bring every chosen version to one common text format.
+3. **From the texts to plants and virtues.** Find the plant entries, the uses, the plants' identities and the classes of virtues. Not started.
 
-**Goal of the first layer: anyone can make the texts again.** For each version, scripts make the text from the exact files a library delivered, so that any researcher who has those files, identified by their checksums, obtains exactly the same text, character for character.
+**Stage 1: an AI assistant searches and proposes.** Listing the editions of one work means searching library catalogues, bibliographies and digital libraries across the web, then checking each candidate against the criteria (complete, free of copyright, downloadable, sharp enough). This takes a person countless hours per work; an assistant does it in a fraction of that time. A search of this kind does not give the same result twice, so what makes it verifiable is what it leaves behind: the list of every version found, the rule that decided each choice, and for each downloaded file its exact address and checksum. Methods: [`Edition_mapping_method.md`](Edition_mapping_method.md), [`Version_selection_method.md`](Version_selection_method.md).
+
+**Stage 2: anyone can make the texts again.** For each version, scripts make the text from the exact files a library delivered, so that any researcher who has those files, identified by their checksums, obtains exactly the same text, character for character.
 
 - **An AI assistant writes the scripts.** Each book is laid out its own way and needs scripts fitted to it, which costs a person hours per book and is why projects usually avoid it; an assistant writes them in minutes.
 - **Running them needs no AI.** The scripts are ordinary programs: they stop if a source file is not the one recorded, and give the same result at every run, on any computer.

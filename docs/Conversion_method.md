@@ -2,7 +2,7 @@
 
 Every chosen version ends as text in the unified format ([`Unified_text_format.md`](Unified_text_format.md)), whatever it started as. How an assistant carries out a conversion: [`skills/convert-version/SKILL.md`](../skills/convert-version/SKILL.md).
 
-The goal this serves, texts that anyone can make again from the exact sources: [`Project_context.md`](Project_context.md#two-layers-and-the-goal-of-the-first).
+The goal this serves, texts that anyone can make again from the exact sources: [`Project_context.md`](Project_context.md#three-stages-and-what-ai-brings-to-each).
 
 ## Three kinds of source
 
