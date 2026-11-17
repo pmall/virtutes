@@ -12,7 +12,7 @@ description: Convert one version of a work (data/<version>/) to the project's un
 2. `docs/Folder_structure.md`, section "One folder per chosen version" — where each file goes.
 3. `docs/Conversion_method.md` — why it is done this way, what each of the three scripts may do and which source files it may open, and what counts as verified.
 4. `data/<version>/metadata/note.txt` — what the source files are and what is not verified about them.
-5. `tools/vh_check.py`, `tools/vh_record.py` and `tools/vh_text.py` (top comments) — the check you must pass and how results are recorded.
+5. `tools/vh_check.py` and `tools/vh_text.py` (top comments) — the check you must pass.
 6. The `convert/` scripts of an already converted version of the same kind, if one exists: reuse their approach.
 
 ## Hard constraints
@@ -47,14 +47,13 @@ description: Convert one version of a work (data/<version>/) to the project's un
    - ten passages spread over the work, read with `uv run tools/vh_view.py <file> <ref>`, compared with the source file character by character.
    For a typed text, do not compare its words with the page images: open an image only to settle a doubt about a label or a page number (`docs/Conversion_method.md`).
 9. **Set the info file truthfully.** `status` = `complete` only if the whole version is there. `review` = `none` unless a person compared samples of a machine-read text with page images. Everything not verified goes in `notes`, in plain words; that the words of a typed text were not read against the scan is not a limit to list.
-10. **Record the results**: `uv run tools/vh_record.py <version>`. It deletes the results, runs the scripts in order and writes `convert/results.md5`. Do this again after any later change to a script; if the checksums change, say in the commit message which and why.
+10. **Write the checksums of the results.** Delete `work/raw/`, `text/` and `work/repairs.csv`, run the three scripts in order, then from the version folder: `md5sum work/raw/* text/* work/repairs.csv > convert/results.md5`. Do this again after any later change to a script; if the checksums change, say in the commit message which and why.
 11. **Commit** `convert/` (scripts and `results.md5`) and the updated `WIP.md` together, with a message stating the counts and what was not verified. `work/` and `text/` are not in git.
 
 ## Done means
 
 - After deleting `work/` and `text/`, `uv run convert/extract.py` then `uv run convert/repair.py` make them again and `uv run tools/vh_check.py <version>` prints `OK` against the committed `convert/results.md5`.
 - For a typed text, this holds with the scans moved out of `source/`. `uv run convert/images.py` then adds `text/page_images.csv` without changing any other file, and stops with the standard message when a scan is absent.
-- `git status` shows no change to `convert/results.md5` after a last `uv run tools/vh_record.py <version>`.
 - The verification figures of step 8 are in the commit message.
 - No text of the work was typed by you.
 

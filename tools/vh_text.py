@@ -5,7 +5,7 @@ The format is defined in docs/Unified_text_format.md. Every converter, whatever 
 source (typed text, scan of a printed book, scan of a manuscript), must produce files
 of this shape.
 
-Not a command: check() is called by tools/vh_check.py and tools/vh_record.py. It verifies
+Not a command: check() is called by tools/vh_check.py. It verifies
 one folder (text/ or work/raw/) of a version: pages.csv, every <lang>.jsonl and its
 <lang>.info.json, and page_images.csv if it is there. It prints one line per file and
 returns the problems found.

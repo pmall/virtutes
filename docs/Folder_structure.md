@@ -52,7 +52,7 @@ Each version folder is a small workshop of its own, with the same five parts:
         images.py         makes text/page_images.csv from text/pages.csv and the scans: where the
                           image of each page is; optional, the text is complete without it
         results.md5       the checksum of every file the scripts produce: the reference the
-                          results are compared with (written by tools/vh_record.py)
+                          results are compared with (Conversion_method.md)
         corrections.csv   corrections found by people, applied by repair.py at each run
         reference/        hand-corrected pages used to train and to measure the reading of a scan
     work/                 intermediate files, made again by the scripts

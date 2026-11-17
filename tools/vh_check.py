@@ -3,7 +3,7 @@
 
 One check for every version, whatever its source (typed text, scan of a printed book, scan
 of a manuscript). The reference is convert/results.md5 of the version, kept in git: the
-checksum of every file the version's scripts produce (written by tools/vh_record.py). A
+checksum of every file the version's scripts produce (docs/Conversion_method.md). A
 researcher who runs the scripts on the recorded source files must obtain these files.
 
 Usage, from the workspace folder:
@@ -22,8 +22,8 @@ The command ends with OK, or with the number of problems.
 
 A different checksum means one of two things: the result is not reproduced (another
 source file, a changed script, a file edited by hand, a script not run again after an
-earlier one), or the scripts were changed on purpose and the new results have not been
-recorded yet with tools/vh_record.py.
+earlier one), or the scripts were changed on purpose and convert/results.md5 has not been
+written again.
 """
 import sys
 from pathlib import Path
