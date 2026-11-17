@@ -41,9 +41,9 @@ description: Convert one version of a work (data/<version>/) to the project's un
 8. **Verify the content**, and report the figures:
    - nothing lost: the number of characters of running text in the source, in the raw text and in `text/`, per kind, with every difference explained;
    - counts of books, chapters and sections against the figures a scholar would expect, each with its origin;
-   - ten passages spread over the work, read with `tools/vh_text.py view`, compared with the source file character by character;
-   - if page images can be viewed, three of those passages compared with the image of their page.
-9. **Set the info file truthfully.** `status` = `complete` only if the whole version is there. `review` = `none` unless a person compared samples with page images. Everything not verified goes in `notes`, in plain words.
+   - ten passages spread over the work, read with `tools/vh_text.py view`, compared with the source file character by character.
+   For a typed text, do not compare its words with the page images: open an image only to settle a doubt about a label or a page number (`docs/Conversion_method.md`).
+9. **Set the info file truthfully.** `status` = `complete` only if the whole version is there. `review` = `none` unless a person compared samples of a machine-read text with page images. Everything not verified goes in `notes`, in plain words; that the words of a typed text were not read against the scan is not a limit to list.
 10. **Commit** `convert/` and the updated `WIP.md` together, with a message stating the counts and what was not verified. `work/` and `text/` are not in git.
 
 ## Done means

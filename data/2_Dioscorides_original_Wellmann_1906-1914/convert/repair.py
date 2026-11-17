@@ -240,8 +240,7 @@ NOTES = (
     "its printed page, not the word it comments. "
     "Volume 1 has page 89 twice in the typed file (82, 89, 84 ... 89); the first is "
     "probably page 83; the second has the id v1p89-2. "
-    "Page images not matched to page numbers. One label (5.11.3) was checked on a page "
-    "image; no passage was compared with the scan word by word."
+    "Page images not matched to page numbers."
 )
 
 # Every passage whose ref the rules change (footnotes following their host aside):

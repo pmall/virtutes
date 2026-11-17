@@ -27,14 +27,14 @@ Writing such scripts by hand takes a person hours per book, which is why project
 
 - **The assistant writes the scripts; the scripts produce the text.** The assistant never retypes or rewrites the text itself. The result is therefore the same at every run, and anyone can read in the scripts what was done to the source. This is why the texts are not kept in git: the scripts and the exact sources are enough to make them again ([`Folder_structure.md`](Folder_structure.md#what-is-in-git-and-what-is-not)).
 - **The shared checker verifies the shape of the result**, the same for all versions.
-- **People verify the words**, on samples compared with the page images. Their corrections are stored beside the script and applied at each run.
+- **People verify the words of machine-read texts**, on samples compared with the page images. The words of a typed text are taken as the scholarly project typed them and are not read again against the scans: avoiding that reading is why a typed text is preferred. The scan of a typed text is opened only to settle a doubt (a label, a page number). Corrections a person asks for are stored beside the script and applied at each run.
 
 ## What counts as verified
 
 A text is `complete` when the whole version is there and passes the checker. Its `review` level says how far the words were verified:
 
 - **Counts** agree with known figures: number of books and chapters; for Mattioli 1568, the 831 chapters of Dioscorides counted by Staub et al. 2016.
-- **Samples** spread over the whole book were compared by eye with the page image, with particular attention to plant names, quantities and parts of plants.
+- For a machine-read text: **samples** spread over the whole book were compared by eye with the page image, with particular attention to plant names, quantities and parts of plants. A typed text has no such review; its `review` stays `none` and this is not listed as a limit.
 - For a version with a typed text and a scan: the page numbers of the typed text were matched to the scan.
 
 Whatever was not verified is written in the `notes` of the text's info file.

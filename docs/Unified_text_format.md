@@ -125,7 +125,7 @@ page,volume,printed,source_file,image,mapping
 
 ## The checker
 
-Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a finished `text/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup). It does not look at the source and does not judge whether the words are right; that is done by comparing samples with the page images ([`Conversion_method.md`](Conversion_method.md)). A text that fails the check is not accepted.
+Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a finished `text/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup). It does not look at the source and does not judge whether the words are right; for a machine-read text that is done by comparing samples with the page images, while a typed text is taken as its project typed it ([`Conversion_method.md`](Conversion_method.md#what-counts-as-verified)). A text that fails the check is not accepted.
 
 ## Choices made, and why
 
