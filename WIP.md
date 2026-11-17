@@ -2,7 +2,7 @@
 
 In order; the first item is next. Done items are removed (history is in `git log`).
 
-1. **Repair Dioscorides** — `2_Dioscorides_original_Wellmann_1906-1914` (grc), skill `convert-version` from step 4. `extract.py` is written; `repair.py` has no rule yet, so `text/` is still the raw text. The mistakes to repair are listed at the end of `extract.py`.
+1. **Match Dioscorides pages to images** — `2_Dioscorides_original_Wellmann_1906-1914`, skill `convert-version` step 6: `pages.csv` still has mapping `none`. The offsets seen so far are in its `metadata/note.txt`; volume 1 needs looking at (page 89 typed twice, the first probably 83), and five pages per volume must be read before `computed`.
 2. **Convert Theophrastus** — `1_Theophrastus_original-english_Hort_1916`, Greek only (the English pages are a scan).
    - Same XML layout as Dioscorides; only even page numbers appear (Greek pages of a facing-page edition).
 3. **Convert Pliny, Latin** — `3_Pliny_original_Mayhoff`.

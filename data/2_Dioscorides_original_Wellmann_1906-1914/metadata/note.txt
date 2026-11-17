@@ -12,7 +12,9 @@ FILES (all in the source/ folder next to this note, exactly as the libraries del
   What: scans of volumes 1-3 (278, 382 and 416 images), University of Glasgow Library copy,
   via Internet Archive.
   Why here: scan of the same edition as the typed text (rule 2). The typed text gives
-  Wellmann's page numbers; checked on volume 2, page 103 (image 134): same first words.
+  Wellmann's page numbers; checked on volume 2, page 100 (image 134): same first words.
+  Image number = printed page + 34 in volume 2 (seen on pages 81, 84, 85, 100, 286, 289)
+  and + 14 in volume 3 (pages 14, 16, 26); volume 1 not looked at.
 
 WHY THIS VERSION
 - 9 versions in the edition map, all complete and free of copyright. Wellmann is the only
