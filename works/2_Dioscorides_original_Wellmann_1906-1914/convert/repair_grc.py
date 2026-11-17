@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Make the repaired text of Wellmann's Dioscorides from the raw extraction.
 
-Run:  uv run convert/repair.py   (no arguments; reads work/raw/, written by
-      convert/extract.py; writes text/grc.jsonl, text/grc.info.json, text/pages.csv
-      and work/repairs.csv)
+Run:  uv run convert/repair_grc.py   (no arguments; reads work/raw/, written by
+      convert/extract_grc.py; writes text/grc.jsonl, text/grc.info.json, text/grc.pages.csv
+      and work/grc.repairs.csv)
 
-Second step, after convert/extract.py. The raw text keeps every mistake of the typed file. This script
+Second step, after convert/extract_grc.py. The raw text keeps every mistake of the typed file. This script
 corrects them by the rules below. A rule never changes the words of the work: rules 1-5
-change only `ref`, rule 6 only `page`. Every change is written as one row of work/repairs.csv (passage,
+change only `ref`, rule 6 only `page`. Every change is written as one row of work/grc.repairs.csv (passage,
 rule, field, before, after). The full list of passages each rule changes is also kept in
 this file, in CASES at the end, so that the repairs can be read without running anything;
 the script stops if its rules do not give exactly CASES.
@@ -55,7 +55,7 @@ THE RULES, in the order they run
 
 SOURCE FILES NEEDED: none. This script reads work/raw/ only. Two rules were decided after
 looking at a page image (2 and 6), but running them does not open the scans. Linking the
-pages to their images is the separate, optional convert/images.py; this script never
+pages to their images is the separate, optional convert/images_grc.py; this script never
 touches its result.
 
 NOT REPAIRED (the words are not changed by rules)
@@ -212,11 +212,11 @@ def check_order(passages, rv):
 
 def main():
     if not (RAW / f"{LANG}.jsonl").exists():
-        sys.exit("work/raw/ is missing: run convert/extract.py first")
+        sys.exit("work/raw/ is missing: run convert/extract_grc.py first")
     with open(RAW / f"{LANG}.jsonl", encoding="utf-8") as f:
         passages = [json.loads(line) for line in f]
     info = json.load(open(RAW / f"{LANG}.info.json", encoding="utf-8"))
-    with open(RAW / "pages.csv", newline="", encoding="utf-8") as f:
+    with open(RAW / f"{LANG}.pages.csv", newline="", encoding="utf-8") as f:
         pages = list(csv.DictReader(f))
 
     repairs = []
@@ -241,15 +241,15 @@ def main():
     with open(TEXT / f"{LANG}.jsonl", "w", encoding="utf-8", newline="\n") as f:
         for p in passages:
             f.write(json.dumps(p, ensure_ascii=False, separators=(",", ":")) + "\n")
-    with open(TEXT / "pages.csv", "w", encoding="utf-8", newline="") as f:
+    with open(TEXT / f"{LANG}.pages.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(pages[0]), lineterminator="\n")
         w.writeheader()
         w.writerows(pages)
-    info["converter"] = str((VDIR / "convert" / "repair.py").relative_to(ROOT))
+    info["converter"] = str((VDIR / "convert" / "repair_grc.py").relative_to(ROOT))
     info["notes"] = NOTES
     with open(TEXT / f"{LANG}.info.json", "w", encoding="utf-8", newline="\n") as f:
         f.write(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
-    with open(VDIR / "work" / "repairs.csv", "w", encoding="utf-8", newline="") as f:
+    with open(VDIR / "work" / f"{LANG}.repairs.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["id", "rule", "field", "before", "after"])
         w.writerows(repairs)
@@ -262,7 +262,7 @@ def main():
 
 NOTES = (
     "Words, numbers and marks as First1KGreek typed them, errors included; only the "
-    "labels (ref) were repaired, by the rules in convert/repair.py, which lists every "
+    "labels (ref) were repaired, by the rules in convert/repair_grc.py, which lists every "
     "passage changed. After repair the chapters of each book run 1 to 129, 186, 158, 192 "
     "and 162 in order. "
     "Chapter and section numbers printed by Wellmann are part of the text, as typed, "

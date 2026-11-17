@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Make the repaired text of Hort's Greek Theophrastus from the raw extraction.
 
-Run:  uv run convert/repair.py   (no arguments; reads work/raw/, written by
-      convert/extract.py; writes text/grc.jsonl, text/grc.info.json, text/pages.csv
-      and work/repairs.csv)
+Run:  uv run convert/repair_grc.py   (no arguments; reads work/raw/, written by
+      convert/extract_grc.py; writes text/grc.jsonl, text/grc.info.json, text/grc.pages.csv
+      and work/grc.repairs.csv)
 
-Second step, after convert/extract.py. The raw text keeps every mistake of the typed file.
+Second step, after convert/extract_grc.py. The raw text keeps every mistake of the typed file.
 This script corrects them by the rules below. A rule never changes the words of the work:
 it changes `ref`, `page`, or where a passage is cut. Every change is written as one row of
-work/repairs.csv (passage, rule, field, before, after).
+work/grc.repairs.csv (passage, rule, field, before, after).
 
 HOW THE MISTAKES WERE FOUND
 The chapters of the typed file are those of the book: each book's chapters run 1 to 14, 8,
@@ -188,11 +188,11 @@ def check_order(passages):
 
 def main():
     if not (RAW / f"{LANG}.jsonl").exists():
-        sys.exit("work/raw/ is missing: run convert/extract.py first")
+        sys.exit("work/raw/ is missing: run convert/extract_grc.py first")
     with open(RAW / f"{LANG}.jsonl", encoding="utf-8") as f:
         passages = [json.loads(line) for line in f]
     info = json.load(open(RAW / f"{LANG}.info.json", encoding="utf-8"))
-    with open(RAW / "pages.csv", newline="", encoding="utf-8") as f:
+    with open(RAW / f"{LANG}.pages.csv", newline="", encoding="utf-8") as f:
         pages = list(csv.DictReader(f))
 
     repairs = []
@@ -207,15 +207,15 @@ def main():
     with open(TEXT / f"{LANG}.jsonl", "w", encoding="utf-8", newline="\n") as f:
         for p in passages:
             f.write(json.dumps(p, ensure_ascii=False, separators=(",", ":")) + "\n")
-    with open(TEXT / "pages.csv", "w", encoding="utf-8", newline="") as f:
+    with open(TEXT / f"{LANG}.pages.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(pages[0]), lineterminator="\n")
         w.writeheader()
         w.writerows(pages)
-    info["converter"] = str((VDIR / "convert" / "repair.py").relative_to(ROOT))
+    info["converter"] = str((VDIR / "convert" / "repair_grc.py").relative_to(ROOT))
     info["notes"] = NOTES
     with open(TEXT / f"{LANG}.info.json", "w", encoding="utf-8", newline="\n") as f:
         f.write(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
-    with open(VDIR / "work" / "repairs.csv", "w", encoding="utf-8", newline="") as f:
+    with open(VDIR / "work" / f"{LANG}.repairs.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["id", "rule", "field", "before", "after"])
         w.writerows(repairs)
@@ -228,7 +228,7 @@ def main():
 
 NOTES = (
     "Words, numbers and marks as First1KGreek typed them, errors included; only labels "
-    "were repaired, by the rules in convert/repair.py: one section label (7.4.5), the "
+    "were repaired, by the rules in convert/repair_grc.py: one section label (7.4.5), the "
     "missing section 7.3.4 (one passage cut where the book prints 4), and page 216 of "
     "volume 2, typed as 214. After repair the chapters of books 1-9 run 1 to 14, 8, 18, 16, "
     "9, 8, 15, 11, 20, and the sections of each chapter 1, 2, 3 … in order. "

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Link each page of Wellmann's Dioscorides to its image in the scans.
 
-Run:  uv run convert/images.py   (no arguments; reads text/pages.csv, written by
-      convert/repair.py; writes text/page_images.csv)
+Run:  uv run convert/images_grc.py   (no arguments; reads text/grc.pages.csv, written by
+      convert/repair_grc.py; writes text/grc.page_images.csv)
 
-Optional third step. The text is complete without it: convert/extract.py and
-convert/repair.py make it from the typed file alone. This script only adds, for each
+Optional third step. The text is complete without it: convert/extract_grc.py and
+convert/repair_grc.py make it from the typed file alone. This script only adds, for each
 page, where its image is, so that the page can be shown beside the text.
 
 SOURCE FILES NEEDED: the three scans (b21459162_0001_jp2.zip, _0002, _0003; 465 MB in
@@ -20,8 +20,8 @@ By reading the page number printed on the image: volume 1 pages 6, 26, 46, 81-90
 106-109, 146, 186, 226, 254, 255; volume 2 pages 2, 3, 50, 81, 84, 85, 100, 150, 200, 286,
 289, 300, 339; volume 3 pages 14, 16, 26, 50, 80, 106-108. The shift is the same on every
 one. Page 1 of each volume prints no number at the top; it is the image before page 2.
-The pages are those of text/pages.csv, after the repair of page 83 of volume 1
-(convert/repair.py, rule 6).
+The pages are those of text/grc.pages.csv, after the repair of page 83 of volume 1
+(convert/repair_grc.py, rule 6).
 """
 import csv, re, sys, zipfile
 from pathlib import Path
@@ -29,6 +29,7 @@ from pathlib import Path
 VDIR = Path(__file__).resolve().parents[1]            # this version folder
 ROOT = VDIR.parents[1]                                 # the workspace folder
 TEXT = VDIR / "text"
+LANG = "grc"
 SHIFTS = {"1": ("b21459162_0001_jp2.zip", 14), "2": ("b21459162_0002_jp2.zip", 34),
           "3": ("b21459162_0003_jp2.zip", 14)}        # volume: (scan, image - printed page)
 SOURCES = [scan for scan, _ in SHIFTS.values()]        # the files of source/ this script reads
@@ -37,10 +38,10 @@ from vh_sources import require
 
 
 def main():
-    if not (TEXT / "pages.csv").exists():
-        sys.exit("text/pages.csv is missing: run convert/extract.py then convert/repair.py first")
+    if not (TEXT / f"{LANG}.pages.csv").exists():
+        sys.exit("text/grc.pages.csv is missing: run convert/extract_grc.py then convert/repair_grc.py first")
     scans = {s.name: s.path for s in require(VDIR, SOURCES)}
-    with open(TEXT / "pages.csv", newline="", encoding="utf-8") as f:
+    with open(TEXT / f"{LANG}.pages.csv", newline="", encoding="utf-8") as f:
         pages = list(csv.DictReader(f))
 
     rows = []
@@ -57,7 +58,7 @@ def main():
     if len(rows) != len(pages):
         sys.exit("some pages are in a volume without a scan")
 
-    with open(TEXT / "page_images.csv", "w", encoding="utf-8", newline="") as f:
+    with open(TEXT / f"{LANG}.page_images.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["page", "source_file", "image", "mapping"])
         w.writerows(rows)

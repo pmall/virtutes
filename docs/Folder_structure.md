@@ -46,20 +46,21 @@ Each version folder is a small workshop of its own, with the same five parts:
         <identifier>_manifest.json    with it: the library's own page list, unchanged
         <identifier>_pages.csv        with it: one row per page image, with its checksum
         <identifier>_metadata.json    the library's own record of each scanned item, unchanged
-    convert/              this version's own scripts and notes
-        extract.py        makes work/raw/ from source/: the text as the source has it, mistakes
-                          included; its opening comment describes how the book is laid out
-        repair.py         makes text/ from work/raw/: corrects the mistakes by rules written in it;
-                          its opening comment lists the rules
-        images.py         makes text/page_images.csv from text/pages.csv and the scans: where the
-                          image of each page is; optional, the text is complete without it
-        results.md5       the checksum of every file the scripts produce: the reference the
-                          results are compared with (Conversion_method.md)
-        corrections.csv   corrections found by people, applied by repair.py at each run
-        reference/        hand-corrected pages used to train and to measure the reading of a scan
+    convert/              this version's own scripts and notes; <lang> is the language of a text,
+                          and a version with two languages has the three scripts once for each
+        extract_<lang>.py   makes work/raw/ from source/: the text as the source has it,
+                            mistakes included; its opening comment describes the book's layout
+        repair_<lang>.py    makes text/ from work/raw/: corrects the mistakes by rules written
+                            in it; its opening comment lists the rules
+        images_<lang>.py    links each page of the text to its image in the scans; optional,
+                            the text is complete without it
+        results.md5         the checksum of every file the scripts produce: the reference the
+                            results are compared with (Conversion_method.md)
+        corrections.csv     corrections found by people, applied by repair_<lang>.py
+        reference/          hand-corrected pages used to train and to measure the reading of a scan
     work/                 intermediate files, made again by the scripts
         raw/              the raw text, in the unified text format
-        repairs.csv       every change repair.py made: passage, rule, before, after
+        <lang>.repairs.csv  every change repair_<lang>.py made: passage, rule, before, after
         ...               unpacked page images, raw machine reading, trials
                           (work/raw/ and text/ hold nothing but what the scripts wrote there)
     text/                 the result: the repaired text, in the unified text format
@@ -71,7 +72,7 @@ Each version folder is a small workshop of its own, with the same five parts:
 Rules:
 
 - **`source/` is never modified.** A file delivered by a library is kept exactly as delivered: never converted, resized, renamed, unpacked in place or repacked, so its published checksum still applies. Files keep the library's own identifiers as names. Only when a library serves single page images do we pack them ourselves, unchanged, with a checksum for each page.
-- **`text/` is never edited by hand.** It is always the output of `repair.py`, plus `page_images.csv` from `images.py`. A correction goes into the script or into `corrections.csv`, so that running the script again keeps it.
+- **`text/` is never edited by hand.** It is always the output of `repair_<lang>.py`, plus `<lang>.page_images.csv` from `images_<lang>.py`. A correction goes into the script or into `corrections.csv`, so that running the script again keeps it.
 - **`work/` and `text/` can be deleted at any time** without losing anything: the scripts make them again, the same at every run. [`tools/vh_check.py`](../tools/vh_check.py) tells whether what is there is what the scripts must give ([`Conversion_method.md`](Conversion_method.md#the-recorded-results-and-one-check)).
 - Code needed by several versions moves to [`tools/`](../tools/); a version's scripts keep only what is specific to that book.
 
@@ -90,7 +91,7 @@ The rule behind the table: git holds what we write, and nothing that can be made
 The repository must be enough to make everything again, on any computer:
 
 - **The sources.** `metadata/sources.csv` of each version gives, for each file, its exact address, its size and its checksum ([below](#the-list-of-source-files)). A typed text kept in a git repository is recorded at the address of one exact commit, never of a branch, so the same file is delivered whatever its project changes later. A library that serves scans has no such addresses: there the checksum tells whether the file fetched again is the same.
-- **The texts.** In each version folder, `convert/extract.py` then `convert/repair.py` make `text/` from the source files the text is made from, and `convert/results.md5` says what they must give; `convert/images.py` then adds the link from pages to images, if the scans are there ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-version)).
+- **The texts.** In each version folder, `convert/extract_<lang>.py` then `convert/repair_<lang>.py` make `text/` from the source files the text is made from, and `convert/results.md5` says what they must give; `convert/images_<lang>.py` then adds the link from pages to images, if the scans are there ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-text)).
 - **What the scripts need.** [`pyproject.toml`](../pyproject.toml) names the Python version and every package used beyond what comes with Python; [`uv.lock`](../uv.lock) records the exact version and checksum of each. One command installs them ([`README.md`](../README.md#setting-up)).
 
 ## The list of source files

@@ -1,48 +1,55 @@
 #!/usr/bin/env python3
-"""Extract Wellmann's Dioscorides (First1KGreek typed text) as it is: the raw text.
+"""Extract Hort's Greek Theophrastus (First1KGreek typed text) as it is: the raw text.
 
-Run:  uv run convert/extract.py   (no arguments; writes work/raw/grc.jsonl,
-      work/raw/grc.info.json and work/raw/pages.csv in this version folder)
+Run:  uv run convert/extract_grc.py   (no arguments; writes work/raw/grc.jsonl,
+      work/raw/grc.info.json and work/raw/grc.pages.csv in this version folder)
 
 First step. This one copies the typed file into the unified text format without
 correcting anything: what is wrong in the typed file is wrong here in the same way.
-convert/repair.py then makes text/ from work/raw/.
+convert/repair_grc.py then makes text/ from work/raw/.
+
+THE BOOK
+Hort's Loeb edition (1916), two volumes: books 1-5 in volume 1, books 6-9 in volume 2
+(then minor works, not in the typed file). Greek on the left-hand (even) pages, English
+on the right-hand (odd) pages. Only the Greek is typed; the English is in the scan only.
 
 THE SOURCE
-source/tlg0656.tlg001.1st1K-grc1.xml, TEI (EpiDoc), Wellmann's Greek text of the five books,
+source/tlg0093.tlg001.1st1K-grc1.xml, TEI (EpiDoc), books 1-9 of the Enquiry into Plants,
 typed by First1KGreek. Layout of the body:
-- div type=edition > div subtype=book (n=1..5) > div subtype=chapter > div subtype=section,
-  each with its number in @n ("preface" for the chapter before chapter 1 of each book).
-- All words are inside <head> (one per book), <p> and <note type="footnote"> (one note,
-  inside a note, has type "footnte"). No text lies directly in a div.
-- <pb n="…"/>: Wellmann's printed page, without volume; the numbering starts again at 1
-  for each of the three volumes (books 1-2, 3-4, 5).
-- <lb n="…"/>: printed line numbers, every fifth line. No word is cut at a line break.
-- Footnotes are typed where the typists put them, mostly in a block at the end of each
-  printed page, in the middle of a <p>. They mix three things the book prints apart:
-  lists of plant names ("164 RV: …"), parallel passages ("8 SIM. …", "8 EXC. …") and
-  variant readings ("2 καὶ om. NE …").
-- <add>, <del> (some with status="error"), <gap/>, <sic>.
+- div type=edition > div subtype=book (n=1..9) > div subtype=chapter > div subtype=section,
+  each with its number in @n. This is the usual citation (book.chapter.section), with the
+  usual 119 chapters.
+- All words are inside <head> (11: the title of the work before books 1 and 6, the
+  number of each book as a Greek letter), <p> and <note type="footnote">. No text lies
+  directly in a div.
+- <pb n="…"/>: Hort's printed page, without volume, even numbers only (the Greek pages);
+  the numbering starts again at 2 for volume 2 (book 6). Four page pairs are missing at
+  book boundaries in each volume (e.g. 100 -> 104).
+- <lb n="…"/>: four, stray. No word is cut at a line break.
+- Footnotes (<note>), typed in a block where each Greek page ends, mostly in the middle of
+  a <p>, some between sections. They mix variant readings ("τὰ ins. Sch., om. Ald.H.") and
+  Hort's explanations in English ("i.e. flower, catkin, …"); one <note> may hold several
+  numbered notes.
+- <add> (all with cause="omitted"), <del> (two with status="error"), <gap reason=
+  "omitted"/>. A <del> holds one <note> and one <pb>.
 
 WHAT THIS SCRIPT DOES: plain extraction, no judgement on the content
 - One passage per <head> (kind head), per <p> (kind text) and per <note> (kind note).
   A note is written right after the passage it sits in, with an anchor at the place it
-  sits; a note inside a note is anchored to the outer note.
+  sits; a note lying between sections is anchored at the end of the last passage.
 - ref = the @n of the enclosing book, chapter and section divs, joined with dots, exactly
-  as the typed file has them, mistakes included (a few chapters are nested in others,
-  numbered twice, missing, or labelled as sections). Notes get the ref of where they sit.
+  as the typed file has them. Notes get the ref of where they sit; a head the ref of its
+  book.
 - page: each <pb> gives the page "v<volume>p<n>"; the volume goes up by one each time
-  n is "1" again. A page number met a second time in the same volume gets "-2" added to
-  its id (volume 1 has page 89 twice); "printed" keeps the number as typed.
-- Words: all characters of <head>, <p> and <note>, chapter and section numbers included,
-  as typed. Line breaks and runs of white space become one space; each piece of text is
-  put in Unicode NFC form (the file is not NFC). <lb> is dropped. Invisible control
-  characters are dropped (four U+008D in footnotes, apparently typing residue).
+  n is smaller than the page before. "printed" keeps the number as typed.
+- Words: all characters of <head>, <p> and <note>, chapter numbers included, as typed.
+  Line breaks and runs of white space become one space; each piece of text is put in
+  Unicode NFC form. <lb> is dropped. Invisible control characters are dropped.
 - Marks: <add> -> add, <del> -> del (whatever its status), <gap/> -> the character "…"
-  marked gap. <sic> has no equivalent mark: its words are kept, unmarked.
-- pages.csv: the pages in reading order, with their volume and number as typed.
+  marked gap.
+- grc.pages.csv: the pages in reading order, with their volume and number as typed.
 
-SOURCE FILES NEEDED: the typed file only. The scans are not opened.
+SOURCE FILES NEEDED: the typed file only. The scan is not opened.
 """
 import csv, json, re, sys, unicodedata
 import xml.etree.ElementTree as ET
@@ -50,7 +57,7 @@ from pathlib import Path
 
 VDIR = Path(__file__).resolve().parents[1]            # this version folder
 ROOT = VDIR.parents[1]                                 # the workspace folder
-SOURCES = ["tlg0656.tlg001.1st1K-grc1.xml"]            # the files of source/ this script reads
+SOURCES = ["tlg0093.tlg001.1st1K-grc1.xml"]            # the files of source/ this script reads
 sys.path.insert(0, str(ROOT / "tools"))
 from vh_sources import require
 RAW = VDIR / "work" / "raw"
@@ -96,21 +103,22 @@ class Passage:
 
 class Converter:
     def __init__(self):
-        self.pages = []        # rows of pages.csv
+        self.pages = []        # rows of grc.pages.csv
         self.seen = set()
         self.volume = 0
+        self.last_n = None
         self.page = None
         self.lines = []        # output passages, in order
         self.last_main = None  # last passage written that is not a note
 
     # pages -----------------------------------------------------------------
     def new_page(self, n):
-        if n == "1" or self.volume == 0:
+        if self.last_n is None or int(n) < self.last_n:
             self.volume += 1
-        pid, k = f"v{self.volume}p{n}", 1
-        while pid in self.seen:
-            k += 1
-            pid = f"v{self.volume}p{n}-{k}"
+        self.last_n = int(n)
+        pid = f"v{self.volume}p{n}"
+        if pid in self.seen:
+            sys.exit(f"page {pid} twice in the typed file")
         self.seen.add(pid)
         self.pages.append([pid, str(self.volume), n])
         self.page = pid
@@ -122,13 +130,15 @@ class Converter:
             tag = c.tag[len(NS):]
             if tag == "div":
                 walk_refs = dict(refs)
-                if c.get("subtype") in ("book", "chapter", "section"):
-                    walk_refs[c.get("subtype")] = c.get("n")
-                    if c.get("subtype") == "book":
-                        walk_refs.pop("chapter", None)
-                        walk_refs.pop("section", None)
-                    if c.get("subtype") == "chapter":
-                        walk_refs.pop("section", None)
+                sub = c.get("subtype")
+                if sub not in ("book", "chapter", "section"):
+                    sys.exit(f"unexpected div subtype {sub}")
+                walk_refs[sub] = c.get("n")
+                if sub == "book":
+                    walk_refs.pop("chapter", None)
+                    walk_refs.pop("section", None)
+                if sub == "chapter":
+                    walk_refs.pop("section", None)
                 self.walk(c, walk_refs)
             elif tag == "pb":
                 self.new_page(c.get("n"))
@@ -143,6 +153,8 @@ class Converter:
                 pass
             else:
                 sys.exit(f"unexpected element <{tag}> in a div")
+            if (c.tail or "").strip():
+                sys.exit(f"text directly in a div after <{tag}>")
 
     @staticmethod
     def ref(refs):
@@ -168,8 +180,6 @@ class Converter:
                 start = p.len
                 self.fill(c, p, refs)
                 p.marks.append((start, p.len, tag))
-            elif tag == "sic":
-                self.fill(c, p, refs)
             else:
                 sys.exit(f"unexpected element <{tag}> inside <{el.tag[len(NS):]}>")
             p.add(c.tail)
@@ -236,21 +246,21 @@ def main():
     with open(RAW / f"{LANG}.jsonl", "w", encoding="utf-8", newline="\n") as f:
         for line in conv.lines:
             f.write(json.dumps(line, ensure_ascii=False, separators=(",", ":")) + "\n")
-    with open(RAW / "pages.csv", "w", encoding="utf-8", newline="") as f:
+    with open(RAW / f"{LANG}.pages.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["page", "volume", "printed"])
         w.writerows(conv.pages)
     info = {
-        "format": "vh-text/0.2",
+        "format": "vh-text/0.3",
         "version": VDIR.name,
-        "work_no": 2,
-        "work": "Dioscorides, De materia medica",
+        "work_no": 1,
+        "work": "Theophrastus, Enquiry into Plants (Historia plantarum)",
         "lang": LANG,
         "origin": "typed",
         "sources": [{"file": typed.name, "md5": typed.md5}],
-        "converter": str((VDIR / "convert" / "extract.py").relative_to(ROOT)),
+        "converter": str((VDIR / "convert" / "extract_grc.py").relative_to(ROOT)),
         "ref_scheme": ["book", "chapter", "section"],
-        "rights": "Text public domain (Wellmann died 1933); typed text by First1KGreek, "
+        "rights": "Text public domain (Hort died 1935); typed text by First1KGreek, "
                   "CC BY-SA 4.0.",
         "status": "complete",
         "review": "none",
@@ -264,18 +274,14 @@ def main():
 NOTES = (
     "Plain extraction of the typed text: words, numbers and labels as First1KGreek typed "
     "them, errors included. "
-    "Chapter and section numbers printed by Wellmann are part of the text, as typed. "
-    "Four invisible control characters (U+008D) in footnotes were dropped. "
-    "The ref copies the typed file's chapter and section labels, which do not always match "
-    "the book: some chapters are nested in others or labelled as sections (3.87), some "
-    "numbers appear twice (1.2, 1.90, 2.2, 4.147, 5.2-5.4) or are missing (2.66, 2.145, "
-    "2.149, 3.87, 4.151, 5.132; their text is inside the chapter before). "
-    "All footnotes are kind 'note': the typed file does not separate the lists of plant "
-    "names (RV), the parallel passages (SIM., EXC.) and the variant readings, and they are "
-    "not separated here. A note is anchored where the typists put it, usually the end of "
-    "its printed page, not the word it comments. "
-    "Volume 1 has page 89 twice in the typed file (82, 89, 84 ... 89); the first is "
-    "probably page 83; the second has the id v1p89-2."
+    "Only the Greek pages are here (even numbers). "
+    "Chapter numbers printed by Hort are part of the text, as typed. "
+    "The ref copies the typed file's labels: chapter 7.3 has no section 4 (its passages "
+    "are labelled 3) and one section is labelled 7.4.5s. "
+    "Page 216 of volume 2 is typed as 214. "
+    "All footnotes are kind 'note': variant readings and Hort's explanations are not "
+    "separated. A note is anchored where the typists put it, at the end of its printed "
+    "page, not at the word it comments."
 )
 
 if __name__ == "__main__":

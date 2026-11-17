@@ -6,8 +6,8 @@ source (typed text, scan of a printed book, scan of a manuscript), must produce 
 of this shape.
 
 Not a command: check() is called by tools/vh_check.py. It verifies
-one folder (text/ or work/raw/) of a version: pages.csv, every <lang>.jsonl and its
-<lang>.info.json, and page_images.csv if it is there. It prints one line per file and
+one folder (text/ or work/raw/) of a version: for every <lang>.jsonl, its <lang>.info.json
+and <lang>.pages.csv, and <lang>.page_images.csv if it is there. It prints one line per file and
 returns the problems found.
 """
 import csv, json, re, sys, unicodedata
@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "works"
-FORMAT = "vh-text/0.2"
+FORMAT = "vh-text/0.3"
 
 KINDS = {"head", "text", "commentary", "note", "apparatus", "margin", "caption", "paratext"}
 ANCHORED = {"note", "apparatus", "margin"}
@@ -82,7 +82,7 @@ def check_images(path, pages, err):
                 continue
             page, source_file, image, mapping = row
             if page not in pages or page in seen:
-                err(f"{path.name} line {n}: page {page!r} not in pages.csv, or repeated")
+                err(f"{path.name} line {n}: page {page!r} not in the pages file, or repeated")
             seen.add(page)
             if not source_file or not image:
                 err(f"{path.name} line {n}: source_file and image must be filled")
@@ -147,7 +147,7 @@ def check_text(path, pages, err):
                 err(f"{where}: kind {p.get('kind')!r} not in {sorted(KINDS)}")
             kinds[p.get("kind")] += 1
             if p.get("page") not in pages:
-                err(f"{where}: page {p.get('page')!r} not in pages.csv")
+                err(f"{where}: page {p.get('page')!r} not in the pages file")
             problem = text_problem(text)
             if problem:
                 err(f"{where}: {problem}")
@@ -159,7 +159,7 @@ def check_text(path, pages, err):
                       and last < b[0] <= len(text) and b[1] in pages)
                 if not ok:
                     err(f"{where}: bad page break {b!r} (offset must increase and stay inside "
-                        f"the text; page must be in pages.csv)")
+                        f"the text; page must be in the pages file)")
                     break
                 last = b[0]
             for m in p.get("marks", []):
@@ -197,13 +197,6 @@ def check(folder, sub="text", indent="  "):
     folder, tdir = vdir.resolve().name, vdir / sub
     if not tdir.is_dir():
         return [f"no {sub}/ folder in works/{folder}"]
-    pages = check_pages(tdir / "pages.csv", problems.append)
-    if (tdir / "page_images.csv").exists():
-        if sub != "text":
-            problems.append("page_images.csv belongs in text/ only")
-        else:
-            n = check_images(tdir / "page_images.csv", pages, problems.append)
-            print(f"{indent}{sub}/page_images.csv: {n} of {len(pages)} pages have an image")
     texts = sorted(tdir.glob("*.jsonl"))
     if not texts:
         problems.append("no <lang>.jsonl file")
@@ -212,6 +205,14 @@ def check(folder, sub="text", indent="  "):
         if not LANG.match(lang):
             problems.append(f"{path.name}: file name must be a three-letter language code")
         check_info(tdir / f"{lang}.info.json", lang, folder, problems.append)
+        pages = check_pages(tdir / f"{lang}.pages.csv", problems.append)
+        images = tdir / f"{lang}.page_images.csv"
+        if images.exists():
+            if sub != "text":
+                problems.append(f"{images.name} belongs in text/ only")
+            else:
+                k = check_images(images, pages, problems.append)
+                print(f"{indent}{sub}/{images.name}: {k} of {len(pages)} pages have an image")
         n, chars, kinds = check_text(path, pages, problems.append)
         detail = ", ".join(f"{k} {v}" for k, v in sorted(kinds.items(), key=lambda x: str(x[0])))
         print(f"{indent}{sub}/{path.name}: {n} passages, {chars} characters ({detail})")

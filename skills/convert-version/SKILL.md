@@ -1,11 +1,11 @@
 ---
 name: convert-version
-description: Convert one version of a work (works/<version>/) to the project's unified text format by writing its convert/extract.py, convert/repair.py and convert/images.py. Use when asked to convert, reconvert or fix the text of a version.
+description: Convert one version of a work (works/<version>/) to the project's unified text format by writing its convert/extract_<lang>.py, convert/repair_<lang>.py and convert/images_<lang>.py. Use when asked to convert, reconvert or fix the text of a version.
 ---
 
 # Task: convert one version to the unified text format
 
-**Goal.** For one version folder `works/<version>/`, write three scripts: `convert/extract.py`, which copies the source into the unified format as it is (`work/raw/`); `convert/repair.py`, which makes `text/` from it by correcting the source's mistakes; and, when the version has a scan, `convert/images.py`, which links each page to its image. The raw text and the final text are complete, pass the check and state their limits.
+**Goal.** For one version folder `works/<version>/`, write three scripts: `convert/extract_<lang>.py`, which copies the source into the unified format as it is (`work/raw/`); `convert/repair_<lang>.py`, which makes `text/` from it by correcting the source's mistakes; and, when the version has a scan, `convert/images_<lang>.py`, which links each page to its image. The raw text and the final text are complete, pass the check and state their limits.
 
 **Read first, in this order:**
 1. `docs/Unified_text_format.md` — the target. Every field and rule in it is binding.
@@ -18,11 +18,12 @@ description: Convert one version of a work (works/<version>/) to the project's u
 ## Hard constraints
 
 - You write the scripts; the scripts write the text. Never type, paste, correct or complete text of the work yourself, in a script or in the output.
-- `extract.py` corrects nothing: if the source is wrong, the raw text is wrong in the same way.
-- `repair.py` corrects by rules, each a named function described in its opening comment, each change written to `work/repairs.csv`. A rule may change `ref`, `kind`, `page` and where a passage is cut; never the words. A change to the words is a row of `convert/corrections.csv` that a person asked for.
+- `extract_<lang>.py` corrects nothing: if the source is wrong, the raw text is wrong in the same way.
+- `repair_<lang>.py` corrects by rules, each a named function described in its opening comment, each change written to `work/<lang>.repairs.csv`. A rule may change `ref`, `kind`, `page` and where a passage is cut; never the words. A change to the words is a row of `convert/corrections.csv` that a person asked for.
 - **Propose each repair rule to the user before writing it**: the mistake, how many passages, the rule, what it could get wrong.
 - `source/` is read-only. Read archives in place (`zipfile`); anything unpacked goes to `work/`.
-- Each script lists, in a constant `SOURCES` near its top, the files of `source/` it reads, and gets them through `require()` of `tools/vh_sources.py` before doing anything else. No other code opens or checksums a source file. For a typed text, `extract.py` names the typed file only and `repair.py` names nothing: the text must build with the scans absent. Only `images.py` names the scans.
+- Each script lists, in a constant `SOURCES` near its top, the files of `source/` it reads, and gets them through `require()` of `tools/vh_sources.py` before doing anything else. No other code opens or checksums a source file. For a typed text, `extract_<lang>.py` names the typed file only and `repair_<lang>.py` names nothing: the text must build with the scans absent. Only `images_<lang>.py` names the scans.
+- One set of scripts per language of the version, `<lang>` being the language code of the text format (`extract_grc.py`, `repair_grc.py`, `images_grc.py`). The scripts of one language read and write only that language's files and name only that language's sources: each language of a bilingual version is made without the other.
 - A script writes only its own files: it never deletes or changes what another script made, and never writes `convert/results.md5`.
 - One command does one thing. A parameter says what to act on (a version, a file, a place in a text); it never switches a command to another action. A second action is a second tool.
 - Only the packages of `pyproject.toml`; run everything with `uv run`. If the task cannot be done without another package (a reading engine), stop and ask the user.
@@ -35,11 +36,11 @@ description: Convert one version of a work (works/<version>/) to the project's u
 1. **Look at the source before writing anything.**
    - Typed text (XML): list the element names and their counts; find how books, chapters and sections are marked, how pages are marked, where notes and variant readings sit, which elements mark editorial additions, deletions and gaps. Read three stretches in full: the beginning, one plant entry in the middle, the end. Parse large files as a stream (`xml.etree.ElementTree.iterparse`). Check that the file parses with the standard library: named entities such as `&mdash;` need to be declared to the parser.
    - Scan: do not start. Reading scans by machine is not decided (`docs/OCR_Kraken_approach.md`); see `WIP.md` for the state of that question.
-2. **Decide the mapping** from the source's structure to `kind`, `ref`, `page`, `marks`, `anchor`. Decide the `ref_scheme` from the citation system scholars use for this work, not from the file's own nesting if they differ. Write these decisions, and the layout of the book, in the comment at the top of `extract.py`; the comment at the top of `repair.py` lists its rules. These two comments are the only description of the version's conversion.
-3. **Write `convert/extract.py`.** It writes `work/raw/<lang>.jsonl`, `work/raw/<lang>.info.json` and `work/raw/pages.csv`. The `sources` of the info file are what `require()` returned. Check it: `uv run tools/vh_check.py <version>`.
+2. **Decide the mapping** from the source's structure to `kind`, `ref`, `page`, `marks`, `anchor`. Decide the `ref_scheme` from the citation system scholars use for this work, not from the file's own nesting if they differ. Write these decisions, and the layout of the book, in the comment at the top of `extract_<lang>.py`; the comment at the top of `repair_<lang>.py` lists its rules. These two comments are the only description of the version's conversion.
+3. **Write `convert/extract_<lang>.py`.** It writes `work/raw/<lang>.jsonl`, `work/raw/<lang>.info.json` and `work/raw/<lang>.pages.csv`. The `sources` of the info file are what `require()` returned. Check it: `uv run tools/vh_check.py <version>`.
 4. **List the mistakes of the source** found in the raw text (labels that contradict the printed numbers, numbers typed inside sentences, voices mixed, pages out of order), with counts and examples, and propose a repair rule for each to the user.
-5. **Write `convert/repair.py`** with the rules agreed. It reads `work/raw/` only and writes the same three files to `text/`, plus `work/repairs.csv`. If a rule was decided by looking at a page image, say in its description what was seen; the script itself does not open the scan.
-6. **Write `convert/images.py`** if the version has a scan. It reads `text/pages.csv` and the scans and writes `text/page_images.csv`; its opening comment gives the rule and the pages it was checked on. A page that could not be matched gets no row. Use `computed` only after verifying the rule on at least five pages spread over each volume, by reading the page number on the image (`tools/page_image.py` writes one page image as a PNG file).
+5. **Write `convert/repair_<lang>.py`** with the rules agreed. It reads `work/raw/` only and writes the same three files to `text/`, plus `work/<lang>.repairs.csv`. If a rule was decided by looking at a page image, say in its description what was seen; the script itself does not open the scan.
+6. **Write `convert/images_<lang>.py`** if the version has a scan. It reads `text/<lang>.pages.csv` and the scans and writes `text/<lang>.page_images.csv`; its opening comment gives the rule and the pages it was checked on. A page that could not be matched gets no row. Use `computed` only after verifying the rule on at least five pages spread over each volume, by reading the page number on the image (`tools/page_image.py` writes one page image as a PNG file).
 7. **Run the check**: `uv run tools/vh_check.py <version>`. Fix the scripts until it reports no problem and the last line is `OK`.
 8. **Verify the content**, and report the figures:
    - nothing lost: the number of characters of running text in the source, in the raw text and in `text/`, per kind, with every difference explained;
@@ -47,13 +48,13 @@ description: Convert one version of a work (works/<version>/) to the project's u
    - ten passages spread over the work, read with `uv run tools/vh_view.py <file> <ref>`, compared with the source file character by character.
    For a typed text, do not compare its words with the page images: open an image only to settle a doubt about a label or a page number (`docs/Conversion_method.md`).
 9. **Set the info file truthfully.** `status` = `complete` only if the whole version is there. `review` = `none` unless a person compared samples of a machine-read text with page images. Everything not verified goes in `notes`, in plain words; that the words of a typed text were not read against the scan is not a limit to list.
-10. **Have the checksums of the results written.** Delete `work/raw/`, `text/`, `work/repairs.csv` and `convert/results.md5`, run the three scripts in order, then `uv run tools/vh_check.py <version>`: it writes `convert/results.md5`. Do this again after any later change to a script; if the checksums change, say in the commit message which and why. Never write or edit that file yourself.
+10. **Have the checksums of the results written.** Delete `work/raw/`, `text/`, `work/<lang>.repairs.csv` and `convert/results.md5`, run the three scripts in order, then `uv run tools/vh_check.py <version>`: it writes `convert/results.md5`. Do this again after any later change to a script; if the checksums change, say in the commit message which and why. Never write or edit that file yourself.
 11. **Commit** `convert/` (scripts and `results.md5`) and the updated `WIP.md` together, with a message stating the counts and what was not verified. `work/` and `text/` are not in git.
 
 ## Done means
 
-- After deleting `work/` and `text/`, `uv run convert/extract.py` then `uv run convert/repair.py` make them again and `uv run tools/vh_check.py <version>` prints `OK` against the committed `convert/results.md5`.
-- For a typed text, this holds with the scans moved out of `source/`. `uv run convert/images.py` then adds `text/page_images.csv` without changing any other file, and stops with the standard message when a scan is absent.
+- After deleting `work/` and `text/`, `uv run convert/extract_<lang>.py` then `uv run convert/repair_<lang>.py` make them again and `uv run tools/vh_check.py <version>` prints `OK` against the committed `convert/results.md5`.
+- For a typed text, this holds with the scans moved out of `source/`. `uv run convert/images_<lang>.py` then adds `text/<lang>.page_images.csv` without changing any other file, and stops with the standard message when a scan is absent.
 - The verification figures of step 8 are in the commit message.
 - No text of the work was typed by you.
 

@@ -13,7 +13,7 @@ FILES (all in the source/ folder next to this note, exactly as the libraries del
   via Internet Archive.
   Why here: scan of the same edition as the typed text (rule 2). The typed text gives
   Wellmann's page numbers; checked on volume 2, page 100 (image 134): same first words.
-  Each page is matched to its image by convert/images.py, which states how it was checked;
+  Each page is matched to its image by convert/images_grc.py, which states how it was checked;
   the text itself is made without these scans.
 
 WHY THIS VERSION
@@ -27,7 +27,7 @@ WHY THIS VERSION
   Wellcome not digitised, Google Books no full view, Biodiversity Heritage Library no title.
 
 NOT VERIFIED
-- Nothing left about these files (the page numbers are checked in convert/images.py).
+- Nothing left about these files (the page numbers are checked in convert/images_grc.py).
 
 RIGHTS: text public domain (Wellmann died 1933); typed text CC BY-SA 4.0; scans CC BY-NC 4.0
 (Wellcome Collection record).

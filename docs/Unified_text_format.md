@@ -1,6 +1,6 @@
 # The unified text format
 
-Version 0.2. Any change to the format raises this number.
+Version 0.3. Any change to the format raises this number.
 
 ## Purpose
 
@@ -16,16 +16,16 @@ What the format must guarantee:
 
 ## The files
 
-In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds the files below. The raw text in `work/raw/` ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-version)) has the same files in the same format, `page_images.csv` aside; the difference is that its labels still carry the mistakes of the source.
+In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds the files below. The raw text in `work/raw/` ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-text)) has the same files in the same format, `<lang>.page_images.csv` aside; the difference is that its labels still carry the mistakes of the source.
 
 | File | Content |
 |---|---|
 | `<lang>.jsonl` | The text in one language, one passage per line |
 | `<lang>.info.json` | What this text is, where it comes from, how far it has been checked |
-| `pages.csv` | The pages of the version |
-| `page_images.csv` | Optional: the scan image of each page |
+| `<lang>.pages.csv` | The pages this text is on |
+| `<lang>.page_images.csv` | Optional: the scan image of each page |
 
-`<lang>` is the three-letter ISO 639-3 code of the language: `grc` ancient Greek, `lat` Latin, `eng` English, `fra` French, `ita` Italian, `frm` Middle French (about 1400–1600), `fro` Old French. A bilingual book gives two text files in the same folder, sharing `pages.csv`.
+`<lang>` is the three-letter ISO 639-3 code of the language: `grc` ancient Greek, `lat` Latin, `eng` English, `fra` French, `ita` Italian, `frm` Middle French (about 1400–1600), `fro` Old French. A bilingual book gives two texts in the same folder, each with its own four files: neither needs the other to be made or read. They are lined up through `ref` and through the page identifiers.
 
 Files are UTF-8 without byte-order mark, lines end with a line feed.
 
@@ -41,7 +41,7 @@ One line of `<lang>.jsonl` is one passage: a paragraph of the work, a heading, a
 |---|---|---|
 | `id` | yes | Identifier of the passage, unique in the file. By convention a six-digit number in reading order |
 | `kind` | yes | Which voice or part of the book (list below) |
-| `page` | yes | The page on which the passage begins: a value of the column `page` of `pages.csv` |
+| `page` | yes | The page on which the passage begins: a value of the column `page` of `<lang>.pages.csv` |
 | `text` | yes | The words, as one continuous string (rules below) |
 | `ref` | when the work has one | The place in the work in its usual citation system, with dots: `3.48.1` = book 3, chapter 48, section 1. What each number means is stated in the info file. A translation carries the same `ref` as its original, which is how the two are lined up |
 | `breaks` | no | Page changes inside the passage: a list of `[position, page]`. The text from that position on is on that page |
@@ -68,7 +68,7 @@ A converter may add fields of its own for one version; their names begin with `x
 | `caption` | The caption of an illustration |
 | `paratext` | Everything around the work: title page, dedication, preface, index, table of contents |
 
-Running heads, page numbers, catchwords and signatures are not text: they are dropped (the page number goes into `pages.csv`).
+Running heads, page numbers, catchwords and signatures are not text: they are dropped (the page number goes into `<lang>.pages.csv`).
 
 ### Rules for `text`
 
@@ -90,7 +90,7 @@ Running heads, page numbers, catchwords and signatures are not text: they are dr
 
 ## The pages file
 
-`pages.csv`, one row per page of the version, in reading order, with this header:
+`<lang>.pages.csv`, one row per page the text is on, in reading order, with this header:
 
 ```
 page,volume,printed
@@ -104,7 +104,7 @@ page,volume,printed
 
 ## The page images file
 
-`page_images.csv` says where the image of each page is in the scans. It is **optional**: the text is complete without it, and the other files are the same whether it is there or not. It exists so that a page can be shown beside its text; it is the only file of `text/` that cannot be made without the scans when the text comes from a typed file ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-version)). It is never in `work/raw/`.
+`<lang>.page_images.csv` says where the image of each page is in the scans. It is **optional**: the text is complete without it, and the other files are the same whether it is there or not. It exists so that a page can be shown beside its text; it is the only file of `text/` that cannot be made without the scans when the text comes from a typed file ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-text)). It is never in `work/raw/`.
 
 One row per page that has an image, with this header:
 
@@ -114,7 +114,7 @@ page,source_file,image,mapping
 
 | Column | Content |
 |---|---|
-| `page` | A value of the column `page` of `pages.csv`, at most once |
+| `page` | A value of the column `page` of `<lang>.pages.csv`, at most once |
 | `source_file` | The scan this page is in: name of the file in `source/` |
 | `image` | The image inside that file: its name in the archive, or the page number for a PDF |
 | `mapping` | How the page was matched to its image: `checked` (compared by eye) or `computed` (by rule, e.g. a constant shift, verified on a few pages) |
@@ -127,7 +127,7 @@ A page not yet matched has no row.
 
 | Key | Content |
 |---|---|
-| `format` | `vh-text/0.2` |
+| `format` | `vh-text/0.3` |
 | `version` | Name of the version folder |
 | `work_no`, `work` | As in the selection file |
 | `lang` | Same as the file name |
@@ -142,7 +142,7 @@ A page not yet matched has no row.
 
 ## The checker
 
-Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a `text/` or `work/raw/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup; and `page_images.csv` when it is there). It does not look at the source and does not judge whether the words are right; for a machine-read text that is done by comparing samples with the page images, while a typed text is taken as its project typed it ([`Conversion_method.md`](Conversion_method.md#what-counts-as-verified)). A text that fails the check is not accepted. It is run as part of the check of a version, [`tools/vh_check.py`](../tools/vh_check.py) ([`Conversion_method.md`](Conversion_method.md#the-recorded-results-and-one-check)).
+Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a `text/` or `work/raw/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup; and `<lang>.page_images.csv` when it is there). It does not look at the source and does not judge whether the words are right; for a machine-read text that is done by comparing samples with the page images, while a typed text is taken as its project typed it ([`Conversion_method.md`](Conversion_method.md#what-counts-as-verified)). A text that fails the check is not accepted. It is run as part of the check of a version, [`tools/vh_check.py`](../tools/vh_check.py) ([`Conversion_method.md`](Conversion_method.md#the-recorded-results-and-one-check)).
 
 ## Choices made, and why
 

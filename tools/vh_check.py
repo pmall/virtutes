@@ -15,8 +15,9 @@ For each version it verifies, and prints:
    metadata/sources.csv (an absent one is only reported: not every script needs every
    file); a file in source/ that the list does not name is a problem, the libraries' own
    small records (*.json, *_pages.csv) aside;
-2. which of the files the scripts must produce are missing (text/page_images.csv is
-   optional), and that no other file lies in work/raw/ or text/;
+2. which of the files the scripts must produce are missing, for each language the
+   version has an extraction script for (the page images file is optional), and that no
+   other file lies in work/raw/ or text/;
 3. the shape of the raw text and of the final text (tools/vh_text.py);
 4. the checksums:
    - if convert/results.md5 exists, each produced file must have the checksum it gives;
@@ -39,8 +40,25 @@ import vh_sources, vh_text
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "works"
 RESULT_FOLDERS = ["work/raw", "text"]       # everything in them is a result
-RESULT_FILES = ["work/repairs.csv"]         # and these single files
-OPTIONAL = {"text/page_images.csv"}
+
+
+def optional(name):
+    return name.endswith(".page_images.csv")
+
+
+def languages(vdir):
+    """The languages a version has an extraction script for: convert/extract_<lang>.py."""
+    return sorted(f.stem.split("_", 1)[1] for f in (vdir / "convert").glob("extract_*.py"))
+
+
+def expected(vdir):
+    """The files the scripts of a version produce, as paths relative to it, in a fixed order."""
+    names = []
+    for lang in languages(vdir):
+        names += [f"work/raw/{lang}.{part}" for part in ("info.json", "jsonl", "pages.csv")]
+        names += [f"text/{lang}.{part}" for part in ("info.json", "jsonl", "pages.csv", "page_images.csv")]
+        names.append(f"work/{lang}.repairs.csv")
+    return names
 
 
 def produced(vdir):
@@ -49,7 +67,7 @@ def produced(vdir):
     for folder in RESULT_FOLDERS:
         d = vdir / folder
         found += sorted(f"{folder}/{f.name}" for f in d.iterdir() if f.is_file()) if d.is_dir() else []
-    return found + [f for f in RESULT_FILES if (vdir / f).is_file()]
+    return found + sorted(f"work/{f.name}" for f in (vdir / "work").glob("*.repairs.csv"))
 
 
 def reference(vdir):
@@ -62,13 +80,10 @@ def reference(vdir):
 
 
 def missing(vdir, here, ref):
-    """The files that should be there and are not: those of the reference, or, without one,
-    those every version produces."""
-    if ref is not None:
-        return [name for name in ref if name not in here]
-    gone = [f"{folder}/{name}" for folder in RESULT_FOLDERS for name in ("<lang>.jsonl", "pages.csv")
-            if not (list((vdir / folder).glob("*.jsonl")) if name[0] == "<" else (vdir / folder / name).is_file())]
-    return gone + [name for name in RESULT_FILES + sorted(OPTIONAL) if name not in here]
+    """The files that should be there and are not: those of the reference and those the
+    version's scripts produce."""
+    names = list(ref or []) + [n for n in expected(vdir) if n not in (ref or [])]
+    return [name for name in names if name not in here]
 
 
 def check(folder):
@@ -101,8 +116,8 @@ def check(folder):
     here = produced(vdir)
     gone = missing(vdir, here, ref)
     for name in gone:
-        print(f"  {name}: missing" + (" (optional)" if name in OPTIONAL else ""))
-    required_gone = [name for name in gone if name not in OPTIONAL]
+        print(f"  {name}: missing" + (" (optional)" if optional(name) else ""))
+    required_gone = [name for name in gone if not optional(name)]
 
     for folder in RESULT_FOLDERS:
         if any(name.startswith(folder + "/") for name in here):

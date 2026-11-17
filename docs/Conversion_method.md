@@ -14,20 +14,20 @@ The goal this serves, texts that anyone can make again from the exact sources: [
 
 When a version has both a typed text and a scan, the typed text is what we work from; what the scan is for: [`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2.
 
-## Three scripts per version
+## Three scripts per text
 
-Each book is laid out its own way: where the chapter numbers are, how notes are attached, how two languages share a page, how pages are numbered. A general converter would be either wrong for most books or as complicated as all of them together. So each version gets its own short scripts, in the folder `convert/` of the version. Every version has the same scripts, with the same names, however little one of them has to do for a given book.
+Each book is laid out its own way: where the chapter numbers are, how notes are attached, how two languages share a page, how pages are numbered. A general converter would be either wrong for most books or as complicated as all of them together. So each version gets its own short scripts, in the folder `convert/` of the version. Every text has the same three scripts, however little one of them has to do for a given book. A version with two languages has them once per language (`<lang>` in their names is the language code): each language is made on its own, from its own source files, so the Greek of a bilingual book whose Greek is typed and whose English is a scan is made without the scan.
 
 A source also has mistakes of its own: a typed text with a chapter under the wrong number, a page number typed twice. Copying and correcting are kept apart. Linking the pages to their scan images is kept apart too, because it is not needed to make the text:
 
 | Script | What it does | Source files it needs |
 |---|---|---|
-| 1. `extract.py` | **Copies.** Brings the source to the unified format without correcting anything: what is wrong in the source is wrong in the same way in its output, the raw text (`work/raw/`) | The files the text is made from: the typed file, or the scan when the text is read from it |
-| 2. `repair.py` | **Corrects.** Makes the final text (`text/`) from the raw text, by rules written in the script, and lists every change it makes (`work/repairs.csv`) | None: it reads the raw text only |
-| 3. `images.py` | **Links pages to images.** Writes the optional `text/page_images.csv` ([`Unified_text_format.md`](Unified_text_format.md#the-page-images-file)) from the pages of the final text | The scans |
+| 1. `extract_<lang>.py` | **Copies.** Brings the source to the unified format without correcting anything: what is wrong in the source is wrong in the same way in its output, the raw text (`work/raw/`) | The files the text is made from: the typed file, or the scan when the text is read from it |
+| 2. `repair_<lang>.py` | **Corrects.** Makes the final text (`text/`) from the raw text, by rules written in the script, and lists every change it makes (`work/<lang>.repairs.csv`) | None: it reads the raw text only |
+| 3. `images_<lang>.py` | **Links pages to images.** Writes the optional `text/<lang>.page_images.csv` ([`Unified_text_format.md`](Unified_text_format.md#the-page-images-file)) from the pages of the final text | The scans |
 
-- **A script opens only the source files its result is made from.** The text of a version that has a typed file is made by `extract.py` and `repair.py` from that file alone: a researcher who does not have the scans, often hundreds of times larger, obtains exactly the same text. Only `images.py` needs them, and nothing else depends on its result.
-- **A scan may decide a rule without being needed to run it.** When a look at a page image settles how a label or a page number must be repaired, the rule and what was seen are written in `repair.py`; running the rule does not open the scan.
+- **A script opens only the source files its result is made from.** The text of a version that has a typed file is made by `extract_<lang>.py` and `repair_<lang>.py` from that file alone: a researcher who does not have the scans, often hundreds of times larger, obtains exactly the same text. Only `images_<lang>.py` needs them, and nothing else depends on its result.
+- **A scan may decide a rule without being needed to run it.** When a look at a page image settles how a label or a page number must be repaired, the rule and what was seen are written in `repair_<lang>.py`; running the rule does not open the scan.
 - **What a repair rule may change**: the labels around the words (place in the work, kind of passage, page) and where a passage is cut. The words themselves change only through a correction a person asked for (`convert/corrections.csv`).
 - **One check of the source files, the same everywhere.** Each script names the source files it needs and gets them through [`tools/vh_sources.py`](../tools/vh_sources.py) before doing anything else. A file that is missing, or whose checksum is not the one in the version's list of source files (`metadata/sources.csv`, [`Folder_structure.md`](Folder_structure.md#the-list-of-source-files)), stops the script with a message that says which file and where to fetch it.
 
@@ -49,7 +49,7 @@ The division of work:
 - **It never changes an existing file.** Running the scripts or the check again cannot alter the recorded checksums. After a script was changed on purpose and gives other results, its author deletes `convert/results.md5` and runs the check again; the commit then shows the old and new checksums.
 - **A missing file is reported, not counted as a fault**, and neither is an absent source file: someone who has only the typed file makes the text, and the check compares it with the recorded checksums while reporting the page images file as missing.
 - The file is in the format of the standard command `md5sum`, so the checksums can also be verified without the project's tools: `md5sum -c convert/results.md5`, from the version folder.
-- **No script touches the result of another.** If `repair.py` is run again and changes the pages, `page_images.csv` is left as it is; the check then reports that the pages are not the recorded result.
+- **No script touches the result of another.** If `repair_<lang>.py` is run again and changes the pages, `<lang>.page_images.csv` is left as it is; the check then reports that the pages are not the recorded result.
 
 To read a text, or one place in it: [`tools/vh_view.py`](../tools/vh_view.py).
 
@@ -59,7 +59,7 @@ A text is `complete` when the whole version is there and passes the check. Its `
 
 - **Counts** agree with known figures: number of books and chapters; for Mattioli 1568, the 831 chapters of Dioscorides counted by Staub et al. 2016.
 - For a machine-read text: **samples** spread over the whole book were compared by eye with the page image, with particular attention to plant names, quantities and parts of plants. A typed text has no such review; its `review` stays `none` and this is not listed as a limit.
-- For a version with a typed text and a scan, when `images.py` has been written: its rule for matching pages to images was verified by reading the page number on images spread over each volume. This says nothing about the words.
+- For a version with a typed text and a scan, when `images_<lang>.py` has been written: its rule for matching pages to images was verified by reading the page number on images spread over each volume. This says nothing about the words.
 
 Whatever was not verified is written in the `notes` of the text's info file.
 
@@ -67,6 +67,5 @@ Whatever was not verified is written in the `notes` of the text's info file.
 
 - The reading engine for scans and the transcription rules ([`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)).
 - Who checks the samples for each language, and how much time they have.
-- A version whose two languages come from different sources. Theophrastus is the one case in the pilot: the Greek from a typed file, the English from the scan. The scripts are per version, but the Greek must stay buildable without the scan; how the English is added without breaking that is not designed.
 - How long the libraries keep serving exactly the same files. A typed text is fetched at one exact commit; a scan archive is a file its library may make again, with another checksum. Assumed, not observed. If it happens, the checksum in `metadata/sources.csv` no longer matches what can be fetched; depositing the files we used in a research data repository would remove the risk, where their rights allow.
 - Whether to move later to a newer state of the typed texts, which their projects keep correcting. Each is listed at the address of one exact commit in its version's `metadata/sources.csv`; moving to a newer one is a decision, followed by a new conversion.
