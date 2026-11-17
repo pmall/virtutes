@@ -13,8 +13,7 @@ FILES (all in the source/ folder next to this note, exactly as the libraries del
   via Internet Archive.
   Why here: scan of the same edition as the typed text (rule 2). The typed text gives
   Wellmann's page numbers; checked on volume 2, page 100 (image 134): same first words.
-  Image number = printed page + 34 in volume 2 (seen on pages 81, 84, 85, 100, 286, 289)
-  and + 14 in volume 3 (pages 14, 16, 26); volume 1 not looked at.
+  Each page is matched to its image in convert/repair.py, which states how it was checked.
 
 WHY THIS VERSION
 - 9 versions in the edition map, all complete and free of copyright. Wellmann is the only
@@ -27,8 +26,7 @@ WHY THIS VERSION
   Wellcome not digitised, Google Books no full view, Biodiversity Heritage Library no title.
 
 NOT VERIFIED
-- The page numbers of volumes 1 and 3 against their scans (one irregular marker in volume 1:
-  page 84 appears after page 89).
+- Nothing left about these files (the page numbers are checked in convert/repair.py).
 
 RIGHTS: text public domain (Wellmann died 1933); typed text CC BY-SA 4.0; scans CC BY-NC 4.0
 (Wellcome Collection record).

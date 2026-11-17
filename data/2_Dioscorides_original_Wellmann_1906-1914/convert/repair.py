@@ -6,8 +6,8 @@ Run:  uv run convert/repair.py   (no arguments; reads work/raw/, written by
       and work/repairs.csv)
 
 Second of two steps. The raw text keeps every mistake of the typed file. This script
-corrects them by the rules below. A rule never changes the words of the work: all rules
-here change only `ref`. Every change is written as one row of work/repairs.csv (passage,
+corrects them by the rules below. A rule never changes the words of the work: rules 1-5
+change only `ref`, rule 6 only `page`. Every change is written as one row of work/repairs.csv (passage,
 rule, field, before, after). The full list of passages each rule changes is also kept in
 this file, in CASES at the end, so that the repairs can be read without running anything;
 the script stops if its rules do not give exactly CASES.
@@ -26,8 +26,9 @@ THE RULES, in the order they run
    brackets (the typed file marks them del, wholly or in part). They stay kind text, as
    printed in the main text block. They get the ref "book.N" of the printed number N,
    without section, from the "N RV:" passage up to the next passage beginning with a
-   chapter number (a number of at least N; a smaller one is a section number). The typists had labelled six of them with the chapter before
-   (e.g. "178 RV" as 2.177) or with letters (3.73a). Decided with the user.
+   chapter number (a number of at least N; a smaller one is a section number). The
+   typists had labelled six of them with the chapter before (e.g. "178 RV" as 2.177) or
+   with letters (3.73a). Decided with the user.
 2. section_label: section labels with a typing slip, fixed one by one: 4.93.91 -> 4.93.1,
    4.157.2s -> 4.157.2, 4.164.22 -> 4.164.2, 3.73b -> 3.73 (Wellmann's chapter 73; the
    bracketed RV chapter before it, also numbered 73, is rule 1), 5.11.2a -> 5.11.2 and
@@ -47,15 +48,26 @@ THE RULES, in the order they run
    4.182, 5.109, 5.123 (e.g. 2.112.2-4 -> 2.164.2-4, 5.4 -> 5.109.4).
 5. note_ref: a footnote takes the ref of the passage it is anchored to (in the raw text
    every note had its host's ref; rules 1-4 change the host only).
+6. page_83: in volume 1 the typed file numbers page 83 as 89 (it reads 82, 89, 84 … 89).
+   Checked on the scan: image 97 prints 83 and holds the start of chapter 1.89, which the
+   typed file puts on its first page 89. That page becomes v1p83 (printed 83), and the
+   second page 89, v1p89-2 in the raw text, becomes v1p89.
+
+PAGE IMAGES (not a repair: the raw text has no images; this fills pages.csv)
+Each page is matched to its image by a constant shift per volume: image number = printed
+page + 14 in volume 1 (b21459162_0001_jp2.zip), + 34 in volume 2 (_0002), + 14 in volume 3
+(_0003); mapping "computed". Checked by reading the page number printed on the image:
+volume 1 pages 6, 26, 46, 81-90, 106-109, 146, 186, 226, 254, 255; volume 2 pages 2, 3,
+50, 81, 84, 85, 100, 150, 200, 286, 289, 300, 339; volume 3 pages 14, 16, 26, 50, 80,
+106-108. Page 1 of each volume prints no number at the top; it is the image before page 2.
 
 NOT REPAIRED (the words are not changed by rules)
 - Numbers typed inside sentences where the margin number stood, and 13 sections whose
   printed number is missing from the typed words.
-- Volume 1 has page 89 twice (the first is probably 83): pages need the scan matched first.
 - Footnotes stay anchored where the typists put them, and their three sorts (plant-name
   lists, parallel passages, variant readings) are not separated.
 """
-import csv, json, re, shutil, sys
+import csv, json, re, sys, zipfile
 from pathlib import Path
 
 VDIR = Path(__file__).resolve().parents[1]            # this version folder
@@ -67,6 +79,8 @@ CHAPTERS = {"1": 129, "2": 186, "3": 158, "4": 192, "5": 162}   # Wellmann's cha
 
 LEAD = re.compile(r"^\W*(\d+)(?= )")                  # printed number at the start
 RV = re.compile(r"^\W*(\d+) RV:")
+SCANS = {"1": ("b21459162_0001_jp2.zip", 14), "2": ("b21459162_0002_jp2.zip", 34),
+         "3": ("b21459162_0003_jp2.zip", 14)}         # volume: (scan, image - printed page)
 
 
 def chapter(ref):
@@ -164,6 +178,38 @@ def note_ref(passages, log):
             set_ref(p, host["ref"], "note_ref", log)
 
 
+PAGE_IDS = {"v1p89": "v1p83", "v1p89-2": "v1p89"}     # rule 6, applied in this order
+
+
+def page_83(passages, pages, log):
+    for old, new in PAGE_IDS.items():
+        for row in pages:
+            if row["page"] == old:
+                row["page"] = new
+                row["printed"] = new.split("p")[1]
+        for p in passages:
+            if p["page"] == old:
+                log(p["id"], "page_83", "page", old, new)
+                p["page"] = new
+            for b in p.get("breaks", []):
+                if b[1] == old:
+                    log(p["id"], "page_83", "breaks", old, new)
+                    b[1] = new
+
+
+def page_images(pages):
+    for volume, (scan, shift) in SCANS.items():
+        with zipfile.ZipFile(VDIR / "source" / scan) as z:
+            names = {int(m.group(1)): n for n in z.namelist()
+                     if (m := re.search(r"_(\d+)\.jp2$", n))}
+        for row in pages:
+            if row["volume"] == volume:
+                k = int(row["printed"]) + shift
+                if k not in names:
+                    sys.exit(f"page {row['page']}: no image {k} in {scan}")
+                row.update(source_file=scan, image=names[k], mapping="computed")
+
+
 # ---------------------------------------------------------------------------- checks
 def check_order(passages, rv):
     """Each book: chapters 1..n in order, no gap, no repeat (RV chapters aside)."""
@@ -188,6 +234,8 @@ def main():
     with open(RAW / f"{LANG}.jsonl", encoding="utf-8") as f:
         passages = [json.loads(line) for line in f]
     info = json.load(open(RAW / f"{LANG}.info.json", encoding="utf-8"))
+    with open(RAW / "pages.csv", newline="", encoding="utf-8") as f:
+        pages = list(csv.DictReader(f))
 
     repairs = []
     log = lambda *row: repairs.append(row)
@@ -197,8 +245,13 @@ def main():
     stray_chapter(passages, log, rv)
     note_ref(passages, log)
     check_order(passages, rv)
+    page_83(passages, pages, log)
+    page_images(pages)
+    if len({row["page"] for row in pages}) != len(pages):
+        sys.exit("page ids repeated after repair")
 
-    found = [f"{i} {r} {b} -> {a}" for i, r, f, b, a in repairs if r != "note_ref"]
+    found = [f"{i} {r} {b} -> {a}" for i, r, f, b, a in repairs
+             if r not in ("note_ref", "page_83")]
     if found != CASES.split("\n")[1:-1]:
         sys.exit("the rules do not give exactly the CASES listed in this script:\n"
                  + "\n".join(found))
@@ -207,7 +260,10 @@ def main():
     with open(TEXT / f"{LANG}.jsonl", "w", encoding="utf-8", newline="\n") as f:
         for p in passages:
             f.write(json.dumps(p, ensure_ascii=False, separators=(",", ":")) + "\n")
-    shutil.copyfile(RAW / "pages.csv", TEXT / "pages.csv")
+    with open(TEXT / "pages.csv", "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(pages[0]), lineterminator="\n")
+        w.writeheader()
+        w.writerows(pages)
     info["converter"] = str((VDIR / "convert" / "repair.py").relative_to(ROOT))
     info["notes"] = NOTES
     with open(TEXT / f"{LANG}.info.json", "w", encoding="utf-8", newline="\n") as f:
@@ -238,9 +294,10 @@ NOTES = (
     "names (RV), the parallel passages (SIM., EXC.) and the variant readings, and they are "
     "not separated here. A note is anchored where the typists put it, usually the end of "
     "its printed page, not the word it comments. "
-    "Volume 1 has page 89 twice in the typed file (82, 89, 84 ... 89); the first is "
-    "probably page 83; the second has the id v1p89-2. "
-    "Page images not matched to page numbers."
+    "The typed file numbers page 83 of volume 1 as 89; corrected to v1p83 after reading "
+    "the page image. "
+    "Each page is matched to its scan image by a constant shift per volume (mapping "
+    "computed), checked by reading the printed number on 22, 13 and 8 page images of volumes 1, 2 and 3."
 )
 
 # Every passage whose ref the rules change (footnotes following their host aside):
