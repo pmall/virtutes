@@ -2,6 +2,15 @@
 
 Every chosen version ends as text in the unified format ([`Unified_text_format.md`](Unified_text_format.md)), whatever it started as. How an assistant carries out a conversion: [`skills/convert-version/SKILL.md`](../skills/convert-version/SKILL.md).
 
+## The aim
+
+For each version, a pair of scripts that makes the text from the exact source files, so that any researcher who has those files, identified by their checksums, obtains exactly the same text, character for character.
+
+- **An AI assistant writes the scripts.** Each book needs scripts fitted to it, which costs a person hours per book and is why projects usually avoid it; an assistant writes them in minutes.
+- **Running them needs no AI.** The scripts are ordinary programs: they stop if a source file is not the one recorded, and give the same result at every run, on any computer ([`Folder_structure.md`](Folder_structure.md#what-is-in-git-and-what-is-not)).
+
+This step stops at the text. Finding the plants and their virtues in it is a later, separate step, not yet defined ([`Project_context.md`](Project_context.md#the-steps)).
+
 ## Three kinds of source
 
 | Kind of source | What has to be done | In the pilot |
@@ -10,7 +19,7 @@ Every chosen version ends as text in the unified format ([`Unified_text_format.m
 | **Scan of a printed book** | Read the pages by machine, correct, then structure | 8 books, 1497 to 1916 (list in [`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)) |
 | **Scan of a manuscript** | Read handwriting by machine, correct, then structure | None in the pilot selection; expected for later works |
 
-When a version has both a typed text and a scan, the typed text is what we work from; the scan is there to look at a page when in doubt ([`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2).
+When a version has both a typed text and a scan, the typed text is what we work from; what the scan is for: [`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2.
 
 ## Two scripts per version
 
@@ -23,9 +32,9 @@ A source also has mistakes of its own: a typed text with a chapter under the wro
 
 So a doubt about the final text can always be settled: the raw text shows what the source had, the list shows what was changed and by which rule.
 
-Writing such scripts by hand takes a person hours per book, which is why projects usually avoid it. An AI assistant writes them in minutes, so the project can afford them for each version. The division of work:
+The division of work:
 
-- **The assistant writes the scripts; the scripts produce the text.** The assistant never retypes or rewrites the text itself. The result is therefore the same at every run, and anyone can read in the scripts what was done to the source. This is why the texts are not kept in git: the scripts and the exact sources are enough to make them again ([`Folder_structure.md`](Folder_structure.md#what-is-in-git-and-what-is-not)).
+- **The assistant writes the scripts; the scripts produce the text.** The assistant never retypes or rewrites the text itself, so anyone can read in the scripts what was done to the source. This is why the texts are not kept in git: the scripts and the exact sources are enough to make them again.
 - **The shared checker verifies the shape of the result**, the same for all versions.
 - **People verify the words of machine-read texts**, on samples compared with the page images. The words of a typed text are taken as the scholarly project typed them and are not read again against the scans: avoiding that reading is why a typed text is preferred. The scan of a typed text is opened only to settle a doubt (a label, a page number). Corrections a person asks for are stored beside the script and applied at each run.
 
