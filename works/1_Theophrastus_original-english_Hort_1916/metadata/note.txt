@@ -15,7 +15,9 @@ FILES (all in the source/ folder next to this note, exactly as the libraries del
   the library's file name.
   Why here: (1) the English exists only as this scan and will be typed from it;
   (2) it is the scan of the same edition as the typed Greek (rule 2). The typed Greek gives
-  Hort's printed page numbers: printed page 6 = PDF page 31 in volume 1; volume 2 restarts.
+  Hort's printed page numbers. Each Greek page is matched to its page of the PDF by
+  convert/images_grc.py, which states the rule and how it was checked. The scan holds
+  pages 28 to 31 of volume 2 twice.
 
 WHY THIS VERSION
 - Original: 28 versions in the edition map; 8 incomplete, 2 under copyright. Hort 1916 is the
