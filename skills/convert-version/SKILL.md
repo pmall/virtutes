@@ -24,7 +24,7 @@ description: Convert one version of a work (data/<version>/) to the project's un
 - `source/` is read-only. Read archives in place (`zipfile`); anything unpacked goes to `work/`.
 - Each script lists, in a constant `SOURCES` near its top, the files of `source/` it reads, and gets them through `require()` of `tools/vh_sources.py` before doing anything else. No other code opens or checksums a source file. For a typed text, `extract.py` names the typed file only and `repair.py` names nothing: the text must build with the scans absent. Only `images.py` names the scans.
 - A script writes only its own files: it never deletes or changes what another script made, and never writes `convert/results.md5`.
-- No options: a script of `convert/` takes no argument, and a shared tool takes the version folder and nothing else. Do not add flags.
+- One command does one thing. A parameter says what to act on (a version, a file, a place in a text); it never switches a command to another action. A second action is a second tool.
 - Only the packages of `pyproject.toml`; run everything with `uv run`. If the task cannot be done without another package (a reading engine), stop and ask the user.
 - Each script takes no arguments, finds its folders from its own path, and gives the same output at every run (no dates, no random order).
 - No interpretation: do not identify plants, translate, modernise spelling or tidy punctuation.
