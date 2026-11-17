@@ -99,7 +99,7 @@ The repository must be enough to make everything again, on any computer:
 
 - **Who writes a row.** The download tools, once the file is verified against what its library publishes. A file obtained another way gets its row by hand after the same verification, and the note says how it was verified.
 - **The address** is where that exact file can be fetched: for Internet Archive, the file itself; for a typed text kept in a git repository, one exact commit.
-- **A scan packed by us** (`*_jpg.zip`, from a library that serves single pages) has the address of the library's page list. Its checksum is that of our archive; what the library delivered is verified page by page in `<identifier>_pages.csv`.
+- **A scan packed by us** (`*_jpg.zip`, from a library that serves single pages) has the address of the library's page list. Its checksum is that of our archive, which [`tools/download_iiif_pages.py`](../tools/download_iiif_pages.py) packs in a fixed way: the same pages always give the same archive. What the library delivered is verified page by page in `<identifier>_pages.csv`.
 
 [`works/Downloads_report.csv`](../works/Downloads_report.csv) is only the log the download tools append to: it also holds the versions deleted since, and no script reads it.
 

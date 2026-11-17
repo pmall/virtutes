@@ -5,6 +5,10 @@ For one volume: the library's page list (<id>_manifest.json, unchanged), every p
 at full size (or a range of pages), packed without recompression into <id>_jpg.zip with
 the images at the top level, and <id>_pages.csv (one row per image: position, the library's
 page label, source URL, size, md5). Every image in the zip is checked against its md5.
+The packing is fixed (same stored time and attributes for every image, no compression), so
+the same page images always give the same archive, with the same checksum: a researcher who
+runs this tool obtains the archive listed in metadata/sources.csv, provided the library
+still serves the same images.
 The zip is put in the version's list of source files, metadata/sources.csv, and one row is
 appended to the log works/Downloads_report.csv.
 
@@ -27,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "works"
 UA = "Mozilla/5.0 (research-client)"
 PAUSE = 1
+PACK_TIME = (2026, 11, 12, 16, 50, 14)  # stored for every image, so that packing is repeatable
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vh_sources
 
@@ -112,7 +117,10 @@ def main(argv):
     zpath = vdir / f"{ident}_jpg.zip"
     with zipfile.ZipFile(zpath, "w", compression=zipfile.ZIP_STORED) as z:
         for r in rows:
-            z.write(work / f"{r[0]:04d}.jpg", arcname=f"{r[0]:04d}.jpg")
+            info = zipfile.ZipInfo(f"{r[0]:04d}.jpg", date_time=PACK_TIME)
+            info.external_attr = 0o600 << 16
+            info.compress_type = zipfile.ZIP_STORED
+            z.writestr(info, (work / f"{r[0]:04d}.jpg").read_bytes())
     want = {f"{r[0]:04d}.jpg": r[4] for r in rows}
     with zipfile.ZipFile(zpath) as z:
         assert z.testzip() is None and len(z.namelist()) == len(rows)
