@@ -47,7 +47,7 @@ description: Convert one version of a work (data/<version>/) to the project's un
    - ten passages spread over the work, read with `uv run tools/vh_view.py <file> <ref>`, compared with the source file character by character.
    For a typed text, do not compare its words with the page images: open an image only to settle a doubt about a label or a page number (`docs/Conversion_method.md`).
 9. **Set the info file truthfully.** `status` = `complete` only if the whole version is there. `review` = `none` unless a person compared samples of a machine-read text with page images. Everything not verified goes in `notes`, in plain words; that the words of a typed text were not read against the scan is not a limit to list.
-10. **Write the checksums of the results.** Delete `work/raw/`, `text/` and `work/repairs.csv`, run the three scripts in order, then from the version folder: `md5sum work/raw/* text/* work/repairs.csv > convert/results.md5`. Do this again after any later change to a script; if the checksums change, say in the commit message which and why.
+10. **Have the checksums of the results written.** Delete `work/raw/`, `text/`, `work/repairs.csv` and `convert/results.md5`, run the three scripts in order, then `uv run tools/vh_check.py <version>`: it writes `convert/results.md5`. Do this again after any later change to a script; if the checksums change, say in the commit message which and why. Never write or edit that file yourself.
 11. **Commit** `convert/` (scripts and `results.md5`) and the updated `WIP.md` together, with a message stating the counts and what was not verified. `work/` and `text/` are not in git.
 
 ## Done means
