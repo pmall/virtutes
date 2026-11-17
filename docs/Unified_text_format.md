@@ -1,6 +1,6 @@
 # The unified text format
 
-Version 0.1. Any change to the format raises this number.
+Version 0.2. Any change to the format raises this number.
 
 ## Purpose
 
@@ -9,20 +9,21 @@ Every version of every work ends as text in **one and the same format**, whether
 What the format must guarantee:
 
 1. **The wording is exactly that of the source.** A use will be accepted only if its quotation is found letter for letter in the text.
-2. **Every passage is tied to its page**, and through the page to the image of the scan.
+2. **Every passage is tied to its page.** A separate, optional file ties each page to its image in the scan.
 3. **The voices are kept apart**: the work itself, a commentator, the modern editor's notes, the list of variant readings.
 4. **No interpretation.** No plant identification, no modern disease name, no translation. Those are separate layers built on top (see [`Staub_2015_classification_summary.md`](Staub_2015_classification_summary.md)).
 5. **Plain files** that a short script can read, that git can compare line by line, and that a person can open.
 
 ## The files
 
-In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds the files below. The raw text in `work/raw/` ([`Conversion_method.md`](Conversion_method.md#two-scripts-per-version)) has the same files in the same format; the difference is that its labels still carry the mistakes of the source.
+In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds the files below. The raw text in `work/raw/` ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-version)) has the same files in the same format, `page_images.csv` aside; the difference is that its labels still carry the mistakes of the source.
 
 | File | Content |
 |---|---|
 | `<lang>.jsonl` | The text in one language, one passage per line |
 | `<lang>.info.json` | What this text is, where it comes from, how far it has been checked |
-| `pages.csv` | The pages of the version and the scan image of each |
+| `pages.csv` | The pages of the version |
+| `page_images.csv` | Optional: the scan image of each page |
 
 `<lang>` is the three-letter ISO 639-3 code of the language: `grc` ancient Greek, `lat` Latin, `eng` English, `fra` French, `ita` Italian, `frm` Middle French (about 1400–1600), `fro` Old French. A bilingual book gives two text files in the same folder, sharing `pages.csv`.
 
@@ -92,7 +93,7 @@ Running heads, page numbers, catchwords and signatures are not text: they are dr
 `pages.csv`, one row per page of the version, in reading order, with this header:
 
 ```
-page,volume,printed,source_file,image,mapping
+page,volume,printed
 ```
 
 | Column | Content |
@@ -100,9 +101,25 @@ page,volume,printed,source_file,image,mapping
 | `page` | Identifier of the page, unique in the file. Convention: `v<volume>p<printed number>` when the source is a typed text that gives printed page numbers (`v2p228`); `v<volume>i<position of the image>` when the text was read from the scan (`v1i0134`) |
 | `volume` | Volume number (1 for a single volume) |
 | `printed` | The page or folio number as printed or written; empty if none |
+
+## The page images file
+
+`page_images.csv` says where the image of each page is in the scans. It is **optional**: the text is complete without it, and the other files are the same whether it is there or not. It exists so that a page can be shown beside its text; it is the only file of `text/` that cannot be made without the scans when the text comes from a typed file ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-version)). It is never in `work/raw/`.
+
+One row per page that has an image, with this header:
+
+```
+page,source_file,image,mapping
+```
+
+| Column | Content |
+|---|---|
+| `page` | A value of the column `page` of `pages.csv`, at most once |
 | `source_file` | The scan this page is in: name of the file in `source/` |
 | `image` | The image inside that file: its name in the archive, or the page number for a PDF |
-| `mapping` | How the page was matched to its image: `checked` (compared by eye), `computed` (by rule, e.g. a constant shift, verified on a few pages), `none` (not yet matched; `source_file` and `image` empty) |
+| `mapping` | How the page was matched to its image: `checked` (compared by eye) or `computed` (by rule, e.g. a constant shift, verified on a few pages) |
+
+A page not yet matched has no row.
 
 ## The info file
 
@@ -110,7 +127,7 @@ page,volume,printed,source_file,image,mapping
 
 | Key | Content |
 |---|---|
-| `format` | `vh-text/0.1` |
+| `format` | `vh-text/0.2` |
 | `version` | Name of the version folder |
 | `work_no`, `work` | As in the selection file |
 | `lang` | Same as the file name |
@@ -125,7 +142,7 @@ page,volume,printed,source_file,image,mapping
 
 ## The checker
 
-Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a finished `text/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup). It does not look at the source and does not judge whether the words are right; for a machine-read text that is done by comparing samples with the page images, while a typed text is taken as its project typed it ([`Conversion_method.md`](Conversion_method.md#what-counts-as-verified)). A text that fails the check is not accepted.
+Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a finished `text/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup; and `page_images.csv` when it is there). It does not look at the source and does not judge whether the words are right; for a machine-read text that is done by comparing samples with the page images, while a typed text is taken as its project typed it ([`Conversion_method.md`](Conversion_method.md#what-counts-as-verified)). A text that fails the check is not accepted.
 
 ## Choices made, and why
 

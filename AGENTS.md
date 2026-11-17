@@ -34,7 +34,7 @@ Never state the same thing in two places: link to it. Do not write dates, progre
 - **Never download anything without the user's explicit go-ahead.** Give the list, the total size and the expected duration first, then wait.
 - **Never install anything without asking.** Python and its packages go through `uv` only (`README.md`, "Setting up"); run scripts with `uv run`.
 - **`source/` is read-only.** Never modify, rename, unpack in place or delete what a library delivered.
-- **`text/` is never edited by hand.** It is the output of the version's `convert/extract.py` then `convert/repair.py`.
+- **`text/` is never edited by hand.** It is the output of the version's scripts in `convert/`.
 - `data/Pilot_works_all_versions.csv` is not modified.
 - Commit on the current branch; do not create branches.
 - Commit message: a short title line, a blank line, then the body. One line per paragraph or list item, however long: never cut a line by hand.

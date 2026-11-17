@@ -4,8 +4,8 @@ data/*/source/*
 !data/*/source/*.json
 !data/*/source/*_pages.csv
 
-# Intermediate files and results of the conversions: made again by convert/extract.py
-# and convert/repair.py of each version
+# Intermediate files and results of the conversions: made again by the convert/ scripts
+# of each version
 data/*/work/
 data/*/text/
 

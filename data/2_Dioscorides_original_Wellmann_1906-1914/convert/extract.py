@@ -4,7 +4,7 @@
 Run:  uv run convert/extract.py   (no arguments; writes work/raw/grc.jsonl,
       work/raw/grc.info.json and work/raw/pages.csv in this version folder)
 
-First of two steps. This one copies the typed file into the unified text format without
+First step. This one copies the typed file into the unified text format without
 correcting anything: what is wrong in the typed file is wrong here in the same way.
 convert/repair.py then makes text/ from work/raw/.
 
@@ -40,35 +40,23 @@ WHAT THIS SCRIPT DOES: plain extraction, no judgement on the content
   characters are dropped (four U+008D in footnotes, apparently typing residue).
 - Marks: <add> -> add, <del> -> del (whatever its status), <gap/> -> the character "…"
   marked gap. <sic> has no equivalent mark: its words are kept, unmarked.
-- pages.csv: the page images are not matched to page numbers (mapping none).
+- pages.csv: the pages in reading order, with their volume and number as typed.
+
+SOURCE FILES NEEDED: the typed file only. The scans are not opened.
 """
-import csv, hashlib, json, re, sys, unicodedata
+import csv, json, re, sys, unicodedata
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 VDIR = Path(__file__).resolve().parents[1]            # this version folder
 ROOT = VDIR.parents[1]                                 # the workspace folder
-SOURCE = VDIR / "source" / "tlg0656.tlg001.1st1K-grc1.xml"
+SOURCES = ["tlg0656.tlg001.1st1K-grc1.xml"]            # the files of source/ this script reads
+sys.path.insert(0, str(ROOT / "tools"))
+from vh_sources import require
 RAW = VDIR / "work" / "raw"
 LANG = "grc"
 NS = "{http://www.tei-c.org/ns/1.0}"
 CONTROL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]")  # invisible; white space aside
-
-
-def md5(path):
-    h = hashlib.md5()
-    with open(path, "rb") as f:
-        for block in iter(lambda: f.read(1 << 20), b""):
-            h.update(block)
-    return h.hexdigest()
-
-
-def expected_md5():
-    with open(ROOT / "data" / "Downloads_report.csv", newline="", encoding="utf-8-sig") as f:
-        for row in csv.DictReader(f):
-            if row["folder"] == VDIR.name and row["file"] == SOURCE.name:
-                return row["md5"]
-    sys.exit(f"{SOURCE.name} not found in data/Downloads_report.csv")
 
 
 class Passage:
@@ -124,7 +112,7 @@ class Converter:
             k += 1
             pid = f"v{self.volume}p{n}-{k}"
         self.seen.add(pid)
-        self.pages.append([pid, str(self.volume), n, "", "", "none"])
+        self.pages.append([pid, str(self.volume), n])
         self.page = pid
 
     # walking ---------------------------------------------------------------
@@ -238,9 +226,8 @@ class Converter:
 
 
 def main():
-    if md5(SOURCE) != expected_md5():
-        sys.exit(f"{SOURCE.name}: checksum differs from data/Downloads_report.csv")
-    root = ET.parse(SOURCE).getroot()
+    (typed,) = require(VDIR, SOURCES)
+    root = ET.parse(typed.path).getroot()
     edition = root.find(f"{NS}text/{NS}body/{NS}div")
     conv = Converter()
     conv.walk(edition, {})
@@ -251,16 +238,16 @@ def main():
             f.write(json.dumps(line, ensure_ascii=False, separators=(",", ":")) + "\n")
     with open(RAW / "pages.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
-        w.writerow(["page", "volume", "printed", "source_file", "image", "mapping"])
+        w.writerow(["page", "volume", "printed"])
         w.writerows(conv.pages)
     info = {
-        "format": "vh-text/0.1",
+        "format": "vh-text/0.2",
         "version": VDIR.name,
         "work_no": 2,
         "work": "Dioscorides, De materia medica",
         "lang": LANG,
         "origin": "typed",
-        "sources": [{"file": SOURCE.name, "md5": md5(SOURCE)}],
+        "sources": [{"file": typed.name, "md5": typed.md5}],
         "converter": str((VDIR / "convert" / "extract.py").relative_to(ROOT)),
         "ref_scheme": ["book", "chapter", "section"],
         "rights": "Text public domain (Wellmann died 1933); typed text by First1KGreek, "
@@ -288,8 +275,7 @@ NOTES = (
     "not separated here. A note is anchored where the typists put it, usually the end of "
     "its printed page, not the word it comments. "
     "Volume 1 has page 89 twice in the typed file (82, 89, 84 ... 89); the first is "
-    "probably page 83; the second has the id v1p89-2. "
-    "Page images not matched to page numbers."
+    "probably page 83; the second has the id v1p89-2."
 )
 
 if __name__ == "__main__":

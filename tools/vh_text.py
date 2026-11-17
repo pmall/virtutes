@@ -11,7 +11,8 @@ Usage, from the workspace folder:
     uv run tools/vh_text.py view  <file.jsonl> [--kinds text,head] [--from REF] [--to REF]
 
     check   verifies data/<version folder>/text/ : pages.csv, every <lang>.jsonl and its
-            <lang>.info.json. Prints one line per file, then the problems found.
+            <lang>.info.json, and page_images.csv if it is there. Prints one line per
+            file, then the problems found.
             With --raw, verifies work/raw/ (the output of extract.py) instead of text/.
     view    prints a text for reading: page changes on their own line, one passage per
             paragraph. By default only the work itself (kinds head, text, commentary).
@@ -22,15 +23,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "data"
-FORMAT = "vh-text/0.1"
+FORMAT = "vh-text/0.2"
 
 KINDS = {"head", "text", "commentary", "note", "apparatus", "margin", "caption", "paratext"}
 ANCHORED = {"note", "apparatus", "margin"}
 MARKS = {"add", "del", "gap", "unclear", "hi", "foreign"}
 PASSAGE_KEYS = {"id", "kind", "page", "text", "ref", "breaks", "marks", "anchor", "lang",
                 "conf", "checked"}
-PAGE_COLUMNS = ["page", "volume", "printed", "source_file", "image", "mapping"]
-MAPPINGS = {"checked", "computed", "none"}
+PAGE_COLUMNS = ["page", "volume", "printed"]
+IMAGE_COLUMNS = ["page", "source_file", "image", "mapping"]
+MAPPINGS = {"checked", "computed"}
 INFO_KEYS = {"format", "version", "work_no", "work", "lang", "origin", "sources",
              "converter", "ref_scheme", "rights", "status", "review", "notes"}
 ORIGINS = {"typed", "ocr", "htr"}
@@ -66,16 +68,34 @@ def check_pages(path, err):
             if len(row) != len(PAGE_COLUMNS):
                 err(f"{path.name} line {n}: {len(row)} fields instead of {len(PAGE_COLUMNS)}")
                 continue
-            page, _, _, source_file, image, mapping = row
+            page = row[0]
             if not page or page in pages:
                 err(f"{path.name} line {n}: page id empty or repeated ({page!r})")
             pages.add(page)
+    return pages
+
+
+def check_images(path, pages, err):
+    """page_images.csv, the optional link from pages to scan images. Returns the number of rows."""
+    seen = set()
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        r = csv.reader(f)
+        if next(r, None) != IMAGE_COLUMNS:
+            err(f"{path.name}: header must be {','.join(IMAGE_COLUMNS)}")
+            return 0
+        for n, row in enumerate(r, 2):
+            if len(row) != len(IMAGE_COLUMNS):
+                err(f"{path.name} line {n}: {len(row)} fields instead of {len(IMAGE_COLUMNS)}")
+                continue
+            page, source_file, image, mapping = row
+            if page not in pages or page in seen:
+                err(f"{path.name} line {n}: page {page!r} not in pages.csv, or repeated")
+            seen.add(page)
+            if not source_file or not image:
+                err(f"{path.name} line {n}: source_file and image must be filled")
             if mapping not in MAPPINGS:
                 err(f"{path.name} line {n}: mapping must be one of {sorted(MAPPINGS)}")
-            elif (mapping == "none") != (not source_file and not image):
-                err(f"{path.name} line {n}: source_file and image must be filled, "
-                    f"or both empty with mapping 'none'")
-    return pages
+    return len(seen)
 
 
 def check_info(path, lang, version, err):
@@ -185,6 +205,12 @@ def check(folder, sub="text"):
     if not tdir.is_dir():
         return [f"no {sub}/ folder in data/{folder}"]
     pages = check_pages(tdir / "pages.csv", problems.append)
+    if (tdir / "page_images.csv").exists():
+        if sub != "text":
+            problems.append("page_images.csv belongs in text/ only")
+        else:
+            n = check_images(tdir / "page_images.csv", pages, problems.append)
+            print(f"{folder}/{sub}/page_images.csv: {n} of {len(pages)} pages have an image")
     texts = sorted(tdir.glob("*.jsonl"))
     if not texts:
         problems.append("no <lang>.jsonl file")

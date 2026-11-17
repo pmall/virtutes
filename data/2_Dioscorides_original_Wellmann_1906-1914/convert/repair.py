@@ -5,7 +5,7 @@ Run:  uv run convert/repair.py   (no arguments; reads work/raw/, written by
       convert/extract.py; writes text/grc.jsonl, text/grc.info.json, text/pages.csv
       and work/repairs.csv)
 
-Second of two steps. The raw text keeps every mistake of the typed file. This script
+Second step, after convert/extract.py. The raw text keeps every mistake of the typed file. This script
 corrects them by the rules below. A rule never changes the words of the work: rules 1-5
 change only `ref`, rule 6 only `page`. Every change is written as one row of work/repairs.csv (passage,
 rule, field, before, after). The full list of passages each rule changes is also kept in
@@ -53,13 +53,9 @@ THE RULES, in the order they run
    typed file puts on its first page 89. That page becomes v1p83 (printed 83), and the
    second page 89, v1p89-2 in the raw text, becomes v1p89.
 
-PAGE IMAGES (not a repair: the raw text has no images; this fills pages.csv)
-Each page is matched to its image by a constant shift per volume: image number = printed
-page + 14 in volume 1 (b21459162_0001_jp2.zip), + 34 in volume 2 (_0002), + 14 in volume 3
-(_0003); mapping "computed". Checked by reading the page number printed on the image:
-volume 1 pages 6, 26, 46, 81-90, 106-109, 146, 186, 226, 254, 255; volume 2 pages 2, 3,
-50, 81, 84, 85, 100, 150, 200, 286, 289, 300, 339; volume 3 pages 14, 16, 26, 50, 80,
-106-108. Page 1 of each volume prints no number at the top; it is the image before page 2.
+SOURCE FILES NEEDED: none. This script reads work/raw/ only. Two rules were decided after
+looking at a page image (2 and 6), but running them does not open the scans. Linking the
+pages to their images is the separate, optional convert/images.py.
 
 NOT REPAIRED (the words are not changed by rules)
 - Numbers typed inside sentences where the margin number stood, and 13 sections whose
@@ -67,7 +63,7 @@ NOT REPAIRED (the words are not changed by rules)
 - Footnotes stay anchored where the typists put them, and their three sorts (plant-name
   lists, parallel passages, variant readings) are not separated.
 """
-import csv, json, re, sys, zipfile
+import csv, json, re, sys
 from pathlib import Path
 
 VDIR = Path(__file__).resolve().parents[1]            # this version folder
@@ -79,8 +75,6 @@ CHAPTERS = {"1": 129, "2": 186, "3": 158, "4": 192, "5": 162}   # Wellmann's cha
 
 LEAD = re.compile(r"^\W*(\d+)(?= )")                  # printed number at the start
 RV = re.compile(r"^\W*(\d+) RV:")
-SCANS = {"1": ("b21459162_0001_jp2.zip", 14), "2": ("b21459162_0002_jp2.zip", 34),
-         "3": ("b21459162_0003_jp2.zip", 14)}         # volume: (scan, image - printed page)
 
 
 def chapter(ref):
@@ -197,19 +191,6 @@ def page_83(passages, pages, log):
                     b[1] = new
 
 
-def page_images(pages):
-    for volume, (scan, shift) in SCANS.items():
-        with zipfile.ZipFile(VDIR / "source" / scan) as z:
-            names = {int(m.group(1)): n for n in z.namelist()
-                     if (m := re.search(r"_(\d+)\.jp2$", n))}
-        for row in pages:
-            if row["volume"] == volume:
-                k = int(row["printed"]) + shift
-                if k not in names:
-                    sys.exit(f"page {row['page']}: no image {k} in {scan}")
-                row.update(source_file=scan, image=names[k], mapping="computed")
-
-
 # ---------------------------------------------------------------------------- checks
 def check_order(passages, rv):
     """Each book: chapters 1..n in order, no gap, no repeat (RV chapters aside)."""
@@ -246,7 +227,6 @@ def main():
     note_ref(passages, log)
     check_order(passages, rv)
     page_83(passages, pages, log)
-    page_images(pages)
     if len({row["page"] for row in pages}) != len(pages):
         sys.exit("page ids repeated after repair")
 
@@ -268,6 +248,7 @@ def main():
     info["notes"] = NOTES
     with open(TEXT / f"{LANG}.info.json", "w", encoding="utf-8", newline="\n") as f:
         f.write(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
+    (TEXT / "page_images.csv").unlink(missing_ok=True)     # made from pages.csv by images.py
     with open(VDIR / "work" / "repairs.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["id", "rule", "field", "before", "after"])
@@ -295,9 +276,7 @@ NOTES = (
     "not separated here. A note is anchored where the typists put it, usually the end of "
     "its printed page, not the word it comments. "
     "The typed file numbers page 83 of volume 1 as 89; corrected to v1p83 after reading "
-    "the page image. "
-    "Each page is matched to its scan image by a constant shift per volume (mapping "
-    "computed), checked by reading the printed number on 22, 13 and 8 page images of volumes 1, 2 and 3."
+    "the page image."
 )
 
 # Every passage whose ref the rules change (footnotes following their host aside):

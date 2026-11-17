@@ -14,14 +14,22 @@ The goal this serves, texts that anyone can make again from the exact sources: [
 
 When a version has both a typed text and a scan, the typed text is what we work from; what the scan is for: [`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2.
 
-## Two scripts per version
+## Three scripts per version
 
-Each book is laid out its own way: where the chapter numbers are, how notes are attached, how two languages share a page, how pages are numbered. A general converter would be either wrong for most books or as complicated as all of them together. So each version gets its own short scripts, in the folder `convert/` of the version.
+Each book is laid out its own way: where the chapter numbers are, how notes are attached, how two languages share a page, how pages are numbered. A general converter would be either wrong for most books or as complicated as all of them together. So each version gets its own short scripts, in the folder `convert/` of the version. Every version has the same scripts, with the same names, however little one of them has to do for a given book.
 
-A source also has mistakes of its own: a typed text with a chapter under the wrong number, a page number typed twice. Copying and correcting are kept apart, in two scripts run one after the other:
+A source also has mistakes of its own: a typed text with a chapter under the wrong number, a page number typed twice. Copying and correcting are kept apart. Linking the pages to their scan images is kept apart too, because it is not needed to make the text:
 
-1. **`extract.py` copies.** It brings the source to the unified format without correcting anything: what is wrong in the source is wrong in the same way in its output, the raw text (`work/raw/`).
-2. **`repair.py` corrects.** It makes the final text (`text/`) from the raw text, by rules written in the script, and lists every change it makes (`work/repairs.csv`). A rule may change the labels around the words (place in the work, kind of passage, page) and where a passage is cut. The words themselves change only through a correction a person asked for (`convert/corrections.csv`).
+| Script | What it does | Source files it needs |
+|---|---|---|
+| 1. `extract.py` | **Copies.** Brings the source to the unified format without correcting anything: what is wrong in the source is wrong in the same way in its output, the raw text (`work/raw/`) | The files the text is made from: the typed file, or the scan when the text is read from it |
+| 2. `repair.py` | **Corrects.** Makes the final text (`text/`) from the raw text, by rules written in the script, and lists every change it makes (`work/repairs.csv`) | None: it reads the raw text only |
+| 3. `images.py` | **Links pages to images.** Writes the optional `text/page_images.csv` ([`Unified_text_format.md`](Unified_text_format.md#the-page-images-file)) from the pages of the final text | The scans |
+
+- **A script opens only the source files its result is made from.** The text of a version that has a typed file is made by `extract.py` and `repair.py` from that file alone: a researcher who does not have the scans, often hundreds of times larger, obtains exactly the same text. Only `images.py` needs them, and nothing else depends on its result.
+- **A scan may decide a rule without being needed to run it.** When a look at a page image settles how a label or a page number must be repaired, the rule and what was seen are written in `repair.py`; running the rule does not open the scan.
+- **What a repair rule may change**: the labels around the words (place in the work, kind of passage, page) and where a passage is cut. The words themselves change only through a correction a person asked for (`convert/corrections.csv`).
+- **One check of the source files, the same everywhere.** Each script names the source files it needs and gets them through [`tools/vh_sources.py`](../tools/vh_sources.py) before doing anything else. A file that is missing, or whose checksum is not the one recorded in [`data/Downloads_report.csv`](../data/Downloads_report.csv), stops the script with a message that says which file and where to fetch it.
 
 So a doubt about the final text can always be settled: the raw text shows what the source had, the list shows what was changed and by which rule.
 
@@ -37,7 +45,7 @@ A text is `complete` when the whole version is there and passes the checker. Its
 
 - **Counts** agree with known figures: number of books and chapters; for Mattioli 1568, the 831 chapters of Dioscorides counted by Staub et al. 2016.
 - For a machine-read text: **samples** spread over the whole book were compared by eye with the page image, with particular attention to plant names, quantities and parts of plants. A typed text has no such review; its `review` stays `none` and this is not listed as a limit.
-- For a version with a typed text and a scan: the page numbers of the typed text were matched to the scan.
+- For a version with a typed text and a scan, when `images.py` has been written: its rule for matching pages to images was verified by reading the page number on images spread over each volume. This says nothing about the words.
 
 Whatever was not verified is written in the `notes` of the text's info file.
 
