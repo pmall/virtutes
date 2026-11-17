@@ -56,4 +56,4 @@ For each chosen version, also record: the copy chosen and its link, the image si
 ## Reference points from the pilot
 
 - "Sharp enough" (rules 5.1 and 5.6): the benchmark copy of Mattioli 1568, a folio scanned at 1899 × 3000 px per page, was judged sufficient; 225 pixels per inch of page height was set from it.
-- Pilot result: [`data/Pilot_selected_versions.csv`](../data/Pilot_selected_versions.csv).
+- Pilot result: [`works/Pilot_selected_versions.csv`](../works/Pilot_selected_versions.csv).

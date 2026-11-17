@@ -15,7 +15,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
-DATA = ROOT / "data"
+DATA = ROOT / "works"
 FORMAT = "vh-text/0.2"
 
 KINDS = {"head", "text", "commentary", "note", "apparatus", "margin", "caption", "paratext"}
@@ -196,7 +196,7 @@ def check(folder, sub="text", indent="  "):
     vdir = Path(folder) if (Path(folder) / sub).is_dir() else DATA / Path(folder).name
     folder, tdir = vdir.resolve().name, vdir / sub
     if not tdir.is_dir():
-        return [f"no {sub}/ folder in data/{folder}"]
+        return [f"no {sub}/ folder in works/{folder}"]
     pages = check_pages(tdir / "pages.csv", problems.append)
     if (tdir / "page_images.csv").exists():
         if sub != "text":

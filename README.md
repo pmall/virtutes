@@ -2,7 +2,7 @@
 
 Research project of UCLy (research unit CONFLUENCE: Sciences et Humanités). From historical herbals, extract every statement "plant X, prepared this way, is good for Y", tied to its page and comparable across texts, places and centuries. The pilot covers six European works, from Theophrastus to a 17th-century French herbal.
 
-This repository holds the methods, the tables of versions, the tools and the scripts that bring each work to one common text format. It does not hold the scans and typed texts the libraries delivered, nor the texts made from them: the first are listed, with exact address and checksum, in [`data/Downloads_report.csv`](data/Downloads_report.csv); the second are made again by the scripts ([`docs/Folder_structure.md`](docs/Folder_structure.md#what-is-in-git-and-what-is-not)).
+This repository holds the methods, the tables of versions, the tools and the scripts that bring each work to one common text format. It does not hold the scans and typed texts the libraries delivered, nor the texts made from them: the first are listed, with exact address and checksum, in [`works/Downloads_report.csv`](works/Downloads_report.csv); the second are made again by the scripts ([`docs/Folder_structure.md`](docs/Folder_structure.md#what-is-in-git-and-what-is-not)).
 
 ## Setting up
 
@@ -28,7 +28,7 @@ This fetches the right Python if the computer does not have it and installs the 
 | Classifying illnesses and remedies (Staub et al. 2015) | [`docs/Staub_2015_classification_summary.md`](docs/Staub_2015_classification_summary.md) |
 | The articles relied on | [`references/README.md`](references/README.md) |
 
-Each chosen version has its own folder under [`data/`](data/), with a plain-language `metadata/note.txt`.
+Each chosen version has its own folder under [`works/`](works/), with a plain-language `metadata/note.txt`.
 
 ## Three kinds of files, each with one job
 

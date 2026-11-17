@@ -1,13 +1,13 @@
 # What the libraries delivered in bulk: not in git, can be fetched again
-# (sources and checksums in data/Downloads_report.csv). Their small records are kept.
-data/*/source/*
-!data/*/source/*.json
-!data/*/source/*_pages.csv
+# (sources and checksums in works/Downloads_report.csv). Their small records are kept.
+works/*/source/*
+!works/*/source/*.json
+!works/*/source/*_pages.csv
 
 # Intermediate files and results of the conversions: made again by the convert/ scripts
 # of each version
-data/*/work/
-data/*/text/
+works/*/work/
+works/*/text/
 
 # Article PDFs: publishers' copyright (listed in references/README.md)
 references/*.pdf

@@ -3,7 +3,7 @@
 
 Every script of a version's convert/ folder that opens a file of source/ gets it through
 require(), before doing anything else. The file must be listed for that version in
-data/Downloads_report.csv, be present in source/, and have the checksum (md5) recorded
+works/Downloads_report.csv, be present in source/, and have the checksum (md5) recorded
 there. Otherwise the script stops, with the same messages for every version, and tells
 where the file can be fetched again. A script names only the files its result is made
 from: a script that makes a text from a typed file does not name the scans.
@@ -21,7 +21,7 @@ from collections import namedtuple
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
-REPORT = ROOT / "data" / "Downloads_report.csv"
+REPORT = ROOT / "works" / "Downloads_report.csv"
 
 Source = namedtuple("Source", "name path md5")
 
@@ -43,14 +43,14 @@ def recorded(folder):
 def problem(vdir, name, rows):
     """Why this file cannot be used, or None if it is exactly the recorded one."""
     if name not in rows:
-        return f"{name}: not listed for {vdir.name} in data/Downloads_report.csv"
+        return f"{name}: not listed for {vdir.name} in works/Downloads_report.csv"
     path = vdir / "source" / name
     if not path.is_file():
-        return (f"{name}: missing from data/{vdir.name}/source/ "
+        return (f"{name}: missing from works/{vdir.name}/source/ "
                 f"(recorded address: {rows[name]['source']})")
     found = md5(path)
     if found != rows[name]["md5"]:
-        return (f"{name}: checksum differs from data/Downloads_report.csv "
+        return (f"{name}: checksum differs from works/Downloads_report.csv "
                 f"(recorded {rows[name]['md5']}, found {found})")
     return None
 

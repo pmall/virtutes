@@ -1,6 +1,6 @@
 # Mapping every version of a work — method
 
-Applies to every work of the catalogue. Result for the six pilot works: [`data/Pilot_works_all_versions.csv`](../data/Pilot_works_all_versions.csv). How an assistant runs the research: [`skills/map-editions/SKILL.md`](../skills/map-editions/SKILL.md).
+Applies to every work of the catalogue. Result for the six pilot works: [`works/Pilot_works_all_versions.csv`](../works/Pilot_works_all_versions.csv). How an assistant runs the research: [`skills/map-editions/SKILL.md`](../skills/map-editions/SKILL.md).
 
 **Aim:** for each work, an exhaustive view of every version that exists, whether or not we have it and whether or not it is online. Choosing which version to work from comes after, from this map.
 

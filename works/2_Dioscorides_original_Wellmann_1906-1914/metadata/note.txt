@@ -1,0 +1,51 @@
+DIOSCORIDES, De materia medica
+SELECTED: Max Wellmann's critical edition, Berlin, Weidmann, 1906-1914, 3 volumes.
+SLOT: ORIGINAL (Greek). ENGLISH: empty (see below). FRENCH: see folder
+2_Dioscorides_french_Mathee_1553.
+
+FILES (all in the source/ folder next to this note, exactly as the libraries delivered them)
+- tlg0656.tlg001.1st1K-grc1.xml
+  What: Wellmann's Greek text of the five books, typed by the First1KGreek project
+  (CC BY-SA 4.0).
+  Why here: it is the text we work from (rule 2).
+- b21459162_0001_jp2.zip, b21459162_0002_jp2.zip, b21459162_0003_jp2.zip (+ *_metadata.json)
+  What: scans of volumes 1-3 (278, 382 and 416 images), University of Glasgow Library copy,
+  via Internet Archive.
+  Why here: scan of the same edition as the typed text (rule 2). The typed text gives
+  Wellmann's page numbers; checked on volume 2, page 100 (image 134): same first words.
+  Each page is matched to its image by convert/images.py, which states how it was checked;
+  the text itself is made without these scans.
+
+WHY THIS VERSION
+- 9 versions in the edition map, all complete and free of copyright. Wellmann is the only
+  one with a reliable typed text (rule 5.2; rule 3: First1KGreek corrects its texts).
+  The others were not reached.
+- English: empty (rule 6). 10 versions: 1 incomplete (selection), 5 under copyright
+  (Osbaldeston 2000, Beck 2005 and its reprints). Goodyer's translation edited by Gunther
+  (1934, reprints 1959, 1968, 1996) is free of copyright in the EU (Gunther died 1940) but no
+  copy can be downloaded in full: Internet Archive lending only, HathiTrust search only,
+  Wellcome not digitised, Google Books no full view, Biodiversity Heritage Library no title.
+
+NOT VERIFIED
+- Nothing left about these files (the page numbers are checked in convert/images.py).
+
+RIGHTS: text public domain (Wellmann died 1933); typed text CC BY-SA 4.0; scans CC BY-NC 4.0
+(Wellcome Collection record).
+
+FILE TYPES
+- *_jp2.zip : one volume's page images (JPEG 2000), exactly as Internet Archive provides them.
+- *_jpg.zip : one volume's page images (JPEG), as the library serves them page by page,
+  packed without recompression.
+- *_metadata.json / *_manifest.json : the library's own record of the item, unchanged.
+- *_pages.csv : one row per page image with its checksum (for *_jpg.zip).
+- *.xml : a typed text made by a scholarly project (TEI format).
+- *.pdf : a scan delivered as a PDF.
+
+SOURCES OF THIS NOTE (paths relative to the workspace folder)
+Everything above was checked on 12 November 2026 against the files, the library records,
+the edition map and the sources named. Anything not checked is under NOT VERIFIED.
+- Selection rules: docs/Version_selection_method.md
+- The selection, with the justification for every slot:
+  works/Pilot_selected_versions.csv
+- All known versions (the edition map): works/Pilot_works_all_versions.csv
+- Download checksums: works/Downloads_report.csv

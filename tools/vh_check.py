@@ -11,7 +11,7 @@ Usage, from the workspace folder:
     uv run tools/vh_check.py                 every version that has a convert/ folder
 
 For each version it verifies, and prints:
-1. the source files present in source/ are the ones recorded in data/Downloads_report.csv
+1. the source files present in source/ are the ones recorded in works/Downloads_report.csv
    (an absent one is only reported: not every script needs every file);
 2. which of the files the scripts must produce are missing (text/page_images.csv is
    optional), and that no other file lies in work/raw/ or text/;
@@ -35,7 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vh_sources, vh_text
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
-DATA = ROOT / "data"
+DATA = ROOT / "works"
 RESULT_FOLDERS = ["work/raw", "text"]       # everything in them is a result
 RESULT_FILES = ["work/repairs.csv"]         # and these single files
 OPTIONAL = {"text/page_images.csv"}

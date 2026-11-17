@@ -3,7 +3,7 @@
 
 The scans are archives of JPEG 2000 images, which few viewers open. This reads one image
 straight from the archive in source/ (nothing is unpacked there) and writes it to
-data/<version folder>/work/pages/<image name>.png.
+works/<version folder>/work/pages/<image name>.png.
 
 Usage, from the workspace folder:
     uv run tools/page_image.py <version folder> <archive in source/> <image number>
@@ -19,7 +19,7 @@ from pathlib import Path
 
 from PIL import Image
 
-DATA = Path(__file__).resolve().parents[1] / "data"
+DATA = Path(__file__).resolve().parents[1] / "works"
 
 
 def main(argv):

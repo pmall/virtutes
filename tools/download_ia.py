@@ -3,7 +3,7 @@
 
 For each item: its record (<id>_metadata.json, unchanged) and one file, by default the
 page-image archive <id>_jp2.zip, kept exactly as delivered and checked against the md5
-published by Internet Archive. One row per file is appended to data/Downloads_report.csv.
+published by Internet Archive. One row per file is appended to works/Downloads_report.csv.
 
 Usage, from the workspace folder:
     uv run tools/download_ia.py <version folder> <item id> [<item id> ...] [--file NAME]
@@ -21,7 +21,7 @@ import csv, hashlib, json, os, sys, time, urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
-DATA = ROOT / "data"
+DATA = ROOT / "works"
 UA = "Mozilla/5.0 (research-client)"
 PAUSE = 2
 

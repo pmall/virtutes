@@ -29,7 +29,7 @@ A source also has mistakes of its own: a typed text with a chapter under the wro
 - **A script opens only the source files its result is made from.** The text of a version that has a typed file is made by `extract.py` and `repair.py` from that file alone: a researcher who does not have the scans, often hundreds of times larger, obtains exactly the same text. Only `images.py` needs them, and nothing else depends on its result.
 - **A scan may decide a rule without being needed to run it.** When a look at a page image settles how a label or a page number must be repaired, the rule and what was seen are written in `repair.py`; running the rule does not open the scan.
 - **What a repair rule may change**: the labels around the words (place in the work, kind of passage, page) and where a passage is cut. The words themselves change only through a correction a person asked for (`convert/corrections.csv`).
-- **One check of the source files, the same everywhere.** Each script names the source files it needs and gets them through [`tools/vh_sources.py`](../tools/vh_sources.py) before doing anything else. A file that is missing, or whose checksum is not the one recorded in [`data/Downloads_report.csv`](../data/Downloads_report.csv), stops the script with a message that says which file and where to fetch it.
+- **One check of the source files, the same everywhere.** Each script names the source files it needs and gets them through [`tools/vh_sources.py`](../tools/vh_sources.py) before doing anything else. A file that is missing, or whose checksum is not the one recorded in [`works/Downloads_report.csv`](../works/Downloads_report.csv), stops the script with a message that says which file and where to fetch it.
 
 So a doubt about the final text can always be settled: the raw text shows what the source had, the list shows what was changed and by which rule.
 
@@ -67,4 +67,4 @@ Whatever was not verified is written in the `notes` of the text's info file.
 
 - The reading engine for scans and the transcription rules ([`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)).
 - Who checks the samples for each language, and how much time they have.
-- Whether to move later to a newer state of the typed texts, which their projects keep correcting. Each is recorded at one exact commit in [`data/Downloads_report.csv`](../data/Downloads_report.csv); moving to a newer one is a decision, followed by a new conversion.
+- Whether to move later to a newer state of the typed texts, which their projects keep correcting. Each is recorded at one exact commit in [`works/Downloads_report.csv`](../works/Downloads_report.csv); moving to a newer one is a decision, followed by a new conversion.

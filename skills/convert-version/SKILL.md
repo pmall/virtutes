@@ -1,17 +1,17 @@
 ---
 name: convert-version
-description: Convert one version of a work (data/<version>/) to the project's unified text format by writing its convert/extract.py, convert/repair.py and convert/images.py. Use when asked to convert, reconvert or fix the text of a version.
+description: Convert one version of a work (works/<version>/) to the project's unified text format by writing its convert/extract.py, convert/repair.py and convert/images.py. Use when asked to convert, reconvert or fix the text of a version.
 ---
 
 # Task: convert one version to the unified text format
 
-**Goal.** For one version folder `data/<version>/`, write three scripts: `convert/extract.py`, which copies the source into the unified format as it is (`work/raw/`); `convert/repair.py`, which makes `text/` from it by correcting the source's mistakes; and, when the version has a scan, `convert/images.py`, which links each page to its image. The raw text and the final text are complete, pass the checker and state their limits.
+**Goal.** For one version folder `works/<version>/`, write three scripts: `convert/extract.py`, which copies the source into the unified format as it is (`work/raw/`); `convert/repair.py`, which makes `text/` from it by correcting the source's mistakes; and, when the version has a scan, `convert/images.py`, which links each page to its image. The raw text and the final text are complete, pass the checker and state their limits.
 
 **Read first, in this order:**
 1. `docs/Unified_text_format.md` — the target. Every field and rule in it is binding.
 2. `docs/Folder_structure.md`, section "One folder per chosen version" — where each file goes.
 3. `docs/Conversion_method.md` — why it is done this way, what each of the three scripts may do and which source files it may open, and what counts as verified.
-4. `data/<version>/metadata/note.txt` — what the source files are and what is not verified about them.
+4. `works/<version>/metadata/note.txt` — what the source files are and what is not verified about them.
 5. `tools/vh_check.py` and `tools/vh_text.py` (top comments) — the check you must pass.
 6. The `convert/` scripts of an already converted version of the same kind, if one exists: reuse their approach.
 

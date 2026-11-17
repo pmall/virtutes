@@ -4,7 +4,7 @@
 
 ## The task
 
-Eight of the selected versions exist only as scans of printed books (1497 to 1916). They must become typed text, with each passage keeping the scan page it comes from ([`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2). This document covers the reading step only; where it fits in the conversion of a version, and the format the text ends in, are in [`Conversion_method.md`](Conversion_method.md) and [`Unified_text_format.md`](Unified_text_format.md). The list is in [`data/Pilot_selected_versions.csv`](../data/Pilot_selected_versions.csv), form "Scan, to be typed".
+Eight of the selected versions exist only as scans of printed books (1497 to 1916). They must become typed text, with each passage keeping the scan page it comes from ([`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2). This document covers the reading step only; where it fits in the conversion of a version, and the format the text ends in, are in [`Conversion_method.md`](Conversion_method.md) and [`Unified_text_format.md`](Unified_text_format.md). The list is in [`works/Pilot_selected_versions.csv`](../works/Pilot_selected_versions.csv), form "Scan, to be typed".
 
 Kraken is open-source software that finds the lines on a page image and reads them. A Kraken reading model can be adapted ("fine-tuned") to a particular typeface or hand from a small number of corrected pages.
 

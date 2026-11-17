@@ -5,7 +5,7 @@ For one volume: the library's page list (<id>_manifest.json, unchanged), every p
 at full size (or a range of pages), packed without recompression into <id>_jpg.zip with
 the images at the top level, and <id>_pages.csv (one row per image: position, the library's
 page label, source URL, size, md5). Every image in the zip is checked against its md5.
-One row is appended to data/Downloads_report.csv.
+One row is appended to works/Downloads_report.csv.
 
 Usage, from the workspace folder:
     uv run tools/download_iiif_pages.py <version folder> <identifier> <manifest URL> [--first N] [--last M]
@@ -23,7 +23,7 @@ import csv, hashlib, json, os, shutil, sys, time, urllib.request, zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
-DATA = ROOT / "data"
+DATA = ROOT / "works"
 UA = "Mozilla/5.0 (research-client)"
 PAUSE = 1
 

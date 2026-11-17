@@ -9,9 +9,9 @@ description: Choose which versions of a work to use (original, English, French),
 
 ## Steps
 
-1. **Select.** Apply the method to the work's rows of the edition map. Add one row per slot to the selection file, with the same columns as `data/Pilot_selected_versions.csv`: the chosen version or the reason the slot is empty, the deciding rule, why the better-ranked candidates were rejected, with sources.
+1. **Select.** Apply the method to the work's rows of the edition map. Add one row per slot to the selection file, with the same columns as `works/Pilot_selected_versions.csv`: the chosen version or the reason the slot is empty, the deciding rule, why the better-ranked candidates were rejected, with sources.
 2. **Present** the result to the user as the table the method prescribes, with the list of files to download, their total size and the expected duration. **Wait for the go-ahead.**
-3. **Download** with `tools/download_ia.py` (Internet Archive) or `tools/download_iiif_pages.py` (libraries serving single pages). They write into `source/`, verify checksums and add rows to `data/Downloads_report.csv`. A typed text fetched another way gets its row added the same way, with its md5; taken from a git repository, its address is that of one exact commit, never of a branch.
+3. **Download** with `tools/download_ia.py` (Internet Archive) or `tools/download_iiif_pages.py` (libraries serving single pages). They write into `source/`, verify checksums and add rows to `works/Downloads_report.csv`. A typed text fetched another way gets its row added the same way, with its md5; taken from a git repository, its address is that of one exact commit, never of a branch.
 4. **Verify** what the selection relied on, on the files themselves: the edition is the one expected (title page), the copy is complete (page count), the image size is the one recorded.
 5. **Write `metadata/note.txt`** with the sections the folder-structure document lists. Every fact carries its source; every open point goes under NOT VERIFIED and nowhere else.
 6. **Commit** the selection rows, the report rows, the library records and the note.
