@@ -12,7 +12,7 @@ Python and the packages the scripts need are managed with [uv](https://docs.astr
 uv sync
 ```
 
-This fetches the right Python if the computer does not have it and installs the packages in `.venv/`, inside the folder. Every script is then run with `uv run`, for example `uv run tools/vh_check.py --all`, which checks everything the scripts have produced so far.
+This fetches the right Python if the computer does not have it and installs the packages in `.venv/`, inside the folder. Every script is then run with `uv run`, for example `uv run tools/vh_check.py`, which compares everything the scripts have produced so far with the recorded results.
 
 ## The documents
 

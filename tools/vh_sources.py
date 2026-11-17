@@ -14,9 +14,7 @@ In a script:
     (typed,) = require(VDIR, ["tlg0656.tlg001.1st1K-grc1.xml"])   # VDIR: the version folder
     typed.path   the file          typed.name   its name          typed.md5   its checksum
 
-From the workspace folder, to verify every recorded file of one or several versions
-(files not downloaded are reported, the others are verified):
-    uv run tools/vh_sources.py <version folder> [<version folder> ...]
+Not a command. tools/vh_check.py verifies the source files present in a version folder.
 """
 import csv, hashlib, sys
 from collections import namedtuple
@@ -67,22 +65,3 @@ def require(vdir, names):
     return [Source(name, vdir / "source" / name, rows[name]["md5"]) for name in names]
 
 
-def main(argv):
-    if not argv:
-        sys.exit(__doc__)
-    bad = 0
-    for folder in argv:
-        vdir = ROOT / "data" / Path(folder).name
-        rows = recorded(vdir.name)
-        if not rows:
-            print(f"{vdir.name}: no file recorded in data/Downloads_report.csv")
-            bad += 1
-        for name in rows:
-            p = problem(vdir, name, rows)
-            bad += bool(p)
-            print(f"{vdir.name}: {p or name + ': OK'}")
-    sys.exit(1 if bad else 0)
-
-
-if __name__ == "__main__":
-    main(sys.argv[1:])

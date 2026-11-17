@@ -16,7 +16,7 @@ What the format must guarantee:
 
 ## The files
 
-In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds the files below (and the scripts' records `made_by_*.json`, which are not part of the format: [`Conversion_method.md`](Conversion_method.md#one-check-for-everything-produced)). The raw text in `work/raw/` ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-version)) has the same files in the same format, `page_images.csv` aside; the difference is that its labels still carry the mistakes of the source.
+In each version folder ([`Folder_structure.md`](Folder_structure.md)), the folder `text/` holds the files below. The raw text in `work/raw/` ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-version)) has the same files in the same format, `page_images.csv` aside; the difference is that its labels still carry the mistakes of the source.
 
 | File | Content |
 |---|---|
@@ -142,7 +142,7 @@ A page not yet matched has no row.
 
 ## The checker
 
-Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a `text/` or `work/raw/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup; and `page_images.csv` when it is there). It does not look at the source and does not judge whether the words are right; for a machine-read text that is done by comparing samples with the page images, while a typed text is taken as its project typed it ([`Conversion_method.md`](Conversion_method.md#what-counts-as-verified)). A text that fails the check is not accepted. It is run as part of the check of everything a version's scripts produced, [`tools/vh_check.py`](../tools/vh_check.py).
+Each version is converted by its own script, so nothing guarantees by itself that two scripts produce files of the same shape. [`tools/vh_text.py`](../tools/vh_text.py) is the common gate: it reads a `text/` or `work/raw/` folder and verifies its **shape** (every field present and well formed, every page known, every position inside its text, no stray spaces or markup; and `page_images.csv` when it is there). It does not look at the source and does not judge whether the words are right; for a machine-read text that is done by comparing samples with the page images, while a typed text is taken as its project typed it ([`Conversion_method.md`](Conversion_method.md#what-counts-as-verified)). A text that fails the check is not accepted. It is run as part of the check of a version, [`tools/vh_check.py`](../tools/vh_check.py) ([`Conversion_method.md`](Conversion_method.md#the-recorded-results-and-one-check)).
 
 ## Choices made, and why
 

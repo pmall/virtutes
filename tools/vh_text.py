@@ -1,20 +1,14 @@
 #!/usr/bin/env python3
-"""Verify the shape of texts in the project's unified text format, or read one (standard library only).
+"""Verify the shape of texts in the project's unified text format (standard library only).
 
 The format is defined in docs/Unified_text_format.md. Every converter, whatever its
 source (typed text, scan of a printed book, scan of a manuscript), must produce files
 of this shape.
 
-The shape is verified by check(), which tools/vh_check.py calls for the raw text and for
-the final text of a version, together with its other checks; that is the command to run:
-    uv run tools/vh_check.py <version folder>
-check() verifies one folder (text/ or work/raw/): pages.csv, every <lang>.jsonl and its
-<lang>.info.json, and page_images.csv if it is there.
-
-To read a text, from the workspace folder:
-    uv run tools/vh_text.py view <file.jsonl> [--kinds text,head] [--from REF] [--to REF]
-prints it with page changes on their own line, one passage per paragraph. By default only
-the work itself (kinds head, text, commentary).
+Not a command: check() is called by tools/vh_check.py and tools/vh_record.py. It verifies
+one folder (text/ or work/raw/) of a version: pages.csv, every <lang>.jsonl and its
+<lang>.info.json, and page_images.csv if it is there. It prints one line per file and
+returns the problems found.
 """
 import csv, json, re, sys, unicodedata
 from collections import Counter
@@ -196,7 +190,7 @@ def check_text(path, pages, err):
     return len(order), chars, kinds
 
 
-def check(folder, sub="text", indent=""):
+def check(folder, sub="text", indent="  "):
     """Verify the shape of one version folder's text/ or work/raw/. Returns the list of problems."""
     problems = []
     vdir = Path(folder) if (Path(folder) / sub).is_dir() else DATA / Path(folder).name
@@ -222,51 +216,3 @@ def check(folder, sub="text", indent=""):
         detail = ", ".join(f"{k} {v}" for k, v in sorted(kinds.items(), key=lambda x: str(x[0])))
         print(f"{indent}{sub}/{path.name}: {n} passages, {chars} characters ({detail})")
     return problems
-
-
-def view(path, kinds, ref_from, ref_to):
-    page, on, ending = None, ref_from is None, False
-    with open(path, encoding="utf-8") as f:
-        for line in f:
-            p = json.loads(line)
-            ref = p.get("ref")
-            if ending and ref != ref_to:
-                break
-            if ref_from is not None and ref == ref_from:
-                on = True
-            if on and p["kind"] in kinds:
-                if p["page"] != page:
-                    page = p["page"]
-                    print(f"\n[page {page}]")
-                label = f"{ref}  " if ref else ""
-                text, shift = p["text"], 0
-                for offset, new_page in p.get("breaks", []):
-                    tag = f" [page {new_page}] "
-                    text = text[:offset + shift] + tag + text[offset + shift:]
-                    shift += len(tag)
-                    page = new_page
-                print(f"\n{label}{'# ' if p['kind'] == 'head' else ''}{text}")
-            if ref_to is not None and ref == ref_to:
-                ending = True
-
-
-def main(argv):
-    if argv[:1] == ["check"]:
-        sys.exit("the check is now: uv run tools/vh_check.py <version folder>")
-    if len(argv) < 2 or argv[0] != "view":
-        sys.exit(__doc__)
-    opts, args = {}, []
-    it = iter(argv[1:])
-    for a in it:
-        if a in ("--kinds", "--from", "--to"):
-            opts[a] = next(it, None)
-        else:
-            args.append(a)
-    if len(args) != 1:
-        sys.exit(__doc__)
-    kinds = set((opts.get("--kinds") or "head,text,commentary").split(","))
-    view(args[0], kinds, opts.get("--from"), opts.get("--to"))
-
-
-if __name__ == "__main__":
-    main(sys.argv[1:])

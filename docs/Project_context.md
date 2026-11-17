@@ -42,7 +42,7 @@ The work is in three stages. The table in [The steps](#the-steps) gives the meth
 **Stage 2: anyone can make the texts again.** For each version, scripts make the text from the exact files a library delivered, so that any researcher who has those files, identified by their checksums, obtains exactly the same text, character for character.
 
 - **An AI assistant writes the scripts.** Each book is laid out its own way and needs scripts fitted to it, which costs a person hours per book and is why projects usually avoid it; an assistant writes them in minutes.
-- **Running them needs no AI.** The scripts are ordinary programs: they stop if a source file is not the one recorded, and give the same result at every run, on any computer.
+- **Running them needs no AI.** The scripts are ordinary programs: they stop if a source file is not the one recorded, and give the same result at every run, on any computer. The checksums of the results are kept in git, so anyone can verify that they obtained the same text.
 
 How this is done: [`Conversion_method.md`](Conversion_method.md); what must be kept to make the texts again: [`Folder_structure.md`](Folder_structure.md#what-is-in-git-and-what-is-not).
 

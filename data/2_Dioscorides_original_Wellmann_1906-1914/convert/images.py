@@ -34,14 +34,12 @@ SHIFTS = {"1": ("b21459162_0001_jp2.zip", 14), "2": ("b21459162_0002_jp2.zip", 3
 SOURCES = [scan for scan, _ in SHIFTS.values()]        # the files of source/ this script reads
 sys.path.insert(0, str(ROOT / "tools"))
 from vh_sources import require
-from vh_check import record
 
 
 def main():
     if not (TEXT / "pages.csv").exists():
         sys.exit("text/pages.csv is missing: run convert/extract.py then convert/repair.py first")
-    sources = require(VDIR, SOURCES)
-    scans = {s.name: s.path for s in sources}
+    scans = {s.name: s.path for s in require(VDIR, SOURCES)}
     with open(TEXT / "pages.csv", newline="", encoding="utf-8") as f:
         pages = list(csv.DictReader(f))
 
@@ -63,7 +61,6 @@ def main():
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["page", "source_file", "image", "mapping"])
         w.writerows(rows)
-    record(__file__, read=[TEXT / "pages.csv"] + sources, wrote=[TEXT / "page_images.csv"])
     print(f"{len(rows)} pages linked to their image")
 
 

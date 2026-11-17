@@ -39,20 +39,21 @@ The division of work:
 - **The shared check verifies what was produced**, the same for all versions (below).
 - **People verify the words of machine-read texts**, on samples compared with the page images. The words of a typed text are taken as the scholarly project typed them and are not read again against the scans: avoiding that reading is why a typed text is preferred. The scan of a typed text is opened only to settle a doubt (a label, a page number). Corrections a person asks for are stored beside the script and applied at each run.
 
-## One check for everything produced
+## The recorded results, and one check
 
-[`tools/vh_check.py`](../tools/vh_check.py) checks any version, whatever its source. It knows the process, not the book.
+**The checksums of the results are kept in git.** Each version has a file `convert/results.md5`: one line per file its scripts produce (the raw text, the final text, the page images file, the list of repairs), with its checksum. It is the reference: a researcher who runs the scripts on the recorded source files must obtain files with these checksums. Because it is committed with the scripts, the history shows, for every change of a script, whether and how it changed the results.
 
-Each script, when it finishes, writes a small record beside its result (`made_by_extract.json`, `made_by_repair.json`, `made_by_images.json`): the checksum of the script itself, of every file it read and of every file it wrote. From these records the check tells, for each script:
+Three commands, each taking only the name of a version folder:
 
-- whether a file it wrote has been changed or deleted since;
-- whether its result is out of date, because a file it read has changed (an earlier script was run again and this one was not) or because the script itself has changed;
-- whether the source files it read are the recorded ones;
-- whether a file lies beside the results that no script made.
+| Command | Who runs it | What it does |
+|---|---|---|
+| [`tools/vh_check.py`](../tools/vh_check.py) | Anyone, at any time | Compares what is in the version folder with the reference, for any version whatever its source: the source files present are the recorded ones; each produced file has the recorded checksum; no other file lies among the results; the texts have the shape of the format ([`Unified_text_format.md`](Unified_text_format.md#the-checker)). Without a name, it checks every version |
+| [`tools/vh_record.py`](../tools/vh_record.py) | Whoever writes or changes a version's scripts, before committing | Deletes the results there are, runs the version's scripts in order, verifies the shape of the results, and writes `convert/results.md5`. It needs every source file, the scans included |
+| [`tools/vh_view.py`](../tools/vh_view.py) | Anyone | Prints a text, or one place in it, for reading |
 
-It then verifies the shape of the raw text and of the final text ([`Unified_text_format.md`](Unified_text_format.md#the-checker)).
-
-No script touches the result of another. If `repair.py` is run again and the pages change, `page_images.csv` is left as it is and the check says it is out of date; if the pages did not change, it is still good. A script that has not been run is not a fault, and a source file that is absent is not one either: its recorded checksum is enough to compare.
+- **No script touches the result of another.** If `repair.py` is run again and changes the pages, `page_images.csv` is left as it is; the check then reports that the pages are not the recorded result.
+- **A file not made is not a fault**, and neither is an absent source file: someone who has only the typed file makes the text, and the check compares it with the reference while reporting the page images file as not made.
+- The reference is in the format of the standard command `md5sum`, so it can be verified without the project's tools: `md5sum -c convert/results.md5`, from the version folder.
 
 ## What counts as verified
 

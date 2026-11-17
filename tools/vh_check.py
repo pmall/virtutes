@@ -1,39 +1,31 @@
 #!/usr/bin/env python3
-"""Check that everything the scripts of a version produced is whole and in step (standard library only).
+"""Check what the scripts of a version produced against the recorded results (standard library only).
 
 One check for every version, whatever its source (typed text, scan of a printed book, scan
-of a manuscript). It knows the process, not the book: the scripts of convert/ run in the
-order extract.py, repair.py, images.py (docs/Conversion_method.md), and each one, when it
-finishes, writes a record of what it made: its own checksum, the checksum of every file it
-read and of every file it wrote (record(), below). The record is the file
-made_by_<script>.json beside the files the script wrote.
+of a manuscript). The reference is convert/results.md5 of the version, kept in git: the
+checksum of every file the version's scripts produce (written by tools/vh_record.py). A
+researcher who runs the scripts on the recorded source files must obtain these files.
 
 Usage, from the workspace folder:
     uv run tools/vh_check.py <version folder> [<version folder> ...]
-    uv run tools/vh_check.py --all        every version that has a convert/ folder
+    uv run tools/vh_check.py                 every version that has a convert/ folder
 
-For each script the check prints one of:
-    OK         its files are as it made them, from the files and the script as they are now
-    not made   the script has not been run (or has not been written): nothing to check
-    PROBLEM    followed by what is wrong:
-               - a file it wrote has changed or is gone (edited by hand, deleted);
-               - a file it read has changed since (an earlier script was run again, and
-                 this one was not: its result is out of date);
-               - the script itself has changed since it was run;
-               - a source file it read is not the one recorded in data/Downloads_report.csv;
-               - a file lies in work/raw/ or text/ that no record accounts for.
-Then it verifies the shape of the raw text and of the final text (tools/vh_text.py).
-A source file that is absent is not a problem: its recorded checksum is enough to compare.
-"Not made" is not a problem either; images.py is optional. The command ends with OK, or
-with the number of problems.
+For each version it verifies, and prints:
+1. the source files present in source/ are the ones recorded in data/Downloads_report.csv
+   (an absent one is only reported: not every script needs every file);
+2. each produced file has the checksum of convert/results.md5; a file not made yet is only
+   reported (text/page_images.csv is optional); a file in work/raw/ or text/ that the
+   reference does not list is a problem;
+3. the shape of the raw text and of the final text (tools/vh_text.py), which includes
+   that text/page_images.csv, if there, names only pages of text/pages.csv.
+The command ends with OK, or with the number of problems.
 
-In a script of convert/, as the last thing it does:
-    sys.path.insert(0, str(ROOT / "tools"))          # ROOT: the workspace folder
-    from vh_check import record
-    record(__file__, read=[...], wrote=[...])
-`read` and `wrote` are paths, or the Source values returned by vh_sources.require().
+A different checksum means one of two things: the result is not reproduced (another
+source file, a changed script, a file edited by hand, a script not run again after an
+earlier one), or the scripts were changed on purpose and the new results have not been
+recorded yet with tools/vh_record.py.
 """
-import json, sys
+import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -41,119 +33,76 @@ import vh_sources, vh_text
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "data"
-STEPS = [("extract", "work/raw"), ("repair", "text"), ("images", "text")]  # script, where its record is
-OPTIONAL = {"images"}
-CHECKED_FOLDERS = ["work/raw", "text"]      # every file in them must be accounted for
+RESULT_FOLDERS = ["work/raw", "text"]       # everything in them is a result
+RESULT_FILES = ["work/repairs.csv"]         # and these single files
+OPTIONAL = {"text/page_images.csv"}
 
 
-def record(script, read, wrote):
-    """Write made_by_<script>.json beside the first file written. Same content at every run."""
-    script = Path(script).resolve()
-    vdir = script.parents[1]
-
-    def entry(item):
-        path = Path(getattr(item, "path", item)).resolve()
-        return {"file": path.relative_to(vdir).as_posix(),
-                "md5": getattr(item, "md5", None) or vh_sources.md5(path)}
-
-    rec = {"script": script.relative_to(vdir).as_posix(), "script_md5": vh_sources.md5(script),
-           "read": [entry(i) for i in read], "wrote": [entry(i) for i in wrote]}
-    out = Path(getattr(wrote[0], "path", wrote[0])).resolve().parent / f"made_by_{script.stem}.json"
-    with open(out, "w", encoding="utf-8", newline="\n") as f:
-        f.write(json.dumps(rec, ensure_ascii=False, indent=1) + "\n")
+def produced(vdir):
+    """The result files now in a version folder, as paths relative to it, in a fixed order."""
+    found = []
+    for folder in RESULT_FOLDERS:
+        d = vdir / folder
+        found += sorted(f"{folder}/{f.name}" for f in d.iterdir() if f.is_file()) if d.is_dir() else []
+    return found + [f for f in RESULT_FILES if (vdir / f).is_file()]
 
 
-def check_step(vdir, name, folder, recorded, md5_now, accounted):
-    """Return (state, problems) for one script; add the files it accounts for to `accounted`."""
-    path = vdir / folder / f"made_by_{name}.json"
+def reference(vdir):
+    """convert/results.md5 as {file: md5}, or None if nothing has been recorded."""
+    path = vdir / "convert" / "results.md5"
     if not path.exists():
-        return "not made", []
-    accounted.add(path)
-    try:
-        rec = json.load(open(path, encoding="utf-8"))
-        script, wrote, read = vdir / rec["script"], rec["wrote"], rec["read"]
-    except (ValueError, KeyError, TypeError):
-        return "PROBLEM", [f"{path.name}: not a valid record; run convert/{name}.py again"]
-    problems = []
-    again = f"run convert/{name}.py again"
-    if not script.exists():
-        problems.append(f"{rec['script']} is gone")
-    elif md5_now(script) != rec["script_md5"]:
-        problems.append(f"{rec['script']} has changed since it was run; {again}")
-    for e in wrote:
-        f = vdir / e["file"]
-        accounted.add(f)
-        if not f.exists():
-            problems.append(f"{e['file']} is gone; {again}")
-        elif md5_now(f) != e["md5"]:
-            problems.append(f"{e['file']} is not as {rec['script']} wrote it (changed by hand "
-                            f"or by something else); {again}")
-    for e in read:
-        f = vdir / e["file"]
-        if e["file"].startswith("source/"):
-            row = recorded.get(f.name)
-            if row is None or row["md5"] != e["md5"]:
-                problems.append(f"{e['file']}: the file read is not the one recorded in "
-                                f"data/Downloads_report.csv; {again} with the recorded file")
-            elif f.exists() and md5_now(f) != e["md5"]:
-                problems.append(f"{e['file']}: the file now in source/ is not the recorded one")
-        elif not f.exists():
-            problems.append(f"{e['file']}, which {rec['script']} read, is gone")
-        elif md5_now(f) != e["md5"]:
-            problems.append(f"{e['file']} has changed since {rec['script']} read it: "
-                            f"its result is out of date; {again}")
-    return ("PROBLEM" if problems else "OK"), problems
+        return None
+    with open(path, encoding="utf-8") as f:
+        return {name: md5 for md5, name in (line.rstrip("\n").split("  ", 1) for line in f if line.strip())}
 
 
 def check(folder):
     """Check one version folder; print its state; return the number of problems."""
     vdir = DATA / Path(folder).name
-    print(f"{vdir.name}")
+    print(vdir.name)
     if not (vdir / "convert").is_dir():
         print("  no convert/ folder: nothing has been made")
         return 0
-    recorded = vh_sources.recorded(vdir.name)
-    cache = {}
-    md5_now = lambda p: cache.setdefault(p, vh_sources.md5(p))
-    accounted, bad, made = set(), 0, set()
-    for name, where in STEPS:
-        state, problems = check_step(vdir, name, where, recorded, md5_now, accounted)
-        if state == "not made":
-            if not (vdir / "convert" / f"{name}.py").exists():
-                state += ", no script yet"
-            if name in OPTIONAL:
-                state += " (optional)"
+    problems = []
+
+    rows = vh_sources.recorded(vdir.name)
+    for name in rows:
+        if not (vdir / "source" / name).is_file():
+            print(f"  source/{name}: absent")
+        elif p := vh_sources.problem(vdir, name, rows):
+            problems.append(f"source/{p}")
         else:
-            made.add(where)
-        print(f"  convert/{name}.py: {state}")
-        for p in problems:
-            print(f"    PROBLEM {p}")
-        bad += len(problems)
-    for where in CHECKED_FOLDERS:
-        d = vdir / where
-        for f in sorted(d.iterdir()) if d.is_dir() else []:
-            if f.is_file() and f not in accounted:
-                print(f"  PROBLEM {where}/{f.name}: no record says which script made it")
-                bad += 1
-    for where in CHECKED_FOLDERS:
-        if where in made:
-            problems = vh_text.check(vdir, where, indent="  ")
-            for p in problems[:50]:
-                print(f"    PROBLEM {p}")
-            if len(problems) > 50:
-                print(f"    ... and {len(problems) - 50} more")
-            bad += len(problems)
-    return bad
+            print(f"  source/{name}: the recorded file")
+
+    ref = reference(vdir)
+    here = produced(vdir)
+    if ref is None:
+        print("  no results recorded yet (convert/results.md5): only the shape is verified")
+    else:
+        for name, md5 in ref.items():
+            if name not in here:
+                print(f"  {name}: not made" + (" (optional)" if name in OPTIONAL else ""))
+            elif vh_sources.md5(vdir / name) != md5:
+                problems.append(f"{name}: not the recorded result")
+            else:
+                print(f"  {name}: the recorded result")
+        problems += [f"{name}: not among the recorded results" for name in here if name not in ref]
+
+    for folder in RESULT_FOLDERS:
+        if any(name.startswith(folder + "/") for name in here):
+            problems += vh_text.check(vdir, folder)
+
+    for p in problems[:50]:
+        print(f"  PROBLEM {p}")
+    if len(problems) > 50:
+        print(f"  ... and {len(problems) - 50} more")
+    return len(problems)
 
 
 def main(argv):
-    if not argv:
-        sys.exit(__doc__)
-    folders = argv
-    if argv == ["--all"]:
-        folders = sorted(d.parent.name for d in DATA.glob("*/convert") if d.is_dir())
-        if not folders:
-            sys.exit("no version folder has a convert/ folder yet")
+    folders = argv or sorted(d.parent.name for d in DATA.glob("*/convert") if d.is_dir())
+    if not folders:
+        sys.exit("no version folder has a convert/ folder yet")
     bad = sum(check(folder) for folder in folders)
     print("OK" if not bad else f"{bad} problem(s)")
     sys.exit(1 if bad else 0)
