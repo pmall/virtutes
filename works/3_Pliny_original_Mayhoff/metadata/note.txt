@@ -25,7 +25,8 @@ WHY THIS VERSION
   LacusCurtius is only partly proofread; Latin Wikisource gives no source.
 
 NOT VERIFIED
-- The page numbers of volumes I, II and V against their scans.
+- Nothing about the files themselves. What the conversion did and did not verify is in
+  convert/ (the page numbers of all five volumes: convert/images_lat.py).
 
 RIGHTS: text public domain (Mayhoff died 1914); typed text CC BY-SA 4.0; scans not in
 copyright.
