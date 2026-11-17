@@ -9,7 +9,7 @@ Applies to every work of the catalogue.
 
 1. **For each work, choose up to 3 versions:** original language, English, French.
 
-2. **Everything ends as a typed text.** If a reliable typed text of the version exists, take it; if a scan of that same edition also exists, take it too (any complete copy; its sharpness does not matter), but the typed text is what we work from. Otherwise, take the scan and type it ourselves, keeping for each passage the page of the scan it comes from. All typed texts are brought to one format ([`Unified_text_format.md`](Unified_text_format.md)).
+2. **Everything ends as a typed text.** If a reliable typed text of the version exists, take it; if a scan of that same edition also exists, take it too (any complete copy; its sharpness does not matter), but the typed text is what we work from: that scan is kept so that each page can later be shown beside its text in a web interface, not to check the words ([`Conversion_method.md`](Conversion_method.md#what-counts-as-verified)). Otherwise, take the scan and type it ourselves, keeping for each passage the page of the scan it comes from. All typed texts are brought to one format ([`Unified_text_format.md`](Unified_text_format.md)).
 
 3. **A typed text is reliable** if it comes from a scholarly or institutional source, states its licence and the edition it was made from, and has been corrected: marked as checked or proofread, or made by a scholarly project that corrects its texts (Perseus, First1KGreek).
 
