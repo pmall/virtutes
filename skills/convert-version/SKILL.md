@@ -12,7 +12,7 @@ description: Convert one version of a work (data/<version>/) to the project's un
 2. `docs/Folder_structure.md`, section "One folder per chosen version" — where each file goes.
 3. `docs/Conversion_method.md` — why it is done this way, what each of the three scripts may do and which source files it may open, and what counts as verified.
 4. `data/<version>/metadata/note.txt` — what the source files are and what is not verified about them.
-5. `tools/vh_text.py` (top comment) — the checker you must pass.
+5. `tools/vh_check.py` and `tools/vh_text.py` (top comments) — the check you must pass.
 6. The `convert/` scripts of an already converted version of the same kind, if one exists: reuse their approach.
 
 ## Hard constraints
@@ -23,6 +23,7 @@ description: Convert one version of a work (data/<version>/) to the project's un
 - **Propose each repair rule to the user before writing it**: the mistake, how many passages, the rule, what it could get wrong.
 - `source/` is read-only. Read archives in place (`zipfile`); anything unpacked goes to `work/`.
 - Each script lists, in a constant `SOURCES` near its top, the files of `source/` it reads, and gets them through `require()` of `tools/vh_sources.py` before doing anything else. No other code opens or checksums a source file. For a typed text, `extract.py` names the typed file only and `repair.py` names nothing: the text must build with the scans absent. Only `images.py` names the scans.
+- Each script ends by calling `record()` of `tools/vh_check.py` with every file it read and every file it wrote. A script writes only its own files: it never deletes or changes what another script made.
 - Only the packages of `pyproject.toml`; run everything with `uv run`. If the task cannot be done without another package (a reading engine), stop and ask the user.
 - Each script takes no arguments, finds its folders from its own path, and gives the same output at every run (no dates, no random order).
 - No interpretation: do not identify plants, translate, modernise spelling or tidy punctuation.
@@ -34,11 +35,11 @@ description: Convert one version of a work (data/<version>/) to the project's un
    - Typed text (XML): list the element names and their counts; find how books, chapters and sections are marked, how pages are marked, where notes and variant readings sit, which elements mark editorial additions, deletions and gaps. Read three stretches in full: the beginning, one plant entry in the middle, the end. Parse large files as a stream (`xml.etree.ElementTree.iterparse`). Check that the file parses with the standard library: named entities such as `&mdash;` need to be declared to the parser.
    - Scan: do not start. Reading scans by machine is not decided (`docs/OCR_Kraken_approach.md`); see `WIP.md` for the state of that question.
 2. **Decide the mapping** from the source's structure to `kind`, `ref`, `page`, `marks`, `anchor`. Decide the `ref_scheme` from the citation system scholars use for this work, not from the file's own nesting if they differ. Write these decisions, and the layout of the book, in the comment at the top of `extract.py`; the comment at the top of `repair.py` lists its rules. These two comments are the only description of the version's conversion.
-3. **Write `convert/extract.py`.** It writes `work/raw/<lang>.jsonl`, `work/raw/<lang>.info.json` and `work/raw/pages.csv`. The `sources` of the info file are what `require()` returned. Check it: `uv run tools/vh_text.py check <version> --raw`.
+3. **Write `convert/extract.py`.** It writes `work/raw/<lang>.jsonl`, `work/raw/<lang>.info.json` and `work/raw/pages.csv`. The `sources` of the info file are what `require()` returned. Check it: `uv run tools/vh_check.py <version>`.
 4. **List the mistakes of the source** found in the raw text (labels that contradict the printed numbers, numbers typed inside sentences, voices mixed, pages out of order), with counts and examples, and propose a repair rule for each to the user.
 5. **Write `convert/repair.py`** with the rules agreed. It reads `work/raw/` only and writes the same three files to `text/`, plus `work/repairs.csv`. If a rule was decided by looking at a page image, say in its description what was seen; the script itself does not open the scan.
 6. **Write `convert/images.py`** if the version has a scan. It reads `text/pages.csv` and the scans and writes `text/page_images.csv`; its opening comment gives the rule and the pages it was checked on. A page that could not be matched gets no row. Use `computed` only after verifying the rule on at least five pages spread over each volume, by reading the page number on the image (`tools/page_image.py` writes one page image as a PNG file).
-7. **Run the checker**: `uv run tools/vh_text.py check <version>`. Fix the scripts until it prints `OK`.
+7. **Run the check**: `uv run tools/vh_check.py <version>`. Fix the scripts until every script is `OK` and the last line is `OK`.
 8. **Verify the content**, and report the figures:
    - nothing lost: the number of characters of running text in the source, in the raw text and in `text/`, per kind, with every difference explained;
    - counts of books, chapters and sections against the figures a scholar would expect, each with its origin;
@@ -49,7 +50,7 @@ description: Convert one version of a work (data/<version>/) to the project's un
 
 ## Done means
 
-- After deleting `work/` and `text/`, `uv run convert/extract.py` then `uv run convert/repair.py` make them again and the checker prints `OK` for both; a second run gives files with the same checksums.
+- After deleting `work/` and `text/`, `uv run convert/extract.py` then `uv run convert/repair.py` make them again and `uv run tools/vh_check.py <version>` prints `OK`; a second run gives files with the same checksums.
 - For a typed text, this holds with the scans moved out of `source/`. `uv run convert/images.py` then adds `text/page_images.csv` without changing any other file, and stops with the standard message when a scan is absent.
 - The verification figures of step 8 are in the commit message.
 - No text of the work was typed by you.

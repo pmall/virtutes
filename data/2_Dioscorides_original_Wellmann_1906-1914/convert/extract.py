@@ -53,6 +53,7 @@ ROOT = VDIR.parents[1]                                 # the workspace folder
 SOURCES = ["tlg0656.tlg001.1st1K-grc1.xml"]            # the files of source/ this script reads
 sys.path.insert(0, str(ROOT / "tools"))
 from vh_sources import require
+from vh_check import record
 RAW = VDIR / "work" / "raw"
 LANG = "grc"
 NS = "{http://www.tei-c.org/ns/1.0}"
@@ -258,6 +259,8 @@ def main():
     }
     with open(RAW / f"{LANG}.info.json", "w", encoding="utf-8", newline="\n") as f:
         f.write(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
+    record(__file__, read=[typed],
+           wrote=[RAW / f"{LANG}.jsonl", RAW / f"{LANG}.info.json", RAW / "pages.csv"])
     print(f"{len(conv.lines)} passages, {len(conv.pages)} pages")
 
 

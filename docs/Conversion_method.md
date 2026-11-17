@@ -36,12 +36,27 @@ So a doubt about the final text can always be settled: the raw text shows what t
 The division of work:
 
 - **The assistant writes the scripts; the scripts produce the text.** The assistant never retypes or rewrites the text itself, so anyone can read in the scripts what was done to the source. This is why the texts are not kept in git: the scripts and the exact sources are enough to make them again.
-- **The shared checker verifies the shape of the result**, the same for all versions.
+- **The shared check verifies what was produced**, the same for all versions (below).
 - **People verify the words of machine-read texts**, on samples compared with the page images. The words of a typed text are taken as the scholarly project typed them and are not read again against the scans: avoiding that reading is why a typed text is preferred. The scan of a typed text is opened only to settle a doubt (a label, a page number). Corrections a person asks for are stored beside the script and applied at each run.
+
+## One check for everything produced
+
+[`tools/vh_check.py`](../tools/vh_check.py) checks any version, whatever its source. It knows the process, not the book.
+
+Each script, when it finishes, writes a small record beside its result (`made_by_extract.json`, `made_by_repair.json`, `made_by_images.json`): the checksum of the script itself, of every file it read and of every file it wrote. From these records the check tells, for each script:
+
+- whether a file it wrote has been changed or deleted since;
+- whether its result is out of date, because a file it read has changed (an earlier script was run again and this one was not) or because the script itself has changed;
+- whether the source files it read are the recorded ones;
+- whether a file lies beside the results that no script made.
+
+It then verifies the shape of the raw text and of the final text ([`Unified_text_format.md`](Unified_text_format.md#the-checker)).
+
+No script touches the result of another. If `repair.py` is run again and the pages change, `page_images.csv` is left as it is and the check says it is out of date; if the pages did not change, it is still good. A script that has not been run is not a fault, and a source file that is absent is not one either: its recorded checksum is enough to compare.
 
 ## What counts as verified
 
-A text is `complete` when the whole version is there and passes the checker. Its `review` level says how far the words were verified:
+A text is `complete` when the whole version is there and passes the check. Its `review` level says how far the words were verified:
 
 - **Counts** agree with known figures: number of books and chapters; for Mattioli 1568, the 831 chapters of Dioscorides counted by Staub et al. 2016.
 - For a machine-read text: **samples** spread over the whole book were compared by eye with the page image, with particular attention to plant names, quantities and parts of plants. A typed text has no such review; its `review` stays `none` and this is not listed as a limit.

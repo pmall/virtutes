@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
-"""Check or read texts in the project's unified text format (standard library only).
+"""Verify the shape of texts in the project's unified text format, or read one (standard library only).
 
 The format is defined in docs/Unified_text_format.md. Every converter, whatever its
 source (typed text, scan of a printed book, scan of a manuscript), must produce files
-that pass this check.
+of this shape.
 
-Usage, from the workspace folder:
-    uv run tools/vh_text.py check <version folder> [<version folder> ...] [--raw]
-    uv run tools/vh_text.py check --all
-    uv run tools/vh_text.py view  <file.jsonl> [--kinds text,head] [--from REF] [--to REF]
+The shape is verified by check(), which tools/vh_check.py calls for the raw text and for
+the final text of a version, together with its other checks; that is the command to run:
+    uv run tools/vh_check.py <version folder>
+check() verifies one folder (text/ or work/raw/): pages.csv, every <lang>.jsonl and its
+<lang>.info.json, and page_images.csv if it is there.
 
-    check   verifies data/<version folder>/text/ : pages.csv, every <lang>.jsonl and its
-            <lang>.info.json, and page_images.csv if it is there. Prints one line per
-            file, then the problems found.
-            With --raw, verifies work/raw/ (the output of extract.py) instead of text/.
-    view    prints a text for reading: page changes on their own line, one passage per
-            paragraph. By default only the work itself (kinds head, text, commentary).
+To read a text, from the workspace folder:
+    uv run tools/vh_text.py view <file.jsonl> [--kinds text,head] [--from REF] [--to REF]
+prints it with page changes on their own line, one passage per paragraph. By default only
+the work itself (kinds head, text, commentary).
 """
 import csv, json, re, sys, unicodedata
 from collections import Counter
@@ -197,8 +196,8 @@ def check_text(path, pages, err):
     return len(order), chars, kinds
 
 
-def check(folder, sub="text"):
-    """Check one version folder (its text/, or its work/raw/). Returns the list of problems."""
+def check(folder, sub="text", indent=""):
+    """Verify the shape of one version folder's text/ or work/raw/. Returns the list of problems."""
     problems = []
     vdir = Path(folder) if (Path(folder) / sub).is_dir() else DATA / Path(folder).name
     folder, tdir = vdir.resolve().name, vdir / sub
@@ -210,7 +209,7 @@ def check(folder, sub="text"):
             problems.append("page_images.csv belongs in text/ only")
         else:
             n = check_images(tdir / "page_images.csv", pages, problems.append)
-            print(f"{folder}/{sub}/page_images.csv: {n} of {len(pages)} pages have an image")
+            print(f"{indent}{sub}/page_images.csv: {n} of {len(pages)} pages have an image")
     texts = sorted(tdir.glob("*.jsonl"))
     if not texts:
         problems.append("no <lang>.jsonl file")
@@ -221,7 +220,7 @@ def check(folder, sub="text"):
         check_info(tdir / f"{lang}.info.json", lang, folder, problems.append)
         n, chars, kinds = check_text(path, pages, problems.append)
         detail = ", ".join(f"{k} {v}" for k, v in sorted(kinds.items(), key=lambda x: str(x[0])))
-        print(f"{folder}/{sub}/{path.name}: {n} passages, {chars} characters ({detail})")
+        print(f"{indent}{sub}/{path.name}: {n} passages, {chars} characters ({detail})")
     return problems
 
 
@@ -252,25 +251,10 @@ def view(path, kinds, ref_from, ref_to):
 
 
 def main(argv):
-    if len(argv) < 2 or argv[0] not in ("check", "view"):
+    if argv[:1] == ["check"]:
+        sys.exit("the check is now: uv run tools/vh_check.py <version folder>")
+    if len(argv) < 2 or argv[0] != "view":
         sys.exit(__doc__)
-    if argv[0] == "check":
-        folders = [a for a in argv[1:] if a != "--raw"]
-        sub = "work/raw" if "--raw" in argv else "text"
-        if folders == ["--all"]:
-            folders = sorted(d.parent.name for d in DATA.glob("*/text") if d.is_dir())
-            if not folders:
-                sys.exit("no version folder has a text/ folder yet")
-        bad = 0
-        for folder in folders:
-            problems = check(folder, sub)
-            bad += len(problems)
-            for line in problems[:50]:
-                print(f"  PROBLEM {line}")
-            if len(problems) > 50:
-                print(f"  ... and {len(problems) - 50} more")
-        print("OK" if not bad else f"{bad} problem(s)")
-        sys.exit(1 if bad else 0)
     opts, args = {}, []
     it = iter(argv[1:])
     for a in it:

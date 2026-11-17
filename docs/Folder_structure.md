@@ -57,6 +57,7 @@ Each version folder is a small workshop of its own, with the same five parts:
         raw/              the raw text, in the unified text format
         repairs.csv       every change repair.py made: passage, rule, before, after
         ...               unpacked page images, raw machine reading, trials
+                          (work/raw/ and text/ hold nothing but what the scripts wrote there)
     text/                 the result: the repaired text, in the unified text format
                           (Unified_text_format.md), and the optional link from pages to images
 ```
@@ -67,7 +68,7 @@ Rules:
 
 - **`source/` is never modified.** A file delivered by a library is kept exactly as delivered: never converted, resized, renamed, unpacked in place or repacked, so its published checksum still applies. Files keep the library's own identifiers as names. Only when a library serves single page images do we pack them ourselves, unchanged, with a checksum for each page.
 - **`text/` is never edited by hand.** It is always the output of `repair.py`, plus `page_images.csv` from `images.py`. A correction goes into the script or into `corrections.csv`, so that running the script again keeps it.
-- **`work/` and `text/` can be deleted at any time** without losing anything: the scripts make them again, the same at every run.
+- **`work/` and `text/` can be deleted at any time** without losing anything: the scripts make them again, the same at every run. [`tools/vh_check.py`](../tools/vh_check.py) tells whether what is there is whole and in step ([`Conversion_method.md`](Conversion_method.md#one-check-for-everything-produced)).
 - Code needed by several versions moves to [`tools/`](../tools/); a version's scripts keep only what is specific to that book.
 
 ## What is in git and what is not

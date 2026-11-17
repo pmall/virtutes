@@ -55,7 +55,9 @@ THE RULES, in the order they run
 
 SOURCE FILES NEEDED: none. This script reads work/raw/ only. Two rules were decided after
 looking at a page image (2 and 6), but running them does not open the scans. Linking the
-pages to their images is the separate, optional convert/images.py.
+pages to their images is the separate, optional convert/images.py; this script never
+touches its result. If the pages change here, tools/vh_check.py says that the page images
+are out of date.
 
 NOT REPAIRED (the words are not changed by rules)
 - Numbers typed inside sentences where the margin number stood, and 13 sections whose
@@ -70,6 +72,8 @@ VDIR = Path(__file__).resolve().parents[1]            # this version folder
 ROOT = VDIR.parents[1]                                 # the workspace folder
 RAW = VDIR / "work" / "raw"
 TEXT = VDIR / "text"
+sys.path.insert(0, str(ROOT / "tools"))
+from vh_check import record
 LANG = "grc"
 CHAPTERS = {"1": 129, "2": 186, "3": 158, "4": 192, "5": 162}   # Wellmann's chapters per book
 
@@ -248,11 +252,13 @@ def main():
     info["notes"] = NOTES
     with open(TEXT / f"{LANG}.info.json", "w", encoding="utf-8", newline="\n") as f:
         f.write(json.dumps(info, ensure_ascii=False, indent=1) + "\n")
-    (TEXT / "page_images.csv").unlink(missing_ok=True)     # made from pages.csv by images.py
     with open(VDIR / "work" / "repairs.csv", "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["id", "rule", "field", "before", "after"])
         w.writerows(repairs)
+    names = [f"{LANG}.jsonl", f"{LANG}.info.json", "pages.csv"]
+    record(__file__, read=[RAW / n for n in names],
+           wrote=[TEXT / n for n in names] + [VDIR / "work" / "repairs.csv"])
     counts = {}
     for row in repairs:
         counts[row[1]] = counts.get(row[1], 0) + 1
