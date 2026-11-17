@@ -21,8 +21,7 @@ Example (Bayerische Staatsbibliothek):
     uv run tools/download_iiif_pages.py 6_Petit-Bauhin_original_1671 bsb10300968 \\
         https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10300968/manifest
 
-Rules (AGENTS.md, docs/Folder_structure.md): nothing is downloaded without the user's go-ahead;
-one request every two seconds; generic client name.
+Nothing is downloaded without the user's go-ahead (AGENTS.md).
 """
 import csv, hashlib, json, os, shutil, sys, time, urllib.request, zipfile
 from pathlib import Path
@@ -30,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "works"
 UA = "Mozilla/5.0 (research-client)"
-PAUSE = 2
+PAUSE = 1
 PACK_TIME = (2026, 11, 12, 16, 50, 14)  # stored for every image, so that packing is repeatable
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vh_sources

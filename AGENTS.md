@@ -44,5 +44,5 @@ Never state the same thing in two places: link to it. Do not write dates, progre
 - **When a point is not settled by the documents, ask the user**; do not decide silently.
 - Documents are for researchers from other fields: plain language, short, not addressed to the user. Present works as one table, one row per version, counting versions as defined in `docs/Edition_mapping_method.md`, section 1.
 - Deliverables are local files in this folder; nothing online unless asked.
-- Libraries: at most one request every two seconds, generic client name, no personal or project details in requests.
+- Requests to libraries: generic client name, no personal or project details.
 - Paths contain spaces and accents: quote them.
