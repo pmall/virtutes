@@ -9,8 +9,7 @@ The packing is fixed (same stored time and attributes for every image, no compre
 the same page images always give the same archive, with the same checksum: a researcher who
 runs this tool obtains the archive listed in metadata/sources.csv, provided the library
 still serves the same images.
-The zip is put in the version's list of source files, metadata/sources.csv, and one row is
-appended to the log works/Downloads_report.csv.
+The zip is put in the version's list of source files, metadata/sources.csv.
 
 Usage, from the workspace folder:
     uv run tools/download_iiif_pages.py <version folder> <identifier> <manifest URL> [--first N] [--last M]
@@ -127,10 +126,6 @@ def main(argv):
             assert hashlib.md5(z.read(name)).hexdigest() == want[name], name
     shutil.rmtree(work)
     h = hashlib.md5(zpath.read_bytes()).hexdigest()
-    p = DATA / "Downloads_report.csv"
-    with open(p, "a", newline="", encoding="utf-8") as f:
-        csv.writer(f).writerow([folder, f"{ident}_jpg.zip ({len(rows)} page images, positions {a}-{b}; "
-                                f"per-page md5 in {ident}_pages.csv)", manifest_url, zpath.stat().st_size, h, "OK"])
     vh_sources.add(DATA / folder, zpath.name, zpath.stat().st_size, h, manifest_url)
     print(f"  {ident}_jpg.zip: {len(rows)} images, {zpath.stat().st_size / 1e6:.0f} MB, all verified", flush=True)
 

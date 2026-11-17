@@ -4,8 +4,7 @@
 For each item: its record (<id>_metadata.json, unchanged) and one file, by default the
 page-image archive <id>_jp2.zip, kept exactly as delivered and checked against the md5
 published by Internet Archive. A file that passes is put in the version's list of source
-files, metadata/sources.csv; one row per attempt is appended to the log
-works/Downloads_report.csv.
+files, metadata/sources.csv.
 
 Usage, from the workspace folder:
     uv run tools/download_ia.py <version folder> <item id> [<item id> ...] [--file NAME]
@@ -18,7 +17,7 @@ Example:
 
 Nothing is downloaded without the user's go-ahead (AGENTS.md).
 """
-import csv, hashlib, json, os, sys, time, urllib.request
+import hashlib, json, os, sys, time, urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
@@ -62,16 +61,6 @@ def md5(path):
     return h.hexdigest()
 
 
-def report(row):
-    p = DATA / "Downloads_report.csv"
-    new = not p.exists()
-    with open(p, "a", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        if new:
-            w.writerow(["folder", "file", "source", "bytes", "md5", "check"])
-        w.writerow(row)
-
-
 def main(argv):
     if "--file" in argv:
         i = argv.index("--file")
@@ -93,7 +82,6 @@ def main(argv):
         name = pattern.format(id=item)
         if name not in files:
             print(f"{item}: no file {name} in this item", flush=True)
-            report([folder, name, f"https://archive.org/details/{item}", "", "", "FAILED: file not in item"])
             continue
         out = d / name
         want = int(files[name]["size"])
@@ -106,8 +94,6 @@ def main(argv):
         if ok:
             vh_sources.add(DATA / folder, name, out.stat().st_size, files[name]["md5"],
                            f"https://archive.org/download/{item}/{name}")
-        report([folder, name, f"https://archive.org/details/{item}", out.stat().st_size,
-                files[name].get("md5"), "OK" if ok else "MD5 MISMATCH"])
 
 
 if __name__ == "__main__":

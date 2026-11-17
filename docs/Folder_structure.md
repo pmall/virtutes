@@ -18,8 +18,6 @@ One self-contained folder for all works, pilot and later. It is a git repository
     works/
         Pilot_works_all_versions.csv     the edition map: every known version of the pilot works
         Pilot_selected_versions.csv      the selection: one row per work and slot
-        Downloads_report.csv             log of the downloads made with the tools, deleted versions included;
-                                         nothing reads it
         <version folder>/                one folder per chosen version
 ```
 
@@ -80,7 +78,7 @@ Rules:
 
 | In git | Not in git |
 |---|---|
-| Documents, skills, tools, catalogue, the three CSV files of [`works/`](../works/) | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
+| Documents, skills, tools, catalogue, the two CSV files of [`works/`](../works/) | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
 | `metadata/` of every version (`note.txt`, `sources.csv`) | The typed texts as delivered (`*.xml`, 1 to 13 MB each) |
 | The libraries' small records in `source/` (`*.json`, `*_pages.csv`) | `work/` and `text/` of every version |
 | `convert/` of every version | The article PDFs in [`references/`](../references/) (publishers' copyright) |
@@ -101,8 +99,6 @@ The repository must be enough to make everything again, on any computer:
 - **Who writes a row.** The download tools, once the file is verified against what its library publishes. A file obtained another way gets its row by hand after the same verification, and the note says how it was verified.
 - **The address** is where that exact file can be fetched: for Internet Archive, the file itself; for a typed text kept in a git repository, one exact commit.
 - **A scan packed by us** (`*_jpg.zip`, from a library that serves single pages) has the address of the library's page list. Its checksum is that of our archive, which [`tools/download_iiif_pages.py`](../tools/download_iiif_pages.py) packs in a fixed way: the same pages always give the same archive. What the library delivered is verified page by page in `<identifier>_pages.csv`.
-
-[`works/Downloads_report.csv`](../works/Downloads_report.csv) is only the log the download tools append to: it also holds the versions deleted since, and no script reads it.
 
 ## The note.txt
 
