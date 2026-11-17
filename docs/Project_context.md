@@ -29,6 +29,20 @@ Five spreadsheets, one per continent, in [`catalogue/`](../catalogue/) (copies; 
 - 240 rows carry a link. The catalogue's own notes say every link remains to be verified; this has not been done.
 - Ibn al-Baytar appears in three of the files.
 
+## Two layers, and the goal of the first
+
+The work is in two layers.
+
+1. **From the libraries' files to the texts.** Every chosen version is brought to one common text format. This is the layer being built now.
+2. **From the texts to plants and virtues.** Finding the plant entries, the uses, the plants' identities and the classes of virtues. Not started.
+
+**Goal of the first layer: anyone can make the texts again.** For each version, scripts make the text from the exact files a library delivered, so that any researcher who has those files, identified by their checksums, obtains exactly the same text, character for character.
+
+- **An AI assistant writes the scripts.** Each book is laid out its own way and needs scripts fitted to it, which costs a person hours per book and is why projects usually avoid it; an assistant writes them in minutes.
+- **Running them needs no AI.** The scripts are ordinary programs: they stop if a source file is not the one recorded, and give the same result at every run, on any computer.
+
+How this is done: [`Conversion_method.md`](Conversion_method.md); what must be kept to make the texts again: [`Folder_structure.md`](Folder_structure.md#what-is-in-git-and-what-is-not).
+
 ## The pilot
 
 Six works forming one lineage: Theophrastus, Dioscorides, Pliny → *Circa instans* → Mattioli → the "Petit Bauhin". They differ in form (Greek, Latin, Italian, Old and modern French; critical editions and old printings) but belong to a single tradition.

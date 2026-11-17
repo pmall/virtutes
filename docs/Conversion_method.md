@@ -2,14 +2,7 @@
 
 Every chosen version ends as text in the unified format ([`Unified_text_format.md`](Unified_text_format.md)), whatever it started as. How an assistant carries out a conversion: [`skills/convert-version/SKILL.md`](../skills/convert-version/SKILL.md).
 
-## The aim
-
-For each version, a pair of scripts that makes the text from the exact source files, so that any researcher who has those files, identified by their checksums, obtains exactly the same text, character for character.
-
-- **An AI assistant writes the scripts.** Each book needs scripts fitted to it, which costs a person hours per book and is why projects usually avoid it; an assistant writes them in minutes.
-- **Running them needs no AI.** The scripts are ordinary programs: they stop if a source file is not the one recorded, and give the same result at every run, on any computer ([`Folder_structure.md`](Folder_structure.md#what-is-in-git-and-what-is-not)).
-
-This step stops at the text. Finding the plants and their virtues in it is a later, separate step, not yet defined ([`Project_context.md`](Project_context.md#the-steps)).
+The goal this serves, texts that anyone can make again from the exact sources: [`Project_context.md`](Project_context.md#two-layers-and-the-goal-of-the-first).
 
 ## Three kinds of source
 
