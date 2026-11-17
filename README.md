@@ -2,7 +2,7 @@
 
 Research project of UCLy (research unit CONFLUENCE: Sciences et Humanités). From historical herbals, extract every statement "plant X, prepared this way, is good for Y", tied to its page and comparable across texts, places and centuries. The pilot covers six European works, from Theophrastus to a 17th-century French herbal.
 
-This repository holds the methods, the tables of versions, the tools and the scripts that bring each work to one common text format. It does not hold the scans and typed texts the libraries delivered, nor the texts made from them: the first are listed, with exact address and checksum, in [`works/Downloads_report.csv`](works/Downloads_report.csv); the second are made again by the scripts ([`docs/Folder_structure.md`](docs/Folder_structure.md#what-is-in-git-and-what-is-not)).
+This repository holds the methods, the tables of versions, the tools and the scripts that bring each work to one common text format. It does not hold the scans and typed texts the libraries delivered, nor the texts made from them: the first are listed, with exact address and checksum, in the `metadata/sources.csv` of each version; the second are made again by the scripts ([`docs/Folder_structure.md`](docs/Folder_structure.md#what-is-in-git-and-what-is-not)).
 
 ## Setting up
 

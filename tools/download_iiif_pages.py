@@ -5,7 +5,8 @@ For one volume: the library's page list (<id>_manifest.json, unchanged), every p
 at full size (or a range of pages), packed without recompression into <id>_jpg.zip with
 the images at the top level, and <id>_pages.csv (one row per image: position, the library's
 page label, source URL, size, md5). Every image in the zip is checked against its md5.
-One row is appended to works/Downloads_report.csv.
+The zip is put in the version's list of source files, metadata/sources.csv, and one row is
+appended to the log works/Downloads_report.csv.
 
 Usage, from the workspace folder:
     uv run tools/download_iiif_pages.py <version folder> <identifier> <manifest URL> [--first N] [--last M]
@@ -26,6 +27,8 @@ ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "works"
 UA = "Mozilla/5.0 (research-client)"
 PAUSE = 1
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import vh_sources
 
 
 def get(url, dest=None, tries=5):
@@ -121,6 +124,7 @@ def main(argv):
     with open(p, "a", newline="", encoding="utf-8") as f:
         csv.writer(f).writerow([folder, f"{ident}_jpg.zip ({len(rows)} page images, positions {a}-{b}; "
                                 f"per-page md5 in {ident}_pages.csv)", manifest_url, zpath.stat().st_size, h, "OK"])
+    vh_sources.add(DATA / folder, zpath.name, zpath.stat().st_size, h, manifest_url)
     print(f"  {ident}_jpg.zip: {len(rows)} images, {zpath.stat().st_size / 1e6:.0f} MB, all verified", flush=True)
 
 

@@ -14,7 +14,7 @@ HOW THE MISTAKES WERE FOUND
 The chapters of the typed file are those of the book: each book's chapters run 1 to 14, 8,
 18, 16, 9, 8, 15, 11, 20 in order, and each opens with its printed number (Ι., ΙΙ. …). Two
 section labels break the order 1, 2, 3 … of their chapter (7.3, 7.4). The page numbers were
-compared with the scan (source/01_Theophraste_Hort_1916_grec-anglais.pdf): the first words
+compared with the scan (source/Theophrastus_Enquiry_Plants_Loeb.pdf): the first words
 of each typed page were looked for in the PDF's own text layer at the expected image, and
 the pages that did not match were looked at. One page number is wrong. The script itself
 does not open the scan.

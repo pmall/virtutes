@@ -7,9 +7,12 @@ FILES (all in the source/ folder next to this note, exactly as the libraries del
 - tlg0093.tlg001.1st1K-grc1.xml
   What: Hort's Greek text, books I-IX, typed by the First1KGreek project (CC BY-SA 4.0).
   Why here: it is the Greek text we work from (rule 2: a reliable typed text is taken).
-- 01_Theophraste_Hort_1916_grec-anglais.pdf
-  What: scan of both volumes, 1,014 pages (copy of the former pilot file, identical to
-  Internet Archive's original PDF, item theophrastus-enquiry-plants-loeb), about 2520 x 3786 px.
+- Theophrastus_Enquiry_Plants_Loeb.pdf (+ theophrastus-enquiry-plants-loeb_metadata.json)
+  What: scan of both volumes, 1,014 pages, about 2520 x 3786 px: the original PDF of the
+  Internet Archive item theophrastus-enquiry-plants-loeb. The file came from the former
+  pilot folder, not from a download by the project's tools; checked on 17 November 2026:
+  its size and checksum are those Internet Archive publishes for that PDF, and it now has
+  the library's file name.
   Why here: (1) the English exists only as this scan and will be typed from it;
   (2) it is the scan of the same edition as the typed Greek (rule 2). The typed Greek gives
   Hort's printed page numbers: printed page 6 = PDF page 31 in volume 1; volume 2 restarts.
@@ -44,4 +47,4 @@ the edition map and the sources named. Anything not checked is under NOT VERIFIE
 - The selection, with the justification for every slot:
   works/Pilot_selected_versions.csv
 - All known versions (the edition map): works/Pilot_works_all_versions.csv
-- Download checksums: works/Downloads_report.csv
+- The source files, with size, checksum and address: sources.csv, next to this note

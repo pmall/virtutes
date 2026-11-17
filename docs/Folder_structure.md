@@ -18,7 +18,8 @@ One self-contained folder for all works, pilot and later. It is a git repository
     works/
         Pilot_works_all_versions.csv     the edition map: every known version of the pilot works
         Pilot_selected_versions.csv      the selection: one row per work and slot
-        Downloads_report.csv             one row per downloaded file: source, size, checksum, result
+        Downloads_report.csv             log of the downloads made with the tools, deleted versions included;
+                                         nothing reads it
         <version folder>/                one folder per chosen version
 ```
 
@@ -35,6 +36,7 @@ Each version folder is a small workshop of its own, with the same five parts:
 <version folder>/
     metadata/
         note.txt          plain-language note: what the files are, why this version, what is not verified
+        sources.csv       the source files the version works from: name, size, checksum, address
     source/               what the libraries delivered, untouched
         <typed text>.xml              a typed text made by a scholarly project, when one exists
         <identifier>_jp2.zip          a scan, one archive per volume, as the library provides it
@@ -87,9 +89,19 @@ The rule behind the table: git holds what we write, and nothing that can be made
 
 The repository must be enough to make everything again, on any computer:
 
-- **The sources.** [`works/Downloads_report.csv`](../works/Downloads_report.csv) gives, for each file, its exact address, its size and its checksum. A typed text kept in a git repository is recorded at the address of one exact commit, never of a branch, so the same file is delivered whatever its project changes later. A library that serves scans has no such addresses: there the checksum tells whether the file fetched again is the same.
+- **The sources.** `metadata/sources.csv` of each version gives, for each file, its exact address, its size and its checksum ([below](#the-list-of-source-files)). A typed text kept in a git repository is recorded at the address of one exact commit, never of a branch, so the same file is delivered whatever its project changes later. A library that serves scans has no such addresses: there the checksum tells whether the file fetched again is the same.
 - **The texts.** In each version folder, `convert/extract.py` then `convert/repair.py` make `text/` from the source files the text is made from, and `convert/results.md5` says what they must give; `convert/images.py` then adds the link from pages to images, if the scans are there ([`Conversion_method.md`](Conversion_method.md#three-scripts-per-version)).
 - **What the scripts need.** [`pyproject.toml`](../pyproject.toml) names the Python version and every package used beyond what comes with Python; [`uv.lock`](../uv.lock) records the exact version and checksum of each. One command installs them ([`README.md`](../README.md#setting-up)).
+
+## The list of source files
+
+`metadata/sources.csv` of a version lists the files of `source/` the version works from, one row each: `file`, `bytes`, `md5`, `address`. It is the reference for what the source files must be: the scripts refuse a file that is not in it or has another checksum, and [`tools/vh_check.py`](../tools/vh_check.py) verifies the files present against it. The libraries' own small records (`*.json`, `*_pages.csv`), which are in git themselves, are not listed.
+
+- **Who writes a row.** The download tools, once the file is verified against what its library publishes. A file obtained another way gets its row by hand after the same verification, and the note says how it was verified.
+- **The address** is where that exact file can be fetched: for Internet Archive, the file itself; for a typed text kept in a git repository, one exact commit.
+- **A scan packed by us** (`*_jpg.zip`, from a library that serves single pages) has the address of the library's page list. Its checksum is that of our archive; what the library delivered is verified page by page in `<identifier>_pages.csv`.
+
+[`works/Downloads_report.csv`](../works/Downloads_report.csv) is only the log the download tools append to: it also holds the versions deleted since, and no script reads it.
 
 ## The note.txt
 

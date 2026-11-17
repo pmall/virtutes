@@ -8,11 +8,13 @@ recorded source files must obtain files with these checksums.
 
 Usage, from the workspace folder:
     uv run tools/vh_check.py <version folder> [<version folder> ...]
-    uv run tools/vh_check.py                 every version that has a convert/ folder
+    uv run tools/vh_check.py                 every version
 
 For each version it verifies, and prints:
-1. the source files present in source/ are the ones recorded in works/Downloads_report.csv
-   (an absent one is only reported: not every script needs every file);
+1. the source files present in source/ are the ones of the version's list,
+   metadata/sources.csv (an absent one is only reported: not every script needs every
+   file); a file in source/ that the list does not name is a problem, the libraries' own
+   small records (*.json, *_pages.csv) aside;
 2. which of the files the scripts must produce are missing (text/page_images.csv is
    optional), and that no other file lies in work/raw/ or text/;
 3. the shape of the raw text and of the final text (tools/vh_text.py);
@@ -25,7 +27,7 @@ The command ends with OK or the number of problems, and the number of missing fi
 The check never changes an existing convert/results.md5. After a script was changed on
 purpose and gives other results, delete the file and run the check again.
 
-A different checksum means the result is not reproduced: another source file, a changed
+A different checksum of a result means it is not reproduced: another source file, a changed
 script, a file edited by hand, or a script not run again after an earlier one.
 """
 import sys
@@ -73,19 +75,27 @@ def check(folder):
     """Check one version folder; print its state; return (problems, missing files)."""
     vdir = DATA / Path(folder).name
     print(vdir.name)
-    if not (vdir / "convert").is_dir():
-        print("  no convert/ folder: nothing has been made")
-        return 0, 0
     problems = []
 
-    rows = vh_sources.recorded(vdir.name)
+    rows = vh_sources.listed(vdir)
+    if not rows:
+        problems.append(f"{vh_sources.LIST}: missing or empty")
     for name in rows:
         if not (vdir / "source" / name).is_file():
             print(f"  source/{name}: absent")
         elif p := vh_sources.problem(vdir, name, rows):
             problems.append(f"source/{p}")
         else:
-            print(f"  source/{name}: the recorded file")
+            print(f"  source/{name}: the listed file")
+    src = vdir / "source"
+    for f in sorted(src.iterdir()) if src.is_dir() else []:
+        if f.name not in rows and f.suffix != ".json" and not f.name.endswith("_pages.csv"):
+            problems.append(f"source/{f.name}: not in {vh_sources.LIST}")
+    if not (vdir / "convert").is_dir():
+        print("  no convert/ folder: no text has been made yet")
+        for p in problems:
+            print(f"  PROBLEM {p}")
+        return len(problems), 0
 
     ref = reference(vdir)
     here = produced(vdir)
@@ -123,9 +133,7 @@ def check(folder):
 
 
 def main(argv):
-    folders = argv or sorted(d.parent.name for d in DATA.glob("*/convert") if d.is_dir())
-    if not folders:
-        sys.exit("no version folder has a convert/ folder yet")
+    folders = argv or sorted(d.name for d in DATA.iterdir() if d.is_dir())
     counts = [check(folder) for folder in folders]
     bad, gone = sum(c[0] for c in counts), sum(c[1] for c in counts)
     print((f"{bad} problem(s)" if bad else "OK") + (f", {gone} file(s) missing" if gone else ""))

@@ -3,7 +3,9 @@
 
 For each item: its record (<id>_metadata.json, unchanged) and one file, by default the
 page-image archive <id>_jp2.zip, kept exactly as delivered and checked against the md5
-published by Internet Archive. One row per file is appended to works/Downloads_report.csv.
+published by Internet Archive. A file that passes is put in the version's list of source
+files, metadata/sources.csv; one row per attempt is appended to the log
+works/Downloads_report.csv.
 
 Usage, from the workspace folder:
     uv run tools/download_ia.py <version folder> <item id> [<item id> ...] [--file NAME]
@@ -24,6 +26,8 @@ ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "works"
 UA = "Mozilla/5.0 (research-client)"
 PAUSE = 2
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import vh_sources
 
 
 def fetch(url, dest, tries=5):
@@ -100,6 +104,9 @@ def main(argv):
             time.sleep(PAUSE)
         ok = md5(out) == files[name].get("md5")
         print(f"  {name}: md5 {'OK' if ok else 'MISMATCH'}", flush=True)
+        if ok:
+            vh_sources.add(DATA / folder, name, out.stat().st_size, files[name]["md5"],
+                           f"https://archive.org/download/{item}/{name}")
         report([folder, name, f"https://archive.org/details/{item}", out.stat().st_size,
                 files[name].get("md5"), "OK" if ok else "MD5 MISMATCH"])
 

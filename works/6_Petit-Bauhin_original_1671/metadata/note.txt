@@ -49,4 +49,4 @@ the edition map and the sources named. Anything not checked is under NOT VERIFIE
 - The selection, with the justification for every slot:
   works/Pilot_selected_versions.csv
 - All known versions (the edition map): works/Pilot_works_all_versions.csv
-- Download checksums: works/Downloads_report.csv
+- The source files, with size, checksum and address: sources.csv, next to this note

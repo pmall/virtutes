@@ -58,7 +58,7 @@ For each work, up to three versions are used: original language, English, French
 |---|---|---|
 | Map every known version of a work | [`Edition_mapping_method.md`](Edition_mapping_method.md) | [`works/Pilot_works_all_versions.csv`](../works/Pilot_works_all_versions.csv) |
 | Choose the versions to use | [`Version_selection_method.md`](Version_selection_method.md) | [`works/Pilot_selected_versions.csv`](../works/Pilot_selected_versions.csv) |
-| Download them | [`Folder_structure.md`](Folder_structure.md) | [`works/Downloads_report.csv`](../works/Downloads_report.csv), one folder per version |
+| Download them | [`Folder_structure.md`](Folder_structure.md) | One folder per version, with its list of source files (`metadata/sources.csv`) |
 | Bring every version to one text format | [`Conversion_method.md`](Conversion_method.md), [`Unified_text_format.md`](Unified_text_format.md); for scans, [`OCR_Kraken_approach.md`](OCR_Kraken_approach.md) | `text/` in each version folder |
 | Cut into plant entries, translate, extract the uses, identify the plants, classify the virtues, publish | Not yet defined; positions below, and [`Staub_2015_classification_summary.md`](Staub_2015_classification_summary.md) for the classification | |
 
