@@ -5,7 +5,7 @@ description: Convert one version of a work (works/<version>/) to the project's u
 
 # Task: convert one version to the unified text format
 
-**Goal.** For one version folder `works/<version>/`, write three scripts: `convert/extract.py`, which copies the source into the unified format as it is (`work/raw/`); `convert/repair.py`, which makes `text/` from it by correcting the source's mistakes; and, when the version has a scan, `convert/images.py`, which links each page to its image. The raw text and the final text are complete, pass the checker and state their limits.
+**Goal.** For one version folder `works/<version>/`, write three scripts: `convert/extract.py`, which copies the source into the unified format as it is (`work/raw/`); `convert/repair.py`, which makes `text/` from it by correcting the source's mistakes; and, when the version has a scan, `convert/images.py`, which links each page to its image. The raw text and the final text are complete, pass the check and state their limits.
 
 **Read first, in this order:**
 1. `docs/Unified_text_format.md` — the target. Every field and rule in it is binding.
@@ -40,7 +40,7 @@ description: Convert one version of a work (works/<version>/) to the project's u
 4. **List the mistakes of the source** found in the raw text (labels that contradict the printed numbers, numbers typed inside sentences, voices mixed, pages out of order), with counts and examples, and propose a repair rule for each to the user.
 5. **Write `convert/repair.py`** with the rules agreed. It reads `work/raw/` only and writes the same three files to `text/`, plus `work/repairs.csv`. If a rule was decided by looking at a page image, say in its description what was seen; the script itself does not open the scan.
 6. **Write `convert/images.py`** if the version has a scan. It reads `text/pages.csv` and the scans and writes `text/page_images.csv`; its opening comment gives the rule and the pages it was checked on. A page that could not be matched gets no row. Use `computed` only after verifying the rule on at least five pages spread over each volume, by reading the page number on the image (`tools/page_image.py` writes one page image as a PNG file).
-7. **Run the check**: `uv run tools/vh_check.py <version>`. Fix the scripts until every script is `OK` and the last line is `OK`.
+7. **Run the check**: `uv run tools/vh_check.py <version>`. Fix the scripts until it reports no problem and the last line is `OK`.
 8. **Verify the content**, and report the figures:
    - nothing lost: the number of characters of running text in the source, in the raw text and in `text/`, per kind, with every difference explained;
    - counts of books, chapters and sections against the figures a scholar would expect, each with its origin;

@@ -22,7 +22,7 @@ Example (Bayerische Staatsbibliothek):
         https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10300968/manifest
 
 Rules (AGENTS.md, docs/Folder_structure.md): nothing is downloaded without the user's go-ahead;
-one request per second; generic client name.
+one request every two seconds; generic client name.
 """
 import csv, hashlib, json, os, shutil, sys, time, urllib.request, zipfile
 from pathlib import Path
@@ -30,7 +30,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]  # the workspace folder
 DATA = ROOT / "works"
 UA = "Mozilla/5.0 (research-client)"
-PAUSE = 1
+PAUSE = 2
 PACK_TIME = (2026, 11, 12, 16, 50, 14)  # stored for every image, so that packing is repeatable
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import vh_sources

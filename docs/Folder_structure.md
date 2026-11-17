@@ -80,7 +80,7 @@ Rules:
 | In git | Not in git |
 |---|---|
 | Documents, skills, tools, catalogue, the three CSV files of [`works/`](../works/) | The scans (`*.zip`, `*.pdf`): 9.4 GB for the pilot |
-| `metadata/note.txt` of every version | The typed texts as delivered (`*.xml`, 1 to 13 MB each) |
+| `metadata/` of every version (`note.txt`, `sources.csv`) | The typed texts as delivered (`*.xml`, 1 to 13 MB each) |
 | The libraries' small records in `source/` (`*.json`, `*_pages.csv`) | `work/` and `text/` of every version |
 | `convert/` of every version | The article PDFs in [`references/`](../references/) (publishers' copyright) |
 | `pyproject.toml`, `uv.lock` | The Python environment (`.venv/`) |

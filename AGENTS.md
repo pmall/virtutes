@@ -26,6 +26,8 @@ A new skill is a new folder in `skills/` plus its link: `ln -s ../../skills/<nam
 | What a script does and why | The comment at the top of the script |
 | What was done and when | The git commit message |
 | What a version's files are and why it was chosen | Its `metadata/note.txt` |
+| Which source files a version works from: size, checksum, address | Its `metadata/sources.csv` |
+| What a version's scripts must produce: the checksums | Its `convert/results.md5`, written by `tools/vh_check.py` only |
 
 Never state the same thing in two places: link to it. Do not write dates, progress or history in `docs/` or `skills/`. If a task changes a definition, change the document in the same commit.
 

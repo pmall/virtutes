@@ -1,5 +1,5 @@
 # What the libraries delivered in bulk: not in git, can be fetched again
-# (sources and checksums in works/Downloads_report.csv). Their small records are kept.
+# (addresses and checksums in metadata/sources.csv of each version). Their small records are kept.
 works/*/source/*
 !works/*/source/*.json
 !works/*/source/*_pages.csv

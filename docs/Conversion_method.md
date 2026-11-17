@@ -67,4 +67,6 @@ Whatever was not verified is written in the `notes` of the text's info file.
 
 - The reading engine for scans and the transcription rules ([`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)).
 - Who checks the samples for each language, and how much time they have.
+- A version whose two languages come from different sources. Theophrastus is the one case in the pilot: the Greek from a typed file, the English from the scan. The scripts are per version, but the Greek must stay buildable without the scan; how the English is added without breaking that is not designed.
+- How long the libraries keep serving exactly the same files. A typed text is fetched at one exact commit; a scan archive is a file its library may make again, with another checksum. Assumed, not observed. If it happens, the checksum in `metadata/sources.csv` no longer matches what can be fetched; depositing the files we used in a research data repository would remove the risk, where their rights allow.
 - Whether to move later to a newer state of the typed texts, which their projects keep correcting. Each is listed at the address of one exact commit in its version's `metadata/sources.csv`; moving to a newer one is a decision, followed by a new conversion.
