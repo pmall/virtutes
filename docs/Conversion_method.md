@@ -9,8 +9,8 @@ The goal this serves, texts that anyone can make again from the exact sources: [
 | Kind of source | What has to be done | In the pilot |
 |---|---|---|
 | **Typed text** made by a scholarly project | Convert its structure; nothing to read | 4 texts: Theophrastus (Greek), Dioscorides (Greek), Pliny (Latin), Pliny (English) |
-| **Scan of a printed book** | Read the pages by machine, correct, then structure | 8 books, 1497 to 1916 (list in [`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)) |
-| **Scan of a manuscript** | Read handwriting by machine, correct, then structure | None in the pilot selection; expected for later works |
+| **Scan of a printed book** | Read the pages by machine, then structure | 8 books, 1497 to 1916 (list in [`OCR_Kraken_approach.md`](OCR_Kraken_approach.md)) |
+| **Scan of a manuscript** | Read handwriting by machine, then structure | None in the pilot selection; expected for later works |
 
 When a version has both a typed text and a scan, the typed text is what we work from; what the scan is for: [`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2.
 

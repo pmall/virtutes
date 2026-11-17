@@ -8,7 +8,7 @@ Every version of every work ends as text in **one and the same format**, whether
 
 What the format must guarantee:
 
-1. **The wording is exactly that of the source.** A use will be accepted only if its quotation is found letter for letter in the text.
+1. **Nothing is guessed.** The words are those of the typed source, or those the reading engine read, errors included. No person and no AI completes, corrects or modernises them. A correction is a recorded change that a person asked for. A use will be accepted only if its quotation is found letter for letter in the text.
 2. **Every passage is tied to its page.** A separate, optional file ties each page to its image in the scan.
 3. **The voices are kept apart**: the work itself, a commentator, the modern editor's notes, the list of variant readings.
 4. **No interpretation.** No plant identification, no modern disease name, no translation. Those are separate layers built on top (see [`Staub_2015_classification_summary.md`](Staub_2015_classification_summary.md)).
@@ -72,7 +72,7 @@ Running heads, page numbers, catchwords and signatures are not text: they are dr
 
 ### Rules for `text`
 
-- Exactly the characters of the source: no modernised spelling, no correction, no expansion of abbreviations beyond what the transcription rules allow. **The transcription rules for scans (long s, ligatures, abbreviations, u/v, i/j) are not yet decided**; they will be added here before the first scan is typed.
+- The characters of the typed source, or those the reading engine read: no modernised spelling, no correction, no completion, no expansion of abbreviations beyond what the transcription rules allow. **The transcription rules for scans (long s, ligatures, abbreviations, u/v, i/j) are not yet decided**; they will be added here before the first scan is typed.
 - Unicode form NFC. Words separated by one plain space; no space at either end; no line breaks, tabs or other control characters.
 - The line breaks of the printed page are not kept. A word cut by a hyphen at the end of a line is joined again.
 - No markup inside the text. Anything that needs marking goes into `marks`.
