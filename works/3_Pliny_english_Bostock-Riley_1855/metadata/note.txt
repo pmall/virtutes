@@ -21,7 +21,8 @@ WHY THIS VERSION
   Bostock & Riley wins at rule 5.4.
 
 NOT VERIFIED
-- The page numbers of volumes 1, 2, 4, 5 and 6 against their scans.
+- The page numbers were checked against the scans only on the sample pages listed in
+  convert/images_eng.py.
 
 RIGHTS: text public domain; typed text CC BY-SA 4.0; scans not in copyright.
 
