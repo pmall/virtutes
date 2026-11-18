@@ -4,10 +4,24 @@
 name = "virtutes-herbarum"
 version = "0"
 description = "Scripts of the Virtutes Herbarum project"
-requires-python = "==3.14.*"
+requires-python = "==3.13.*"  # 3.13, not newer: kraken 7.1.1 requires Python < 3.14
 dependencies = [
     "pillow==12.1.1",  # tools/page_image.py: opens the JPEG 2000 page images of the scans
+    "kraken==7.1.1",   # reads the scans: finds the lines and reads them (docs/OCR_Kraken_approach.md)
+    "torch",           # needed by kraken; taken from the CPU-only index below
+    "torchvision",     # needed by kraken; taken from the CPU-only index below
 ]
 
 [tool.uv]
 package = false
+
+# PyTorch without NVIDIA GPU support: the default build adds several GB of GPU libraries
+# that a computer without an NVIDIA card cannot use. A GPU server needs this changed.
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

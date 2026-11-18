@@ -50,14 +50,15 @@ Probably one fine-tuned model per book, or per family of similar typefaces.
 
 - **Transcription rules**, to be fixed before any reference page is typed: keep abbreviations, long s and ligatures as printed, or expand and modernise them. Keeping them close to the guidelines the existing models were trained on lets us reuse those models; expansion can be a later, separate step.
 - **Specialists**: the books span Latin, Middle French, Italian, Old French and English; more than one person may be needed, and their available time is not known.
-- **Installation**: Kraken brings PyTorch (several GB); its supported Python versions must be checked against the machine used.
-- **Hardware**: the laptop (no GPU) can run line finding, reading and small tests; fine-tuning belongs on the RTX 6000 server.
+- **Hardware**: the laptop (no GPU) can run line finding, reading and small tests; fine-tuning belongs on the RTX 6000 server, which needs PyTorch with GPU support instead of the version without it named in [`pyproject.toml`](../pyproject.toml).
+
+## Installation
+
+Kraken is one of the project's packages ([`pyproject.toml`](../pyproject.toml)); `uv sync` installs it. It comes with a model that finds the lines on a page. The models that read the text are downloaded separately, one per need.
 
 ## Not verified
 
 Stated from the assistant's memory, to be checked before use:
 - which ready-made Kraken models exist and fit these books (CATMuS Medieval, McCATMuS for the 16th–21st c., community models for early modern French print);
-- the current Kraken version;
 - how many corrected pages a fine-tune typically needs;
-- whether the Hort 1916 PDF already carries a usable text layer.
 - the alternatives to compare Kraken with. Candidates named so far: for reading print, Tesseract, olmOCR, PaddleOCR-VL, dots.ocr, LightOnOCR, DeepSeek-OCR, MinerU, Chandra; for page layout, DocLayout-YOLO, YALTAi; for handwriting, TrOCR.

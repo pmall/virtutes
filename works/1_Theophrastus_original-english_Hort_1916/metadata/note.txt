@@ -18,6 +18,10 @@ FILES (all in the source/ folder next to this note, exactly as the libraries del
   Hort's printed page numbers. Each Greek page is matched to its page of the PDF by
   convert/images_grc.py, which states the rule and how it was checked. The scan holds
   pages 28 to 31 of volume 2 twice.
+  The PDF carries an invisible text layer made by automatic reading (checked on 18 November
+  2026 on two pages: the English reads well, with stray footnote numbers and loose spacing).
+  Automatic reading is not a reliable typed text (rule 3), so the English is still typed;
+  the layer is a point of comparison.
 
 WHY THIS VERSION
 - Original: 28 versions in the edition map; 8 incomplete, 2 under copyright. Hort 1916 is the
