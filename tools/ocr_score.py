@@ -2,50 +2,45 @@
 """Measure how well a machine reading of scan pages matches the reference text of those pages.
 
 Usage, from the workspace folder:
-    uv run tools/ocr_score.py <reference folder> <reading folder> [<reading folder> ...]
+    uv run tools/ocr_score.py [--show] <reference folder> <reading folder> [<reading folder> ...]
 
     <reference folder>  one text file per page, <page>.txt or <page>.draft.txt (a draft is a
-                        reference not yet confirmed by a person; the output says so).
+                        reference not yet confirmed by a person; the output says so). A page is
+                        written in blocks separated by one empty line: running head, main text,
+                        notes, page number (docs/OCR_Kraken_approach.md, "Reference pages").
     <reading folder>    one text file per page with the same <page> name, <page>.txt: what a
                         reading model (or any other source) gave for that page.
+    --show              also list, for each reading, the main-text words it got wrong.
 
-For each reading folder it prints, over all pages together:
-- CER, the character error rate: the number of characters to insert, delete or replace to turn
-  the reading into the reference, divided by the number of characters of the reference.
-- CER without Greek: the same after removing every Greek letter from both texts, a measure of
-  the English (and Latin) alone, since the Greek of the notes is not what these models are for.
-- CER typography ignored: the CER without Greek, after removing all spaces and making every
-  quote mark straight (' or ") and every dash or hyphen (– — ¬) a plain hyphen, and superscript
-  digits plain digits. What is left is the misreading of letters, digits and punctuation;
-  spacing and the shape of quotes and dashes are a matter of transcription rules, not of
-  reading.
-- WER, the word error rate: the same as CER at the level of whole words.
-
-Before comparing, both texts are brought to the same form: Unicode composed form (NFC), so that
-an accented letter written as one or as two code points counts the same; lines are joined with
-a space; runs of spaces are made one. Nothing else is changed: case, punctuation, quotes and
-note numbers count.
+What is measured, over all pages together:
+- Main-text words wrong: the share of the words of the main text (second block) that the
+  reading misses or gets wrong, plus the words it adds there. This is the measure that matters
+  for the project: use records are taken from the words of the main text, so a word wrong there
+  can change a plant, a part, a preparation or a virtue. Words are compared as the extraction
+  will see them: a word cut by a hyphen at the end of a line is joined again, case is ignored,
+  and punctuation and numbers (note numbers) are left out.
+- CER, the character error rate on the whole page, every character counted (running head and
+  notes included): the number of characters to insert, delete or replace to turn the reading
+  into the reference, divided by the number of characters of the reference. A general measure,
+  comparable with what other projects publish.
+Before comparing, both texts are brought to Unicode composed form (NFC), so that an accented
+letter written as one or as two code points counts the same.
 """
-import re, sys, unicodedata
+import difflib, re, sys, unicodedata
 from pathlib import Path
 
-GREEK = re.compile(r"[Ͱ-Ͽἀ-῿]")
-TYPO = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-", "—": "-", "¬": "-",
-                      "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6",
-                      "⁷": "7", "⁸": "8", "⁹": "9", "⁰": "0"})
+WORD = re.compile(r"[^\W\d_]+(?:['’][^\W\d_]+)*")
 
 
-def typo(text):
-    return "".join(text.translate(TYPO).split())
-
-
-def norm(text):
+def words(text):
     text = unicodedata.normalize("NFC", text)
-    return " ".join(text.split())
+    text = re.sub(r"(\w)[-¬]+\s*\n\s*(\w)", r"\1\2", text)  # join a word cut at the line end
+    text = "".join(" " if unicodedata.category(c)[0] == "N" else c for c in text)  # numbers, ¹ ²
+    return [w.lower().replace("’", "'") for w in WORD.findall(text)]
 
 
 def distance(a, b):
-    """Levenshtein distance between two sequences (strings or lists of words)."""
+    """Levenshtein distance between two strings."""
     if len(a) < len(b):
         a, b = b, a
     prev = list(range(len(b) + 1))
@@ -61,40 +56,70 @@ def references(folder):
     refs = {}
     for f in sorted(Path(folder).glob("*.txt")):
         page = f.name.removesuffix(".txt").removesuffix(".draft")
-        refs[page] = (f.read_text(encoding="utf-8"), f.name.endswith(".draft.txt"))
+        text = unicodedata.normalize("NFC", f.read_text(encoding="utf-8"))
+        blocks = text.strip("\n").split("\n\n")
+        if len(blocks) != 4:
+            sys.exit(f"{f}: {len(blocks)} blocks, 4 expected (head, main text, notes, page number)")
+        refs[page] = (text, blocks, f.name.endswith(".draft.txt"))
     return refs
 
 
+def main_text_errors(blocks, reading):
+    """Word errors that fall in the main text: (errors, main-text words, list of errors)."""
+    ref, tag = [], []
+    for k, b in enumerate(blocks):
+        w = words(b)
+        ref += w
+        tag += [k == 1] * len(w)
+    hyp = words(reading)
+    errors, shown = 0, []
+    for op, a1, a2, b1, b2 in difflib.SequenceMatcher(None, ref, hyp, autojunk=False).get_opcodes():
+        if op == "equal":
+            continue
+        in_main = any(tag[a1:a2]) if a2 > a1 else (0 < a1 < len(tag) and tag[a1 - 1] and tag[a1])
+        if in_main:
+            errors += max(a2 - a1, b2 - b1)
+            shown.append((" ".join(ref[a1:a2]), " ".join(hyp[b1:b2])))
+    return errors, sum(tag), shown
+
+
 def score(refs, folder):
-    totals = {"cer": [0, 0], "cer_nogreek": [0, 0], "cer_typo": [0, 0], "wer": [0, 0]}
-    missing = []
-    for page, (ref, _) in refs.items():
+    err = n = cerr = cn = 0
+    shown, missing = [], []
+    for page, (text, blocks, _) in refs.items():
         f = Path(folder) / f"{page}.txt"
         if not f.exists():
             missing.append(page)
             continue
-        r, h = norm(ref), norm(f.read_text(encoding="utf-8"))
-        rg, hg = norm(GREEK.sub("", r)), norm(GREEK.sub("", h))
-        for key, (x, y) in {"cer": (r, h), "cer_nogreek": (rg, hg),
-                            "cer_typo": (typo(rg), typo(hg)),
-                            "wer": (r.split(), h.split())}.items():
-            totals[key][0] += distance(x, y)
-            totals[key][1] += len(x)
-    return {k: e / n if n else float("nan") for k, (e, n) in totals.items()}, missing
+        reading = unicodedata.normalize("NFC", f.read_text(encoding="utf-8"))
+        e, m, s = main_text_errors(blocks, reading)
+        err, n = err + e, n + m
+        shown += [(page, a, b) for a, b in s]
+        r, h = " ".join(text.split()), " ".join(reading.split())
+        cerr, cn = cerr + distance(r, h), cn + len(r)
+    return err, n, cerr / cn if cn else float("nan"), shown, missing
 
 
 def main(argv):
+    show = "--show" in argv
+    argv = [a for a in argv if a != "--show"]
     if len(argv) < 2:
         sys.exit(__doc__)
     refs = references(argv[0])
-    drafts = sum(d for _, d in refs.values())
+    drafts = sum(d for *_, d in refs.values())
     print(f"{len(refs)} reference pages, {drafts} of them drafts not yet confirmed by a person")
-    print(f"{'reading':<20} {'CER':>7} {'CER without Greek':>18} {'CER typography ignored':>23} {'WER':>7}")
+    print(f"{'reading':<20} {'main-text words wrong':>22} {'CER (whole page)':>17}")
+    details = []
     for folder in argv[1:]:
-        s, missing = score(refs, folder)
+        err, n, cer, shown, missing = score(refs, folder)
         note = f"  (missing pages: {', '.join(missing)})" if missing else ""
-        print(f"{Path(folder).name:<20} {s['cer']:>7.2%} {s['cer_nogreek']:>18.2%}"
-              f" {s['cer_typo']:>23.2%} {s['wer']:>7.2%}{note}")
+        print(f"{Path(folder).name:<20} {err:>5} of {n:<5} {err / n:>7.2%} {cer:>17.2%}{note}")
+        details.append((Path(folder).name, shown))
+    if show:
+        for name, shown in details:
+            print(f"\n{name}:")
+            for page, a, b in shown:
+                print(f"  {page}  reference [{a}]  reading [{b}]")
 
 
 if __name__ == "__main__":

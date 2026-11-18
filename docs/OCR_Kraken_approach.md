@@ -8,22 +8,32 @@ Eight of the selected versions exist only as scans of printed books (1497 to 191
 
 Kraken is open-source software that finds the lines on a page image and reads them. A Kraken reading model can be adapted ("fine-tuned") to a particular typeface or hand from a small number of corrected pages.
 
+## What "good enough" means
+
+The aim is not an exact copy of the page. The text is read so that use records can be taken from it ([`Project_context.md`](Project_context.md)): which plant, which part, prepared how, good for what, in what quantity. A reading is good enough when the records taken from it are the same as those that would be taken from an exact copy. Those records come from the words of the main text, so what counts is:
+
+- **the main-text words**, as the extraction will see them: case, punctuation, note numbers, spacing and the shape of quotes and dashes do not change a record;
+- **which words are wrong**: a wrong plant name, part, preparation, effect or quantity can change a record; a wrong "the" cannot;
+- **no main-text line lost or out of order**: a lost line is a lost record.
+
+Running heads, page numbers and the notes are not measured: the notes of these editions are mostly variant readings and references. If an edition's notes carry uses, its notes become main text for this purpose.
+
+Proposed threshold, to be confirmed: fewer than 1 main-text word in 100 wrong, none of them a word that carries a record, and no main-text line lost.
+
+## The method, per book
+
+1. **Sample pages.** About 5 pages spread over the book, with pages that carry uses among them.
+2. **Read them** with the ready-made models (one line finder, several reading models: [below](#the-models-and-how-they-are-pinned)).
+3. **Reference of the main text.** The assistant transcribes the sample pages from the images, then looks again, on a zoomed image, at every line where one of the best models reads something else, and settles it. Care goes into the main text; the rest of the page only needs to be close enough to align the readings ([below](#reference-pages-of-modern-print-provisional-rules)).
+4. **Measure** with [`tools/ocr_score.py`](../tools/ocr_score.py): main-text words wrong, and the list of those words. A person reads the list and the points the assistant could not settle, not every line.
+5. **Decide.** If the best model is good enough, it reads the whole book. If not, try the next models; then fine-tune the best one on corrected pages (on the GPU server) and measure again on the same sample pages, which are never used for training.
+6. **Read the whole book**, then look for what the sample may have missed: lines read as empty or very short, pages with far fewer lines than their neighbours, lines with many words found in no other page of the book.
+
 ## Who does what
 
-- **Kraken reads the books.** The aim is a model that reads one whole book (or a family of similar books) correctly.
-- **The AI assistant (Claude)** drafts the transcription of a few pages per book and runs the rest of the loop: finding lines, testing existing models, fine-tuning, measuring errors, comparing models, then reading the whole book with the chosen model.
-- **A human specialist** confirms every line of the drafted pages. Their corrected version is the reference. Nothing the assistant reads counts as a reference until a specialist has confirmed it.
-
-## The loop, per book
-
-1. **Reference pages.** A few pages: Kraken finds the lines, the assistant drafts the text, the specialist corrects both the lines and the text. The pages are split into training pages and test pages; test pages are never used for training.
-2. **Existing models first.** Run the ready-made Kraken models on the test pages and measure the character error rate.
-3. **Fine-tune if needed**, starting from the best existing model, and measure again on the same test pages. Training on 2, 5 and 10 pages gives a curve showing how many corrected pages a book needs, which tells us what each later work of the catalogue will cost.
-4. **Read the whole book** with the chosen model; spot-check pages that were not used for training.
-
-Besides the overall error rate, check separately the words the project depends on: plant names, quantities, parts of the plant, preparations. A low overall rate is not enough if the errors fall on these.
-
-**Checking the drafts.** A specialist correcting a draft tends to accept its mistakes. To measure this once, the specialist types one or two pages from scratch, without seeing the draft, and the two versions are compared.
+- **Kraken reads the books.**
+- **The AI assistant (Claude)** runs the method: reading, the reference of the main text, measuring, choosing, reading the whole book.
+- **A person** decides whether a reading is good enough, from the list of wrong words and the open points. Specialists are needed where the assistant's reading of the page is unsure: Greek, old abbreviations, old spellings.
 
 ## The eight books
 
@@ -52,15 +62,15 @@ The ready-made Kraken models are kept on Zenodo, a public research archive; `kra
 
 ## Measuring a reading
 
-[`tools/ocr_score.py`](../tools/ocr_score.py) compares a reading with the reference pages and gives the character and word error rates; its opening comment says exactly what is counted. Besides the plain character error rate it gives one with spacing and the shape of quotes and dashes set aside, which separates misreadings from differences of transcription rules.
+[`tools/ocr_score.py`](../tools/ocr_score.py) compares a reading with the reference pages. Its main measure is the share of main-text words wrong, with the list of those words; it also gives the character error rate of the whole page, comparable with what other projects publish. Its opening comment says exactly what is counted.
 
 ## Reference pages of modern print (provisional rules)
 
-Used for the drafts of Hort 1916, until the transcription rules are decided: one printed line per line of text, top to bottom, running head and page number included; no space before `;` and `:` (the printer's thin space is dropped); a note number is written as a plain number, separated by spaces; small capitals as lower case; italics not marked; quotes and dashes as printed (‘ ’ –); a word cut at the end of a line keeps its hyphen; Greek with its accents as printed. A reference page is `convert/reference/<page>.draft.txt` while it is a draft and becomes `<page>.txt` once a person has confirmed every line against the image.
+Used for the reference pages of Hort 1916, until the transcription rules are decided: four blocks separated by one empty line, running head, main text, notes, page number; one printed line per line of text, top to bottom; no space before `;` and `:` (the printer's thin space is dropped); a note number is written as a plain number, separated by spaces; small capitals as lower case; italics not marked; quotes and dashes as printed (‘ ’ –); a word cut at the end of a line keeps its hyphen; Greek with its accents as printed. A reference page is `convert/reference/<page>.draft.txt` until a person has accepted it (step 4 of the method), then `<page>.txt`.
 
 ## Open points
 
-- **Transcription rules**, to be fixed before any reference page is typed: keep abbreviations, long s and ligatures as printed, or expand and modernise them. Keeping them close to the guidelines the existing models were trained on lets us reuse those models; expansion can be a later, separate step.
+- **Transcription rules for the older books**: keep abbreviations, long s and ligatures as printed, or expand and modernise them. The test is the extraction: a long s read as f turns "sage" into "fage", a plant name the extraction will not recognise. Keeping close to the guidelines the existing models were trained on lets us reuse those models; expansion can be a later, separate step.
 - **Specialists**: the books span Latin, Middle French, Italian, Old French and English; more than one person may be needed, and their available time is not known.
 - **Hardware**: the laptop (no GPU) can run line finding, reading and small tests; fine-tuning belongs on the RTX 6000 server, which needs PyTorch with GPU support instead of the version without it named in [`pyproject.toml`](../pyproject.toml).
 
