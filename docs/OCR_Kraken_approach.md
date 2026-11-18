@@ -56,7 +56,7 @@ The ready-made Kraken models are kept on Zenodo, a public research archive; `kra
 
 ## Reference pages of modern print (provisional rules)
 
-Used for the drafts of Hort 1916, until the transcription rules are decided: one printed line per line of text, top to bottom, running head and page number included; a note number is written as a plain number, separated by spaces; small capitals as lower case; italics not marked; quotes and dashes as printed (‘ ’ –); a word cut at the end of a line keeps its hyphen; Greek with its accents as printed. A reference page is `convert/reference/<page>.draft.txt` while it is a draft and becomes `<page>.txt` once a person has confirmed every line against the image.
+Used for the drafts of Hort 1916, until the transcription rules are decided: one printed line per line of text, top to bottom, running head and page number included; no space before `;` and `:` (the printer's thin space is dropped); a note number is written as a plain number, separated by spaces; small capitals as lower case; italics not marked; quotes and dashes as printed (‘ ’ –); a word cut at the end of a line keeps its hyphen; Greek with its accents as printed. A reference page is `convert/reference/<page>.draft.txt` while it is a draft and becomes `<page>.txt` once a person has confirmed every line against the image.
 
 ## Open points
 
