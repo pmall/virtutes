@@ -7,7 +7,9 @@ Usage, from the workspace folder:
     <reference folder>  one text file per page, <page>.txt or <page>.draft.txt (a draft is a
                         reference not yet confirmed by a person; the output says so). A page is
                         written in blocks separated by one empty line: running head, main text,
-                        notes, page number (docs/OCR_Kraken_approach.md, "Reference pages").
+                        notes, page number (docs/OCR_Kraken_approach.md, "Reference pages");
+                        an empty block is an empty line, so a page without page
+                        number ends with two empty lines.
     <reading folder>    one text file per page with the same <page> name, <page>.txt: what a
                         reading model (or any other source) gave for that page.
     --show              also list, for each reading, the main-text words it got wrong.
@@ -62,7 +64,8 @@ def references(folder):
     for f in sorted(Path(folder).glob("*.txt")):
         page = f.name.removesuffix(".txt").removesuffix(".draft")
         text = unicodedata.normalize("NFC", f.read_text(encoding="utf-8"))
-        blocks = text.strip("\n").split("\n\n")
+        # the file ends with one newline; an empty last block (no page number) leaves "\n\n\n"
+        blocks = text.removesuffix("\n").split("\n\n")
         if len(blocks) != 4:
             sys.exit(f"{f}: {len(blocks)} blocks, 4 expected (head, main text, notes, page number)")
         refs[page] = (text, blocks, f.name.endswith(".draft.txt"))
