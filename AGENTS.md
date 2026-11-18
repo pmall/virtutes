@@ -12,7 +12,7 @@ Projects die when their context piles up: notes on notes, the same fact in three
 
 ## Skills (one per task)
 
-Each task has its procedure in `skills/<name>/SKILL.md`; the first lines of that file say when to use it. `.claude/skills/` holds one link per skill. Current skills: `convert-version`, `map-editions`, `select-and-download`.
+Each task has its procedure in `skills/<name>/SKILL.md`; the first lines of that file say when to use it. `.claude/skills/` holds one link per skill. Current skills: `convert-version`, `map-editions`, `select-and-download`, `test-scan-reading`.
 
 A new skill is a new folder in `skills/` plus its link: `ln -s ../../skills/<name> .claude/skills/<name>`.
 

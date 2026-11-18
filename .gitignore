@@ -12,6 +12,10 @@ works/*/text/
 # Article PDFs: publishers' copyright (listed in references/README.md)
 references/*.pdf
 
+# The reading models, fetched by tools/ocr_models.py (each version's convert/ocr_models.csv
+# gives their address and checksum)
+models/
+
 # The Python environment, made by "uv sync" (README.md, "Setting up")
 .venv/
 

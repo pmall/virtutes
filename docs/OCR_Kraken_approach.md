@@ -24,16 +24,17 @@ Proposed threshold, to be confirmed: fewer than 1 main-text word in 100 wrong, n
 
 1. **Sample pages.** About 5 pages spread over the book, with pages that carry uses among them.
 2. **Read them** with the ready-made models (one line finder, several reading models: [below](#the-models-and-how-they-are-pinned)).
-3. **Reference of the main text.** The assistant transcribes the sample pages from the images, then looks again, on a zoomed image, at every line where one of the best models reads something else, and settles it. Care goes into the main text; the rest of the page only needs to be close enough to align the readings ([below](#reference-pages-of-modern-print-provisional-rules)).
-4. **Measure** with [`tools/ocr_score.py`](../tools/ocr_score.py): main-text words wrong, and the list of those words. A person reads the list and the points the assistant could not settle, not every line.
-5. **Decide.** If the best model is good enough, it reads the whole book. If not, try the next models; then fine-tune the best one on corrected pages (on the GPU server) and measure again on the same sample pages, which are never used for training.
-6. **Read the whole book**, then look for what the sample may have missed: lines read as empty or very short, pages with far fewer lines than their neighbours, lines with many words found in no other page of the book.
+3. **Reference of the main text.** The assistant transcribes the sample pages from the images, then looks again, on a zoomed image, at every line where one of the best models reads something else, and settles it. Care goes into the main text; the rest of the page only needs to be close enough to align the readings ([below](#reference-pages-provisional-rules)).
+4. **Measure** with [`tools/ocr_score.py`](../tools/ocr_score.py): main-text words wrong, and the list of those words.
+5. **Report.** Steps 1 to 4 are the test of a book; its evidence is written in the version's `convert/ocr_test.md`, all reports in the same form (skill `test-scan-reading`).
+6. **Decide, for all books together.** Once every scanned book is tested, the reports are reviewed together, by the user with a larger AI model, before any book is read in full: which model for each book, whether it is good enough, which books need another model or fine-tuning (on the GPU server, measured again on the same sample pages, which are never used for training). The review rests on the reports; a person reads the lists of wrong words and the points the assistant could not settle, not every line.
+7. **Read the whole book**, then look for what the sample may have missed: lines read as empty or very short, pages with far fewer lines than their neighbours, lines with many words found in no other page of the book.
 
 ## Who does what
 
 - **Kraken reads the books.**
-- **The AI assistant (Claude)** runs the method: reading, the reference of the main text, measuring, choosing, reading the whole book.
-- **A person** decides whether a reading is good enough, from the list of wrong words and the open points. Specialists are needed where the assistant's reading of the page is unsure: Greek, old abbreviations, old spellings.
+- **The AI assistant (Claude)** runs the method: reading, the reference of the main text, measuring, the report, and later reading the whole book.
+- **A person** decides whether a reading is good enough, from the reports, with a larger AI model to review them. Specialists are needed where the assistant's reading of the page is unsure: Greek, old abbreviations, old spellings.
 
 ## The eight books
 
@@ -54,7 +55,7 @@ Probably one fine-tuned model per book, or per family of similar typefaces.
 
 ## Order of the books
 
-**First, the English pages of Hort 1916**, the easiest book, to set up and test the loop. **Then Mattioli, Discorsi 1568**: hard enough to test the whole method, and the edition used by Staub et al. 2016 ([`references/`](../references/)). That study recorded 5,314 uses by hand, so the result can later be judged not only by character errors but by whether the uses extracted from our text match theirs.
+The books are tested from the easiest to the hardest, so that the method settles on the easy ones: Hort 1916 (English pages), Dorveaux 1913, Poinsinet 1771–1782, Petit Bauhin 1671, Mathée 1553, Du Pinet 1561, Mattioli 1568, Venice 1497. Mattioli 1568 is the edition used by Staub et al. 2016 ([`references/`](../references/)), who recorded 5,314 uses by hand: once its text is read, the uses extracted from it can be compared with theirs, a test of the whole chain.
 
 ## The models, and how they are pinned
 
@@ -64,13 +65,13 @@ The ready-made Kraken models are kept on Zenodo, a public research archive; `kra
 
 [`tools/ocr_score.py`](../tools/ocr_score.py) compares a reading with the reference pages. Its main measure is the share of main-text words wrong, with the list of those words; it also gives the character error rate of the whole page, comparable with what other projects publish. Its opening comment says exactly what is counted.
 
-## Reference pages of modern print (provisional rules)
+## Reference pages (provisional rules)
 
-Used for the reference pages of Hort 1916, until the transcription rules are decided: four blocks separated by one empty line, running head, main text, notes, page number; one printed line per line of text, top to bottom; no space before `;` and `:` (the printer's thin space is dropped); a note number is written as a plain number, separated by spaces; small capitals as lower case; italics not marked; quotes and dashes as printed (‘ ’ –); a word cut at the end of a line keeps its hyphen; Greek with its accents as printed. A reference page is `convert/reference/<page>.draft.txt` until a person has accepted it (step 4 of the method), then `<page>.txt`.
+Until the transcription rules are decided. For all books: four blocks separated by one empty line, running head, main text, notes, page number; one printed line per line of text, top to bottom; no space before `;` and `:` (the printer's thin space is dropped); a note number is written as a plain number, separated by spaces; small capitals as lower case; italics not marked; quotes and dashes as printed (‘ ’ –); a word cut at the end of a line keeps its hyphen; Greek with its accents as printed. For books printed before 1800, what is printed is transcribed: long s as ſ, abbreviations with their signs (not expanded), u/v and i/j as printed; the scores set aside long s, ligatures, u/v and i/j, which do not change a word for the extraction ([`tools/ocr_score.py`](../tools/ocr_score.py)), and the report counts the abbreviated words of the main text, whose expansion is decided later. A reference page is `convert/reference/<page>.draft.txt` until a person has accepted it (step 4 of the method), then `<page>.txt`.
 
 ## Open points
 
-- **Transcription rules for the older books**: keep abbreviations, long s and ligatures as printed, or expand and modernise them. The test is the extraction: a long s read as f turns "sage" into "fage", a plant name the extraction will not recognise. Keeping close to the guidelines the existing models were trained on lets us reuse those models; expansion can be a later, separate step.
+- **Abbreviations of the older books**: the references keep them as printed ([above](#reference-pages-provisional-rules)); whether the text used for extraction expands them is decided from the counts in the reports. The test is the extraction: an abbreviated or misread plant name (a long s read as f turns "sage" into "fage") is a plant the extraction will not recognise.
 - **Specialists**: the books span Latin, Middle French, Italian, Old French and English; more than one person may be needed, and their available time is not known.
 - **Hardware**: the laptop (no GPU) can run line finding, reading and small tests; fine-tuning belongs on the RTX 6000 server, which needs PyTorch with GPU support instead of the version without it named in [`pyproject.toml`](../pyproject.toml).
 
@@ -81,6 +82,6 @@ Kraken is one of the project's packages ([`pyproject.toml`](../pyproject.toml));
 ## Not verified
 
 Stated from the assistant's memory, to be checked before use:
-- which ready-made models fit the books printed before 1900 (candidates in the list: CATMuS-Print, CATMuS Gothic Print, Latin Incunabula and Early Prints, Gallicorpora+, McCATMuS, PP-OCRv6);
+- which ready-made models fit the books printed before 1900. Candidates in the list, besides those tried on Hort: CATMuS Gothic Print, Latin Incunabula and Early Prints, Gallicorpora+ (reading); Kraken segmentation model for two-column prints (finding lines);
 - how many corrected pages a fine-tune typically needs;
 - the alternatives to compare Kraken with. Candidates named so far: for reading print, Tesseract, olmOCR, PaddleOCR-VL, dots.ocr, LightOnOCR, DeepSeek-OCR, MinerU, Chandra; for page layout, DocLayout-YOLO, YALTAi; for handwriting, TrOCR.

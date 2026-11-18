@@ -18,7 +18,9 @@ What is measured, over all pages together:
   for the project: use records are taken from the words of the main text, so a word wrong there
   can change a plant, a part, a preparation or a virtue. Words are compared as the extraction
   will see them: a word cut by a hyphen at the end of a line is joined again, case is ignored,
-  and punctuation and numbers (note numbers) are left out.
+  and punctuation and numbers (note numbers) are left out. Printing habits that do not change
+  a word are set aside too: long s (ſ) counts as s, a ligature (ﬁ, ﬀ, ﬆ...) as its letters, u and
+  v as one letter, i and j as one letter. Abbreviations are compared as written.
 - CER, the character error rate on the whole page, every character counted (running head and
   notes included): the number of characters to insert, delete or replace to turn the reading
   into the reference, divided by the number of characters of the reference. A general measure,
@@ -30,13 +32,16 @@ import difflib, re, sys, unicodedata
 from pathlib import Path
 
 WORD = re.compile(r"[^\W\d_]+(?:['’][^\W\d_]+)*")
+LIGATURES = "ﬀﬁﬂﬃﬄﬅﬆ"
+FOLD = str.maketrans({"ſ": "s", "v": "u", "j": "i"})
 
 
 def words(text):
     text = unicodedata.normalize("NFC", text)
+    text = "".join(unicodedata.normalize("NFKC", c) if c in LIGATURES else c for c in text)
     text = re.sub(r"(\w)[-¬]+\s*\n\s*(\w)", r"\1\2", text)  # join a word cut at the line end
     text = "".join(" " if unicodedata.category(c)[0] == "N" else c for c in text)  # numbers, ¹ ²
-    return [w.lower().replace("’", "'") for w in WORD.findall(text)]
+    return [w.lower().replace("’", "'").translate(FOLD) for w in WORD.findall(text)]
 
 
 def distance(a, b):

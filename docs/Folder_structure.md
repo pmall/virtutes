@@ -12,6 +12,7 @@ One self-contained folder for all works, pilot and later. It is a git repository
     .claude/skills/                  links to skills/, so that Claude finds the skills
     WIP.md                           what remains to do, in order
     tools/                           scripts shared by all works
+    models/                          the reading models of the scans, fetched by tools/ocr_models.py
     pyproject.toml, uv.lock          the Python version and packages the scripts need, exact versions
     catalogue/                       the 5 catalogue spreadsheets (copies) + catalogue_rows.csv
     references/                      articles the project relies on (README.md lists them)
@@ -59,6 +60,8 @@ Each version folder is a small workshop of its own, with the same five parts:
                             (OCR_Kraken_approach.md, "Reference pages")
         ocr_models.csv      the reading models tried or used for a scan, each pinned by its
                             checksum and the DOI of its exact version (OCR_Kraken_approach.md)
+        ocr_test.md         the test of the reading of a scan on sample pages: scores, wrong
+                            words, proposal (skill test-scan-reading)
     work/                 intermediate files, made again by the scripts
         raw/              the raw text, in the unified text format
         <lang>.repairs.csv  every change repair_<lang>.py made: passage, rule, before, after
@@ -86,6 +89,7 @@ Rules:
 | The libraries' small records in `source/` (`*.json`, `*_pages.csv`) | `work/` and `text/` of every version |
 | `convert/` of every version | The article PDFs in [`references/`](../references/) (publishers' copyright) |
 | `pyproject.toml`, `uv.lock` | The Python environment (`.venv/`) |
+| | The reading models (`models/`; address and checksum in each version's `convert/ocr_models.csv`) |
 
 The rule behind the table: git holds what we write, and nothing that can be made or fetched again. It does not hold what a library delivered, nor what a script produces from it. The list is enforced by [`.gitignore`](../.gitignore).
 
