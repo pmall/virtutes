@@ -1,0 +1,10 @@
+role,name,file,bytes,md5,address
+segmentation,General segmentation model for print and handwriting,blla.mlmodel,5047641,f3d933d00dba8b47bbc2f11804cd32f0,https://doi.org/10.5281/zenodo.22879549
+recognition,PP-OCRv6 (small),small.safetensors,13065380,07279cd68cd4402807542799f12d0f4a,https://doi.org/10.5281/zenodo.21788405
+recognition,PP-OCRv6 (medium),medium.safetensors,63779644,e3411a453ce3b9e9efae3f8631d85762,https://doi.org/10.5281/zenodo.21788410
+recognition,PP-OCRv6 (tiny),tiny.safetensors,2837508,1835fe215247475370503b0b325b100c,https://doi.org/10.5281/zenodo.21788403
+recognition,CATMuS-Print [Large],catmus-print-fondue-large.mlmodel,22874456,9ed1ed4a6c34e1f4b292b380bf9c5543,https://doi.org/10.5281/zenodo.10592716
+recognition,CATMuS-Print [Small],catmus-print-fondue-small-2024-01-31.mlmodel,1705182,d4b8a617cf57eeed1f7edb9ffb023271,https://doi.org/10.5281/zenodo.10602307
+recognition,CATMuS-Print [Tiny],catmus-print-fondue-tiny-2024-01-31.mlmodel,1183001,bd0553da6c68d5251d5e89b08cef0f76,https://doi.org/10.5281/zenodo.10602357
+recognition,McCATMuS,McCATMuS_nfd_nofix_V1.mlmodel,16173802,e531463f631303c700750784b4f9ed63,https://doi.org/10.5281/zenodo.13788177
+recognition,A generalized model for English printed text,en_best.mlmodel,2930723,07a7e127dd67bf374d1c166538bf433c,https://doi.org/10.5281/zenodo.2577813

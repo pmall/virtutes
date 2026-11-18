@@ -42,9 +42,21 @@ Probably one fine-tuned model per book, or per family of similar typefaces.
 
 **Likely harder than the reading itself:** finding the lines and the reading order on pages with two columns, margin notes, running heads, notes and woodcuts. Kraken's line finder can also be fine-tuned; reading order may need its own treatment.
 
-## Proposed first book
+## Order of the books
 
-**Mattioli, Discorsi 1568.** It is hard enough to test the whole method, and it is the edition used by Staub et al. 2016 ([`references/`](../references/)). That study recorded 5,314 uses by hand, so the result can later be judged not only by character errors but by whether the uses extracted from our text match theirs.
+**First, the English pages of Hort 1916**, the easiest book, to set up and test the loop. **Then Mattioli, Discorsi 1568**: hard enough to test the whole method, and the edition used by Staub et al. 2016 ([`references/`](../references/)). That study recorded 5,314 uses by hand, so the result can later be judged not only by character errors but by whether the uses extracted from our text match theirs.
+
+## The models, and how they are pinned
+
+The ready-made Kraken models are kept on Zenodo, a public research archive; `kraken list` lists them. Most are 1 to 25 MB; a fine-tuned model has the size of the model it starts from. Each version of a model has its own DOI, which never points to a later version, and each file has a checksum. The models a version tries or uses are listed in its `convert/ocr_models.csv`: role (finding lines, or reading), name, file, size, checksum, and the DOI of the exact version. The line-finding model that comes with Kraken is not used: it is not the same file as any version on Zenodo, so it cannot be pinned.
+
+## Measuring a reading
+
+[`tools/ocr_score.py`](../tools/ocr_score.py) compares a reading with the reference pages and gives the character and word error rates; its opening comment says exactly what is counted. Besides the plain character error rate it gives one with spacing and the shape of quotes and dashes set aside, which separates misreadings from differences of transcription rules.
+
+## Reference pages of modern print (provisional rules)
+
+Used for the drafts of Hort 1916, until the transcription rules are decided: one printed line per line of text, top to bottom, running head and page number included; a note number is written as a plain number, separated by spaces; small capitals as lower case; italics not marked; quotes and dashes as printed (‘ ’ –); a word cut at the end of a line keeps its hyphen; Greek with its accents as printed. A reference page is `convert/reference/<page>.draft.txt` while it is a draft and becomes `<page>.txt` once a person has confirmed every line against the image.
 
 ## Open points
 
@@ -59,6 +71,6 @@ Kraken is one of the project's packages ([`pyproject.toml`](../pyproject.toml));
 ## Not verified
 
 Stated from the assistant's memory, to be checked before use:
-- which ready-made Kraken models exist and fit these books (CATMuS Medieval, McCATMuS for the 16th–21st c., community models for early modern French print);
+- which ready-made models fit the books printed before 1900 (candidates in the list: CATMuS-Print, CATMuS Gothic Print, Latin Incunabula and Early Prints, Gallicorpora+, McCATMuS, PP-OCRv6);
 - how many corrected pages a fine-tune typically needs;
 - the alternatives to compare Kraken with. Candidates named so far: for reading print, Tesseract, olmOCR, PaddleOCR-VL, dots.ocr, LightOnOCR, DeepSeek-OCR, MinerU, Chandra; for page layout, DocLayout-YOLO, YALTAi; for handwriting, TrOCR.

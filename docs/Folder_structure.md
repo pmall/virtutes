@@ -56,6 +56,9 @@ Each version folder is a small workshop of its own, with the same five parts:
                             results are compared with (Conversion_method.md)
         corrections.csv     corrections found by people, applied by repair_<lang>.py
         reference/          hand-corrected pages used to train and to measure the reading of a scan
+                            (OCR_Kraken_approach.md, "Reference pages")
+        ocr_models.csv      the reading models tried or used for a scan, each pinned by its
+                            checksum and the DOI of its exact version (OCR_Kraken_approach.md)
     work/                 intermediate files, made again by the scripts
         raw/              the raw text, in the unified text format
         <lang>.repairs.csv  every change repair_<lang>.py made: passage, rule, before, after
