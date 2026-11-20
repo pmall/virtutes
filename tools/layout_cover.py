@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """A rough indicator for a layout model on the sample pages: how many of the lines Kraken's line
-finder found lie inside a block the layout model marked (standard library only). It tells whether
-text is left outside every block, nothing more: not the name of a block, not its limits, not the
-text read. Not a measure of quality (docs/Layout_fine_tuning.md, "How a layout model is judged").
+finder found lie inside a block the layout model marked (standard library only). What it
+tells and does not tell: docs/Layout_fine_tuning.md, "How a layout model is judged".
 
 Usage: uv run tools/layout_cover.py <folder>
 <folder> holds one folder per version, named as in works/, with the model's result for each sample

@@ -18,7 +18,7 @@ Kraken is open-source software that reads page images. It does not read by itsel
 
 The layout model and the line finder both look at the page image and do not depend on each other. The lines are then put in order with the help of the blocks, and each line is read. The text is the lines as read, in that order. A wrong text can so come from four places: a block missed or misnamed, a line badly cut, lines in the wrong order, letters misread.
 
-**A reading is always described by its three models**, "none" where a step is not used: a score means nothing without them. Kraken's usual command uses two, the line finder and a reading model; the layout model is a recent addition, kept in a separate package, and how Kraken is meant to use it together with the line finder is not yet established ([`Layout_fine_tuning.md`](Layout_fine_tuning.md#not-established)).
+A score of a reading means nothing without its three models. Kraken's usual command uses two, the line finder and a reading model; the layout model is a recent addition, kept in a separate package, and how Kraken is meant to use it together with the line finder is not yet established ([`Layout_fine_tuning.md`](Layout_fine_tuning.md#not-established)).
 
 ## What "good enough" means
 
