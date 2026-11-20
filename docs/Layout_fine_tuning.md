@@ -83,11 +83,12 @@ The same retraining was run on each of the three books alone (10 or 11 pages eac
 | Du Pinet 1561 | 59% | 68% | 98% | 99% | 97% |
 | Mattioli 1568 | 90% | 85% | 97% | 98% | 91% |
 
-- A book read by the model of the three together is read about as well as by its own model: better on Mathée, one point lower on Du Pinet. The gap on Mattioli 1568 is one sample page (39 lines of 69 against 66); the five others are equal.
-- A model made from one book does not always carry to another: Du Pinet and Mattioli 1568, two editions of the same work, read each other well; Mathée and these two do not.
-- The model of the three together is the only one above 90% on the three books. Retraining on several books of a type is therefore kept as the method.
+What the figures show, without a conclusion:
 
-Each retraining was run once, and a book has five or six sample pages: a difference of a few points is not established. The single-book models are not kept.
+- Own model against the model of the three together: Mathée 96% against 99%, Du Pinet 98% against 97%, Mattioli 1568 98% against 91%. The gap on Mattioli 1568 is one sample page (39 lines of 69 against 66); the five others are equal.
+- Du Pinet and Mattioli 1568, two editions of the same work, read each other at 97% and 99%. Mathée and these two do not read each other well (68% to 92%).
+
+Each retraining was run once, and a book has five or six sample pages. Which of the two ways is better is an open question: no decision has been taken. The single-book models are in `finetuning/layout/herbal_16c/work/single/<book>/` (not in git).
 
 ## Not verified
 
