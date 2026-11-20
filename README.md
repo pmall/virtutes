@@ -25,7 +25,7 @@ This fetches the right Python if the computer does not have it and installs the 
 | The single text format all works are brought to | [`docs/Unified_text_format.md`](docs/Unified_text_format.md) |
 | How a version is brought to it | [`docs/Conversion_method.md`](docs/Conversion_method.md) |
 | Reading the scans by machine (proposal) | [`docs/OCR_Kraken_approach.md`](docs/OCR_Kraken_approach.md) |
-| Retraining the model that marks the blocks of a page (on trial) | [`docs/Layout_fine_tuning.md`](docs/Layout_fine_tuning.md) |
+| Retraining the layout model, which marks the blocks of a page (on trial) | [`docs/Layout_fine_tuning.md`](docs/Layout_fine_tuning.md) |
 | Classifying illnesses and remedies (Staub et al. 2015) | [`docs/Staub_2015_classification_summary.md`](docs/Staub_2015_classification_summary.md) |
 | Identifying the plants of historical texts (Lardos et al. 2024) | [`docs/Lardos_2024_plant_identification_summary.md`](docs/Lardos_2024_plant_identification_summary.md) |
 | The articles relied on | [`references/README.md`](references/README.md) |

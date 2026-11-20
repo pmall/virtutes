@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Measure a layout model on the sample pages: how many of the lines Kraken's line finder found
-lie inside a block the layout model marked (standard library only).
+"""A rough indicator for a layout model on the sample pages: how many of the lines Kraken's line
+finder found lie inside a block the layout model marked (standard library only). It tells whether
+text is left outside every block, nothing more: not the name of a block, not its limits, not the
+text read. Not a measure of quality (docs/Layout_fine_tuning.md, "How a layout model is judged").
 
 Usage: uv run tools/layout_cover.py <folder>
 <folder> holds one folder per version, named as in works/, with the model's result for each sample
 page (<page>.xml). The lines are those of works/<version>/work/ocr_trial/seg/<page>.xml. A line
 counts as inside when its middle, 10 px above the baseline, is in a block or within 20 px of one.
-The lines are the line finder's, mistakes included: the figure tells how much of the page the
-blocks hold, not whether each block is right.
+The lines are the line finder's, mistakes included.
 """
 import re, sys
 from pathlib import Path

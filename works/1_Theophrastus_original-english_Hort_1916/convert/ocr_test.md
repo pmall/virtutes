@@ -24,6 +24,8 @@ Page images taken out of the PDF unchanged with `pdfimages -png`.
 
 ## Models tried
 
+The three models of every reading in this report: layout model, none; line finder, Kraken's general one, unless said otherwise; reading model, the one named in each row.
+
 One line finder (General segmentation model for print and handwriting) and eight reading models; each pinned by DOI and checksum in `convert/ocr_models.csv`.
 
 ## Scores

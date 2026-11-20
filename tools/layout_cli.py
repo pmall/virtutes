@@ -10,8 +10,8 @@ Mark the blocks of page images with a layout model (PAGE XML out):
     uv run tools/layout_cli.py kraken -r --threads 8 -x -i <image> <out.xml> [-i ... ...] \
         segment -bl -i <model file>
 
-Retrain a layout model on the fixed pages of one fine-tuning folder (docs/OCR_Kraken_approach.md,
-"Layout"), after tools/layout_pages.py has written its lists:
+Retrain a layout model on the fixed pages of one fine-tuning folder (docs/Layout_fine_tuning.md),
+after tools/layout_pages.py has written its lists:
     F=finetuning/layout/<name>
     uv run tools/layout_cli.py dfine -d cpu --threads 8 --workers 2 -s 42 train -f page \
         -i models/18715364/ladas_l.safetensors --model-variant large --resize union \

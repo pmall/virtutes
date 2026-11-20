@@ -29,6 +29,8 @@ Main text, for the scores: everything but the running head with its page number:
 
 ## Models tried
 
+The three models of every reading in this report: layout model, none; line finder, Kraken's general one, unless said otherwise; reading model, the one named in each row.
+
 The same line finder and nine reading models as for Poinsinet 1771–1782, plus Latin Incunabula and Early Prints (made for print up to the 16th century, the closest to this book of the models already in `models/`); all pinned by DOI and checksum in `convert/ocr_models.csv`. CATMuS Gothic Print was left out: the book is in roman type. The files were already in `models/` and were checked against the listed size and checksum without being fetched again. The pages are in one column, so the two-column line finder was not tried.
 
 ## Scores

@@ -24,6 +24,8 @@ All five carry uses of plants or other simples. Images taken from the archive un
 
 ## Models tried
 
+The three models of every reading in this report: layout model, none; line finder, Kraken's general one, unless said otherwise; reading model, the one named in each row.
+
 One line finder (General segmentation model for print and handwriting) and nine reading models: the eight tried on Hort 1916 and Gallicorpora+, made for French prints of the 15th to 17th centuries. Each is pinned by DOI and checksum in `convert/ocr_models.csv`.
 
 ## Scores

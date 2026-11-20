@@ -29,6 +29,8 @@ Main text, for the scores: the text of both languages, Latin and French; the cat
 
 ## Models tried
 
+The three models of every reading in this report: layout model, none; line finder, Kraken's general one, unless said otherwise; reading model, the one named in each row.
+
 The same line finder and nine reading models as for Dorveaux 1913, pinned by DOI and checksum in `convert/ocr_models.csv`. No other model in `kraken list` was found made for 18th-century French or Latin print (checked on the list; two candidates there turned out to be for Ottoman and Persian).
 
 Line finders compared on t07_img0200 and t08_img0302, both read with PP-OCRv6 (small): the general one (in `ocr_models.csv`) and the Kraken segmentation model for two-column prints (`seg_news_1.0.mlmodel`, 5,250,514 bytes, md5 6f7e68e826a44e810320c389a263bf0d, https://doi.org/10.5281/zenodo.10783346). The two-column one cut the lines into fragments ("HISTOI", "touchement fa") and gave 42 main-text words wrong out of 123, against 1 with the general one. The general one is kept.

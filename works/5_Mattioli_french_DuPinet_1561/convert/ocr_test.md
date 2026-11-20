@@ -28,6 +28,8 @@ Main text, for the scores: the chapter headings with the names, "CHAP." lines, D
 
 ## Models tried
 
+The three models of every reading in this report: layout model, none; line finder, Kraken's general one, unless said otherwise; reading model, the one named in each row.
+
 The same line finder and ten reading models as for Mathée 1553, pinned by DOI and checksum in `convert/ocr_models.csv`; the files were already in `models/` and were checked against the listed size and checksum without being fetched again. CATMuS Gothic Print was left out: the book is in roman and italic type.
 
 Line finders compared on img0090, both read with PP-OCRv6 (small): the general one (in `ocr_models.csv`) and the Kraken segmentation model for two-column prints (`seg_news_1.0.mlmodel`, 5,250,514 bytes, md5 6f7e68e826a44e810320c389a263bf0d, https://doi.org/10.5281/zenodo.10783346). With the two-column one, 919 main-text words wrong out of 1,055 (87.1%), against 407 (38.6%) with the general one; it found 115 lines against 156 and took 204 s against 32 s to find them. The general one is kept. Neither keeps the reading order of this page (see "Lines").

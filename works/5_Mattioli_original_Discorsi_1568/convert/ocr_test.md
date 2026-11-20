@@ -29,6 +29,8 @@ Main text, for the scores: chapter headings, Dioscorides' text, Mattioli's comme
 
 ## Models tried
 
+The three models of every reading in this report: layout model, none; line finder, Kraken's general one, unless said otherwise; reading model, the one named in each row.
+
 The same line finder and ten reading models as for Mathée 1553 and Du Pinet 1561, pinned by DOI and checksum in `convert/ocr_models.csv`; the files were already in `models/` and were checked against the listed size and checksum, nothing was downloaded. CATMuS Gothic Print was left out: the book is in roman and italic type. The two-column line finder was not tried: the pages have one column.
 
 ## Scores

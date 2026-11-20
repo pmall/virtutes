@@ -28,6 +28,8 @@ Main text, for the scores: everything in the two columns, chapter headings with 
 
 ## Models tried
 
+The three models of every reading in this report: layout model, none; line finder, Kraken's general one, unless said otherwise; reading model, the one named in each row.
+
 Twelve reading models, pinned by DOI and checksum in `convert/ocr_models.csv`: the ten tried on Mattioli 1568, plus CATMuS Gothic Print, made for gothic print; the Latin Incunabula and Early Prints model was already among the ten. All files were already in `models/`; their sizes and checksums were checked against the list, nothing was downloaded.
 
 Line finding: the general model of Mattioli 1568. The two-column line finder (`seg_news_1.0.mlmodel`, downloaded for this test, `WIP.md`) was compared with it on img0378: it found 84 lines instead of 143, most of them drawn across both columns, and took 3 minutes 15 seconds instead of 31 seconds. The general model was kept; the two-column one is not in `ocr_models.csv`.

@@ -37,7 +37,7 @@ description: Test how well ready-made Kraken models read one scanned version (wo
 10. **Write `convert/ocr_test.md`**, with these sections, in plain language:
     - *The book*: type, layout, languages, what makes it hard.
     - *Sample pages*: each page, its image in the scan, why it was taken.
-    - *Models tried*: the list (with `convert/ocr_models.csv` for the pins).
+    - *Models tried*: the list (with `convert/ocr_models.csv` for the pins), beginning with the three models of the readings: layout model, line finder, reading models (`docs/OCR_Kraken_approach.md`, "The three models of a reading"); "none" for a step not used.
     - *Scores*: the output of `tools/ocr_score.py`, as a table, one row per model.
     - *Wrong main-text words* of the two best models, each marked "carries a record" or not.
     - *Lines*: lost, cut, out of order.

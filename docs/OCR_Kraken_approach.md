@@ -6,7 +6,19 @@
 
 Eight of the selected versions exist only as scans of printed books (1497 to 1916). They must become typed text, with each passage keeping the scan page it comes from ([`Version_selection_method.md`](Version_selection_method.md#the-rules), rule 2). This document covers the reading step only; where it fits in the conversion of a version, and the format the text ends in, are in [`Conversion_method.md`](Conversion_method.md) and [`Unified_text_format.md`](Unified_text_format.md). The list is in [`works/Pilot_selected_versions.csv`](../works/Pilot_selected_versions.csv), form "Scan, to be typed".
 
-Kraken is open-source software that finds the lines on a page image and reads them. A Kraken reading model can be adapted ("fine-tuned") to a particular typeface or hand from a small number of corrected pages.
+Kraken is open-source software that reads page images. It does not read by itself: it runs models, each doing one thing, and puts their results together into a text. Each model can be adapted ("fine-tuned") to a kind of book from a small number of corrected pages.
+
+## The three models of a reading
+
+| Model | What it finds on the page | What happens without it |
+|---|---|---|
+| **Layout model** | The blocks, each with a name: column of text, heading, margin note, running title, page number, picture | The order of the lines is guessed from the lines alone: on some pages in two columns the columns are mixed. Nothing tells main text from margin notes or running titles |
+| **Line finder** | Each line of print | Nothing can be read: the reading model reads one line at a time |
+| **Reading model** | The letters of one line | No text |
+
+The layout model and the line finder both look at the page image and do not depend on each other. The lines are then put in order with the help of the blocks, and each line is read. The text is the lines as read, in that order. A wrong text can so come from four places: a block missed or misnamed, a line badly cut, lines in the wrong order, letters misread.
+
+**A reading is always described by its three models**, "none" where a step is not used: a score means nothing without them. Kraken's usual command uses two, the line finder and a reading model; the layout model is a recent addition, kept in a separate package, and how Kraken is meant to use it together with the line finder is not yet established ([`Layout_fine_tuning.md`](Layout_fine_tuning.md#not-established)).
 
 ## What "good enough" means
 
@@ -23,7 +35,7 @@ Proposed threshold, to be confirmed: fewer than 1 main-text word in 100 wrong, n
 ## The method, per book
 
 1. **Sample pages.** About 5 pages spread over the book, with pages that carry uses among them.
-2. **Read them** with the ready-made models (one line finder, several reading models: [below](#the-models-and-how-they-are-pinned)).
+2. **Read them** with the ready-made models (one line finder, several reading models: [below](#the-models-and-how-they-are-pinned)). As written, this step uses no layout model; adding one is on trial ([`Layout_fine_tuning.md`](Layout_fine_tuning.md)).
 3. **Reference of the main text.** The assistant transcribes the sample pages from the images, then looks again, on a zoomed image, at every line where one of the best models reads something else, and settles it. Care goes into the main text; the rest of the page only needs to be close enough to align the readings ([below](#reference-pages-provisional-rules)).
 4. **Measure** with [`tools/ocr_score.py`](../tools/ocr_score.py): main-text words wrong, and the list of those words.
 5. **Report.** Steps 1 to 4 are the test of a book; its evidence is written in the version's `convert/ocr_test.md`, all reports in the same form (skill `test-scan-reading`).
@@ -51,7 +63,7 @@ Proposed threshold, to be confirmed: fewer than 1 main-text word in 100 wrong, n
 
 Probably one fine-tuned model per book, or per family of similar typefaces.
 
-**Likely harder than the reading itself:** finding the lines and the reading order on pages with two columns, margin notes, running heads, notes and woodcuts. Kraken's line finder can also be fine-tuned; reading order may need its own treatment.
+**Likely harder than the reading itself:** the blocks and the reading order on pages with two columns, margin notes, running heads, notes and woodcuts: the work of the layout model.
 
 ## Order of the books
 

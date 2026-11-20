@@ -12,8 +12,8 @@ One self-contained folder for all works, pilot and later. It is a git repository
     .claude/skills/                  links to skills/, so that Claude finds the skills
     WIP.md                           what remains to do, in order
     tools/                           scripts shared by all works
-    models/                          the reading models of the scans, fetched by tools/ocr_models.py
-    finetuning/                      the corrected pages models are retrained on, one folder per type of book
+    models/                          the models that read the scans: fetched by tools/ocr_models.py, or retrained here
+    finetuning/                      the corrected pages models are retrained on, one folder per retraining
                                      (Layout_fine_tuning.md)
     pyproject.toml, uv.lock          the Python version and packages the scripts need, exact versions
     catalogue/                       the 5 catalogue spreadsheets (copies) + catalogue_rows.csv
