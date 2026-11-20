@@ -13,6 +13,8 @@ One self-contained folder for all works, pilot and later. It is a git repository
     WIP.md                           what remains to do, in order
     tools/                           scripts shared by all works
     models/                          the reading models of the scans, fetched by tools/ocr_models.py
+    finetuning/                      the corrected pages models are retrained on, one folder per type of book
+                                     (Layout_fine_tuning.md)
     pyproject.toml, uv.lock          the Python version and packages the scripts need, exact versions
     catalogue/                       the 5 catalogue spreadsheets (copies) + catalogue_rows.csv
     references/                      articles the project relies on (README.md lists them)

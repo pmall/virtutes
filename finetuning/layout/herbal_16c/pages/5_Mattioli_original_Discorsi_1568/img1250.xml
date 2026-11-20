@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>layout model, then fixed</Creator>
+        <Created>2026-11-20T08:39:40.096564+00:00</Created>
+        <LastChange>2026-11-20T08:39:40.096564+00:00</LastChange>
+    </Metadata>
+    <Page imageFilename="img1250.jpg" imageWidth="1479" imageHeight="2000">
+                <TextRegion id="_8e172f29-d45d-5b0f-a284-514fac7cc83a" custom="structure {type:RunningTitleZone;}">
+<Coords points="131,123 131,186 680,186 680,123"/>        </TextRegion>
+        <TextRegion id="_a3789088-8bd7-5955-820c-adf856113c64" custom="structure {type:NumberingZone;}">
+<Coords points="756,140 756,192 872,192 872,140"/>        </TextRegion>
+        <TextRegion id="_ee4657ea-9889-5af4-9ee8-f028b7ac963e" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="869,276 869,326 977,326 977,276"/>        </TextRegion>
+        <TextRegion id="_379f897a-14f8-502e-82e7-c5b5f6b45da7" custom="structure {type:MainZone-P;}">
+<Coords points="14,266 14,473 873,473 873,266"/>        </TextRegion>
+        <TextRegion id="_a4002bf6-8054-5091-99f0-fcf4715bb2cd" custom="structure {type:QuireMarksZone;}">
+<Coords points="679,1697 679,1743 879,1743 879,1697"/>        </TextRegion>
+        <TextRegion id="_34c8fef5-8aff-556a-8f5f-153feb74c087" custom="structure {type:MainZone-P;}">
+<Coords points="14,194 14,258 874,258 874,194"/>        </TextRegion>
+        <TextRegion id="_1bedd45c-7551-5583-856f-d60bc757998d" custom="structure {type:GraphicZone-Head;}">
+<Coords points="189,480 189,506 656,506 656,480"/>        </TextRegion>
+        <TextRegion id="_5673fe8d-5667-592d-8aea-6f4d31a550e6" custom="structure {type:GraphicZone;}">
+<Coords points="45,512 45,1693 880,1693 880,512"/>        </TextRegion>
+    </Page>
+</PcGts>

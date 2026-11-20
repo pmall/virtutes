@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>layout model, then fixed</Creator>
+        <Created>2026-11-20T08:39:01.629222+00:00</Created>
+        <LastChange>2026-11-20T08:39:01.629222+00:00</LastChange>
+    </Metadata>
+    <Page imageFilename="img0380.jpg" imageWidth="1320" imageHeight="2000">
+                <TextRegion id="_809b05af-69f9-5ab3-bf0c-f38b2eb870aa" custom="structure {type:NumberingZone;}">
+<Coords points="113,42 113,87 180,87 180,42"/>        </TextRegion>
+        <TextRegion id="_d259ea1e-8c9e-53e9-b7a9-63468c84f28e" custom="structure {type:RunningTitleZone;}">
+<Coords points="350,26 350,73 1055,73 1055,26"/>        </TextRegion>
+        <TextRegion id="_67aa6e09-7099-5545-9e41-254823f77717" custom="structure {type:QuireMarksZone;}">
+<Coords points="1182,1844 1182,1883 1231,1883 1231,1844"/>        </TextRegion>
+        <TextRegion id="_89045351-fb4a-5f0e-bc3a-e06fa3120c3f" custom="structure {type:MainZone-P;}">
+<Coords points="116,83 116,1869 668,1869 668,83"/>        </TextRegion>
+        <TextRegion id="_cfa19884-b2f2-561c-ad55-5e0266f370a8" custom="structure {type:MainZone-P;}">
+<Coords points="680,82 680,275 1203,275 1203,82"/>        </TextRegion>
+        <TextRegion id="_bfb7b87a-14cb-5289-8695-5304e979af42" custom="structure {type:MainZone-Head;}">
+<Coords points="749,279 749,308 1122,308 1122,279"/>        </TextRegion>
+        <TextRegion id="_eeccc840-0b6e-5f01-81ea-193c7827d99d" custom="structure {type:MainZone-P;}">
+<Coords points="681,307 681,1851 1227,1851 1227,307"/>        </TextRegion>
+    </Page>
+</PcGts>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>layout model, then fixed</Creator>
+        <Created>2026-11-20T08:38:46.906234+00:00</Created>
+        <LastChange>2026-11-20T08:38:46.906234+00:00</LastChange>
+    </Metadata>
+    <Page imageFilename="img0200.jpg" imageWidth="1341" imageHeight="2000">
+                <TextRegion id="_557736bf-01e2-5556-bd08-8504dcc98c07" custom="structure {type:NumberingZone;}">
+<Coords points="156,10 156,55 225,55 225,10"/>        </TextRegion>
+        <TextRegion id="_95a0df1a-570d-5355-92ff-ceb693310467" custom="structure {type:RunningTitleZone;}">
+<Coords points="461,1 461,47 779,47 779,1"/>        </TextRegion>
+        <TextRegion id="_2db4d32b-3889-5d63-b288-ec5c03110f5a" custom="structure {type:MainZone-Head;}">
+<Coords points="229,56 229,94 616,94 616,56"/>        </TextRegion>
+        <TextRegion id="_df9853de-8ac4-51b7-a8ba-af34e3267127" custom="structure {type:MainZone-P;}">
+<Coords points="162,89 162,605 693,605 693,89"/>        </TextRegion>
+        <TextRegion id="_e9f8ec25-5242-5ae9-8fd7-74a3718d4bd4" custom="structure {type:GraphicZone-Head;}">
+<Coords points="249,1281 249,1343 410,1343 410,1281"/>        </TextRegion>
+        <TextRegion id="_2fc764c2-cbb0-58fe-bcff-c85a9bd2730d" custom="structure {type:GraphicZone-Head;}">
+<Coords points="807,1180 807,1236 961,1236 961,1180"/>        </TextRegion>
+        <TextRegion id="_10e8baf7-7178-563e-b92e-11b15230bed0" custom="structure {type:MainZone-P;}">
+<Coords points="1045,675 1045,1842 1261,1842 1261,675"/>        </TextRegion>
+        <TextRegion id="_444b641d-a96b-5959-b647-f3adbdf2818c" custom="structure {type:QuireMarksZone;}">
+<Coords points="1187,1830 1187,1874 1258,1874 1258,1830"/>        </TextRegion>
+        <TextRegion id="_3ade0c25-12e1-563e-9952-ab831f47ae55" custom="structure {type:MainZone-P;}">
+<Coords points="725,55 725,322 1258,322 1258,55"/>        </TextRegion>
+        <TextRegion id="_130a1d9a-b674-5caf-acca-faa6ef97e416" custom="structure {type:MainZone-Head;}">
+<Coords points="169,631 169,774 689,774 689,631"/>        </TextRegion>
+        <TextRegion id="_d4e21ee2-344a-50bd-a91c-64ef9c130d69" custom="structure {type:GraphicZone;}">
+<Coords points="196,795 196,1273 477,1273 477,795"/>        </TextRegion>
+        <TextRegion id="_085e1e26-e22c-5e54-86da-6cd97f55033b" custom="structure {type:MainZone-P;}">
+<Coords points="489,815 489,1338 694,1338 694,815"/>        </TextRegion>
+        <TextRegion id="_b2f28604-c630-53d1-bd02-52b023fdb7f8" custom="structure {type:MainZone-P;}">
+<Coords points="165,1341 165,1843 688,1843 688,1341"/>        </TextRegion>
+        <TextRegion id="_5932e783-5a1c-50f3-8cb0-78d824bb7eea" custom="structure {type:MainZone-Head;}">
+<Coords points="806,323 806,352 1181,352 1181,323"/>        </TextRegion>
+        <TextRegion id="_b1908b52-a464-517f-941b-e25c27365892" custom="structure {type:MainZone-P;}">
+<Coords points="724,350 724,491 1252,491 1252,350"/>        </TextRegion>
+        <TextRegion id="_2fe3ea19-3aa5-5c49-a4e3-a4a1525e2284" custom="structure {type:MainZone-Head;}">
+<Coords points="732,513 732,667 1254,667 1254,513"/>        </TextRegion>
+        <TextRegion id="_8e679d89-643e-5185-91ae-29fc54a2c442" custom="structure {type:GraphicZone;}">
+<Coords points="743,683 743,1171 1046,1171 1046,683"/>        </TextRegion>
+        <TextRegion id="_4e2b3119-8992-5329-b08d-d2f944468178" custom="structure {type:GraphicZone;}">
+<Coords points="733,1265 733,1755 1035,1755 1035,1265"/>        </TextRegion>
+        <TextRegion id="_86610507-76e0-50a4-ac60-7413f9f9b7b9" custom="structure {type:GraphicZone-Head;}">
+<Coords points="850,1770 850,1820 937,1820 937,1770"/>        </TextRegion>
+    </Page>
+</PcGts>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>layout model, then fixed</Creator>
+        <Created>2026-11-20T08:38:32.221669+00:00</Created>
+        <LastChange>2026-11-20T08:38:32.221669+00:00</LastChange>
+    </Metadata>
+    <Page imageFilename="img0030.jpg" imageWidth="1341" imageHeight="2000">
+                <TextRegion id="_056221e0-ac04-5011-9117-747c9a0213f9" custom="structure {type:RunningTitleZone;}">
+<Coords points="422,27 422,75 1043,75 1043,27"/>        </TextRegion>
+        <TextRegion id="_a70f1b9f-2b14-5b7e-871c-6f8b561aa17a" custom="structure {type:NumberingZone;}">
+<Coords points="165,32 165,80 213,80 213,32"/>        </TextRegion>
+        <TextRegion id="_05838e69-25e1-5101-9cb3-3163bc3ae77a" custom="structure {type:MainZone-P;}">
+<Coords points="172,392 172,990 697,990 697,392"/>        </TextRegion>
+        <TextRegion id="_fdf0b174-011b-5a89-91ab-ee43a659d2ab" custom="structure {type:MainZone-P;}">
+<Coords points="173,1017 173,1371 702,1371 702,1017"/>        </TextRegion>
+        <TextRegion id="_b5c4cc4c-7028-5748-8f2b-b284ebbd7561" custom="structure {type:MainZone-P;}">
+<Coords points="175,1461 175,1695 700,1695 700,1461"/>        </TextRegion>
+        <TextRegion id="_301de8ba-82a5-5ecd-8fc2-3283728700dc" custom="structure {type:MainZone-P;}">
+<Coords points="173,1736 173,1877 700,1877 700,1736"/>        </TextRegion>
+        <TextRegion id="_241eb7cc-e6ca-5f74-b206-e25455ec8c56" custom="structure {type:MainZone-P;}">
+<Coords points="735,247 735,844 1261,844 1261,247"/>        </TextRegion>
+        <TextRegion id="_05290b94-ffa4-584e-aa78-43c2fa017c61" custom="structure {type:MainZone-P;}">
+<Coords points="738,879 738,1450 1263,1450 1263,879"/>        </TextRegion>
+        <TextRegion id="_31909a51-b935-55f0-8c8c-069710b3ced2" custom="structure {type:MainZone-Head;}">
+<Coords points="224,983 224,1025 640,1025 640,983"/>        </TextRegion>
+        <TextRegion id="_2c8ecdb7-6d21-5880-90e0-96134b69e9f9" custom="structure {type:MainZone-Head;}">
+<Coords points="241,1693 241,1734 636,1734 636,1693"/>        </TextRegion>
+        <TextRegion id="_03e5e8fe-bdbc-5e51-9048-725affd791d3" custom="structure {type:MainZone-Head;}">
+<Coords points="733,164 733,241 1256,241 1256,164"/>        </TextRegion>
+        <TextRegion id="_b5b8e446-aefd-5471-be12-a5bd961a004d" custom="structure {type:MainZone-Head;}">
+<Coords points="800,842 800,881 1194,881 1194,842"/>        </TextRegion>
+        <TextRegion id="_cd521dc7-5c12-5efa-a871-bdf7223b1da1" custom="structure {type:MainZone-P;}">
+<Coords points="166,88 166,257 693,257 693,88"/>        </TextRegion>
+        <TextRegion id="_476f592c-9347-5fed-af13-e7a71ed93a39" custom="structure {type:MainZone-P;}">
+<Coords points="731,88 731,165 1256,165 1256,88"/>        </TextRegion>
+        <TextRegion id="_17095911-95f3-5d20-9035-0d13b234ac4d" custom="structure {type:MainZone-Head;}">
+<Coords points="223,272 223,384 639,384 639,272"/>        </TextRegion>
+        <TextRegion id="_52af989e-4beb-5ce2-b3dd-29fcefaee5f2" custom="structure {type:MainZone-Head;}">
+<Coords points="279,1379 279,1457 596,1457 596,1379"/>        </TextRegion>
+        <TextRegion id="_97b342d2-fdfa-59d8-8d2a-2fd914053c39" custom="structure {type:MainZone-Head;}">
+<Coords points="829,1457 829,1533 1166,1533 1166,1457"/>        </TextRegion>
+        <TextRegion id="_14c30aec-fe0a-55eb-aab7-4b4d54ee0643" custom="structure {type:MainZone-P;}">
+<Coords points="742,1534 742,1875 1259,1875 1259,1534"/>        </TextRegion>
+        <TextRegion id="_ebce073f-e0cf-5a39-b232-7f577d3c0dde" custom="structure {type:QuireMarksZone;}">
+<Coords points="1176,1871 1176,1897 1260,1897 1260,1871"/>        </TextRegion>
+    </Page>
+</PcGts>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>layout model, then fixed</Creator>
+        <Created>2026-11-19T14:33:09.127817+00:00</Created>
+        <LastChange>2026-11-19T14:33:09.127817+00:00</LastChange>
+    </Metadata>
+    <Page imageFilename="img0265.jpg" imageWidth="1462" imageHeight="2000">
+                <TextRegion id="_95a818b0-d442-5ee9-bc38-21f51d8e6b99" custom="structure {type:NumberingZone;}">
+<Coords points="413,114 413,145 457,145 457,114"/>        </TextRegion>
+        <TextRegion id="_2633d9be-1fdd-58a8-9627-5d747db0521a" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="341,1353 341,1402 444,1402 444,1353"/>        </TextRegion>
+        <TextRegion id="_b56daa6d-a013-5d00-bfd1-51f01d76c80e" custom="structure {type:MainZone-Head;}">
+<Coords points="1084,1142 1084,1168 1202,1168 1202,1142"/>        </TextRegion>
+        <TextRegion id="_50a60e96-b9ad-5b94-b4f1-ab4f98d12033" custom="structure {type:QuireMarksZone;}">
+<Coords points="1327,1783 1327,1809 1376,1809 1376,1783"/>        </TextRegion>
+        <TextRegion id="_50f5636a-eabd-5e93-ac7a-f336335b8f5f" custom="structure {type:NumberingZone;}">
+<Coords points="901,365 901,394 929,394 929,365"/>        </TextRegion>
+        <TextRegion id="_0e9624f8-c357-5349-a2c3-d74ca319de0e" custom="structure {type:MainZone-P;}">
+<Coords points="924,768 924,1138 1382,1138 1382,768"/>        </TextRegion>
+        <TextRegion id="_d04bd46c-4741-5c81-92c2-00d494242513" custom="structure {type:RunningTitleZone;}">
+<Coords points="638,105 638,141 1135,141 1135,105"/>        </TextRegion>
+        <TextRegion id="_0725e494-df85-5d13-a31e-6a36aee517b8" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="347,179 347,203 416,203 416,179"/>        </TextRegion>
+        <TextRegion id="_c3efb358-7e6b-53b7-a9a0-587428fa5cc9" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="346,370 346,416 445,416 445,370"/>        </TextRegion>
+        <TextRegion id="_fa7647c1-2615-5026-aab9-6d9683c8bd89" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="347,533 347,579 444,579 444,533"/>        </TextRegion>
+        <TextRegion id="_943a1c28-4411-5f79-bb44-02cf97777257" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="345,843 345,890 441,890 441,843"/>        </TextRegion>
+        <TextRegion id="_beb23f7c-4c18-51c7-848c-37dedc9bbbd0" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="340,923 340,978 441,978 441,923"/>        </TextRegion>
+        <TextRegion id="_ca425ec0-c4a6-5c12-859e-bcfe398dfc3a" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="343,987 343,1045 443,1045 443,987"/>        </TextRegion>
+        <TextRegion id="_de662a02-1b31-5d6d-8ee1-baff59aae079" custom="structure {type:MainZone-P;}">
+<Coords points="442,146 442,1390 894,1390 894,146"/>        </TextRegion>
+        <TextRegion id="_8c671a25-0229-551d-a5ee-f1de18f3948a" custom="structure {type:MainZone-Head;}">
+<Coords points="440,1392 440,1527 896,1527 896,1392"/>        </TextRegion>
+        <TextRegion id="_88c59856-e2d7-5ccc-8ae2-dad953544e3a" custom="structure {type:MainZone-P;}">
+<Coords points="440,1534 440,1791 897,1791 897,1534"/>        </TextRegion>
+        <TextRegion id="_60805a5e-7860-529b-8cf4-ca67db13a27b" custom="structure {type:MainZone-P;}">
+<Coords points="930,144 930,365 1378,365 1378,144"/>        </TextRegion>
+        <TextRegion id="_3b8c3b89-a603-5176-96b5-5edd208017bb" custom="structure {type:GraphicZone-Head;}">
+<Coords points="962,361 962,424 1124,424 1124,361"/>        </TextRegion>
+        <TextRegion id="_1c1b5c83-402f-5b38-8f59-d940d54f95f6" custom="structure {type:GraphicZone-Head;}">
+<Coords points="1184,364 1184,424 1331,424 1331,364"/>        </TextRegion>
+        <TextRegion id="_a06058c0-4d9f-52c4-b43f-0b840b528283" custom="structure {type:GraphicZone;}">
+<Coords points="932,420 932,767 1137,767 1137,420"/>        </TextRegion>
+        <TextRegion id="_6f9ef4cb-2818-5274-9f2d-ea05f6090c09" custom="structure {type:GraphicZone;}">
+<Coords points="1158,420 1158,768 1377,768 1377,420"/>        </TextRegion>
+        <TextRegion id="_839f8d97-b1dc-56f4-9247-b80451f4eec1" custom="structure {type:MainZone-P;}">
+<Coords points="929,1165 929,1250 1375,1250 1375,1165"/>        </TextRegion>
+        <TextRegion id="_57acd079-7ef1-5e78-b3e0-2ba5a81b800e" custom="structure {type:MainZone-Head;}">
+<Coords points="922,1246 922,1354 1379,1354 1379,1246"/>        </TextRegion>
+        <TextRegion id="_399b87ca-18e0-5db1-b04d-cb3d9f449c64" custom="structure {type:MainZone-Head;}">
+<Coords points="930,1356 930,1471 1380,1471 1380,1356"/>        </TextRegion>
+        <TextRegion id="_7f2d7916-8cf6-5f3e-bc61-804e743f7126" custom="structure {type:MainZone-P;}">
+<Coords points="927,1470 927,1794 1374,1794 1374,1470"/>        </TextRegion>
+        <TextRegion id="_1a3ead2d-5cc3-553c-bdcf-4b4fb2d7a382" custom="structure {type:NumberingZone;}">
+<Coords points="899,614 899,631 925,631 925,614"/>        </TextRegion>
+        <TextRegion id="_94743639-2e39-5708-8202-f6d637fb8fde" custom="structure {type:NumberingZone;}">
+<Coords points="902,857 902,879 927,879 927,857"/>        </TextRegion>
+        <TextRegion id="_b9c527e4-a986-587a-bbe2-a8fcf635a8a6" custom="structure {type:NumberingZone;}">
+<Coords points="899,1100 899,1121 927,1121 927,1100"/>        </TextRegion>
+        <TextRegion id="_34d36d41-0918-5b04-8e55-bde115b76a49" custom="structure {type:NumberingZone;}">
+<Coords points="900,1344 900,1366 926,1366 926,1344"/>        </TextRegion>
+        <TextRegion id="_a98c599c-462a-5459-9c68-523da2d7c9f1" custom="structure {type:NumberingZone;}">
+<Coords points="899,1586 899,1607 927,1607 927,1586"/>        </TextRegion>
+    </Page>
+</PcGts>

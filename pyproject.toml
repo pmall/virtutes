@@ -10,6 +10,7 @@ dependencies = [
     "kraken==7.1.1",   # reads the scans: finds the lines and reads them (docs/OCR_Kraken_approach.md)
     "torch",           # needed by kraken; taken from the CPU-only index below
     "torchvision",     # needed by kraken; taken from the CPU-only index below
+    "dfine-kraken==0.4.4",   # the layout model: marks the blocks of a page, can be retrained (docs/Layout_fine_tuning.md)
 ]
 
 [tool.uv]

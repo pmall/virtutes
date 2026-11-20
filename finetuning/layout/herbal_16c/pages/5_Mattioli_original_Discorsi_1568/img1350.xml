@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>layout model, then fixed</Creator>
+        <Created>2026-11-20T08:39:43.273778+00:00</Created>
+        <LastChange>2026-11-20T08:39:43.273778+00:00</LastChange>
+    </Metadata>
+    <Page imageFilename="img1350.jpg" imageWidth="1451" imageHeight="2000">
+                <TextRegion id="_02bc4a99-b877-5ef8-b262-1d1432fea79f" custom="structure {type:RunningTitleZone;}">
+<Coords points="153,143 153,220 708,220 708,143"/>        </TextRegion>
+        <TextRegion id="_b679908c-f79d-5cdd-a7c8-b31cf98197e3" custom="structure {type:NumberingZone;}">
+<Coords points="777,170 777,232 885,232 885,170"/>        </TextRegion>
+        <TextRegion id="_fb76c509-1155-577f-a3f9-7af6c50c2958" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="865,1548 865,1596 974,1596 974,1548"/>        </TextRegion>
+        <TextRegion id="_adea64bc-fe92-5f00-a4ce-ce902a65e9ba" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="864,1660 864,1721 974,1721 974,1660"/>        </TextRegion>
+        <TextRegion id="_f6dbeed1-6b83-5cec-9911-a10bb11670c0" custom="structure {type:GraphicZone-Head;}">
+<Coords points="338,238 338,269 562,269 562,238"/>        </TextRegion>
+        <TextRegion id="_b518a6fc-4982-56eb-b7ad-f67376585f26" custom="structure {type:GraphicZone;}">
+<Coords points="172,296 172,1435 784,1435 784,296"/>        </TextRegion>
+        <TextRegion id="_cc78760b-ef14-5951-88cc-036a532ecca5" custom="structure {type:MainZone-P;}">
+<Coords points="12,1448 12,1726 865,1726 865,1448"/>        </TextRegion>
+        <TextRegion id="_96f598df-ce0d-56ed-9b0e-addf6ba88eb2" custom="structure {type:QuireMarksZone;}">
+<Coords points="685,1721 685,1748 864,1748 864,1721"/>        </TextRegion>
+    </Page>
+</PcGts>

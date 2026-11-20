@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>layout model, then fixed</Creator>
+        <Created>2026-11-20T08:39:31.517981+00:00</Created>
+        <LastChange>2026-11-20T08:39:31.517981+00:00</LastChange>
+    </Metadata>
+    <Page imageFilename="img0900.jpg" imageWidth="1449" imageHeight="2000">
+                <TextRegion id="_7c0231d1-4d76-55e8-b6f9-155f0e11cda1" custom="structure {type:RunningTitleZone;}">
+<Coords points="162,140 162,204 685,204 685,140"/>        </TextRegion>
+        <TextRegion id="_1b689677-eaea-59da-a773-1338f6987fe2" custom="structure {type:NumberingZone;}">
+<Coords points="775,164 775,212 864,212 864,164"/>        </TextRegion>
+        <TextRegion id="_1693c622-a2d4-5146-b789-9162b7b9cb5d" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="869,393 869,479 979,479 979,393"/>        </TextRegion>
+        <TextRegion id="_8c0b8599-81f4-53e6-8f5a-ad104d145030" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="871,631 871,676 976,676 976,631"/>        </TextRegion>
+        <TextRegion id="_5638db4a-0215-5c1f-8063-8ec8272144d3" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="868,1561 868,1608 974,1608 974,1561"/>        </TextRegion>
+        <TextRegion id="_5877693e-a9b2-5f55-9483-38ac22adf144" custom="structure {type:MainZone-P;}">
+<Coords points="3,808 3,1547 876,1547 876,808"/>        </TextRegion>
+        <TextRegion id="_fc715c8b-f6b1-5b06-b7a7-d4ca4a4526c6" custom="structure {type:QuireMarksZone;}">
+<Coords points="810,1711 810,1740 866,1740 866,1711"/>        </TextRegion>
+        <TextRegion id="_dc3dbd73-4f56-5615-8548-ddcef2e51d05" custom="structure {type:MainZone-P;}">
+<Coords points="7,215 7,746 872,746 872,215"/>        </TextRegion>
+        <TextRegion id="_952f8b0d-54f8-5a3d-a30d-92cdb084efcd" custom="structure {type:MarginTextZone-Notes;}">
+<Coords points="873,683 873,702 922,702 922,683"/>        </TextRegion>
+        <TextRegion id="_3e2aa446-2ab5-54d5-9ebe-eef28e0ec41d" custom="structure {type:MainZone-Head;}">
+<Coords points="178,767 178,806 687,806 687,767"/>        </TextRegion>
+        <TextRegion id="_d6888d11-4726-58ed-bb0e-9385e4af6f3f" custom="structure {type:MainZone-P;}">
+<Coords points="11,1560 11,1719 875,1719 875,1560"/>        </TextRegion>
+    </Page>
+</PcGts>

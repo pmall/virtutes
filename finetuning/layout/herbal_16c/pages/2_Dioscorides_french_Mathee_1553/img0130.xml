@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>layout model, then fixed</Creator>
+        <Created>2026-11-20T08:38:40.609971+00:00</Created>
+        <LastChange>2026-11-20T08:38:40.609971+00:00</LastChange>
+    </Metadata>
+    <Page imageFilename="img0130.jpg" imageWidth="1341" imageHeight="2000">
+                <TextRegion id="_3a07a3f3-a730-5d7d-b5ee-77e5ee764e89" custom="structure {type:NumberingZone;}">
+<Coords points="164,13 164,54 232,54 232,13"/>        </TextRegion>
+        <TextRegion id="_b0d85df2-7d75-5723-8259-1d08e70154f2" custom="structure {type:RunningTitleZone;}">
+<Coords points="427,6 427,50 1004,50 1004,6"/>        </TextRegion>
+        <TextRegion id="_923897bf-6cd2-5fb2-b83b-3a0955d88df2" custom="structure {type:MainZone-Head;}">
+<Coords points="241,986 241,1037 627,1037 627,986"/>        </TextRegion>
+        <TextRegion id="_c2137ec6-c62a-5252-9d59-bb215a6ed2ba" custom="structure {type:MainZone-P;}">
+<Coords points="179,1058 179,1861 704,1861 704,1058"/>        </TextRegion>
+        <TextRegion id="_43a86fee-4a3a-5676-8a73-8cf3ba93e784" custom="structure {type:MainZone-P;}">
+<Coords points="164,64 164,963 696,963 696,64"/>        </TextRegion>
+        <TextRegion id="_5b6566bd-5d14-510a-bac5-316dec09aeb0" custom="structure {type:MainZone-P;}">
+<Coords points="721,54 721,159 1247,159 1247,54"/>        </TextRegion>
+        <TextRegion id="_f5031f67-035d-57d1-b342-3467d80a4bbc" custom="structure {type:MainZone-Head;}">
+<Coords points="728,194 728,386 1239,386 1239,194"/>        </TextRegion>
+        <TextRegion id="_c0363037-6a4f-5009-8936-3f5d5d495598" custom="structure {type:MainZone-P;}">
+<Coords points="732,431 732,1849 1253,1849 1253,431"/>        </TextRegion>
+        <TextRegion id="_ba3cd892-1821-593c-b264-1b9c49a71203" custom="structure {type:QuireMarksZone;}">
+<Coords points="1187,1845 1187,1879 1250,1879 1250,1845"/>        </TextRegion>
+    </Page>
+</PcGts>

@@ -16,6 +16,11 @@ references/*.pdf
 # gives their address and checksum)
 models/
 
+# Retraining (docs/Layout_fine_tuning.md): the page images are made again from source/ by
+# tools/layout_pages.py; work/ holds lists, pictures and the trained model
+finetuning/*/*/pages/*/*.jpg
+finetuning/*/*/work/
+
 # The Python environment, made by "uv sync" (README.md, "Setting up")
 .venv/
 
