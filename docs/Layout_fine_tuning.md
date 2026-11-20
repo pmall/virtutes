@@ -86,6 +86,7 @@ The same retraining was run on each of the three books alone (10 or 11 pages eac
 What the figures show, without a conclusion:
 
 - Own model against the model of the three together: Mathée 96% against 99%, Du Pinet 98% against 97%, Mattioli 1568 98% against 91%. The gap on Mattioli 1568 is one sample page (39 lines of 69 against 66); the five others are equal.
+- The gap on Mathée is also one sample page, and on it one block: the Mathée-only model misses the end of a chapter at the top of the right column (24 lines), a kind of block present on its training pages.
 - Du Pinet and Mattioli 1568, two editions of the same work, read each other at 97% and 99%. Mathée and these two do not read each other well (68% to 92%).
 
 Each retraining was run once, and a book has five or six sample pages. Which of the two ways is better is an open question: no decision has been taken. The single-book models are in `finetuning/layout/herbal_16c/work/single/<book>/` (not in git).
