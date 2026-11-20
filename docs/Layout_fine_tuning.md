@@ -93,7 +93,6 @@ Each retraining was run once, and a book has five or six sample pages. Which of 
 
 ## Not verified
 
-- No person has looked at the corrected pages.
 - Whether one model for all books would do as well as one per type has not been tried.
 - The comparison between several books and one book counts lines inside a block only; the labels given by the single-book models were not looked at.
 - The labels and limits of the blocks were looked at on two sample pages only.
