@@ -40,6 +40,7 @@ Never state the same thing in two places: link to it. Do not write dates, progre
 - `works/Pilot_works_all_versions.csv` is not modified.
 - Commit on the current branch; do not create branches.
 - Commit message: a short title line, a blank line, then the body. One line per paragraph or list item, however long: never cut a line by hand.
+- **A reading of a scan always names its three models**: the layout model, the line finder and the reading model, "none" where a step was not used. This holds for every score, table, report and message; a figure about a reading without its three models is not given.
 - **Checked or assumed.** Say which, every time. Never state an unverified fact as verified. A proposal is not a decision: mark it as a proposal.
 - **When a point is not settled by the documents, ask the user**; do not decide silently.
 - Documents are for researchers from other fields: plain language, short, not addressed to the user. Present works as one table, one row per version, counting versions as defined in `docs/Edition_mapping_method.md`, section 1.
