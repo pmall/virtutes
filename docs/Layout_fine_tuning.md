@@ -52,12 +52,29 @@ For each sample page of each scanned version: how many of the lines found by the
 
 ## The types
 
-| Type | Versions its pages come from | Pages (train + held out) |
-|---|---|---|
-| `herbal_16c` — printed herbals of the 16th century: one or two columns, woodcuts in the text, margin notes | Mathée 1553, Du Pinet 1561, Mattioli 1568 | 31 + 6 |
+| Type | Versions its pages come from | Pages (train + held out) | Model |
+|---|---|---|---|
+| `herbal_16c`: printed herbals of the 16th century, one or two columns, woodcuts in the text, margin notes | Mathée 1553, Du Pinet 1561, Mattioli 1568 | 31 + 6 | `models/herbal_16c_v1/herbal_16c_v1.safetensors`, 125878904 bytes, md5 `aeabd4ff30d23a278583f0af85d1c74b` (30 passes, 1 h 50 on a laptop) |
+
+## What was measured
+
+Lines of the sample pages lying inside a block, ready-made model against `herbal_16c_v1` (checked, 44 sample pages):
+
+| Version | Ready-made | `herbal_16c_v1` | Model to use (proposal) |
+|---|---|---|---|
+| Hort 1916 | 98% | 95% | ready-made |
+| Mathée 1553 | 75% | 99% | `herbal_16c_v1` |
+| Poinsinet 1771-1782 | 95% | 92% | ready-made |
+| Dorveaux 1913 | 98% | 74% | ready-made |
+| Venice 1497 | 90% | 82% | ready-made for now; its own type if 90% is not enough |
+| Du Pinet 1561 | 59% | 97% | `herbal_16c_v1` |
+| Mattioli 1568 | 90% | 91% | `herbal_16c_v1`, to be improved |
+| Petit Bauhin 1671 | 92% | 78% | ready-made |
+
+Looked at on pictures (two pages only): on Du Pinet the blocks and their labels are right, columns, pictures, line counters and catchword included; two of four margin notes are missed. On Mattioli 1568 one page loses a whole block of commentary in italic and a quoted poem (39 lines of 69 found, 65 with the ready-made model), while another gains 23 lines: the 13 pages of this book do not yet cover its page designs.
 
 ## Not verified
 
 - No person has looked at the corrected pages.
 - Whether one model for all books would do as well as one per type has not been tried.
-- Venice 1497 has not been measured with any retrained model: whether it joins `herbal_16c` or needs its own type is open.
+- The labels and limits of the blocks were looked at on two sample pages only.
