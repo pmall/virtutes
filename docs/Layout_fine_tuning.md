@@ -73,8 +73,25 @@ Lines of the sample pages lying inside a block, ready-made model against `herbal
 
 Looked at on pictures (two pages only): on Du Pinet the blocks and their labels are right, columns, pictures, line counters and catchword included; two of four margin notes are missed. On Mattioli 1568 one page loses a whole block of commentary in italic and a quoted poem (39 lines of 69 found, 65 with the ready-made model), while another gains 23 lines: the 13 pages of this book do not yet cover its page designs.
 
+### Several books or one book
+
+The same retraining was run on each of the three books alone (10 or 11 pages each), to compare with `herbal_16c_v1`, trained on the three together. Same measure, same sample pages (checked):
+
+| Sample pages of | Ready-made | Mathée only | Du Pinet only | Mattioli 1568 only | The three together (`herbal_16c_v1`) |
+|---|---|---|---|---|---|
+| Mathée 1553 | 75% | 96% | 92% | 73% | 99% |
+| Du Pinet 1561 | 59% | 68% | 98% | 99% | 97% |
+| Mattioli 1568 | 90% | 85% | 97% | 98% | 91% |
+
+- A book read by the model of the three together is read about as well as by its own model: better on Mathée, one point lower on Du Pinet. The gap on Mattioli 1568 is one sample page (39 lines of 69 against 66); the five others are equal.
+- A model made from one book does not always carry to another: Du Pinet and Mattioli 1568, two editions of the same work, read each other well; Mathée and these two do not.
+- The model of the three together is the only one above 90% on the three books. Retraining on several books of a type is therefore kept as the method.
+
+Each retraining was run once, and a book has five or six sample pages: a difference of a few points is not established. The single-book models are not kept.
+
 ## Not verified
 
 - No person has looked at the corrected pages.
 - Whether one model for all books would do as well as one per type has not been tried.
+- The comparison between several books and one book counts lines inside a block only; the labels given by the single-book models were not looked at.
 - The labels and limits of the blocks were looked at on two sample pages only.
